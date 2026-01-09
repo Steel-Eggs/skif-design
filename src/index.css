@@ -2,55 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @layer base {
   :root {
-    /* СКИФ Brand Colors - Яркий и энергичный стиль */
-    --background: 210 20% 98%;
-    --foreground: 210 40% 15%;
+    /* СКИФ Brand Colors - GPT Style */
+    --background: 210 15% 97%;
+    --foreground: 200 50% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 40% 15%;
+    --card-foreground: 200 50% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 15%;
+    --popover-foreground: 200 50% 10%;
 
-    /* Primary - Vibrant Blue */
-    --primary: 210 100% 45%;
+    /* Primary - Deep Blue */
+    --primary: 202 83% 26%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Energetic Green */
-    --secondary: 160 85% 40%;
+    /* Secondary - Vibrant Green */
+    --secondary: 152 68% 42%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 210 15% 45%;
+    --muted: 210 15% 94%;
+    --muted-foreground: 200 20% 40%;
 
-    /* Accent - Bright Orange for CTAs */
-    --accent: 25 95% 55%;
+    /* Accent - Same green for CTAs */
+    --accent: 152 68% 34%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 210 100% 45%;
+    --border: 210 15% 90%;
+    --input: 210 15% 90%;
+    --ring: 202 83% 26%;
 
-    --radius: 0.75rem;
+    --radius: 1.5rem;
 
     /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210 100% 45%) 0%, hsl(210 100% 35%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(160 85% 40%) 0%, hsl(160 85% 30%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(25 95% 55%) 0%, hsl(15 95% 50%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(210 100% 45%) 0%, hsl(180 80% 40%) 50%, hsl(160 85% 40%) 100%);
+    --gradient-primary: linear-gradient(135deg, #0b4a7a 0%, #1f8f5a 100%);
+    --gradient-secondary: linear-gradient(135deg, #2bb673 0%, #1f8f5a 100%);
+    --gradient-accent: linear-gradient(135deg, #2bb673 0%, #0b4a7a 100%);
+    --gradient-hero: linear-gradient(135deg, #0b4a7a 0%, #1f8f5a 100%);
 
     /* Shadows */
-    --shadow-sm: 0 2px 8px hsl(210 40% 15% / 0.08);
-    --shadow-md: 0 4px 16px hsl(210 40% 15% / 0.12);
-    --shadow-lg: 0 8px 32px hsl(210 40% 15% / 0.16);
-    --shadow-glow: 0 0 30px hsl(210 100% 45% / 0.3);
+    --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 40px rgba(11, 74, 122, 0.3);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -63,33 +63,33 @@
   }
 
   .dark {
-    --background: 210 40% 8%;
-    --foreground: 210 20% 95%;
+    --background: 200 50% 8%;
+    --foreground: 210 15% 95%;
 
-    --card: 210 40% 12%;
-    --card-foreground: 210 20% 95%;
+    --card: 200 40% 12%;
+    --card-foreground: 210 15% 95%;
 
-    --popover: 210 40% 12%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 200 40% 12%;
+    --popover-foreground: 210 15% 95%;
 
-    --primary: 210 100% 55%;
+    --primary: 202 80% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 160 85% 45%;
+    --secondary: 152 68% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 30% 18%;
-    --muted-foreground: 210 15% 60%;
+    --muted: 200 30% 18%;
+    --muted-foreground: 200 15% 60%;
 
-    --accent: 25 95% 55%;
+    --accent: 152 68% 40%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 30% 20%;
-    --input: 210 30% 20%;
-    --ring: 210 100% 55%;
+    --border: 200 30% 20%;
+    --input: 200 30% 20%;
+    --ring: 202 80% 45%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -112,7 +112,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight;
+    @apply font-sans font-black tracking-tight;
   }
 }
 
@@ -140,5 +140,13 @@
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background: var(--gradient-hero);
+  }
+
+  .card-shadow {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-shadow-lg {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
   }
 }
