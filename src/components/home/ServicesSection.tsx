@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Wrench, Truck, Settings, Shield, Clock, CheckCircle } from "lucide-react";
+import { ArrowRight, Wrench, Truck, Settings, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -11,7 +11,7 @@ const services = [
     icon: Wrench,
     features: ["Диагностика", "Сварочные работы", "Покраска"],
     href: "/services/remont",
-    color: "primary",
+    accent: "secondary",
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const services = [
     icon: Settings,
     features: ["Все марки авто", "Сертификаты", "Гарантия 2 года"],
     href: "/services/farkopy",
-    color: "secondary",
+    accent: "accent",
   },
   {
     id: 3,
@@ -29,115 +29,130 @@ const services = [
     icon: Truck,
     features: ["От 1 дня", "Страховка", "Доставка"],
     href: "/services/prokat",
-    color: "accent",
+    accent: "primary",
   },
-];
-
-const advantages = [
-  { icon: Shield, text: "Гарантия на все работы" },
-  { icon: Clock, text: "Быстрое выполнение" },
-  { icon: CheckCircle, text: "Сертифицированные мастера" },
 ];
 
 const ServicesSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-background relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+    <section className="py-24 md:py-32 bg-primary text-primary-foreground relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 grid-pattern" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl" />
       
-      <div className="container relative">
+      {/* Floating shapes */}
+      <motion.div
+        animate={{ y: [0, -30, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 right-20 w-20 h-20 border-2 border-secondary/30 rounded-full hidden lg:block"
+      />
+      <motion.div
+        animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-32 left-32 w-16 h-16 bg-accent/20 hidden lg:block"
+        style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}
+      />
+
+      <div className="container relative z-10">
         {/* Section header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-            Наши услуги
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 font-bold text-sm uppercase tracking-wider mb-6">
+            <Sparkles className="h-4 w-4" />
+            <span>Услуги</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
+            Полный спектр
+            <span className="text-gradient"> услуг</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Полный спектр услуг по обслуживанию прицепов и фаркопов
+          <p className="text-lg md:text-xl text-primary-foreground/70">
+            От ремонта до аренды — всё для вашего прицепа в одном месте
           </p>
-        </div>
+        </motion.div>
 
         {/* Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <Card 
+            <motion.div
               key={service.id}
-              className="group relative overflow-hidden border-2 hover:border-primary/30 transition-all duration-300 hover:shadow-xl animate-fade-in"
-              style={{ animationDelay: `${index * 0.15}s` }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
             >
-              <CardContent className="p-6 lg:p-8">
+              <Link
+                to={service.href}
+                className="group block h-full p-8 rounded-3xl gradient-glass border border-primary-foreground/10 hover:border-primary-foreground/30 transition-all duration-500"
+              >
                 {/* Icon */}
-                <div className={`w-16 h-16 rounded-2xl mb-6 flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 ${
-                  service.color === "primary" ? "gradient-primary" :
-                  service.color === "secondary" ? "gradient-secondary" :
-                  "gradient-accent"
+                <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 ${
+                  service.accent === "secondary" ? "bg-secondary text-secondary-foreground" :
+                  service.accent === "accent" ? "bg-accent text-accent-foreground" :
+                  "bg-primary-foreground text-primary"
                 }`}>
-                  <service.icon className="h-8 w-8 text-primary-foreground" />
+                  <service.icon className="h-10 w-10" />
                 </div>
-                
+
                 {/* Title */}
-                <h3 className="text-xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-2xl md:text-3xl font-heading font-bold mb-4 group-hover:text-secondary transition-colors">
                   {service.name}
                 </h3>
-                
+
                 {/* Description */}
-                <p className="text-muted-foreground mb-5 leading-relaxed">
+                <p className="text-primary-foreground/70 mb-6 leading-relaxed">
                   {service.description}
                 </p>
-                
+
                 {/* Features */}
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-3 mb-8">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm">
-                      <CheckCircle className="h-4 w-4 text-secondary shrink-0" />
-                      <span>{feature}</span>
+                    <li key={idx} className="flex items-center gap-3">
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                        service.accent === "secondary" ? "bg-secondary/20" :
+                        service.accent === "accent" ? "bg-accent/20" :
+                        "bg-primary-foreground/20"
+                      }`}>
+                        <Check className="h-3 w-3" />
+                      </div>
+                      <span className="text-primary-foreground/80">{feature}</span>
                     </li>
                   ))}
                 </ul>
-                
+
                 {/* Link */}
-                <Link 
-                  to={service.href}
-                  className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all"
-                >
-                  Подробнее
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </CardContent>
-              
-              {/* Hover decoration */}
-              <div className={`absolute -bottom-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-10 transition-opacity ${
-                service.color === "primary" ? "bg-primary" :
-                service.color === "secondary" ? "bg-secondary" :
-                "bg-accent"
-              }`} />
-            </Card>
+                <div className="flex items-center gap-2 font-semibold group-hover:gap-4 transition-all">
+                  <span>Подробнее</span>
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-2" />
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
 
-        {/* Advantages */}
-        <div className="bg-muted rounded-2xl p-6 md:p-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {advantages.map((advantage, index) => (
-              <div key={index} className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <advantage.icon className="h-6 w-6 text-primary" />
-                </div>
-                <span className="font-semibold text-foreground">{advantage.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* CTA */}
-        <div className="text-center mt-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-center mt-16"
+        >
           <Link to="/services">
-            <Button size="lg" variant="outline" className="font-bold text-lg px-10 border-2 hover:bg-primary hover:text-primary-foreground hover:border-primary">
+            <Button 
+              size="lg" 
+              className="rounded-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-bold text-lg px-10 py-6 group"
+            >
               Все услуги
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
