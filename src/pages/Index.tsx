@@ -1,22 +1,30 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/home/HeroSection";
-import CategoriesSection from "@/components/home/CategoriesSection";
 import PopularProductsSection from "@/components/home/PopularProductsSection";
 import ServicesSection from "@/components/home/ServicesSection";
-import AdvantagesSection from "@/components/home/AdvantagesSection";
+import CategoriesSection from "@/components/home/CategoriesSection";
+import RentSection from "@/components/home/RentSection";
+import NewsSection from "@/components/home/NewsSection";
+import PartnersSection from "@/components/home/PartnersSection";
+import ReviewsSection from "@/components/home/ReviewsSection";
+import SeoSection from "@/components/home/SeoSection";
 import ContactsSection from "@/components/home/ContactsSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen">
       <Header />
-      <main className="flex-grow">
+      <main>
         <HeroSection />
-        <CategoriesSection />
         <PopularProductsSection />
         <ServicesSection />
-        <AdvantagesSection />
+        <CategoriesSection />
+        <RentSection />
+        <NewsSection />
+        <PartnersSection />
+        <ReviewsSection />
+        <SeoSection />
         <ContactsSection />
       </main>
       <Footer />
