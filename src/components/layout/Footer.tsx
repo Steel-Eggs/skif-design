@@ -30,7 +30,7 @@ const Footer = () => {
           {/* Company info */}
           <div className="space-y-6">
             <Link to="/" className="inline-block">
-              <img src={logo} alt="СКИФ" className="h-14 w-auto brightness-0 invert" />
+              <img src={logo} alt="СКИФ" className="h-20 w-auto" />
             </Link>
             <p className="text-background/70 leading-relaxed">
               Производство и продажа автомобильных прицепов, фаркопов и комплектующих. Работаем с 2005 года.
