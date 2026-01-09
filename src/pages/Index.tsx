@@ -4,11 +4,6 @@ import HeroSection from "@/components/home/HeroSection";
 import PopularProductsSection from "@/components/home/PopularProductsSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import CategoriesSection from "@/components/home/CategoriesSection";
-import RentSection from "@/components/home/RentSection";
-import NewsSection from "@/components/home/NewsSection";
-import PartnersSection from "@/components/home/PartnersSection";
-import ReviewsSection from "@/components/home/ReviewsSection";
-import SeoSection from "@/components/home/SeoSection";
 import ContactsSection from "@/components/home/ContactsSection";
 
 const Index = () => {
@@ -17,14 +12,9 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <CategoriesSection />
         <PopularProductsSection />
         <ServicesSection />
-        <CategoriesSection />
-        <RentSection />
-        <NewsSection />
-        <PartnersSection />
-        <ReviewsSection />
-        <SeoSection />
         <ContactsSection />
       </main>
       <Footer />
