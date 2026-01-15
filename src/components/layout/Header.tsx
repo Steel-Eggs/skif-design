@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Phone, MapPin, Clock, Search, User, ShoppingCart, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, MapPin, Clock, Search, User, ShoppingCart, ChevronDown, MessageCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -21,20 +21,38 @@ const Header = () => {
       <div className="bg-primary text-primary-foreground">
         <div className="container flex items-center justify-between py-2 text-sm">
           <div className="hidden md:flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              <span>г. Москва, ул. Примерная, д. 123</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              <span>Пн-Пт: 9:00-18:00, Сб: 10:00-16:00</span>
-            </div>
+            {/* General phone */}
+            <a href="tel:+78002001636" className="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
+              <Phone className="h-4 w-4" />
+              <span>+7 (800) 200-16-36</span>
+            </a>
           </div>
           <div className="flex items-center gap-4 ml-auto">
-            <a href="tel:+74951234567" className="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
-              <Phone className="h-4 w-4" />
-              <span>+7 (495) 123-45-67</span>
-            </a>
+            {/* Messengers and mobile phone */}
+            <div className="flex items-center gap-3">
+              <a 
+                href="https://max.ru" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                title="MAX"
+              >
+                <MessageCircle className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://t.me/skif_trailers" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                title="Telegram"
+              >
+                <Send className="h-5 w-5" />
+              </a>
+              <a href="tel:+79129103850" className="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
+                <Phone className="h-4 w-4" />
+                <span>+7 (912) 910-38-50</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
