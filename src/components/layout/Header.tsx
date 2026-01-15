@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Phone, Search, User, ShoppingCart, ChevronDown, MessageCircle, Send } from "lucide-react";
+import { 
+  Menu, X, Phone, Search, ShoppingCart, ChevronDown, ChevronRight, MessageCircle, Send,
+  Truck, Ship, Snowflake, Bike, Link2, Package, Anchor, Wrench
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import logo from "@/assets/logo.png";
@@ -10,6 +13,7 @@ const Header = () => {
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState<number | null>(0);
   const catalogRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -17,61 +21,84 @@ const Header = () => {
     {
       name: "Легковые прицепы",
       href: "/catalog/legkovye",
+      icon: Truck,
+      description: "Для перевозки грузов",
       subcategories: [
         { name: "Одноосные", href: "/catalog/legkovye/odnoosnye" },
         { name: "Двухосные", href: "/catalog/legkovye/dvuhosnye" },
         { name: "С тентом", href: "/catalog/legkovye/s-tentom" },
         { name: "Самосвальные", href: "/catalog/legkovye/samosval" },
+        { name: "Бортовые", href: "/catalog/legkovye/bortovye" },
       ]
     },
     {
       name: "Грузовые прицепы",
       href: "/catalog/gruzovye",
+      icon: Package,
+      description: "Для тяжёлых грузов",
       subcategories: [
         { name: "Бортовые", href: "/catalog/gruzovye/bortovye" },
         { name: "Платформы", href: "/catalog/gruzovye/platformy" },
         { name: "Самосвалы", href: "/catalog/gruzovye/samosvaly" },
+        { name: "Контейнеровозы", href: "/catalog/gruzovye/konteynerovozy" },
       ]
     },
     {
       name: "Лодочные прицепы",
       href: "/catalog/lodochnye",
+      icon: Anchor,
+      description: "Для водного транспорта",
       subcategories: [
         { name: "Для ПВХ лодок", href: "/catalog/lodochnye/pvh" },
         { name: "Для катеров", href: "/catalog/lodochnye/katera" },
         { name: "Для гидроциклов", href: "/catalog/lodochnye/gidrotsikly" },
+        { name: "Для яхт", href: "/catalog/lodochnye/yahty" },
       ]
     },
     {
       name: "Для снегоходов",
       href: "/catalog/snegokhody",
+      icon: Snowflake,
+      description: "Зимний транспорт",
       subcategories: [
         { name: "Универсальные", href: "/catalog/snegokhody/universalnye" },
         { name: "С площадкой", href: "/catalog/snegokhody/s-ploschadkoy" },
+        { name: "Закрытые", href: "/catalog/snegokhody/zakrytye" },
       ]
     },
     {
       name: "Для квадроциклов",
       href: "/catalog/kvadrotsikly",
-      subcategories: []
+      icon: Bike,
+      description: "Для ATV и UTV",
+      subcategories: [
+        { name: "Одноместные", href: "/catalog/kvadrotsikly/odnomestnye" },
+        { name: "Двухместные", href: "/catalog/kvadrotsikly/dvuhmestnye" },
+      ]
     },
     {
       name: "Фаркопы",
       href: "/catalog/farkopy",
+      icon: Link2,
+      description: "Тягово-сцепные устройства",
       subcategories: [
         { name: "Toyota", href: "/catalog/farkopy/toyota" },
         { name: "Volkswagen", href: "/catalog/farkopy/volkswagen" },
         { name: "Hyundai", href: "/catalog/farkopy/hyundai" },
         { name: "Kia", href: "/catalog/farkopy/kia" },
+        { name: "Другие марки", href: "/catalog/farkopy/other" },
       ]
     },
     {
       name: "Аксессуары",
       href: "/catalog/aksessuary",
+      icon: Wrench,
+      description: "Комплектующие и запчасти",
       subcategories: [
         { name: "Тенты", href: "/catalog/aksessuary/tenty" },
         { name: "Запчасти", href: "/catalog/aksessuary/zapchasti" },
         { name: "Крепления", href: "/catalog/aksessuary/krepleniya" },
+        { name: "Освещение", href: "/catalog/aksessuary/osveschenie" },
       ]
     },
   ];
@@ -160,42 +187,108 @@ const Header = () => {
             <div ref={catalogRef} className="relative">
               <button
                 onClick={() => setIsCatalogOpen(!isCatalogOpen)}
-                className="flex items-center gap-1 px-4 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted"
+                className="flex items-center gap-2 px-5 py-2.5 gradient-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-all"
               >
+                <Menu className="h-5 w-5" />
                 Каталог
                 <ChevronDown className={`h-4 w-4 transition-transform ${isCatalogOpen ? 'rotate-180' : ''}`} />
               </button>
               
-              {/* Dropdown menu */}
+              {/* Mega Menu Dropdown */}
               {isCatalogOpen && (
-                <div className="absolute top-full left-0 mt-2 w-[600px] bg-card border border-border rounded-xl shadow-2xl p-4 animate-fade-in z-50">
-                  <div className="grid grid-cols-2 gap-4">
-                    {catalogCategories.map((category) => (
-                      <div key={category.name} className="space-y-2">
-                        <Link
-                          to={category.href}
-                          className="block font-semibold text-foreground hover:text-primary transition-colors"
-                          onClick={() => setIsCatalogOpen(false)}
-                        >
-                          {category.name}
-                        </Link>
-                        {category.subcategories.length > 0 && (
-                          <ul className="space-y-1 pl-3 border-l-2 border-primary/20">
-                            {category.subcategories.map((sub) => (
-                              <li key={sub.name}>
-                                <Link
-                                  to={sub.href}
-                                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                                  onClick={() => setIsCatalogOpen(false)}
-                                >
-                                  {sub.name}
-                                </Link>
-                              </li>
+                <div className="absolute top-full left-0 mt-2 w-[750px] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden animate-fade-in z-[100]">
+                  <div className="flex">
+                    {/* Left sidebar - categories */}
+                    <div className="w-72 bg-muted/50 border-r border-border p-2">
+                      {catalogCategories.map((category, index) => {
+                        const IconComponent = category.icon;
+                        return (
+                          <button
+                            key={category.name}
+                            onMouseEnter={() => setActiveCategory(index)}
+                            onClick={() => {
+                              window.location.href = category.href;
+                              setIsCatalogOpen(false);
+                            }}
+                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
+                              activeCategory === index 
+                                ? 'bg-primary text-primary-foreground' 
+                                : 'hover:bg-muted text-foreground'
+                            }`}
+                          >
+                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
+                              activeCategory === index 
+                                ? 'bg-primary-foreground/20' 
+                                : 'bg-primary/10'
+                            }`}>
+                              <IconComponent className={`h-5 w-5 ${
+                                activeCategory === index ? 'text-primary-foreground' : 'text-primary'
+                              }`} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-semibold text-sm truncate">{category.name}</div>
+                              <div className={`text-xs truncate ${
+                                activeCategory === index ? 'text-primary-foreground/70' : 'text-muted-foreground'
+                              }`}>
+                                {category.description}
+                              </div>
+                            </div>
+                            <ChevronRight className={`h-4 w-4 shrink-0 ${
+                              activeCategory === index ? 'text-primary-foreground' : 'text-muted-foreground'
+                            }`} />
+                          </button>
+                        );
+                      })}
+                    </div>
+                    
+                    {/* Right content - subcategories */}
+                    <div className="flex-1 p-6">
+                      {activeCategory !== null && (
+                        <div className="animate-fade-in">
+                          <div className="flex items-center gap-3 mb-4 pb-4 border-b border-border">
+                            {(() => {
+                              const IconComponent = catalogCategories[activeCategory].icon;
+                              return (
+                                <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
+                                  <IconComponent className="h-6 w-6 text-primary-foreground" />
+                                </div>
+                              );
+                            })()}
+                            <div>
+                              <h3 className="font-heading font-bold text-lg text-foreground">
+                                {catalogCategories[activeCategory].name}
+                              </h3>
+                              <p className="text-sm text-muted-foreground">
+                                {catalogCategories[activeCategory].description}
+                              </p>
+                            </div>
+                          </div>
+                          
+                          <div className="grid grid-cols-2 gap-2">
+                            {catalogCategories[activeCategory].subcategories.map((sub) => (
+                              <Link
+                                key={sub.name}
+                                to={sub.href}
+                                className="flex items-center gap-2 px-4 py-3 rounded-lg text-foreground hover:bg-primary hover:text-primary-foreground transition-colors group"
+                                onClick={() => setIsCatalogOpen(false)}
+                              >
+                                <div className="w-2 h-2 rounded-full bg-primary group-hover:bg-primary-foreground transition-colors" />
+                                <span className="font-medium">{sub.name}</span>
+                              </Link>
                             ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
+                          </div>
+                          
+                          <Link
+                            to={catalogCategories[activeCategory].href}
+                            className="inline-flex items-center gap-2 mt-6 text-primary font-semibold hover:underline"
+                            onClick={() => setIsCatalogOpen(false)}
+                          >
+                            Смотреть все
+                            <ChevronRight className="h-4 w-4" />
+                          </Link>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               )}
@@ -212,23 +305,22 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Search bar */}
-          <div ref={searchRef} className="hidden md:flex flex-1 max-w-sm mx-4">
+          {/* Search bar - enlarged */}
+          <div ref={searchRef} className="hidden md:flex flex-1 max-w-md mx-4">
             <form onSubmit={handleSearch} className="relative w-full">
               <Input
                 type="text"
                 placeholder="Поиск товаров..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pr-10 bg-muted border-border focus:border-primary"
+                className="pr-12 h-12 text-base bg-muted border-border focus:border-primary rounded-xl"
               />
               <Button
                 type="submit"
                 size="icon"
-                variant="ghost"
-                className="absolute right-0 top-0 h-full hover:bg-transparent"
+                className="absolute right-1 top-1 h-10 w-10 gradient-primary rounded-lg"
               >
-                <Search className="h-5 w-5 text-muted-foreground" />
+                <Search className="h-5 w-5" />
               </Button>
             </form>
           </div>
@@ -243,20 +335,15 @@ const Header = () => {
             >
               <Search className="h-5 w-5" />
             </Button>
-            <Link to="/account">
-              <Button variant="ghost" size="icon" className="hidden md:flex">
-                <User className="h-5 w-5" />
-              </Button>
-            </Link>
             <Link to="/cart">
-              <Button variant="outline" size="icon" className="relative">
+              <Button variant="outline" size="icon" className="relative h-12 w-12 rounded-xl">
                 <ShoppingCart className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                   0
                 </span>
               </Button>
             </Link>
-            <Button className="hidden md:flex gradient-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity">
+            <Button className="hidden md:flex gradient-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity h-12 px-6 rounded-xl">
               Заказать звонок
             </Button>
 
@@ -305,24 +392,31 @@ const Header = () => {
                   onClick={() => setIsCatalogOpen(!isCatalogOpen)}
                   className="flex items-center justify-between w-full px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors"
                 >
-                  Каталог
+                  <span className="flex items-center gap-2">
+                    <Menu className="h-5 w-5" />
+                    Каталог
+                  </span>
                   <ChevronDown className={`h-4 w-4 transition-transform ${isCatalogOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isCatalogOpen && (
-                  <div className="pl-4 mt-2 space-y-2 animate-fade-in">
-                    {catalogCategories.map((category) => (
-                      <Link
-                        key={category.name}
-                        to={category.href}
-                        className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                        onClick={() => {
-                          setIsCatalogOpen(false);
-                          setIsMobileMenuOpen(false);
-                        }}
-                      >
-                        {category.name}
-                      </Link>
-                    ))}
+                  <div className="pl-4 mt-2 space-y-1 animate-fade-in">
+                    {catalogCategories.map((category) => {
+                      const IconComponent = category.icon;
+                      return (
+                        <Link
+                          key={category.name}
+                          to={category.href}
+                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
+                          onClick={() => {
+                            setIsCatalogOpen(false);
+                            setIsMobileMenuOpen(false);
+                          }}
+                        >
+                          <IconComponent className="h-4 w-4" />
+                          {category.name}
+                        </Link>
+                      );
+                    })}
                   </div>
                 )}
               </div>
