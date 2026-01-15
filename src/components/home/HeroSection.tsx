@@ -1,273 +1,101 @@
-import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ChevronLeft, ChevronRight, Play, Shield, Award, Truck } from "lucide-react";
+import { ArrowRight, Truck, Shield, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
-import ParallaxDecorations from "@/components/ui/ParallaxDecorations";
-
-const slides = [
-  {
-    id: 1,
-    tag: "Хит продаж 2024",
-    title: "Прицепы нового поколения",
-    subtitle: "СКИФ",
-    description: "Инновационные решения для перевозки грузов. Надёжность, проверенная временем.",
-    cta: "Смотреть каталог",
-    ctaLink: "/catalog",
-    accent: "secondary",
-  },
-  {
-    id: 2,
-    tag: "Специальное предложение",
-    title: "Лодочные прицепы",
-    subtitle: "для настоящих",
-    description: "Специализированные прицепы для лодок и катеров любых размеров.",
-    cta: "Подобрать прицеп",
-    ctaLink: "/catalog/lodochnye",
-    accent: "accent",
-  },
-  {
-    id: 3,
-    tag: "Гарантия 2 года",
-    title: "Фаркопы на все",
-    subtitle: "марки авто",
-    description: "Профессиональная установка фаркопов с сертификацией и гарантией.",
-    cta: "Заказать установку",
-    ctaLink: "/services/farkopy",
-    accent: "secondary",
-  },
-];
-
-const stats = [
-  { value: "500+", label: "Моделей", icon: Truck },
-  { value: "15K+", label: "Клиентов", icon: Award },
-  { value: "15", label: "Лет опыта", icon: Shield },
-];
 
 const HeroSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [direction, setDirection] = useState(1);
-
-  const nextSlide = useCallback(() => {
-    setDirection(1);
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  }, []);
-
-  const prevSlide = useCallback(() => {
-    setDirection(-1);
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 6000);
-    return () => clearInterval(interval);
-  }, [nextSlide]);
-
-  const slide = slides[currentSlide];
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 100 : -100,
-      opacity: 0,
-      scale: 0.95,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 100 : -100,
-      opacity: 0,
-      scale: 0.95,
-    }),
-  };
-
   return (
-    <section className="relative min-h-[100vh] gradient-hero text-primary-foreground overflow-hidden">
-      <ParallaxDecorations variant="hero" />
+    <section className="relative overflow-hidden gradient-hero text-primary-foreground">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }} />
+      </div>
 
-      {/* Noise texture overlay */}
-      <div className="absolute inset-0 noise" />
-
-      <div className="container relative z-10 min-h-[100vh] flex flex-col justify-center py-20 lg:py-32">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="container relative py-16 md:py-24 lg:py-32">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="space-y-8">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={slide.id}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="space-y-6"
-              >
-                {/* Tag */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider ${
-                    slide.accent === "secondary" 
-                      ? "bg-secondary text-secondary-foreground" 
-                      : "bg-accent text-accent-foreground"
-                  }`}
-                >
-                  <span className="w-2 h-2 rounded-full bg-current animate-pulse" />
-                  {slide.tag}
-                </motion.div>
-
-                {/* Title */}
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-[0.9] tracking-tight">
-                  <span className="block">{slide.title}</span>
-                  <span className={`block ${
-                    slide.accent === "secondary" ? "text-gradient" : "text-gradient-accent"
-                  }`}>
-                    {slide.subtitle}
-                  </span>
-                </h1>
-
-                {/* Description */}
-                <p className="text-lg md:text-xl text-primary-foreground/70 max-w-lg leading-relaxed">
-                  {slide.description}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <Link to={slide.ctaLink}>
-                <Button 
-                  size="lg" 
-                  className={`text-lg px-8 py-6 font-bold rounded-full group ${
-                    slide.accent === "secondary"
-                      ? "bg-secondary text-secondary-foreground hover:bg-secondary/90"
-                      : "bg-accent text-accent-foreground hover:bg-accent/90"
-                  }`}
-                >
-                  {slide.cta}
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+          <div className="space-y-8 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-background/10 rounded-full text-sm font-medium backdrop-blur-sm animate-fade-in">
+              <Award className="h-4 w-4" />
+              <span>Более 15 лет на рынке</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-tight animate-fade-in" style={{ animationDelay: "0.1s" }}>
+              Автомобильные прицепы{" "}
+              <span className="text-accent">СКИФ</span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-primary-foreground/80 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              Производим и продаём надёжные прицепы для легковых автомобилей. 
+              Широкий ассортимент, гарантия качества и доступные цены.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in" style={{ animationDelay: "0.3s" }}>
+              <Link to="/catalog">
+                <Button size="lg" className="gradient-accent text-accent-foreground font-bold text-lg px-8 hover:opacity-90 transition-opacity shadow-lg">
+                  Перейти в каталог
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="text-lg px-8 py-6 font-semibold rounded-full border-2 border-primary-foreground/20 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
-              >
-                <Play className="mr-2 h-5 w-5" />
-                Смотреть видео
-              </Button>
-            </motion.div>
+              <Link to="/services">
+                <Button size="lg" variant="outline" className="bg-background/10 border-2 border-background/30 text-primary-foreground font-bold text-lg px-8 hover:bg-background/20 backdrop-blur-sm">
+                  Наши услуги
+                </Button>
+              </Link>
+            </div>
 
-            {/* Slider controls */}
-            <div className="flex items-center gap-6 pt-8">
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={prevSlide}
-                  className="w-12 h-12 rounded-full border-2 border-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/10 transition-colors"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={nextSlide}
-                  className="w-12 h-12 rounded-full border-2 border-primary-foreground/20 flex items-center justify-center hover:bg-primary-foreground/10 transition-colors"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-6 pt-8 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+              <div className="text-center lg:text-left">
+                <div className="text-3xl md:text-4xl font-heading font-black text-accent">500+</div>
+                <div className="text-sm text-primary-foreground/70">моделей прицепов</div>
               </div>
-
-              {/* Slide indicators */}
-              <div className="flex items-center gap-2">
-                {slides.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setDirection(index > currentSlide ? 1 : -1);
-                      setCurrentSlide(index);
-                    }}
-                    className={`h-1 rounded-full transition-all duration-500 ${
-                      index === currentSlide 
-                        ? "w-12 bg-secondary" 
-                        : "w-4 bg-primary-foreground/30 hover:bg-primary-foreground/50"
-                    }`}
-                  />
-                ))}
+              <div className="text-center lg:text-left">
+                <div className="text-3xl md:text-4xl font-heading font-black text-accent">15000+</div>
+                <div className="text-sm text-primary-foreground/70">довольных клиентов</div>
               </div>
-
-              {/* Slide counter */}
-              <span className="text-primary-foreground/50 font-mono text-sm">
-                {String(currentSlide + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-              </span>
+              <div className="text-center lg:text-left">
+                <div className="text-3xl md:text-4xl font-heading font-black text-accent">2 года</div>
+                <div className="text-sm text-primary-foreground/70">гарантии</div>
+              </div>
             </div>
           </div>
 
-          {/* Right side visual */}
-          <div className="relative hidden lg:flex items-center justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              {/* Main visual container */}
-              <div className="relative w-[500px] h-[500px]">
-                {/* Animated rings */}
-                <div className="absolute inset-0 border-2 border-secondary/20 rounded-full animate-spin-slow" />
-                <div className="absolute inset-8 border-2 border-accent/20 rounded-full animate-spin-slow" style={{ animationDirection: "reverse" }} />
-                <div className="absolute inset-16 border border-primary-foreground/10 rounded-full" />
-
-                {/* Central element */}
-                <div className="absolute inset-24 rounded-full gradient-glass flex items-center justify-center overflow-hidden">
-                  <div className="text-center">
-                    <Truck className="w-20 h-20 mx-auto mb-4 text-secondary" />
-                    <p className="text-lg font-heading font-bold">СКИФ</p>
-                    <p className="text-sm text-primary-foreground/60">Прицепы</p>
+          {/* Image/Visual */}
+          <div className="relative hidden lg:block animate-slide-in-right" style={{ animationDelay: "0.2s" }}>
+            <div className="relative">
+              {/* Placeholder for trailer image */}
+              <div className="aspect-[4/3] rounded-2xl bg-background/10 backdrop-blur-sm border border-background/20 flex items-center justify-center overflow-hidden">
+                <div className="text-center p-8">
+                  <Truck className="h-32 w-32 mx-auto mb-4 text-background/30" />
+                  <p className="text-background/50 text-lg">Изображение прицепа</p>
+                </div>
+              </div>
+              
+              {/* Floating badge */}
+              <div className="absolute -bottom-6 -left-6 bg-card text-card-foreground p-4 rounded-xl shadow-lg animate-pulse-glow">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full gradient-secondary flex items-center justify-center">
+                    <Shield className="h-6 w-6 text-secondary-foreground" />
+                  </div>
+                  <div>
+                    <div className="font-heading font-bold">Гарантия качества</div>
+                    <div className="text-sm text-muted-foreground">Сертифицированная продукция</div>
                   </div>
                 </div>
-
-                {/* Floating stats */}
-                {stats.map((stat, index) => {
-                  const angles = [0, 120, 240];
-                  const radius = 220;
-                  const angle = (angles[index] * Math.PI) / 180;
-                  const x = Math.cos(angle) * radius;
-                  const y = Math.sin(angle) * radius;
-
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.5 + index * 0.2 }}
-                      className="absolute left-1/2 top-1/2"
-                      style={{
-                        transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                      }}
-                    >
-                      <div className="gradient-glass rounded-2xl p-4 text-center min-w-[100px]">
-                        <stat.icon className="w-6 h-6 mx-auto mb-2 text-secondary" />
-                        <div className="text-2xl font-heading font-bold">{stat.value}</div>
-                        <div className="text-xs text-primary-foreground/60">{stat.label}</div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      {/* Wave separator */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+          <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="hsl(var(--background))"/>
+        </svg>
+      </div>
     </section>
   );
 };
