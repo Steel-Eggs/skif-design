@@ -89,7 +89,7 @@ const HeroSection = () => {
                   </div>
                   <div>
                     <div className="font-heading font-bold">Гарантия качества</div>
-                    <div className="text-sm text-muted-foreground">Помощь в регистрации прицепа</div>
+                    <div className="text-sm text-muted-foreground">Бесплатный сервис в течении месяца</div>
                   </div>
                 </div>
               </div>
