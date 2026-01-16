@@ -1,0 +1,243 @@
+/* ============================================
+   СКИФ - Новости для 1С-Битрикс
+   ============================================ */
+
+.news-section {
+  padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+  .news-section {
+    padding: 6rem 0;
+  }
+}
+
+.news-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .news-section-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+}
+
+.news-section-title {
+  margin-bottom: 0.5rem;
+}
+
+.news-section-subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+}
+
+.news-section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  transition: gap 0.3s ease;
+}
+
+.news-section-link:hover {
+  gap: 0.75rem;
+}
+
+/* Сетка новостей */
+.news-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .news-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Главная новость */
+.news-featured {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.news-featured:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.news-featured-image {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.news-featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.news-featured:hover .news-featured-image img {
+  transform: scale(1.05);
+}
+
+.news-featured-content {
+  padding: 1.5rem;
+}
+
+.news-featured-category {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.news-featured-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.news-featured-title a {
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+
+.news-featured-title a:hover {
+  color: var(--color-primary);
+}
+
+.news-featured-excerpt {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.news-featured-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.news-featured-meta-item svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Список новостей */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.news-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.news-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+.news-item-image {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.news-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.news-item-category {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 0.375rem;
+}
+
+.news-item-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-item-title a {
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+
+.news-item-title a:hover {
+  color: var(--color-primary);
+}
+
+.news-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.news-item-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.news-item-meta-item svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* Футер секции */
+.news-section-footer {
+  text-align: center;
+  margin-top: 3rem;
+}

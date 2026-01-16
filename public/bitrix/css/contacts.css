@@ -1,0 +1,257 @@
+/* ============================================
+   СКИФ - Контакты для 1С-Битрикс
+   ============================================ */
+
+.contacts-section {
+  padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+  .contacts-section {
+    padding: 6rem 0;
+  }
+}
+
+.contacts-section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contacts-section-title {
+  margin-bottom: 0.5rem;
+}
+
+.contacts-section-subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+}
+
+/* Сетка контактов */
+.contacts-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .contacts-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* Информация */
+.contacts-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Контактная карточка */
+.contact-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.contact-card-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  background: rgba(11, 74, 122, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-card-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-primary);
+}
+
+.contact-card-content {
+  flex: 1;
+}
+
+.contact-card-title {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.contact-card-text {
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+}
+
+.contact-card-text a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.contact-card-text a:hover {
+  text-decoration: underline;
+}
+
+/* Карта */
+.contacts-map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 250px;
+  box-shadow: var(--shadow-sm);
+}
+
+.contacts-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Форма */
+.contacts-form-wrapper {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.contacts-form-title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.contacts-form-subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Поля формы */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(11, 74, 122, 0.1);
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: #ef4444;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-error {
+  font-size: 0.75rem;
+  color: #ef4444;
+  margin-top: 0.375rem;
+}
+
+/* Чекбокс согласия */
+.form-checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.form-checkbox-label {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.form-checkbox-label a {
+  color: var(--color-primary);
+}
+
+/* Кнопка отправки */
+.form-submit {
+  width: 100%;
+}
+
+/* Мессенджеры */
+.contacts-messengers {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.contacts-messengers-title {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.contacts-messengers-list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.contacts-messenger-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.contacts-messenger-link:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.contacts-messenger-link img {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+}
