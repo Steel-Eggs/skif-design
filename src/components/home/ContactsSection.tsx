@@ -135,7 +135,7 @@ const ContactsSection = () => {
             <div className="rounded-2xl overflow-hidden border-2 border-border">
               <div className="relative w-full" style={{ height: '330px' }}>
                 <iframe 
-                  src="https://yandex.ru/map-widget/v1/org/skif/183604077331/?ll=30.314997%2C59.938789&z=9.85" 
+                  src="https://yandex.ru/map-widget/v1/org/skif/183604077331/?ll=30.449997%2C59.868789&z=16"
                   width="100%" 
                   height="330" 
                   frameBorder="0" 
