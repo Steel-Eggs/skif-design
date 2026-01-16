@@ -4,12 +4,30 @@ import logo from "@/assets/logo-new.png";
 
 const Footer = () => {
   const catalogLinks = [
+    { name: "Распродажа", href: "/catalog/sale" },
     { name: "Одноосные прицепы", href: "/catalog/odnoosnye" },
     { name: "Двухосные прицепы", href: "/catalog/dvuhosnye" },
-    { name: "Прицепы для лодок и катеров", href: "/catalog/lodki" },
+    { name: "Прицепы с крышкой", href: "/catalog/s-kryshkoy" },
+    { name: "Прицепы платформа", href: "/catalog/platforma" },
+    { name: "Прицепы для грузов", href: "/catalog/gruzovye" },
+    { name: "Прицепы фургоны", href: "/catalog/furgony" },
+    { name: "Коммерческие прицепы", href: "/catalog/kommercheskie" },
     { name: "Прицепы для мототехники", href: "/catalog/moto" },
+    { name: "Прицепы для лодок и катеров", href: "/catalog/lodki" },
+    { name: "Прицепы для электростанций", href: "/catalog/elektrostancii" },
     { name: "Прицепы эвакуаторы", href: "/catalog/evakuatory" },
+    { name: "Прицепы для спецтехники", href: "/catalog/spectehnika" },
+    { name: "Бытовки на колёсах", href: "/catalog/bytovki" },
+    { name: "Наши проекты", href: "/catalog/proekty" },
+    { name: "Прицепы Б/У", href: "/catalog/bu" },
+    { name: "Прицепы в прокат", href: "/catalog/prokat" },
+    { name: "Прицепы по производителям", href: "/catalog/proizvoditeli" },
     { name: "Запчасти и аксессуары", href: "/catalog/zapchasti" },
+    { name: "Боксы и багажники", href: "/catalog/boksy" },
+    { name: "Снегоходы и Вездеходы", href: "/catalog/snegohody" },
+    { name: "Мотобуксировщики", href: "/catalog/motobuksirovschiki" },
+    { name: "Запчасти для мотобуксировщиков", href: "/catalog/zapchasti-moto" },
+    { name: "Товары для рыбалки", href: "/catalog/rybalka" },
   ];
 
   const companyLinks = [
