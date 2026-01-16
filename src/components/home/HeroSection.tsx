@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Shield, Award, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -38,32 +38,43 @@ const slides = [
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [previousSlide, setPreviousSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const changeSlide = useCallback((newIndex: number) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setPreviousSlide(currentSlide);
+    setCurrentSlide(newIndex);
+    setTimeout(() => setIsAnimating(false), 800);
+  }, [currentSlide, isAnimating]);
 
   useEffect(() => {
     if (!isAutoPlaying) return;
     
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      changeSlide((currentSlide + 1) % slides.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, currentSlide, changeSlide]);
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index);
+    if (index === currentSlide) return;
+    changeSlide(index);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    changeSlide((currentSlide + 1) % slides.length);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    changeSlide((currentSlide - 1 + slides.length) % slides.length);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
@@ -81,49 +92,72 @@ const HeroSection = () => {
 
       <div className="container relative py-16 md:py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <div className="space-y-8 text-center lg:text-left">
+          {/* Content with slide animation */}
+          <div className="space-y-8 text-center lg:text-left relative">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-background/10 rounded-full text-sm font-medium backdrop-blur-sm">
               <Award className="h-4 w-4" />
               <span>Более 15 лет на рынке</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-tight transition-all duration-500">
-              {currentSlideData.title}{" "}
-              <span className="text-accent">{currentSlideData.highlight}</span>
-            </h1>
+            <div className="overflow-hidden">
+              <h1 
+                key={`title-${currentSlide}`}
+                className="text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-tight animate-slide-up"
+              >
+                {currentSlideData.title}{" "}
+                <span className="text-accent">{currentSlideData.highlight}</span>
+              </h1>
+            </div>
             
-            <p className="text-lg md:text-xl text-primary-foreground/80 max-w-xl mx-auto lg:mx-0 leading-relaxed transition-all duration-500">
-              {currentSlideData.description}
-            </p>
+            <div className="overflow-hidden">
+              <p 
+                key={`desc-${currentSlide}`}
+                className="text-lg md:text-xl text-primary-foreground/80 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-slide-up-delayed"
+              >
+                {currentSlideData.description}
+              </p>
+            </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div 
+              key={`buttons-${currentSlide}`}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up"
+            >
               <Link to={currentSlideData.buttonLink}>
-                <Button size="lg" className="gradient-accent text-accent-foreground font-bold text-lg px-8 hover:opacity-90 transition-opacity shadow-lg">
+                <Button size="lg" className="gradient-accent text-accent-foreground font-bold text-lg px-8 hover:opacity-90 transition-opacity shadow-lg hover:scale-105 transition-transform duration-300">
                   {currentSlideData.buttonText}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/services">
-                <Button size="lg" variant="outline" className="bg-background/10 border-2 border-background/30 text-primary-foreground font-bold text-lg px-8 hover:bg-background/20 backdrop-blur-sm">
+                <Button size="lg" variant="outline" className="bg-background/10 border-2 border-background/30 text-primary-foreground font-bold text-lg px-8 hover:bg-background/20 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
                   Наши услуги
                 </Button>
               </Link>
             </div>
 
-            {/* Slider dots */}
+            {/* Slider dots with progress animation */}
             <div className="flex items-center gap-3 justify-center lg:justify-start pt-4">
               {slides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`relative h-3 rounded-full transition-all duration-500 overflow-hidden ${
                     currentSlide === index 
-                      ? 'bg-accent w-8' 
-                      : 'bg-background/30 hover:bg-background/50'
+                      ? 'w-10 bg-accent/30' 
+                      : 'w-3 bg-background/30 hover:bg-background/50'
                   }`}
                   aria-label={`Слайд ${index + 1}`}
-                />
+                >
+                  {currentSlide === index && isAutoPlaying && (
+                    <span 
+                      className="absolute inset-0 bg-accent rounded-full origin-left animate-progress"
+                      style={{ animationDuration: '5s' }}
+                    />
+                  )}
+                  {currentSlide === index && !isAutoPlaying && (
+                    <span className="absolute inset-0 bg-accent rounded-full" />
+                  )}
+                </button>
               ))}
             </div>
 
@@ -144,37 +178,53 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Image/Visual */}
+          {/* Image/Visual with advanced animation */}
           <div className="relative hidden lg:block">
             <div className="relative">
-              {/* Trailer image */}
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-background/20 shadow-2xl">
-                <img 
-                  src={currentSlideData.image} 
-                  alt="Прицеп СКИФ" 
-                  className="w-full h-full object-cover transition-all duration-700"
-                  key={currentSlideData.id}
-                />
+              {/* Trailer image container with sliding animation */}
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-background/20 shadow-2xl relative">
+                {slides.map((slide, index) => (
+                  <div
+                    key={slide.id}
+                    className={`absolute inset-0 transition-all duration-700 ease-out ${
+                      index === currentSlide 
+                        ? 'opacity-100 scale-100 translate-x-0 z-10' 
+                        : index === previousSlide
+                          ? 'opacity-0 scale-110 -translate-x-full z-0'
+                          : 'opacity-0 scale-95 translate-x-full z-0'
+                    }`}
+                  >
+                    <img 
+                      src={slide.image} 
+                      alt={`${slide.title} ${slide.highlight}`}
+                      className={`w-full h-full object-cover transition-transform duration-[5000ms] ease-linear ${
+                        index === currentSlide && isAutoPlaying ? 'scale-110' : 'scale-100'
+                      }`}
+                    />
+                    {/* Overlay gradient for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                  </div>
+                ))}
               </div>
               
-              {/* Navigation arrows */}
+              {/* Navigation arrows with hover effects */}
               <button 
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-background/40 transition-colors"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-background/40 hover:scale-110 transition-all duration-300 group"
                 aria-label="Предыдущий слайд"
               >
-                <ChevronLeft className="h-6 w-6" />
+                <ChevronLeft className="h-6 w-6 group-hover:-translate-x-0.5 transition-transform" />
               </button>
               <button 
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-background/40 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-background/40 hover:scale-110 transition-all duration-300 group"
                 aria-label="Следующий слайд"
               >
-                <ChevronRight className="h-6 w-6" />
+                <ChevronRight className="h-6 w-6 group-hover:translate-x-0.5 transition-transform" />
               </button>
               
               {/* Floating badge */}
-              <div className="absolute -bottom-6 -left-6 bg-card text-card-foreground p-4 rounded-xl shadow-lg animate-pulse-glow">
+              <div className="absolute -bottom-6 -left-6 bg-card text-card-foreground p-4 rounded-xl shadow-lg animate-float">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full gradient-secondary flex items-center justify-center">
                     <Shield className="h-6 w-6 text-secondary-foreground" />
@@ -184,6 +234,12 @@ const HeroSection = () => {
                     <div className="text-sm text-muted-foreground">Бесплатный сервис в течении месяца</div>
                   </div>
                 </div>
+              </div>
+
+              {/* Slide counter */}
+              <div className="absolute top-4 right-4 bg-background/20 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium">
+                <span className="text-accent">{String(currentSlide + 1).padStart(2, '0')}</span>
+                <span className="text-primary-foreground/50"> / {String(slides.length).padStart(2, '0')}</span>
               </div>
             </div>
           </div>
