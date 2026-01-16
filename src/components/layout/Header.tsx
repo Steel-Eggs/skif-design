@@ -10,10 +10,12 @@ import logo from "@/assets/logo.png";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   
   const catalogRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const catalogCategories = [
@@ -45,9 +47,13 @@ const Header = () => {
 
   const navLinks = [
     { name: "Услуги", href: "/services" },
-    { name: "О компании", href: "/about" },
+    { name: "Оплата", href: "/payment" },
+  ];
+
+  const aboutSubmenu = [
     { name: "Новости", href: "/news" },
-    { name: "Контакты", href: "/contacts" },
+    { name: "Партнёры", href: "/partners" },
+    { name: "Вакансии", href: "/vacancies" },
   ];
 
   // Click outside handler
@@ -169,6 +175,52 @@ const Header = () => {
                 {link.name}
               </Link>
             ))}
+
+            {/* О компании dropdown */}
+            <div 
+              ref={aboutRef}
+              className="relative"
+              onMouseEnter={() => setIsAboutOpen(true)}
+              onMouseLeave={() => setIsAboutOpen(false)}
+            >
+              <button className="flex items-center gap-1 px-4 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted">
+                О компании
+                <ChevronDown className={`h-4 w-4 transition-transform ${isAboutOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isAboutOpen && (
+                <div className="absolute top-full left-0 pt-2 z-[100]">
+                  <div className="w-48 bg-card border border-border rounded-xl shadow-2xl overflow-hidden animate-fade-in">
+                    <div className="py-2">
+                      <Link
+                        to="/about"
+                        className="block px-4 py-2.5 text-foreground font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+                        onClick={() => setIsAboutOpen(false)}
+                      >
+                        О компании
+                      </Link>
+                      {aboutSubmenu.map((item) => (
+                        <Link
+                          key={item.name}
+                          to={item.href}
+                          className="block px-4 py-2.5 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                          onClick={() => setIsAboutOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link
+              to="/contacts"
+              className="flex items-center gap-1 px-4 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted"
+            >
+              Контакты
+            </Link>
           </nav>
 
           {/* Search bar - enlarged */}
