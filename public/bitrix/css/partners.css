@@ -1,0 +1,66 @@
+/* ============================================
+   СКИФ - Партнёры для 1С-Битрикс
+   ============================================ */
+
+.partners-section {
+  padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+  .partners-section {
+    padding: 6rem 0;
+  }
+}
+
+.partners-section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.partners-section-title {
+  margin-bottom: 0.5rem;
+}
+
+/* Сетка партнёров */
+.partners-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 640px) {
+  .partners-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .partners-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Карточка партнёра */
+.partner-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7rem;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.partner-card:hover {
+  opacity: 1;
+  box-shadow: var(--shadow-md);
+}
+
+.partner-card img {
+  max-height: 5rem;
+  max-width: 100%;
+  object-fit: contain;
+}

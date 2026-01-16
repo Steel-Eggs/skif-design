@@ -1,0 +1,153 @@
+/* ============================================
+   СКИФ - Аренда прицепов для 1С-Битрикс
+   ============================================ */
+
+.rent-section {
+  padding: 4rem 0;
+  background: var(--color-bg);
+}
+
+@media (min-width: 768px) {
+  .rent-section {
+    padding: 6rem 0;
+  }
+}
+
+.rent-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .rent-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+/* Изображение */
+.rent-image-wrapper {
+  position: relative;
+}
+
+.rent-image {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.rent-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ценник */
+.rent-price-badge {
+  position: absolute;
+  bottom: -1rem;
+  right: -1rem;
+  background: var(--gradient-secondary);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  animation: float 3s ease-in-out infinite;
+}
+
+.rent-price-badge-text {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.rent-price-badge-value {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+}
+
+/* Контент */
+.rent-content {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .rent-content {
+    text-align: left;
+  }
+}
+
+.rent-title {
+  margin-bottom: 1rem;
+}
+
+.rent-description {
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* Преимущества аренды */
+.rent-features {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .rent-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.rent-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.rent-feature-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(43, 182, 115, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rent-feature-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-secondary);
+}
+
+.rent-feature-text {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+/* Кнопка */
+.rent-button {
+  display: inline-flex;
+}
+
+@media (max-width: 1023px) {
+  .rent-button {
+    width: 100%;
+  }
+  
+  .rent-button .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
