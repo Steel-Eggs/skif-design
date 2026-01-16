@@ -10,6 +10,7 @@ import logo from "@/assets/logo-new.png";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+  const [isMobileCatalogOpen, setIsMobileCatalogOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -293,16 +294,21 @@ const Header = () => {
               {/* Catalog with accordion */}
               <div className="border-b border-border pb-4">
                 <button
-                  onClick={() => setIsCatalogOpen(!isCatalogOpen)}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsMobileCatalogOpen(!isMobileCatalogOpen);
+                  }}
                   className="flex items-center justify-between w-full px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors"
                 >
                   <span className="flex items-center gap-2">
                     <Menu className="h-5 w-5" />
                     Каталог
                   </span>
-                  <ChevronDown className={`h-4 w-4 transition-transform ${isCatalogOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isMobileCatalogOpen ? 'rotate-180' : ''}`} />
                 </button>
-                {isCatalogOpen && (
+                {isMobileCatalogOpen && (
                   <div className="pl-4 mt-2 space-y-1 animate-fade-in">
                     {catalogCategories.map((category) => (
                       <Link
@@ -310,7 +316,7 @@ const Header = () => {
                         to={category.href}
                         className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
                         onClick={() => {
-                          setIsCatalogOpen(false);
+                          setIsMobileCatalogOpen(false);
                           setIsMobileMenuOpen(false);
                         }}
                       >
