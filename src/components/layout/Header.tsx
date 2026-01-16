@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-new.png";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,27 +22,13 @@ const Header = () => {
     { name: "Распродажа", href: "/catalog/sale", icon: "🏷️" },
     { name: "Одноосные прицепы", href: "/catalog/odnoosnye", icon: "🚗" },
     { name: "Двухосные прицепы", href: "/catalog/dvuhosnye", icon: "🚙" },
-    { name: "Прицепы с крышкой", href: "/catalog/s-kryshkoy", icon: "📦" },
-    { name: "Прицепы платформа", href: "/catalog/platforma", icon: "🛻" },
-    { name: "Прицепы для грузов", href: "/catalog/gruzovye", icon: "📋" },
-    { name: "Прицепы фургоны", href: "/catalog/furgony", icon: "🚐" },
-    { name: "Коммерческие прицепы", href: "/catalog/kommercheskie", icon: "🏢" },
-    { name: "Прицепы для мототехники", href: "/catalog/moto", icon: "🏍️" },
     { name: "Прицепы для лодок и катеров", href: "/catalog/lodki", icon: "🚤" },
-    { name: "Прицепы для электростанций", href: "/catalog/elektrostancii", icon: "⚡" },
+    { name: "Прицепы для мототехники", href: "/catalog/moto", icon: "🏍️" },
     { name: "Прицепы эвакуаторы", href: "/catalog/evakuatory", icon: "🚨" },
-    { name: "Прицепы для перевозки спецтехники", href: "/catalog/spectehnika", icon: "🔧" },
-    { name: "Бытовки на колёсах", href: "/catalog/bytovki", icon: "🏠" },
-    { name: "Наши проекты", href: "/catalog/proekty", icon: "📐" },
+    { name: "Прицепы для спецтехники", href: "/catalog/spectehnika", icon: "🔧" },
     { name: "Прицепы Б/У", href: "/catalog/bu", icon: "♻️" },
     { name: "Прицепы в прокат", href: "/catalog/prokat", icon: "🔄" },
-    { name: "Прицепы по производителям", href: "/catalog/proizvoditeli", icon: "🏭" },
     { name: "Запчасти и аксессуары", href: "/catalog/zapchasti", icon: "🔩" },
-    { name: "Боксы и багажники", href: "/catalog/boksy", icon: "🧳" },
-    { name: "Снегоходы и Вездеходы", href: "/catalog/snegohody", icon: "❄️" },
-    { name: "Мотобуксировщики", href: "/catalog/motobuks", icon: "🛷" },
-    { name: "Запчасти для мотобуксировщиков", href: "/catalog/zapchasti-motobuks", icon: "⚙️" },
-    { name: "Товары для рыбалки", href: "/catalog/rybalka", icon: "🎣" },
   ];
 
   const navLinks = [
