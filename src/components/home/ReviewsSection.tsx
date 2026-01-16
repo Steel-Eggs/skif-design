@@ -37,26 +37,21 @@ const ReviewsSection = () => {
               </div>
             </div>
 
-            {/* Widget Content Area */}
-            <div className="p-8 text-center">
-              <div className="border-2 border-dashed border-secondary/30 rounded-xl p-12 bg-muted/20">
-                <MapPin className="w-16 h-16 text-secondary/40 mx-auto mb-4" />
-                <p className="text-lg text-muted-foreground mb-2">
-                  Здесь будет виджет Яндекс.Отзывов
-                </p>
-                <p className="text-sm text-muted-foreground/70 mb-6">
-                  Вставьте код виджета для отображения реальных отзывов
-                </p>
-                <a
-                  href="https://yandex.ru/maps"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Открыть на Яндекс.Картах
-                </a>
-              </div>
+            {/* Yandex Reviews Widget */}
+            <div className="relative" style={{ height: '800px' }}>
+              <iframe 
+                className="w-full h-full border border-border rounded-lg"
+                src="https://yandex.ru/maps-reviews-widget/183604077331?comments"
+                title="Отзывы о компании СКИФ на Яндекс.Картах"
+              />
+              <a 
+                href="https://yandex.ru/maps/org/skif/183604077331/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-2 left-0 w-full text-center text-[10px] text-muted-foreground/60 font-sans px-4 truncate"
+              >
+                Скиф на карте Санкт‑Петербурга — Яндекс Карты
+              </a>
             </div>
 
             {/* Footer Stats */}
