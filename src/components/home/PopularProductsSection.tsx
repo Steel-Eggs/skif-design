@@ -224,13 +224,11 @@ const PopularProductsSection = () => {
                           </span>
                         )}
                       </div>
-                      {/* Savings info */}
+                      {/* Savings info - compact */}
                       {product.oldPrice && (
-                        <div className="mt-1 p-2 bg-destructive/10 rounded-lg border border-destructive/20">
-                          <span className="text-sm font-semibold text-destructive">
-                            Экономия: {formatPrice(savings)} ₽ (-{discountPercent}%)
-                          </span>
-                        </div>
+                        <span className="text-xs text-destructive font-medium">
+                          Выгода {formatPrice(savings)} ₽
+                        </span>
                       )}
                     </div>
                     

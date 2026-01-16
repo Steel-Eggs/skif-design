@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Truck, Shield, Award } from "lucide-react";
+import { ArrowRight, Shield, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import trailerImage from "@/assets/products/trailer-1.jpg";
 const HeroSection = () => {
   return <section className="relative overflow-hidden gradient-hero text-primary-foreground">
       {/* Background pattern */}
@@ -73,12 +74,13 @@ const HeroSection = () => {
           animationDelay: "0.2s"
         }}>
             <div className="relative">
-              {/* Placeholder for trailer image */}
-              <div className="aspect-[4/3] rounded-2xl bg-background/10 backdrop-blur-sm border border-background/20 flex items-center justify-center overflow-hidden">
-                <div className="text-center p-8">
-                  <Truck className="h-32 w-32 mx-auto mb-4 text-background/30" />
-                  <p className="text-background/50 text-lg">Изображение прицепа</p>
-                </div>
+              {/* Trailer image */}
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-background/20 shadow-2xl">
+                <img 
+                  src={trailerImage} 
+                  alt="Прицеп СКИФ" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               {/* Floating badge */}
