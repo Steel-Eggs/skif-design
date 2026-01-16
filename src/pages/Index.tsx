@@ -4,12 +4,14 @@ import HeroSection from "@/components/home/HeroSection";
 import PopularProductsSection from "@/components/home/PopularProductsSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import CategoriesSection from "@/components/home/CategoriesSection";
+import PartsSection from "@/components/home/PartsSection";
 import RentSection from "@/components/home/RentSection";
 import NewsSection from "@/components/home/NewsSection";
 import PartnersSection from "@/components/home/PartnersSection";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import SeoSection from "@/components/home/SeoSection";
 import ContactsSection from "@/components/home/ContactsSection";
+import FeedbackButton from "@/components/FeedbackButton";
 
 const Index = () => {
   return (
@@ -19,6 +21,7 @@ const Index = () => {
         <HeroSection />
         <PopularProductsSection />
         <CategoriesSection />
+        <PartsSection />
         <ServicesSection />
         <RentSection />
         <NewsSection />
@@ -28,6 +31,7 @@ const Index = () => {
         <ContactsSection />
       </main>
       <Footer />
+      <FeedbackButton />
     </div>
   );
 };

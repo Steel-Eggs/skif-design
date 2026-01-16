@@ -1,61 +1,103 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Truck, Anchor, Snowflake, Car, Package, Wrench } from "lucide-react";
+import { ArrowRight, Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, Ship, Building2, Home, RefreshCw } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const categories = [
   {
     id: 1,
-    name: "Легковые прицепы",
-    description: "Для перевозки грузов и техники",
+    name: "Одноосные прицепы",
+    description: "Компактные решения для перевозки грузов",
     icon: Car,
-    href: "/catalog/legkovye",
+    href: "/catalog/odnoosnye",
     count: 156,
-    gradient: "from-primary to-primary/80",
   },
   {
     id: 2,
-    name: "Грузовые прицепы",
-    description: "Для коммерческих перевозок",
+    name: "Двухосные прицепы",
+    description: "Для больших и тяжёлых грузов",
     icon: Truck,
-    href: "/catalog/gruzovye",
+    href: "/catalog/dvuhosnye",
     count: 89,
-    gradient: "from-secondary to-secondary/80",
   },
   {
     id: 3,
-    name: "Лодочные прицепы",
-    description: "Для лодок и катеров",
-    icon: Anchor,
-    href: "/catalog/lodochnye",
+    name: "Прицепы с крышкой",
+    description: "Защита груза от погодных условий",
+    icon: Caravan,
+    href: "/catalog/s-kryshkoy",
     count: 45,
-    gradient: "from-primary to-secondary",
   },
   {
     id: 4,
-    name: "Для снегоходов",
-    description: "Надёжные и морозостойкие",
-    icon: Snowflake,
-    href: "/catalog/snegokhody",
+    name: "Прицепы платформа",
+    description: "Универсальные платформы",
+    icon: Building2,
+    href: "/catalog/platforma",
     count: 32,
-    gradient: "from-accent to-accent/80",
   },
   {
     id: 5,
-    name: "Фаркопы",
-    description: "Для всех марок автомобилей",
-    icon: Package,
-    href: "/catalog/farkopy",
-    count: 234,
-    gradient: "from-secondary to-primary",
+    name: "Прицепы для грузов",
+    description: "Надёжные грузовые решения",
+    icon: Truck,
+    href: "/catalog/gruzovye",
+    count: 78,
   },
   {
     id: 6,
-    name: "Запчасти",
-    description: "Оригинальные комплектующие",
-    icon: Wrench,
-    href: "/catalog/zapchasti",
-    count: 512,
-    gradient: "from-accent to-secondary",
+    name: "Прицепы фургоны",
+    description: "Закрытые кузова для грузов",
+    icon: Caravan,
+    href: "/catalog/furgony",
+    count: 34,
+  },
+  {
+    id: 7,
+    name: "Коммерческие прицепы",
+    description: "Для бизнеса и торговли",
+    icon: Building2,
+    href: "/catalog/kommercheskie",
+    count: 28,
+  },
+  {
+    id: 8,
+    name: "Прицепы для мототехники",
+    description: "Для мотоциклов и квадроциклов",
+    icon: Bike,
+    href: "/catalog/moto",
+    count: 42,
+  },
+  {
+    id: 9,
+    name: "Прицепы для лодок и катеров",
+    description: "Для водного транспорта",
+    icon: Anchor,
+    href: "/catalog/lodki",
+    count: 56,
+  },
+  {
+    id: 10,
+    name: "Прицепы для электростанций",
+    description: "Для генераторов и оборудования",
+    icon: Zap,
+    href: "/catalog/elektrostancii",
+    count: 18,
+  },
+  {
+    id: 11,
+    name: "Прицепы эвакуаторы",
+    description: "Для транспортировки авто",
+    icon: AlertTriangle,
+    href: "/catalog/evakuatory",
+    count: 24,
+  },
+  {
+    id: 12,
+    name: "Бытовки на колёсах",
+    description: "Мобильные помещения",
+    icon: Home,
+    href: "/catalog/bytovki",
+    count: 15,
   },
 ];
 
@@ -69,39 +111,39 @@ const CategoriesSection = () => {
             Каталог продукции
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Широкий выбор прицепов и комплектующих для любых задач
+            Широкий выбор прицепов для любых задач
           </p>
         </div>
 
         {/* Categories grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {categories.map((category, index) => (
             <Link 
               key={category.id} 
               to={category.href}
               className="group animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
               <Card className="h-full overflow-hidden border-2 border-transparent hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <CardContent className="p-6 flex flex-col h-full">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${category.gradient} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300`}>
-                      <category.icon className="h-7 w-7 text-primary-foreground" />
+                <CardContent className="p-5 flex flex-col h-full">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                      <category.icon className="h-6 w-6 text-primary-foreground" />
                     </div>
-                    <span className="text-sm font-medium text-muted-foreground bg-muted px-3 py-1 rounded-full">
-                      {category.count} товаров
+                    <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-1 rounded-full">
+                      {category.count}
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-heading font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-heading font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
                     {category.name}
                   </h3>
                   
-                  <p className="text-muted-foreground mb-4 flex-grow">
+                  <p className="text-sm text-muted-foreground mb-3 flex-grow">
                     {category.description}
                   </p>
                   
-                  <div className="flex items-center text-primary font-medium group-hover:gap-3 gap-1 transition-all">
+                  <div className="flex items-center text-primary text-sm font-medium group-hover:gap-2 gap-1 transition-all">
                     <span>Смотреть</span>
                     <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
                   </div>
