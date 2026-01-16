@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
-  Menu, X, Phone, Search, ShoppingCart, ChevronDown, ChevronRight, MessageCircle, Send,
-  Truck, Ship, Snowflake, Bike, Link2, Package, Anchor, Wrench
+  Menu, X, Phone, Search, ShoppingCart, ChevronDown, MessageCircle, Send
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,94 +12,35 @@ const Header = () => {
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<number | null>(0);
+  
   const catalogRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const catalogCategories = [
-    {
-      name: "Легковые прицепы",
-      href: "/catalog/legkovye",
-      icon: Truck,
-      description: "Для перевозки грузов",
-      subcategories: [
-        { name: "Одноосные", href: "/catalog/legkovye/odnoosnye" },
-        { name: "Двухосные", href: "/catalog/legkovye/dvuhosnye" },
-        { name: "С тентом", href: "/catalog/legkovye/s-tentom" },
-        { name: "Самосвальные", href: "/catalog/legkovye/samosval" },
-        { name: "Бортовые", href: "/catalog/legkovye/bortovye" },
-      ]
-    },
-    {
-      name: "Грузовые прицепы",
-      href: "/catalog/gruzovye",
-      icon: Package,
-      description: "Для тяжёлых грузов",
-      subcategories: [
-        { name: "Бортовые", href: "/catalog/gruzovye/bortovye" },
-        { name: "Платформы", href: "/catalog/gruzovye/platformy" },
-        { name: "Самосвалы", href: "/catalog/gruzovye/samosvaly" },
-        { name: "Контейнеровозы", href: "/catalog/gruzovye/konteynerovozy" },
-      ]
-    },
-    {
-      name: "Лодочные прицепы",
-      href: "/catalog/lodochnye",
-      icon: Anchor,
-      description: "Для водного транспорта",
-      subcategories: [
-        { name: "Для ПВХ лодок", href: "/catalog/lodochnye/pvh" },
-        { name: "Для катеров", href: "/catalog/lodochnye/katera" },
-        { name: "Для гидроциклов", href: "/catalog/lodochnye/gidrotsikly" },
-        { name: "Для яхт", href: "/catalog/lodochnye/yahty" },
-      ]
-    },
-    {
-      name: "Для снегоходов",
-      href: "/catalog/snegokhody",
-      icon: Snowflake,
-      description: "Зимний транспорт",
-      subcategories: [
-        { name: "Универсальные", href: "/catalog/snegokhody/universalnye" },
-        { name: "С площадкой", href: "/catalog/snegokhody/s-ploschadkoy" },
-        { name: "Закрытые", href: "/catalog/snegokhody/zakrytye" },
-      ]
-    },
-    {
-      name: "Для квадроциклов",
-      href: "/catalog/kvadrotsikly",
-      icon: Bike,
-      description: "Для ATV и UTV",
-      subcategories: [
-        { name: "Одноместные", href: "/catalog/kvadrotsikly/odnomestnye" },
-        { name: "Двухместные", href: "/catalog/kvadrotsikly/dvuhmestnye" },
-      ]
-    },
-    {
-      name: "Фаркопы",
-      href: "/catalog/farkopy",
-      icon: Link2,
-      description: "Тягово-сцепные устройства",
-      subcategories: [
-        { name: "Toyota", href: "/catalog/farkopy/toyota" },
-        { name: "Volkswagen", href: "/catalog/farkopy/volkswagen" },
-        { name: "Hyundai", href: "/catalog/farkopy/hyundai" },
-        { name: "Kia", href: "/catalog/farkopy/kia" },
-        { name: "Другие марки", href: "/catalog/farkopy/other" },
-      ]
-    },
-    {
-      name: "Аксессуары",
-      href: "/catalog/aksessuary",
-      icon: Wrench,
-      description: "Комплектующие и запчасти",
-      subcategories: [
-        { name: "Тенты", href: "/catalog/aksessuary/tenty" },
-        { name: "Запчасти", href: "/catalog/aksessuary/zapchasti" },
-        { name: "Крепления", href: "/catalog/aksessuary/krepleniya" },
-        { name: "Освещение", href: "/catalog/aksessuary/osveschenie" },
-      ]
-    },
+    { name: "Распродажа", href: "/catalog/sale", icon: "🏷️" },
+    { name: "Одноосные прицепы", href: "/catalog/odnoosnye", icon: "🚗" },
+    { name: "Двухосные прицепы", href: "/catalog/dvuhosnye", icon: "🚙" },
+    { name: "Прицепы с крышкой", href: "/catalog/s-kryshkoy", icon: "📦" },
+    { name: "Прицепы платформа", href: "/catalog/platforma", icon: "🛻" },
+    { name: "Прицепы для грузов", href: "/catalog/gruzovye", icon: "📋" },
+    { name: "Прицепы фургоны", href: "/catalog/furgony", icon: "🚐" },
+    { name: "Коммерческие прицепы", href: "/catalog/kommercheskie", icon: "🏢" },
+    { name: "Прицепы для мототехники", href: "/catalog/moto", icon: "🏍️" },
+    { name: "Прицепы для лодок и катеров", href: "/catalog/lodki", icon: "🚤" },
+    { name: "Прицепы для электростанций", href: "/catalog/elektrostancii", icon: "⚡" },
+    { name: "Прицепы эвакуаторы", href: "/catalog/evakuatory", icon: "🚨" },
+    { name: "Прицепы для перевозки спецтехники", href: "/catalog/spectehnika", icon: "🔧" },
+    { name: "Бытовки на колёсах", href: "/catalog/bytovki", icon: "🏠" },
+    { name: "Наши проекты", href: "/catalog/proekty", icon: "📐" },
+    { name: "Прицепы Б/У", href: "/catalog/bu", icon: "♻️" },
+    { name: "Прицепы в прокат", href: "/catalog/prokat", icon: "🔄" },
+    { name: "Прицепы по производителям", href: "/catalog/proizvoditeli", icon: "🏭" },
+    { name: "Запчасти и аксессуары", href: "/catalog/zapchasti", icon: "🔩" },
+    { name: "Боксы и багажники", href: "/catalog/boksy", icon: "🧳" },
+    { name: "Снегоходы и Вездеходы", href: "/catalog/snegohody", icon: "❄️" },
+    { name: "Мотобуксировщики", href: "/catalog/motobuks", icon: "🛷" },
+    { name: "Запчасти для мотобуксировщиков", href: "/catalog/zapchasti-motobuks", icon: "⚙️" },
+    { name: "Товары для рыбалки", href: "/catalog/rybalka", icon: "🎣" },
   ];
 
   const navLinks = [
@@ -183,10 +123,14 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            {/* Catalog dropdown */}
-            <div ref={catalogRef} className="relative">
+            {/* Catalog dropdown - hover */}
+            <div 
+              ref={catalogRef} 
+              className="relative"
+              onMouseEnter={() => setIsCatalogOpen(true)}
+              onMouseLeave={() => setIsCatalogOpen(false)}
+            >
               <button
-                onClick={() => setIsCatalogOpen(!isCatalogOpen)}
                 className="flex items-center gap-2 px-5 py-2.5 gradient-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-all"
               >
                 <Menu className="h-5 w-5" />
@@ -194,100 +138,22 @@ const Header = () => {
                 <ChevronDown className={`h-4 w-4 transition-transform ${isCatalogOpen ? 'rotate-180' : ''}`} />
               </button>
               
-              {/* Mega Menu Dropdown */}
+              {/* Dropdown Menu */}
               {isCatalogOpen && (
-                <div className="absolute top-full left-0 mt-2 w-[750px] bg-card border border-border rounded-2xl shadow-2xl overflow-hidden animate-fade-in z-[100]">
-                  <div className="flex">
-                    {/* Left sidebar - categories */}
-                    <div className="w-72 bg-muted/50 border-r border-border p-2">
-                      {catalogCategories.map((category, index) => {
-                        const IconComponent = category.icon;
-                        return (
-                          <button
-                            key={category.name}
-                            onMouseEnter={() => setActiveCategory(index)}
-                            onClick={() => {
-                              window.location.href = category.href;
-                              setIsCatalogOpen(false);
-                            }}
-                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
-                              activeCategory === index 
-                                ? 'bg-primary text-primary-foreground' 
-                                : 'hover:bg-muted text-foreground'
-                            }`}
-                          >
-                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
-                              activeCategory === index 
-                                ? 'bg-primary-foreground/20' 
-                                : 'bg-primary/10'
-                            }`}>
-                              <IconComponent className={`h-5 w-5 ${
-                                activeCategory === index ? 'text-primary-foreground' : 'text-primary'
-                              }`} />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="font-semibold text-sm truncate">{category.name}</div>
-                              <div className={`text-xs truncate ${
-                                activeCategory === index ? 'text-primary-foreground/70' : 'text-muted-foreground'
-                              }`}>
-                                {category.description}
-                              </div>
-                            </div>
-                            <ChevronRight className={`h-4 w-4 shrink-0 ${
-                              activeCategory === index ? 'text-primary-foreground' : 'text-muted-foreground'
-                            }`} />
-                          </button>
-                        );
-                      })}
-                    </div>
-                    
-                    {/* Right content - subcategories */}
-                    <div className="flex-1 p-6">
-                      {activeCategory !== null && (
-                        <div className="animate-fade-in">
-                          <div className="flex items-center gap-3 mb-4 pb-4 border-b border-border">
-                            {(() => {
-                              const IconComponent = catalogCategories[activeCategory].icon;
-                              return (
-                                <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
-                                  <IconComponent className="h-6 w-6 text-primary-foreground" />
-                                </div>
-                              );
-                            })()}
-                            <div>
-                              <h3 className="font-heading font-bold text-lg text-foreground">
-                                {catalogCategories[activeCategory].name}
-                              </h3>
-                              <p className="text-sm text-muted-foreground">
-                                {catalogCategories[activeCategory].description}
-                              </p>
-                            </div>
-                          </div>
-                          
-                          <div className="grid grid-cols-2 gap-2">
-                            {catalogCategories[activeCategory].subcategories.map((sub) => (
-                              <Link
-                                key={sub.name}
-                                to={sub.href}
-                                className="flex items-center gap-2 px-4 py-3 rounded-lg text-foreground hover:bg-primary hover:text-primary-foreground transition-colors group"
-                                onClick={() => setIsCatalogOpen(false)}
-                              >
-                                <div className="w-2 h-2 rounded-full bg-primary group-hover:bg-primary-foreground transition-colors" />
-                                <span className="font-medium">{sub.name}</span>
-                              </Link>
-                            ))}
-                          </div>
-                          
-                          <Link
-                            to={catalogCategories[activeCategory].href}
-                            className="inline-flex items-center gap-2 mt-6 text-primary font-semibold hover:underline"
-                            onClick={() => setIsCatalogOpen(false)}
-                          >
-                            Смотреть все
-                            <ChevronRight className="h-4 w-4" />
-                          </Link>
-                        </div>
-                      )}
+                <div className="absolute top-full left-0 pt-2 z-[100]">
+                  <div className="w-72 bg-card border border-border rounded-xl shadow-2xl overflow-hidden animate-fade-in">
+                    <div className="py-2 max-h-[70vh] overflow-y-auto">
+                      {catalogCategories.map((category) => (
+                        <Link
+                          key={category.name}
+                          to={category.href}
+                          className="flex items-center gap-3 px-4 py-2.5 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                          onClick={() => setIsCatalogOpen(false)}
+                        >
+                          <span className="text-lg w-6 text-center">{category.icon}</span>
+                          <span className="font-medium text-sm">{category.name}</span>
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -400,23 +266,20 @@ const Header = () => {
                 </button>
                 {isCatalogOpen && (
                   <div className="pl-4 mt-2 space-y-1 animate-fade-in">
-                    {catalogCategories.map((category) => {
-                      const IconComponent = category.icon;
-                      return (
-                        <Link
-                          key={category.name}
-                          to={category.href}
-                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
-                          onClick={() => {
-                            setIsCatalogOpen(false);
-                            setIsMobileMenuOpen(false);
-                          }}
-                        >
-                          <IconComponent className="h-4 w-4" />
-                          {category.name}
-                        </Link>
-                      );
-                    })}
+                    {catalogCategories.map((category) => (
+                      <Link
+                        key={category.name}
+                        to={category.href}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
+                        onClick={() => {
+                          setIsCatalogOpen(false);
+                          setIsMobileMenuOpen(false);
+                        }}
+                      >
+                        <span className="text-base">{category.icon}</span>
+                        {category.name}
+                      </Link>
+                    ))}
                   </div>
                 )}
               </div>
