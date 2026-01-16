@@ -224,7 +224,7 @@ const HeroSection = () => {
               </button>
               
               {/* Floating badge */}
-              <div className="absolute -bottom-6 -left-6 bg-card text-card-foreground p-4 rounded-xl shadow-lg animate-float">
+              <div className="absolute -bottom-6 -left-6 z-20 bg-card text-card-foreground p-4 rounded-xl shadow-lg animate-float">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full gradient-secondary flex items-center justify-center">
                     <Shield className="h-6 w-6 text-secondary-foreground" />
