@@ -38,7 +38,7 @@ const ReviewsSection = () => {
             </div>
 
             {/* Yandex Reviews Widget */}
-            <div className="relative" style={{ height: '800px' }}>
+            <div className="relative w-full" style={{ height: '800px' }}>
               <iframe 
                 className="w-full h-full border border-border rounded-lg"
                 src="https://yandex.ru/maps-reviews-widget/183604077331?comments"
