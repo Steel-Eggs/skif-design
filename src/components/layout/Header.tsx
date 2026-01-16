@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import CallbackModal from "@/components/CallbackModal";
 import logo from "@/assets/logo-new.png";
 
 const Header = () => {
@@ -14,6 +15,7 @@ const Header = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
   
   const catalogRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -262,7 +264,10 @@ const Header = () => {
                 </span>
               </Button>
             </Link>
-            <Button className="hidden md:flex gradient-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity h-12 px-6 rounded-xl">
+            <Button 
+              onClick={() => setIsCallbackModalOpen(true)}
+              className="hidden md:flex gradient-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity h-12 px-6 rounded-xl"
+            >
               Заказать звонок
             </Button>
 
@@ -353,7 +358,13 @@ const Header = () => {
                 </Link>
               ))}
               <div className="pt-4 border-t border-border mt-2">
-                <Button className="w-full gradient-accent text-accent-foreground font-semibold">
+                <Button 
+                  onClick={() => {
+                    setIsCallbackModalOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full gradient-accent text-accent-foreground font-semibold"
+                >
                   Заказать звонок
                 </Button>
               </div>
@@ -361,6 +372,12 @@ const Header = () => {
           </div>
         )}
       </div>
+      
+      {/* Callback Modal */}
+      <CallbackModal 
+        isOpen={isCallbackModalOpen} 
+        onClose={() => setIsCallbackModalOpen(false)} 
+      />
     </header>
   );
 };
