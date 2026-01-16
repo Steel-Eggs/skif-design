@@ -1,10 +1,17 @@
+import mzsaLogo from "@/assets/partners/mzsa.png";
+import sstLogo from "@/assets/partners/sst.png";
+import kurganskieLogo from "@/assets/partners/kurganskie.png";
+import sputnikLogo from "@/assets/partners/sputnik.png";
+import vektorLogo from "@/assets/partners/vektor.png";
+import maryushkinLogo from "@/assets/partners/maryushkin.jpg";
+
 const partners = [
-  "МЗСА",
-  "AL-KO",
-  "Knott",
-  "Avtos",
-  "Respo",
-  "Brenderup",
+  { name: "МЗСА", logo: mzsaLogo },
+  { name: "ССТ", logo: sstLogo },
+  { name: "Курганские прицепы", logo: kurganskieLogo },
+  { name: "Спутник", logo: sputnikLogo },
+  { name: "Вектор", logo: vektorLogo },
+  { name: "Сад Марьюшкин", logo: maryushkinLogo },
 ];
 
 const PartnersSection = () => {
@@ -19,12 +26,14 @@ const PartnersSection = () => {
           {partners.map((partner, index) => (
             <div
               key={index}
-              className="bg-card rounded-2xl p-6 shadow-card flex items-center justify-center h-24 opacity-70 hover:opacity-100 transition-opacity animate-fade-in"
+              className="bg-card rounded-2xl p-4 shadow-card flex items-center justify-center h-28 opacity-80 hover:opacity-100 hover:shadow-lg transition-all duration-300 animate-fade-in"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <span className="font-bold text-lg text-muted-foreground">
-                {partner}
-              </span>
+              <img 
+                src={partner.logo} 
+                alt={partner.name}
+                className="max-h-20 max-w-full object-contain"
+              />
             </div>
           ))}
         </div>
