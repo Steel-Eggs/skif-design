@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
+import news1Image from "@/assets/news/news-1.jpg";
+import news2Image from "@/assets/news/news-2.jpg";
+import news3Image from "@/assets/news/news-3.jpg";
+
 const news = [
   {
     id: 1,
@@ -11,7 +15,7 @@ const news = [
     excerpt: "Представляем обновлённую линейку легковых прицепов с улучшенной конструкцией рамы, новой светотехникой и расширенной комплектацией. Модели доступны к заказу уже сейчас.",
     date: "15 января 2025",
     category: "Новинки",
-    image: "🚛",
+    image: news1Image,
     views: 1250,
   },
   {
@@ -20,7 +24,7 @@ const news = [
     excerpt: "С 1 марта стартует ежегодная весенняя акция. Скидки на популярные модели прицепов, аксессуары и услуги по ремонту. Успейте воспользоваться выгодным предложением!",
     date: "10 января 2025",
     category: "Акции",
-    image: "🏷️",
+    image: news2Image,
     views: 2340,
   },
   {
@@ -29,7 +33,7 @@ const news = [
     excerpt: "Рады сообщить об открытии нового пункта обслуживания в Казани. Теперь качественный ремонт и обслуживание прицепов доступны ещё большему числу клиентов.",
     date: "5 января 2025",
     category: "Компания",
-    image: "🏢",
+    image: news3Image,
     views: 890,
   },
 ];
@@ -61,8 +65,12 @@ const NewsSection = () => {
           <Card className="lg:col-span-2 group overflow-hidden hover:shadow-xl transition-all duration-300">
             <CardContent className="p-0">
               <div className="grid md:grid-cols-2">
-                <div className="aspect-square md:aspect-auto bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <span className="text-8xl">{news[0].image}</span>
+                <div className="aspect-square md:aspect-auto overflow-hidden">
+                  <img 
+                    src={news[0].image} 
+                    alt={news[0].title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
                   <Badge className="w-fit mb-4 gradient-accent text-accent-foreground">
@@ -110,8 +118,12 @@ const NewsSection = () => {
               >
                 <CardContent className="p-5">
                   <div className="flex gap-4">
-                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center shrink-0">
-                      <span className="text-3xl">{item.image}</span>
+                    <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0">
+                      <img 
+                        src={item.image} 
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <Badge variant="outline" className="mb-2 text-xs">
