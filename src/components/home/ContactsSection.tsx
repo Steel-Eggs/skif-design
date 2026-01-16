@@ -61,11 +61,11 @@ const ContactsSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted/50">
-      <div className="container">
+    <section className="py-16 md:py-24 bg-muted/50 overflow-hidden">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Info */}
-          <div className="space-y-8">
+          <div className="space-y-8 min-w-0">
             <div>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
                 Свяжитесь с нами
@@ -75,15 +75,15 @@ const ContactsSection = () => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {/* Phone */}
-              <Card className="border-2 hover:border-primary/30 transition-colors">
-                <CardContent className="p-5">
-                  <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center mb-4">
-                    <Phone className="h-6 w-6 text-primary-foreground" />
+              <Card className="border-2 hover:border-primary/30 transition-colors overflow-hidden">
+                <CardContent className="p-4 sm:p-5">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl gradient-primary flex items-center justify-center mb-3 sm:mb-4">
+                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" />
                   </div>
                   <h3 className="font-heading font-bold text-foreground mb-2">Телефон</h3>
-                  <a href="tel:+78002001636" className="text-lg font-semibold text-primary hover:underline">
+                  <a href="tel:+78002001636" className="text-base sm:text-lg font-semibold text-primary hover:underline break-all">
                     +7 (800) 200-16-36
                   </a>
                   <p className="text-sm text-muted-foreground mt-1">Звонок бесплатный</p>
@@ -91,13 +91,13 @@ const ContactsSection = () => {
               </Card>
 
               {/* Email */}
-              <Card className="border-2 hover:border-primary/30 transition-colors">
-                <CardContent className="p-5">
-                  <div className="w-12 h-12 rounded-xl gradient-secondary flex items-center justify-center mb-4">
-                    <Mail className="h-6 w-6 text-secondary-foreground" />
+              <Card className="border-2 hover:border-primary/30 transition-colors overflow-hidden">
+                <CardContent className="p-4 sm:p-5">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl gradient-secondary flex items-center justify-center mb-3 sm:mb-4">
+                    <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-secondary-foreground" />
                   </div>
                   <h3 className="font-heading font-bold text-foreground mb-2">Email</h3>
-                  <a href="mailto:zakaz@skif-avto.ru" className="text-lg font-semibold text-primary hover:underline">
+                  <a href="mailto:zakaz@skif-avto.ru" className="text-base sm:text-lg font-semibold text-primary hover:underline break-all">
                     zakaz@skif-avto.ru
                   </a>
                   <p className="text-sm text-muted-foreground mt-1">Ответим за 2 часа</p>
@@ -105,25 +105,25 @@ const ContactsSection = () => {
               </Card>
 
               {/* Address */}
-              <Card className="border-2 hover:border-primary/30 transition-colors">
-                <CardContent className="p-5">
-                  <div className="w-12 h-12 rounded-xl gradient-accent flex items-center justify-center mb-4">
-                    <MapPin className="h-6 w-6 text-accent-foreground" />
+              <Card className="border-2 hover:border-primary/30 transition-colors overflow-hidden">
+                <CardContent className="p-4 sm:p-5">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl gradient-accent flex items-center justify-center mb-3 sm:mb-4">
+                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-accent-foreground" />
                   </div>
                   <h3 className="font-heading font-bold text-foreground mb-2">Адрес</h3>
-                  <p className="text-foreground">Санкт-Петербург, ул. Ольги Берггольц, д. 38-А</p>
+                  <p className="text-foreground text-sm sm:text-base">Санкт-Петербург, ул. Ольги Берггольц, д. 38-А</p>
                   <p className="text-sm text-muted-foreground mt-1">Рядом с метро</p>
                 </CardContent>
               </Card>
 
               {/* Working hours */}
-              <Card className="border-2 hover:border-primary/30 transition-colors">
-                <CardContent className="p-5">
-                  <div className="w-12 h-12 rounded-xl bg-foreground flex items-center justify-center mb-4">
-                    <Clock className="h-6 w-6 text-background" />
+              <Card className="border-2 hover:border-primary/30 transition-colors overflow-hidden">
+                <CardContent className="p-4 sm:p-5">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-foreground flex items-center justify-center mb-3 sm:mb-4">
+                    <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-background" />
                   </div>
                   <h3 className="font-heading font-bold text-foreground mb-2">Режим работы</h3>
-                  <div className="text-foreground">
+                  <div className="text-foreground text-sm sm:text-base">
                     <p>Пн-Пт: 9:00 - 18:00</p>
                     <p>Сб: 10:00 - 16:00</p>
                   </div>
@@ -133,11 +133,11 @@ const ContactsSection = () => {
 
             {/* Yandex Map */}
             <div className="rounded-2xl overflow-hidden border-2 border-border">
-              <div className="relative w-full" style={{ height: '330px' }}>
+              <div className="relative w-full h-[280px] sm:h-[330px]">
                 <iframe 
                   src="https://yandex.ru/map-widget/v1/org/skif/183604077331/?ll=30.449997%2C59.868789&z=16"
                   width="100%" 
-                  height="330" 
+                  height="100%" 
                   frameBorder="0" 
                   allowFullScreen
                   title="Карта расположения СКИФ"
@@ -148,9 +148,9 @@ const ContactsSection = () => {
           </div>
 
           {/* Contact Form */}
-          <div>
-            <Card className="border-2 shadow-lg">
-              <CardContent className="p-6 md:p-8">
+          <div className="min-w-0">
+            <Card className="border-2 shadow-lg overflow-hidden">
+              <CardContent className="p-4 sm:p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
                     <MessageCircle className="h-6 w-6 text-primary-foreground" />
