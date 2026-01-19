@@ -4,8 +4,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
-import InputMask from "react-input-mask";
 import maxIcon from "@/assets/messengers/max.png";
+
+const formatPhone = (value: string): string => {
+  const digits = value.replace(/\D/g, '').slice(0, 11);
+  if (digits.length === 0) return '';
+  if (digits.length <= 1) return `+${digits}`;
+  if (digits.length <= 4) return `+${digits[0]} (${digits.slice(1)}`;
+  if (digits.length <= 7) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4)}`;
+  if (digits.length <= 9) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+  return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
+};
 
 interface FormErrors {
   name?: string;
@@ -179,20 +188,13 @@ const ContactsSection = () => {
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-foreground">Телефон *</label>
-                      <InputMask
-                        mask="+7 (999) 999-99-99"
+                      <Input 
+                        type="tel" 
+                        placeholder="+7 (___) ___-__-__"
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      >
-                        {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
-                          <Input 
-                            {...inputProps}
-                            type="tel" 
-                            placeholder="+7 (___) ___-__-__"
-                            className={errors.phone ? "border-destructive" : ""}
-                          />
-                        )}
-                      </InputMask>
+                        onChange={(e) => setFormData({ ...formData, phone: formatPhone(e.target.value) })}
+                        className={errors.phone ? "border-destructive" : ""}
+                      />
                       {errors.phone && (
                         <p className="text-sm text-destructive">{errors.phone}</p>
                       )}
