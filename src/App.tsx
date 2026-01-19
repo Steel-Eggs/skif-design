@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Catalog from "./pages/Catalog";
 import Category from "./pages/Category";
 import Product from "./pages/Product";
+import Favorites from "./pages/Favorites";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/CookieConsent";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/catalog/:categorySlug" element={<Category />} />
           <Route path="/product/:productId" element={<Product />} />
+          <Route path="/favorites" element={<Favorites />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
