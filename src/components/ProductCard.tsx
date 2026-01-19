@@ -225,9 +225,9 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
             )}
           </div>
           
-          {/* Wishlist */}
+          {/* Wishlist - higher z-index to be above overlay */}
           <button 
-            className={`absolute top-3 right-3 w-10 h-10 rounded-full backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
+            className={`absolute top-3 right-3 w-10 h-10 rounded-full backdrop-blur-sm flex items-center justify-center transition-all duration-300 z-20 ${
               isInFavorites 
                 ? 'bg-destructive text-destructive-foreground opacity-100' 
                 : 'bg-card/90 opacity-0 group-hover:opacity-100 hover:bg-destructive hover:text-destructive-foreground'
@@ -237,9 +237,9 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
             <Heart className={`h-5 w-5 ${isInFavorites ? 'fill-current' : ''}`} />
           </button>
           
-          {/* Quick view overlay */}
-          <div className="absolute inset-0 bg-foreground/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <Link to={`/product/${product.id}`}>
+          {/* Quick view overlay - pointer-events-none on container, only button clickable */}
+          <div className="absolute inset-0 bg-foreground/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+            <Link to={`/product/${product.id}`} className="pointer-events-auto">
               <Button variant="secondary" className="font-semibold">
                 Подробнее
               </Button>
