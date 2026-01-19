@@ -49,7 +49,7 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
     ? Math.round((1 - product.price / product.oldPrice) * 100) 
     : 0;
   const savings = product.oldPrice ? product.oldPrice - product.price : 0;
-  const productImage = product.image !== "/placeholder.svg" ? product.image : getProductImage(product.id);
+  const productImage = product.image && product.image !== "/placeholder.svg" ? product.image : getProductImage(product.id);
   const inStock = product.inStock !== false;
   const rating = product.rating ?? 4.5 + (product.id % 5) * 0.1;
   const reviews = product.reviews ?? 20 + (product.id * 7) % 200;
