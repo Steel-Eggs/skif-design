@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { 
-  ChevronLeft, ChevronRight, ShoppingCart, Phone,
+  ChevronLeft, ChevronRight, ShoppingCart, Phone, Heart,
   Check, Truck, Shield, Clock, ZoomIn, X, Plus, Minus
 } from "lucide-react";
 import Header from "@/components/layout/Header";
@@ -12,6 +12,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import CallbackModal from "@/components/CallbackModal";
+import { useFavorites, dispatchFavoritesUpdate, FAVORITES_UPDATED_EVENT } from "@/hooks/useFavorites";
 
 // Mock product data
 const mockProduct = {
@@ -118,7 +119,29 @@ const Product = () => {
   const [isCallbackOpen, setIsCallbackOpen] = useState(false);
   const [selectedAccessories, setSelectedAccessories] = useState<number[]>([]);
   
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const [isInFavorites, setIsInFavorites] = useState(false);
+  
   const product = mockProduct; // In real app, fetch by productId
+
+  // Sync favorites state
+  useEffect(() => {
+    setIsInFavorites(isFavorite(product.id));
+  }, [isFavorite, product.id]);
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setIsInFavorites(isFavorite(product.id));
+    };
+    window.addEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
+    return () => window.removeEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
+  }, [isFavorite, product.id]);
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(product.id);
+    setIsInFavorites(!isInFavorites);
+    dispatchFavoritesUpdate();
+  };
 
   const changeImage = (newIndex: number, direction: 'left' | 'right') => {
     if (isAnimating) return;
@@ -354,6 +377,21 @@ const Product = () => {
                       Купить в 1 клик
                     </Button>
                   </div>
+                  
+                  {/* Favorite button */}
+                  <Button
+                    size="lg"
+                    variant={isInFavorites ? "default" : "outline"}
+                    className={`w-full h-12 mt-3 gap-2 font-semibold transition-all ${
+                      isInFavorites 
+                        ? 'bg-destructive hover:bg-destructive/90 text-destructive-foreground' 
+                        : ''
+                    }`}
+                    onClick={handleToggleFavorite}
+                  >
+                    <Heart className={`w-5 h-5 ${isInFavorites ? 'fill-current' : ''}`} />
+                    {isInFavorites ? 'В избранном' : 'Добавить в избранное'}
+                  </Button>
                 </div>
                 
                 {/* Benefits */}
