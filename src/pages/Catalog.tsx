@@ -252,8 +252,8 @@ const Catalog = () => {
 
         {/* Featured categories (Распродажа) */}
         {featuredCategories.length > 0 && (
-          <section className="py-8 bg-background">
-            <div className="container">
+          <section className="py-8 bg-background overflow-hidden">
+            <div className="container px-4">
               <div className="grid gap-6">
                 {featuredCategories.map((category, index) => (
                   <Link
@@ -262,23 +262,23 @@ const Catalog = () => {
                     className="group block animate-fade-in"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-r ${category.color} p-8 md:p-12 shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-3xl`}>
+                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-r ${category.color} p-6 md:p-12 shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-3xl`}>
                       {/* Animated background pattern */}
                       <div className="absolute inset-0 opacity-20">
-                        <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" />
-                        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse delay-1000" />
+                        <div className="absolute top-0 left-0 w-48 md:w-96 h-48 md:h-96 bg-white rounded-full blur-3xl animate-pulse" />
+                        <div className="absolute bottom-0 right-0 w-48 md:w-96 h-48 md:h-96 bg-white rounded-full blur-3xl animate-pulse delay-1000" />
                       </div>
                       
-                      <div className="relative flex items-center gap-8">
-                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-white/20 backdrop-blur-sm flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
-                          <category.icon className="w-12 h-12 md:w-16 md:h-16 text-white" />
+                      <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
+                        <div className="w-16 h-16 md:w-32 md:h-32 rounded-2xl md:rounded-3xl bg-white/20 backdrop-blur-sm flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shrink-0">
+                          <category.icon className="w-8 h-8 md:w-16 md:h-16 text-white" />
                         </div>
-                        <div className="flex-1">
-                          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-2">
+                        <div className="flex-1 min-w-0">
+                          <h2 className="text-xl md:text-4xl font-heading font-bold text-white mb-2">
                             {category.name}
                           </h2>
-                          <p className="text-white/80 text-lg mb-4">{category.description}</p>
-                          <span className="inline-flex items-center gap-2 text-white font-semibold">
+                          <p className="text-white/80 text-sm md:text-lg mb-2 md:mb-4">{category.description}</p>
+                          <span className="inline-flex items-center gap-2 text-white font-semibold text-sm md:text-base">
                             {category.count} товаров
                             <span className="w-8 h-0.5 bg-white/50 group-hover:w-16 transition-all duration-300" />
                           </span>
