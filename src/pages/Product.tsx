@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { 
-  ChevronLeft, ChevronRight, ShoppingCart, Phone, Heart, Share2,
-  Check, Truck, Shield, Clock, Play, ZoomIn, X
+  ChevronLeft, ChevronRight, ShoppingCart, Phone,
+  Check, Truck, Shield, Clock, ZoomIn, X, Plus, Minus
 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -10,21 +10,19 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import CallbackModal from "@/components/CallbackModal";
 
 // Mock product data
 const mockProduct = {
   id: 1,
   name: "Прицеп для квадроцикла ССТ-7132-мини",
-  sku: "7132-мини",
   brand: "ССТ",
   category: "Одноосные прицепы",
   categorySlug: "odnoosnye",
   price: 89900,
   oldPrice: 99900,
   inStock: true,
-  rating: 4.8,
-  reviewsCount: 24,
   images: [
     "https://www.skif-avto.ru/upload/iblock/07c/xygzme5zt9i56rpajnzded7k3tog73ab.JPG",
     "https://www.skif-avto.ru/upload/resize_cache/iblock/467/720_720_1/2efb8wnuce5737wxvu4ci8j0t5n41vps.JPG",
@@ -59,16 +57,18 @@ const mockProduct = {
     { name: "Снаряжённая масса", value: "180 кг" },
     { name: "Полная масса", value: "930 кг" },
     { name: "Количество осей", value: "1" },
-    { name: "Тип подвески", value: "Рессорная" },
-    { name: "Размер шин", value: "R13" },
+    { name: "Тип подвески", value: "Рессора/Амортизаторы" },
+    { name: "Размер колеса", value: "R-13" },
     { name: "Тип сцепного устройства", value: "Шар 50 мм" },
     { name: "Материал кузова", value: "Оцинкованная сталь" },
     { name: "Покрытие", value: "Горячее цинкование" },
-    { name: "Категория прав", value: "B (при наличии)" },
+    { name: "Погрузочная высота", value: "600 мм" },
+    { name: "Назначение", value: "Для квадроцикла" },
+    { name: "Производитель", value: "ССТ" },
     { name: "Гарантия", value: "24 месяца" },
   ],
   videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-  videoTitle: "Обзор прицепа ССТ-7132-мини",
+  videoTitle: "Самый красивый и практичный прицеп для квадроцикла и мотоблока!",
   features: [
     "Горячее цинкование",
     "Гарантия 2 года",
@@ -77,12 +77,44 @@ const mockProduct = {
   ],
 };
 
+// Additional options/accessories
+const mockAccessories = [
+  {
+    id: 101,
+    name: "Тент с каркасом НИЗКИЙ 7132-МИНИ",
+    price: 4100,
+    image: "https://www.skif-avto.ru/upload/iblock/9f4/nc3ct56l0o4d3e40cyt33n5ty5el1dqv.jpg",
+    href: "/product/101",
+  },
+  {
+    id: 102,
+    name: "БОРТА НАДСТАВНЫЕ (КОМПЛЕКТ) 7132-МИНИ",
+    price: 7500,
+    image: "https://www.skif-avto.ru/upload/iblock/062/6kuboanfmoeybs9o4a1c0xnqlvxd5uqn.jpg",
+    href: "/product/102",
+  },
+  {
+    id: 103,
+    name: "Держатель вилки 7/13pin TRAILERCOM TM5024 (синий)",
+    price: 250,
+    image: "https://www.skif-avto.ru/upload/resize_cache/iblock/208/250_350_1/9q33gx4fffgmge17yhu1h7mj61sgekex.jpg",
+    href: "/product/103",
+  },
+  {
+    id: 104,
+    name: "Опорное колесо с хомутом TR-06",
+    price: 3300,
+    image: "https://www.skif-avto.ru/upload/resize_cache/iblock/f0a/250_350_1/f0a83644f8e6276d7a72b209dcaf0017.jpg",
+    href: "/product/104",
+  },
+];
+
 const Product = () => {
   const { productId } = useParams<{ productId: string }>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const [isCallbackOpen, setIsCallbackOpen] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [selectedAccessories, setSelectedAccessories] = useState<number[]>([]);
   
   const product = mockProduct; // In real app, fetch by productId
 
@@ -98,16 +130,23 @@ const Product = () => {
     );
   };
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      await navigator.share({
-        title: product.name,
-        url: window.location.href,
-      });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-    }
+  const toggleAccessory = (id: number) => {
+    setSelectedAccessories(prev => 
+      prev.includes(id) 
+        ? prev.filter(aId => aId !== id)
+        : [...prev, id]
+    );
   };
+
+  // Calculate totals
+  const accessoriesTotal = selectedAccessories.reduce((sum, id) => {
+    const accessory = mockAccessories.find(a => a.id === id);
+    return sum + (accessory?.price || 0);
+  }, 0);
+
+  const separateTotal = product.price + accessoriesTotal;
+  const bundleDiscount = selectedAccessories.length >= 2 ? Math.round(accessoriesTotal * 0.05) : 0;
+  const bundleTotal = separateTotal - bundleDiscount;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -205,38 +244,17 @@ const Product = () => {
 
               {/* Product info */}
               <div className="space-y-6">
-                {/* Brand & SKU */}
+                {/* Brand */}
                 <div className="flex items-center gap-3 flex-wrap">
                   <Badge variant="secondary" className="text-sm">
                     {product.brand}
                   </Badge>
-                  <span className="text-sm text-muted-foreground">
-                    Артикул: {product.sku}
-                  </span>
                 </div>
                 
                 {/* Title */}
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground">
                   {product.name}
                 </h1>
-                
-                {/* Rating */}
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className={`w-5 h-5 ${i < Math.floor(product.rating) ? 'text-yellow-400 fill-yellow-400' : 'text-muted'}`}
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="font-semibold text-foreground">{product.rating}</span>
-                  <span className="text-muted-foreground">({product.reviewsCount} отзывов)</span>
-                </div>
                 
                 {/* Features badges */}
                 <div className="flex flex-wrap gap-2">
@@ -295,24 +313,6 @@ const Product = () => {
                       Купить в 1 клик
                     </Button>
                   </div>
-                  
-                  {/* Quick actions */}
-                  <div className="flex items-center gap-4 mt-4 pt-4 border-t border-border">
-                    <button 
-                      onClick={() => setIsFavorite(!isFavorite)}
-                      className={`flex items-center gap-2 text-sm transition-colors ${isFavorite ? 'text-red-500' : 'text-muted-foreground hover:text-foreground'}`}
-                    >
-                      <Heart className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
-                      В избранное
-                    </button>
-                    <button 
-                      onClick={handleShare}
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <Share2 className="w-5 h-5" />
-                      Поделиться
-                    </button>
-                  </div>
                 </div>
                 
                 {/* Benefits */}
@@ -350,8 +350,139 @@ const Product = () => {
           </div>
         </section>
 
-        {/* Tabs section */}
+        {/* Additional options section */}
         <section className="py-8 md:py-12 bg-muted/30">
+          <div className="container">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8">
+              Купить дополнительные опции
+            </h2>
+            
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Accessories list */}
+              <div className="lg:col-span-2">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {mockAccessories.map((accessory) => {
+                    const isSelected = selectedAccessories.includes(accessory.id);
+                    return (
+                      <Card 
+                        key={accessory.id}
+                        className={`border-2 transition-all cursor-pointer hover:shadow-lg ${
+                          isSelected ? 'border-primary bg-primary/5' : 'border-border'
+                        }`}
+                        onClick={() => toggleAccessory(accessory.id)}
+                      >
+                        <CardContent className="p-4">
+                          <div className="flex gap-4">
+                            {/* Checkbox */}
+                            <div className="pt-1">
+                              <Checkbox 
+                                checked={isSelected}
+                                onCheckedChange={() => toggleAccessory(accessory.id)}
+                                className="w-5 h-5"
+                              />
+                            </div>
+                            
+                            {/* Image */}
+                            <div className="w-20 h-20 rounded-lg overflow-hidden bg-muted shrink-0">
+                              <img 
+                                src={accessory.image} 
+                                alt={accessory.name}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            
+                            {/* Info */}
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-semibold text-foreground text-sm line-clamp-2 mb-2">
+                                {accessory.name}
+                              </h4>
+                              <p className="text-lg font-bold text-primary">
+                                {accessory.price.toLocaleString('ru-RU')} ₽
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+              
+              {/* Order summary */}
+              <div className="lg:col-span-1">
+                <Card className="border-2 sticky top-24">
+                  <CardContent className="p-6">
+                    <h3 className="font-heading font-bold text-lg text-foreground mb-4">
+                      Ваш заказ
+                    </h3>
+                    
+                    {/* Selected items */}
+                    <div className="space-y-3 mb-6">
+                      <div className="flex justify-between items-center pb-3 border-b border-border">
+                        <span className="text-muted-foreground">{product.name}</span>
+                        <span className="font-semibold">{product.price.toLocaleString('ru-RU')} ₽</span>
+                      </div>
+                      
+                      {selectedAccessories.map(id => {
+                        const acc = mockAccessories.find(a => a.id === id);
+                        if (!acc) return null;
+                        return (
+                          <div key={id} className="flex justify-between items-start gap-2">
+                            <span className="text-muted-foreground text-sm line-clamp-2">{acc.name}</span>
+                            <span className="font-medium text-sm shrink-0">{acc.price.toLocaleString('ru-RU')} ₽</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    
+                    {/* Totals */}
+                    <div className="space-y-2 mb-6">
+                      <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground">Стоимость товаров по отдельности:</span>
+                        <span className="font-medium">{separateTotal.toLocaleString('ru-RU')} ₽</span>
+                      </div>
+                      
+                      {bundleDiscount > 0 && (
+                        <>
+                          <div className="flex justify-between items-center">
+                            <span className="text-muted-foreground">Стоимость набора:</span>
+                            <span className="font-bold text-lg">{bundleTotal.toLocaleString('ru-RU')} ₽</span>
+                          </div>
+                          <div className="flex justify-between items-center text-green-600">
+                            <span>Экономия:</span>
+                            <span className="font-bold">{bundleDiscount.toLocaleString('ru-RU')} ₽</span>
+                          </div>
+                        </>
+                      )}
+                      
+                      {bundleDiscount === 0 && selectedAccessories.length > 0 && (
+                        <p className="text-xs text-muted-foreground">
+                          Выберите 2 и более опции для получения скидки 5%
+                        </p>
+                      )}
+                    </div>
+                    
+                    {/* Total */}
+                    <div className="flex justify-between items-center py-4 border-t border-border mb-4">
+                      <span className="text-lg font-bold">Итого:</span>
+                      <span className="text-2xl font-black text-primary">
+                        {(bundleDiscount > 0 ? bundleTotal : separateTotal).toLocaleString('ru-RU')} ₽
+                      </span>
+                    </div>
+                    
+                    <Button size="lg" className="w-full h-14 gradient-accent text-lg font-bold gap-2">
+                      <ShoppingCart className="w-5 h-5" />
+                      Купить
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Tabs section */}
+        <section className="py-8 md:py-12">
           <div className="container">
             <Tabs defaultValue="description" className="space-y-8">
               <TabsList className="w-full justify-start bg-card border border-border rounded-xl p-1.5 h-auto flex-wrap">
