@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { 
-  Menu, X, Phone, Search, ShoppingCart, ChevronDown, MessageCircle, Send
+  Menu, X, Phone, Search, ShoppingCart, ChevronDown, MessageCircle, Send, Heart
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import CallbackModal from "@/components/CallbackModal";
+import { useFavorites, FAVORITES_UPDATED_EVENT } from "@/hooks/useFavorites";
 import logo from "@/assets/logo-new.png";
 
 const Header = () => {
@@ -16,6 +17,32 @@ const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
+  const { favoritesCount } = useFavorites();
+  const [displayCount, setDisplayCount] = useState(0);
+
+  // Sync favorites count
+  useEffect(() => {
+    setDisplayCount(favoritesCount);
+  }, [favoritesCount]);
+
+  // Listen for favorites updates
+  useEffect(() => {
+    const handleUpdate = () => {
+      const stored = localStorage.getItem("skif_favorites");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          setDisplayCount(parsed.length);
+        } catch (e) {
+          setDisplayCount(0);
+        }
+      } else {
+        setDisplayCount(0);
+      }
+    };
+    window.addEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
+    return () => window.removeEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
+  }, []);
   
   const catalogRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -256,6 +283,16 @@ const Header = () => {
             >
               <Search className="h-5 w-5" />
             </Button>
+            <Link to="/favorites">
+              <Button variant="outline" size="icon" className="relative h-12 w-12 rounded-xl">
+                <Heart className="h-5 w-5" />
+                {displayCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {displayCount}
+                  </span>
+                )}
+              </Button>
+            </Link>
             <Link to="/cart">
               <Button variant="outline" size="icon" className="relative h-12 w-12 rounded-xl">
                 <ShoppingCart className="h-5 w-5" />

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Heart, Star, Flame, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useFavorites, FAVORITES_UPDATED_EVENT, dispatchFavoritesUpdate } from "@/hooks/useFavorites";
 
 // Import product images
 import trailer1 from "@/assets/products/trailer-1.jpg";
@@ -44,6 +45,21 @@ export const getProductImage = (productId: number): string => {
 
 const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps) => {
   const [addedToCart, setAddedToCart] = useState(false);
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const [isInFavorites, setIsInFavorites] = useState(false);
+  
+  useEffect(() => {
+    setIsInFavorites(isFavorite(product.id));
+  }, [isFavorite, product.id]);
+
+  // Listen for favorites updates from other components
+  useEffect(() => {
+    const handleUpdate = () => {
+      setIsInFavorites(isFavorite(product.id));
+    };
+    window.addEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
+    return () => window.removeEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
+  }, [isFavorite, product.id]);
   
   const discountPercent = product.oldPrice 
     ? Math.round((1 - product.price / product.oldPrice) * 100) 
@@ -63,6 +79,14 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
     
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 1500);
+  };
+
+  const handleToggleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(product.id);
+    setIsInFavorites(!isInFavorites);
+    dispatchFavoritesUpdate();
   };
 
   if (viewMode === 'list') {
@@ -203,10 +227,14 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
           
           {/* Wishlist */}
           <button 
-            className="absolute top-3 right-3 w-10 h-10 rounded-full bg-card/90 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-destructive hover:text-destructive-foreground"
-            onClick={(e) => e.preventDefault()}
+            className={`absolute top-3 right-3 w-10 h-10 rounded-full backdrop-blur-sm flex items-center justify-center transition-all duration-300 ${
+              isInFavorites 
+                ? 'bg-destructive text-destructive-foreground opacity-100' 
+                : 'bg-card/90 opacity-0 group-hover:opacity-100 hover:bg-destructive hover:text-destructive-foreground'
+            }`}
+            onClick={handleToggleFavorite}
           >
-            <Heart className="h-5 w-5" />
+            <Heart className={`h-5 w-5 ${isInFavorites ? 'fill-current' : ''}`} />
           </button>
           
           {/* Quick view overlay */}
