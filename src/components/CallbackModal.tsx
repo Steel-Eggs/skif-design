@@ -3,17 +3,31 @@ import { X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import InputMask from "react-input-mask";
 
 interface CallbackModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const formatPhone = (value: string): string => {
+  const digits = value.replace(/\D/g, '').slice(0, 11);
+  if (digits.length === 0) return '';
+  if (digits.length <= 1) return `+${digits}`;
+  if (digits.length <= 4) return `+${digits[0]} (${digits.slice(1)}`;
+  if (digits.length <= 7) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4)}`;
+  if (digits.length <= 9) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+  return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
+};
+
 const CallbackModal = ({ isOpen, onClose }: CallbackModalProps) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhone(e.target.value);
+    setPhone(formatted);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,20 +97,13 @@ const CallbackModal = ({ isOpen, onClose }: CallbackModalProps) => {
             </div>
             
             <div>
-              <InputMask
-                mask="+7 (999) 999-99-99"
+              <Input
+                type="tel"
+                placeholder="+7 (___) ___-__-__"
                 value={phone}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
-              >
-                {(inputProps: React.InputHTMLAttributes<HTMLInputElement>) => (
-                  <Input
-                    {...inputProps}
-                    type="tel"
-                    placeholder="+7 (___) ___-__-__"
-                    className="h-12 rounded-xl bg-muted border-border"
-                  />
-                )}
-              </InputMask>
+                onChange={handlePhoneChange}
+                className="h-12 rounded-xl bg-muted border-border"
+              />
             </div>
             
             <Button
