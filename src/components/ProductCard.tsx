@@ -113,12 +113,9 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
               </Link>
             </h3>
             
-            <div className="flex items-center gap-2 mb-2">
-              <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 fill-accent text-accent" />
-                <span className="font-semibold text-sm">{rating.toFixed(1)}</span>
-              </div>
-              <span className="text-muted-foreground text-sm">({reviews} отзывов)</span>
+            <div className="flex items-center gap-1 mb-2">
+              <Star className="h-4 w-4 fill-accent text-accent" />
+              <span className="font-semibold text-sm">{rating.toFixed(1)}</span>
             </div>
             
             <div className="flex items-baseline gap-2 mb-2 flex-wrap">
@@ -237,12 +234,9 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
           </h3>
           
           {/* Rating */}
-          <div className="flex items-center gap-2 mb-3">
-            <div className="flex items-center gap-1">
-              <Star className="h-4 w-4 fill-accent text-accent" />
-              <span className="font-semibold text-sm">{rating.toFixed(1)}</span>
-            </div>
-            <span className="text-muted-foreground text-xs sm:text-sm">({reviews} отзывов)</span>
+          <div className="flex items-center gap-1 mb-3">
+            <Star className="h-4 w-4 fill-accent text-accent" />
+            <span className="font-semibold text-sm">{rating.toFixed(1)}</span>
           </div>
           
           {/* Price section */}
