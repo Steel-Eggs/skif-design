@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, Ship, Building2, Home, RefreshCw } from "lucide-react";
+import { ArrowRight, Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, Ship, Building2, Home, RefreshCw, ChevronDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const categories = [
   {
@@ -101,51 +103,62 @@ const categories = [
   },
 ];
 
+const INITIAL_VISIBLE = 8;
+
 const CategoriesSection = () => {
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+  
+  const visibleCategories = categories.slice(0, visibleCount);
+  const hasMore = visibleCount < categories.length;
+  
+  const handleShowMore = () => {
+    setVisibleCount(prev => Math.min(prev + 4, categories.length));
+  };
+
   return (
-    <section className="py-16 md:py-24 bg-background">
-      <div className="container">
+    <section className="py-12 md:py-24 bg-background overflow-hidden">
+      <div className="container px-4 sm:px-6">
         {/* Section header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-foreground mb-3 md:mb-4">
             Каталог продукции
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Широкий выбор прицепов для любых задач
           </p>
         </div>
 
         {/* Categories grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {categories.map((category, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          {visibleCategories.map((category, index) => (
             <Link 
               key={category.id} 
               to={category.href}
               className="group animate-fade-in"
-              style={{ animationDelay: `${index * 0.05}s` }}
+              style={{ animationDelay: `${Math.min(index, 7) * 0.05}s` }}
             >
               <Card className="h-full overflow-hidden border-2 border-transparent hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <CardContent className="p-5 flex flex-col h-full">
+                <CardContent className="p-4 sm:p-5 flex flex-col h-full">
                   <div className="flex items-start justify-between mb-3">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                      <category.icon className="h-6 w-6 text-primary-foreground" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shrink-0">
+                      <category.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary-foreground" />
                     </div>
-                    <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-1 rounded-full">
+                    <span className="text-xs font-medium text-muted-foreground bg-muted px-2 py-1 rounded-full shrink-0">
                       {category.count}
                     </span>
                   </div>
                   
-                  <h3 className="text-lg font-heading font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+                  <h3 className="text-base sm:text-lg font-heading font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
                     {category.name}
                   </h3>
                   
-                  <p className="text-sm text-muted-foreground mb-3 flex-grow">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-3 flex-grow line-clamp-2">
                     {category.description}
                   </p>
                   
                   <div className="flex items-center text-primary text-sm font-medium group-hover:gap-2 gap-1 transition-all">
                     <span>Смотреть</span>
-                    <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform shrink-0" />
                   </div>
                 </CardContent>
               </Card>
@@ -153,12 +166,27 @@ const CategoriesSection = () => {
           ))}
         </div>
 
+        {/* Show more button */}
+        {hasMore && (
+          <div className="text-center mt-8 md:mt-10">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="gap-2"
+              onClick={handleShowMore}
+            >
+              Показать ещё ({categories.length - visibleCount})
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
+
         {/* View all button */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-8 md:mt-12">
           <Link to="/catalog">
-            <button className="inline-flex items-center gap-2 px-8 py-4 gradient-primary text-primary-foreground font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg">
+            <button className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 gradient-primary text-primary-foreground font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg text-sm sm:text-base">
               Смотреть весь каталог
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
           </Link>
         </div>
