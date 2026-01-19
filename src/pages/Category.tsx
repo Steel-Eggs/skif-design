@@ -45,8 +45,8 @@ const categoryData: Record<string, { name: string; description: string; icon: an
   "rybalka": { name: "Товары для рыбалки", description: "Всё для успешной рыбалки", icon: Fish, color: "from-teal-500 to-cyan-500" },
 };
 
-// Mock products data
-const mockProducts = [
+// Mock products data - all available products
+const allProducts = [
   { id: 1, name: "Прицеп СКИФ-2500", price: 89000, oldPrice: 99000, image: "/placeholder.svg", brand: "СКИФ" },
   { id: 2, name: "Прицеп МЗСА 817711", price: 125000, oldPrice: null, image: "/placeholder.svg", brand: "МЗСА" },
   { id: 3, name: "Прицеп Курганский 8213", price: 78500, oldPrice: 85000, image: "/placeholder.svg", brand: "Курганские прицепы" },
@@ -55,12 +55,26 @@ const mockProducts = [
   { id: 6, name: "Прицеп Спутник 821311", price: 98000, oldPrice: null, image: "/placeholder.svg", brand: "Спутник" },
   { id: 7, name: "Прицеп СКИФ-3500 Люкс", price: 145000, oldPrice: 159000, image: "/placeholder.svg", brand: "СКИФ" },
   { id: 8, name: "Прицеп МЗСА 817719", price: 189000, oldPrice: null, image: "/placeholder.svg", brand: "МЗСА" },
+  { id: 9, name: "Прицеп Курганский 8219 Люкс", price: 112000, oldPrice: 125000, image: "/placeholder.svg", brand: "Курганские прицепы" },
+  { id: 10, name: "Прицеп Вектор ЛАВ 81015", price: 178000, oldPrice: null, image: "/placeholder.svg", brand: "Вектор" },
+  { id: 11, name: "Прицеп СКИФ-4000", price: 198000, oldPrice: 215000, image: "/placeholder.svg", brand: "СКИФ" },
+  { id: 12, name: "Прицеп Спутник 821315", price: 134000, oldPrice: null, image: "/placeholder.svg", brand: "Спутник" },
 ];
+
+const ITEMS_PER_PAGE = 8;
 
 const Category = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState('popular');
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  
+  const visibleProducts = allProducts.slice(0, visibleCount);
+  const hasMoreProducts = visibleCount < allProducts.length;
+  
+  const handleShowMore = () => {
+    setVisibleCount(prev => Math.min(prev + 4, allProducts.length));
+  };
   
   const category = categorySlug ? categoryData[categorySlug] : null;
   const IconComponent = category?.icon || Package;
@@ -136,20 +150,20 @@ const Category = () => {
         <section className="py-8 md:py-12">
           <div className="container">
             {/* Toolbar */}
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-8 p-4 bg-card rounded-xl border border-border">
-              <div className="flex items-center gap-3">
-                <Button variant="outline" className="gap-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8 p-4 bg-card rounded-xl border border-border overflow-hidden">
+              <div className="flex items-center gap-3 flex-wrap">
+                <Button variant="outline" className="gap-2 shrink-0">
                   <Filter className="w-4 h-4" />
                   Фильтры
                 </Button>
-                <span className="text-sm text-muted-foreground">
-                  Найдено: <strong className="text-foreground">{mockProducts.length}</strong> товаров
+                <span className="text-sm text-muted-foreground whitespace-nowrap">
+                  Найдено: <strong className="text-foreground">{allProducts.length}</strong> товаров
                 </span>
               </div>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap">
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48">
+                  <SelectTrigger className="w-full sm:w-48">
                     <SelectValue placeholder="Сортировка" />
                   </SelectTrigger>
                   <SelectContent>
@@ -178,40 +192,40 @@ const Category = () => {
             </div>
 
             {/* Products grid */}
-            <div className={`grid gap-6 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`}>
-              {mockProducts.map((product, index) => (
+            <div className={`grid gap-4 sm:gap-6 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`}>
+              {visibleProducts.map((product, index) => (
                 <Link
                   key={product.id}
                   to={`/product/${product.id}`}
                   className="group animate-fade-in"
-                  style={{ animationDelay: `${index * 0.05}s` }}
+                  style={{ animationDelay: `${Math.min(index, 7) * 0.05}s` }}
                 >
                   <Card className={`h-full overflow-hidden border-2 border-transparent hover:border-primary/20 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${viewMode === 'list' ? 'flex flex-row' : ''}`}>
                     {/* Image */}
-                    <div className={`relative overflow-hidden bg-muted ${viewMode === 'list' ? 'w-48 shrink-0' : 'aspect-[4/3]'}`}>
+                    <div className={`relative overflow-hidden bg-muted ${viewMode === 'list' ? 'w-32 sm:w-48 shrink-0' : 'aspect-[4/3]'}`}>
                       <img
                         src={product.image}
                         alt={product.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       {product.oldPrice && (
-                        <div className="absolute top-3 left-3 bg-accent text-accent-foreground text-xs font-bold px-2 py-1 rounded-full">
+                        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-accent text-accent-foreground text-xs font-bold px-2 py-1 rounded-full">
                           -{Math.round((1 - product.price / product.oldPrice) * 100)}%
                         </div>
                       )}
                     </div>
                     
-                    <CardContent className={`p-4 ${viewMode === 'list' ? 'flex-1 flex flex-col justify-center' : ''}`}>
-                      <span className="text-xs text-muted-foreground mb-1 block">{product.brand}</span>
-                      <h3 className="font-heading font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    <CardContent className={`p-3 sm:p-4 ${viewMode === 'list' ? 'flex-1 flex flex-col justify-center min-w-0' : ''}`}>
+                      <span className="text-xs text-muted-foreground mb-1 block truncate">{product.brand}</span>
+                      <h3 className="font-heading font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2 text-sm sm:text-base">
                         {product.name}
                       </h3>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-xl font-bold text-primary">
+                      <div className="flex items-baseline gap-2 flex-wrap">
+                        <span className="text-lg sm:text-xl font-bold text-primary">
                           {product.price.toLocaleString('ru-RU')} ₽
                         </span>
                         {product.oldPrice && (
-                          <span className="text-sm text-muted-foreground line-through">
+                          <span className="text-xs sm:text-sm text-muted-foreground line-through">
                             {product.oldPrice.toLocaleString('ru-RU')} ₽
                           </span>
                         )}
@@ -223,12 +237,19 @@ const Category = () => {
             </div>
 
             {/* Load more */}
-            <div className="text-center mt-12">
-              <Button variant="outline" size="lg" className="gap-2">
-                Показать ещё
-                <ChevronDown className="w-4 h-4" />
-              </Button>
-            </div>
+            {hasMoreProducts && (
+              <div className="text-center mt-8 sm:mt-12">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="gap-2"
+                  onClick={handleShowMore}
+                >
+                  Показать ещё ({allProducts.length - visibleCount})
+                  <ChevronDown className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
           </div>
         </section>
       </main>
