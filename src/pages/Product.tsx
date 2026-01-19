@@ -112,22 +112,37 @@ const mockAccessories = [
 const Product = () => {
   const { productId } = useParams<{ productId: string }>();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
+  const [isAnimating, setIsAnimating] = useState(false);
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const [isCallbackOpen, setIsCallbackOpen] = useState(false);
   const [selectedAccessories, setSelectedAccessories] = useState<number[]>([]);
   
   const product = mockProduct; // In real app, fetch by productId
 
+  const changeImage = (newIndex: number, direction: 'left' | 'right') => {
+    if (isAnimating) return;
+    setSlideDirection(direction);
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentImageIndex(newIndex);
+      setTimeout(() => setIsAnimating(false), 300);
+    }, 150);
+  };
+
   const nextImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === product.images.length - 1 ? 0 : prev + 1
-    );
+    const newIndex = currentImageIndex === product.images.length - 1 ? 0 : currentImageIndex + 1;
+    changeImage(newIndex, 'right');
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? product.images.length - 1 : prev - 1
-    );
+    const newIndex = currentImageIndex === 0 ? product.images.length - 1 : currentImageIndex - 1;
+    changeImage(newIndex, 'left');
+  };
+
+  const goToImage = (index: number) => {
+    if (index === currentImageIndex) return;
+    changeImage(index, index > currentImageIndex ? 'right' : 'left');
   };
 
   const toggleAccessory = (id: number) => {
@@ -179,16 +194,27 @@ const Product = () => {
               <div className="space-y-4">
                 {/* Main image */}
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted group">
-                  <img
-                    src={product.images[currentImageIndex]}
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  {/* Image with animation */}
+                  <div 
+                    className={`absolute inset-0 transition-all duration-300 ease-out ${
+                      isAnimating 
+                        ? slideDirection === 'right' 
+                          ? 'opacity-0 translate-x-8' 
+                          : 'opacity-0 -translate-x-8'
+                        : 'opacity-100 translate-x-0'
+                    }`}
+                  >
+                    <img
+                      src={product.images[currentImageIndex]}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
                   
                   {/* Zoom button */}
                   <button
                     onClick={() => setIsZoomOpen(true)}
-                    className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                    className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10"
                   >
                     <ZoomIn className="w-5 h-5" />
                   </button>
@@ -196,25 +222,40 @@ const Product = () => {
                   {/* Navigation arrows */}
                   <button
                     onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
                   >
                     <ChevronRight className="w-6 h-6" />
                   </button>
                   
                   {/* Image counter */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-black/50 text-white text-sm">
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-black/50 text-white text-sm z-10">
                     {currentImageIndex + 1} / {product.images.length}
+                  </div>
+                  
+                  {/* Progress dots */}
+                  <div className="absolute bottom-14 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                    {product.images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => goToImage(index)}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          index === currentImageIndex 
+                            ? 'w-6 bg-white' 
+                            : 'w-1.5 bg-white/50 hover:bg-white/70'
+                        }`}
+                      />
+                    ))}
                   </div>
                   
                   {/* Sale badge */}
                   {product.oldPrice && (
-                    <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-accent text-accent-foreground text-sm font-bold">
+                    <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-accent text-accent-foreground text-sm font-bold z-10">
                       -{Math.round((1 - product.price / product.oldPrice) * 100)}%
                     </div>
                   )}
@@ -225,11 +266,11 @@ const Product = () => {
                   {product.images.map((image, index) => (
                     <button
                       key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                      onClick={() => goToImage(index)}
+                      className={`shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                         index === currentImageIndex 
-                          ? 'border-primary ring-2 ring-primary/20' 
-                          : 'border-transparent hover:border-primary/50'
+                          ? 'border-primary ring-2 ring-primary/20 scale-105' 
+                          : 'border-transparent hover:border-primary/50 opacity-70 hover:opacity-100'
                       }`}
                     >
                       <img
