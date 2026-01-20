@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -13,55 +13,16 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-
-import trailer1 from '@/assets/products/trailer-1.jpg';
-import trailer2 from '@/assets/products/trailer-2.jpg';
-
-// Demo cart items
-const initialCartItems = [
-  {
-    id: 1,
-    name: 'Прицеп для квадроцикла ССТ-7132-мини',
-    price: 57500,
-    quantity: 1,
-    image: trailer1,
-    sku: 'ССТ-7132'
-  },
-  {
-    id: 2,
-    name: 'Прицеп лодочный МЗСА 81771G.022',
-    price: 89000,
-    quantity: 1,
-    image: trailer2,
-    sku: 'МЗСА-81771'
-  }
-];
+import { useCart, dispatchCartUpdate } from '@/hooks/useCart';
 
 const Cart = () => {
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState(initialCartItems);
+  const { cartItems, updateQuantity, removeFromCart, cartTotal, cartCount, setCartItems } = useCart();
   const [filterText, setFilterText] = useState('');
-
-  const updateQuantity = (id: number, delta: number) => {
-    setCartItems(items =>
-      items.map(item =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id: number) => {
-    setCartItems(items => items.filter(item => item.id !== id));
-  };
 
   const filteredItems = cartItems.filter(item =>
     item.name.toLowerCase().includes(filterText.toLowerCase())
   );
-
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const formatPrice = (price: number) => {
     return price.toLocaleString('ru-RU') + ' руб.';
@@ -69,6 +30,17 @@ const Cart = () => {
 
   const handleCheckout = () => {
     navigate('/checkout');
+  };
+
+  const handleUpdateQuantity = (id: number, delta: number) => {
+    const item = cartItems.find(i => i.id === id);
+    if (item) {
+      updateQuantity(id, item.quantity + delta);
+    }
+  };
+
+  const handleSetQuantity = (id: number, quantity: number) => {
+    updateQuantity(id, Math.max(1, quantity));
   };
 
   return (
@@ -112,7 +84,7 @@ const Cart = () => {
                   <div className="text-right">
                     <div className="flex items-baseline gap-2">
                       <span className="text-muted-foreground">Итого:</span>
-                      <span className="text-2xl md:text-3xl font-bold">{formatPrice(totalPrice)}</span>
+                      <span className="text-2xl md:text-3xl font-bold">{formatPrice(cartTotal)}</span>
                     </div>
                     <div className="text-sm text-muted-foreground">
                       Сумма НДС: 0 руб.
@@ -146,7 +118,7 @@ const Cart = () => {
                   )}
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  В корзине {totalItems} {totalItems === 1 ? 'товар' : totalItems < 5 ? 'товара' : 'товаров'}
+                  В корзине {cartCount} {cartCount === 1 ? 'товар' : cartCount < 5 ? 'товара' : 'товаров'}
                 </div>
               </div>
 
@@ -186,7 +158,7 @@ const Cart = () => {
                     {/* Quantity controls */}
                     <div className="flex items-center gap-2 shrink-0">
                       <button
-                        onClick={() => updateQuantity(item.id, -1)}
+                        onClick={() => handleUpdateQuantity(item.id, -1)}
                         className="w-8 h-8 flex items-center justify-center border rounded hover:bg-muted transition-colors"
                         disabled={item.quantity <= 1}
                       >
@@ -195,19 +167,12 @@ const Cart = () => {
                       <Input
                         type="number"
                         value={item.quantity}
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value) || 1;
-                          setCartItems(items =>
-                            items.map(i =>
-                              i.id === item.id ? { ...i, quantity: Math.max(1, val) } : i
-                            )
-                          );
-                        }}
+                        onChange={(e) => handleSetQuantity(item.id, parseInt(e.target.value) || 1)}
                         className="w-14 text-center"
                         min={1}
                       />
                       <button
-                        onClick={() => updateQuantity(item.id, 1)}
+                        onClick={() => handleUpdateQuantity(item.id, 1)}
                         className="w-8 h-8 flex items-center justify-center border rounded hover:bg-muted transition-colors"
                       >
                         <Plus className="w-4 h-4" />
@@ -221,7 +186,7 @@ const Cart = () => {
 
                     {/* Remove button */}
                     <button
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeFromCart(item.id)}
                       className="text-muted-foreground hover:text-destructive transition-colors shrink-0"
                     >
                       <X className="w-5 h-5" />
@@ -236,7 +201,7 @@ const Cart = () => {
                   onClick={handleCheckout}
                   className="w-full bg-primary hover:bg-primary/90 text-white py-3 text-base"
                 >
-                  Оформить заказ • {formatPrice(totalPrice)}
+                  Оформить заказ • {formatPrice(cartTotal)}
                 </Button>
               </div>
             </>
