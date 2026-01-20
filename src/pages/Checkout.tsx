@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { ChevronRight, Wallet, CreditCard, Banknote } from 'lucide-react';
+import { Wallet, CreditCard, Banknote, Check } from 'lucide-react';
 import { toast } from 'sonner';
 import {
   Breadcrumb,
@@ -55,7 +55,6 @@ const paymentMethods = [
 const Checkout = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedPayment, setSelectedPayment] = useState('cash');
-  const [couponCode, setCouponCode] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -136,61 +135,41 @@ const Checkout = () => {
                   </div>
                   <div className="p-4">
                     {/* Payment methods */}
-                    <div className="flex flex-wrap gap-3 mb-4">
+                    <div className="flex flex-wrap gap-4 mb-4">
                       {paymentMethods.map((method) => {
                         const Icon = method.icon;
+                        const isSelected = selectedPayment === method.id;
                         return (
                           <button
                             key={method.id}
                             type="button"
                             onClick={() => setSelectedPayment(method.id)}
-                            className={`p-3 border-2 rounded-lg flex flex-col items-center gap-2 min-w-[100px] transition-all ${
-                              selectedPayment === method.id
+                            className={`relative p-4 border-2 rounded-lg flex flex-col items-center justify-center gap-2 w-28 h-24 transition-colors ${
+                              isSelected
                                 ? 'border-primary bg-primary/5'
-                                : 'border-muted hover:border-primary/50'
+                                : 'border-border bg-white hover:border-primary/50'
                             }`}
                           >
-                            {selectedPayment === method.id && (
-                              <div className="absolute top-1 left-1 w-4 h-4 bg-primary rounded-sm flex items-center justify-center">
-                                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
+                            {isSelected && (
+                              <div className="absolute top-2 left-2 w-5 h-5 bg-primary rounded flex items-center justify-center">
+                                <Check className="w-3 h-3 text-white" />
                               </div>
                             )}
                             <Icon className="w-8 h-8 text-primary" />
-                            <span className="text-xs text-center leading-tight">{method.name}</span>
+                            <span className="text-xs text-center leading-tight line-clamp-2">{method.name}</span>
                           </button>
                         );
                       })}
 
                       {/* Selected method info */}
-                      <div className="border rounded-lg p-4 ml-auto hidden md:flex items-center gap-3">
-                        {selectedPaymentMethod && (
-                          <>
-                            <selectedPaymentMethod.icon className="w-10 h-10 text-primary" />
-                            <div>
-                              <div className="font-medium">{selectedPaymentMethod.name}</div>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Coupon */}
-                    <div className="max-w-sm">
-                      <label className="text-sm text-muted-foreground mb-1 block">
-                        Применить купон:
-                      </label>
-                      <div className="flex">
-                        <Input
-                          value={couponCode}
-                          onChange={(e) => setCouponCode(e.target.value)}
-                          className="rounded-r-none"
-                        />
-                        <Button variant="outline" className="rounded-l-none border-l-0">
-                          <ChevronRight className="w-4 h-4" />
-                        </Button>
-                      </div>
+                      {selectedPaymentMethod && (
+                        <div className="border rounded-lg p-4 ml-auto hidden md:flex items-center gap-3 bg-white">
+                          <selectedPaymentMethod.icon className="w-10 h-10 text-primary" />
+                          <div>
+                            <div className="font-medium">{selectedPaymentMethod.name}</div>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex justify-end mt-4">
