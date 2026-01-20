@@ -293,7 +293,7 @@ const Header = () => {
                 )}
               </Button>
             </Link>
-            <Link to="/cart" className="hidden sm:block">
+            <Link to="/cart">
               <Button variant="outline" size="icon" className="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl">
                 <ShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
                 <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs">
