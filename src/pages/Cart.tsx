@@ -4,7 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { X, Minus, Plus, ShoppingCart, ChevronRight } from 'lucide-react';
+import { X, Minus, Plus, ShoppingCart } from 'lucide-react';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -40,7 +40,6 @@ const initialCartItems = [
 const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState(initialCartItems);
-  const [couponCode, setCouponCode] = useState('');
   const [filterText, setFilterText] = useState('');
 
   const updateQuantity = (id: number, delta: number) => {
@@ -108,43 +107,23 @@ const Cart = () => {
             <>
               {/* Top summary bar */}
               <div className="bg-white rounded-lg border p-4 mb-6">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  {/* Coupon input */}
-                  <div className="flex-1 max-w-md">
-                    <label className="text-sm text-muted-foreground mb-1 block">
-                      Введите код купона для скидки:
-                    </label>
-                    <div className="flex">
-                      <Input
-                        value={couponCode}
-                        onChange={(e) => setCouponCode(e.target.value)}
-                        placeholder=""
-                        className="rounded-r-none"
-                      />
-                      <Button variant="outline" className="rounded-l-none border-l-0">
-                        <ChevronRight className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-
+                <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-6">
                   {/* Total and checkout */}
-                  <div className="flex items-center gap-6">
-                    <div className="text-right">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-muted-foreground">Итого:</span>
-                        <span className="text-2xl md:text-3xl font-bold">{formatPrice(totalPrice)}</span>
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        Сумма НДС: 0 руб.
-                      </div>
+                  <div className="text-right">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-muted-foreground">Итого:</span>
+                      <span className="text-2xl md:text-3xl font-bold">{formatPrice(totalPrice)}</span>
                     </div>
-                    <Button 
-                      onClick={handleCheckout}
-                      className="bg-primary hover:bg-primary/90 text-white px-6 py-3 text-base"
-                    >
-                      Оформить заказ
-                    </Button>
+                    <div className="text-sm text-muted-foreground">
+                      Сумма НДС: 0 руб.
+                    </div>
                   </div>
+                  <Button 
+                    onClick={handleCheckout}
+                    className="bg-primary hover:bg-primary/90 text-white px-6 py-3 text-base"
+                  >
+                    Оформить заказ
+                  </Button>
                 </div>
               </div>
 
