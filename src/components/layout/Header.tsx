@@ -109,10 +109,10 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      {/* Top bar */}
-      <div className="bg-primary text-primary-foreground">
+      {/* Top bar - hidden on mobile */}
+      <div className="bg-primary text-primary-foreground hidden md:block">
         <div className="container flex items-center justify-between py-2 text-sm">
-          <div className="hidden md:flex items-center gap-6">
+          <div className="flex items-center gap-6">
             {/* General phone */}
             <a href="tel:+78002001636" className="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
               <Phone className="h-4 w-4" />
@@ -151,10 +151,10 @@ const Header = () => {
 
       {/* Main header */}
       <div className="bg-card border-b border-border shadow-sm">
-        <div className="container flex items-center justify-between py-4 gap-4">
+        <div className="container flex items-center justify-between py-2 md:py-4 gap-2 md:gap-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 shrink-0">
-            <img src={logo} alt="СКИФ" className="h-16 md:h-20 w-auto" />
+          <Link to="/" className="flex items-center shrink-0">
+            <img src={logo} alt="СКИФ" className="h-10 md:h-20 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -274,36 +274,36 @@ const Header = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 md:gap-4">
+          <div className="flex items-center gap-1 md:gap-4">
             <Button 
               variant="ghost" 
               size="icon" 
-              className="md:hidden"
+              className="md:hidden h-9 w-9"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
             >
               <Search className="h-5 w-5" />
             </Button>
             <Link to="/favorites">
-              <Button variant="outline" size="icon" className="relative h-12 w-12 rounded-xl">
-                <Heart className="h-5 w-5" />
+              <Button variant="outline" size="icon" className="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl">
+                <Heart className="h-4 w-4 md:h-5 md:w-5" />
                 {displayCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs">
                     {displayCount}
                   </span>
                 )}
               </Button>
             </Link>
-            <Link to="/cart">
-              <Button variant="outline" size="icon" className="relative h-12 w-12 rounded-xl">
-                <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+            <Link to="/cart" className="hidden sm:block">
+              <Button variant="outline" size="icon" className="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl">
+                <ShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
+                <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs">
                   0
                 </span>
               </Button>
             </Link>
             <Button 
               onClick={() => setIsCallbackModalOpen(true)}
-              className="hidden md:flex gradient-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity h-12 px-6 rounded-xl"
+              className="hidden lg:flex gradient-accent text-accent-foreground font-semibold hover:opacity-90 transition-opacity h-12 px-6 rounded-xl"
             >
               Заказать звонок
             </Button>
@@ -312,10 +312,10 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className="lg:hidden h-9 w-9"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>

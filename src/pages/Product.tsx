@@ -209,14 +209,14 @@ const Product = () => {
         </div>
 
         {/* Product main section */}
-        <section className="py-8 md:py-12">
+        <section className="py-4 md:py-8 lg:py-12">
           <div className="container">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+            <div className="grid lg:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
               
               {/* Gallery */}
-              <div className="space-y-4">
+              <div className="space-y-2 md:space-y-4">
                 {/* Main image */}
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted group">
+                <div className="relative aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden bg-muted group">
                   {/* Image with animation */}
                   <div 
                     className={`absolute inset-0 transition-all duration-300 ease-out ${
@@ -307,27 +307,27 @@ const Product = () => {
               </div>
 
               {/* Product info */}
-              <div className="space-y-6">
+              <div className="space-y-3 md:space-y-6">
                 {/* Brand */}
                 <div className="flex items-center gap-3 flex-wrap">
-                  <Badge variant="secondary" className="text-sm">
+                  <Badge variant="secondary" className="text-xs md:text-sm">
                     {product.brand}
                   </Badge>
                 </div>
                 
                 {/* Title */}
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+                <h1 className="text-xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground leading-tight">
                   {product.name}
                 </h1>
                 
-                {/* Features badges */}
-                <div className="flex flex-wrap gap-2">
+                {/* Features badges - horizontal scroll on mobile */}
+                <div className="flex gap-1.5 md:gap-2 overflow-x-auto pb-1 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap scrollbar-hide">
                   {product.features.map((feature, index) => (
                     <div 
                       key={index}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium"
+                      className="inline-flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium whitespace-nowrap shrink-0"
                     >
-                      <Check className="w-4 h-4" />
+                      <Check className="w-3 h-3 md:w-4 md:h-4" />
                       {feature}
                     </div>
                   ))}
@@ -394,33 +394,33 @@ const Product = () => {
                   </Button>
                 </div>
                 
-                {/* Benefits */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Truck className="w-5 h-5 text-primary" />
+                {/* Benefits - horizontal scroll on mobile */}
+                <div className="flex gap-2 md:gap-4 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 scrollbar-hide">
+                  <div className="flex items-center gap-2 md:gap-3 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[140px] md:min-w-0">
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Truck className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-sm">Доставка</p>
-                      <p className="text-xs text-muted-foreground">По всей России</p>
+                      <p className="font-semibold text-foreground text-xs md:text-sm">Доставка</p>
+                      <p className="text-[10px] md:text-xs text-muted-foreground">По всей России</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Shield className="w-5 h-5 text-primary" />
+                  <div className="flex items-center gap-2 md:gap-3 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[140px] md:min-w-0">
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Shield className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-sm">Гарантия</p>
-                      <p className="text-xs text-muted-foreground">24 месяца</p>
+                      <p className="font-semibold text-foreground text-xs md:text-sm">Гарантия</p>
+                      <p className="text-[10px] md:text-xs text-muted-foreground">24 месяца</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-primary" />
+                  <div className="flex items-center gap-2 md:gap-3 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[140px] md:min-w-0">
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Clock className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-sm">Кредит</p>
-                      <p className="text-xs text-muted-foreground">От 3 990 ₽/мес</p>
+                      <p className="font-semibold text-foreground text-xs md:text-sm">Кредит</p>
+                      <p className="text-[10px] md:text-xs text-muted-foreground">От 3 990 ₽/мес</p>
                     </div>
                   </div>
                 </div>
