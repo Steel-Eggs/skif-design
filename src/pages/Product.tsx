@@ -187,13 +187,13 @@ const Product = () => {
   const bundleTotal = separateTotal - bundleDiscount;
 
   return (
-    <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-background w-full max-w-[100vw] overflow-x-hidden">
       <Header />
       
-      <main className="flex-1 overflow-x-hidden">
+      <main className="flex-1 w-full max-w-[100vw] overflow-x-hidden">
         {/* Breadcrumb */}
         <div className="bg-muted/50 border-b border-border">
-          <div className="container px-3 md:px-4 py-3 md:py-4">
+          <div className="w-full px-3 md:container md:px-4 py-3 md:py-4">
             <nav className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
               <Link to="/" className="hover:text-primary transition-colors">Главная</Link>
               <span>/</span>
@@ -209,14 +209,14 @@ const Product = () => {
         </div>
 
         {/* Product main section */}
-        <section className="py-3 md:py-8 lg:py-12">
-          <div className="container px-3 md:px-4">
-            <div className="grid lg:grid-cols-2 gap-3 md:gap-8 lg:gap-12">
+        <section className="py-3 md:py-8 lg:py-12 w-full">
+          <div className="w-full px-3 md:container md:px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-8 lg:gap-12 w-full">
               
               {/* Gallery */}
-              <div className="space-y-2 md:space-y-4">
+              <div className="space-y-2 md:space-y-4 w-full min-w-0">
                 {/* Main image */}
-                <div className="relative aspect-[4/3] rounded-lg md:rounded-2xl overflow-hidden bg-muted group">
+                <div className="relative w-full aspect-[4/3] rounded-lg md:rounded-2xl overflow-hidden bg-muted group">
                   {/* Image with animation */}
                   <div 
                     className={`absolute inset-0 transition-all duration-300 ease-out ${
@@ -307,7 +307,7 @@ const Product = () => {
               </div>
 
               {/* Product info */}
-              <div className="space-y-2 md:space-y-6 min-w-0">
+              <div className="space-y-2 md:space-y-6 min-w-0 w-full">
                 {/* Brand */}
                 <div className="flex items-center gap-2">
                   <Badge variant="secondary" className="text-xs">
@@ -316,19 +316,19 @@ const Product = () => {
                 </div>
                 
                 {/* Title */}
-                <h1 className="text-lg md:text-3xl lg:text-4xl font-heading font-bold text-foreground leading-tight">
+                <h1 className="text-lg md:text-3xl lg:text-4xl font-heading font-bold text-foreground leading-tight break-words">
                   {product.name}
                 </h1>
                 
-                {/* Features badges - horizontal scroll on mobile */}
-                <div className="flex gap-1 md:gap-2 overflow-x-auto pb-1 md:pb-0 md:flex-wrap scrollbar-hide -mx-3 px-3 md:mx-0 md:px-0">
+                {/* Features badges - wrap on mobile instead of scroll */}
+                <div className="flex flex-wrap gap-1 md:gap-2">
                   {product.features.map((feature, index) => (
                     <div 
                       key={index}
-                      className="inline-flex items-center gap-1 px-2 py-0.5 md:py-1.5 rounded-full bg-primary/10 text-primary text-[11px] md:text-sm font-medium whitespace-nowrap shrink-0"
+                      className="inline-flex items-center gap-1 px-2 py-0.5 md:py-1.5 rounded-full bg-primary/10 text-primary text-[10px] md:text-sm font-medium"
                     >
-                      <Check className="w-3 h-3" />
-                      {feature}
+                      <Check className="w-3 h-3 shrink-0" />
+                      <span className="truncate max-w-[100px] md:max-w-none">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -394,33 +394,33 @@ const Product = () => {
                   </Button>
                 </div>
                 
-                {/* Benefits - horizontal scroll on mobile */}
-                <div className="flex gap-1.5 overflow-x-auto pb-1 md:pb-0 -mx-3 px-3 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-4 scrollbar-hide">
-                  <div className="flex items-center gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[110px] md:min-w-0">
+                {/* Benefits - grid on mobile instead of scroll */}
+                <div className="grid grid-cols-3 gap-1 md:gap-4">
+                  <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border text-center md:text-left">
                     <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                       <Truck className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-[11px] md:text-sm">Доставка</p>
-                      <p className="text-[9px] md:text-xs text-muted-foreground">По всей России</p>
+                      <p className="font-semibold text-foreground text-[10px] md:text-sm leading-tight">Доставка</p>
+                      <p className="text-[8px] md:text-xs text-muted-foreground hidden md:block">По всей России</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[110px] md:min-w-0">
+                  <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border text-center md:text-left">
                     <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                       <Shield className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-[11px] md:text-sm">Гарантия</p>
-                      <p className="text-[9px] md:text-xs text-muted-foreground">24 месяца</p>
+                      <p className="font-semibold text-foreground text-[10px] md:text-sm leading-tight">Гарантия</p>
+                      <p className="text-[8px] md:text-xs text-muted-foreground hidden md:block">24 месяца</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[110px] md:min-w-0">
+                  <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border text-center md:text-left">
                     <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                       <Clock className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-[11px] md:text-sm">Кредит</p>
-                      <p className="text-[9px] md:text-xs text-muted-foreground">От 3 990 ₽/мес</p>
+                      <p className="font-semibold text-foreground text-[10px] md:text-sm leading-tight">Кредит</p>
+                      <p className="text-[8px] md:text-xs text-muted-foreground hidden md:block">От 3 990 ₽/мес</p>
                     </div>
                   </div>
                 </div>
