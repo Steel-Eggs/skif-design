@@ -82,8 +82,6 @@ const Header = () => {
 
   const aboutSubmenu = [
     { name: "Новости", href: "/news" },
-    { name: "Партнёры", href: "/partners" },
-    { name: "Вакансии", href: "/vacancies" },
   ];
 
   // Click outside handler
@@ -167,7 +165,7 @@ const Header = () => {
               onMouseLeave={() => setIsCatalogOpen(false)}
             >
               <button
-                className="flex items-center gap-1.5 px-4 py-2 gradient-primary text-primary-foreground font-semibold text-sm rounded-lg hover:opacity-90 transition-all"
+                className="flex items-center gap-1.5 px-4 py-2 gradient-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-all"
               >
                 <Menu className="h-4 w-4" />
                 Каталог
@@ -200,7 +198,7 @@ const Header = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className="flex items-center gap-1 px-3 py-2 text-foreground font-medium text-sm hover:text-primary transition-colors rounded-lg hover:bg-muted"
+                className="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted"
               >
                 {link.name}
               </Link>
@@ -213,7 +211,7 @@ const Header = () => {
               onMouseEnter={() => setIsAboutOpen(true)}
               onMouseLeave={() => setIsAboutOpen(false)}
             >
-              <button className="flex items-center gap-1 px-3 py-2 text-foreground font-medium text-sm hover:text-primary transition-colors rounded-lg hover:bg-muted">
+              <button className="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted">
                 О компании
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform ${isAboutOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -247,7 +245,7 @@ const Header = () => {
 
             <Link
               to="/contacts"
-              className="flex items-center gap-1 px-3 py-2 text-foreground font-medium text-sm hover:text-primary transition-colors rounded-lg hover:bg-muted"
+              className="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted"
             >
               Контакты
             </Link>

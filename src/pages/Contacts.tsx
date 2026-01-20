@@ -21,6 +21,8 @@ import {
   Navigation
 } from "lucide-react";
 import FeedbackButton from "@/components/FeedbackButton";
+import berggoltsOffice from "@/assets/offices/berggolts.jpg";
+import parnasOffice from "@/assets/offices/parnas.jpg";
 
 const formatPhone = (value: string): string => {
   const digits = value.replace(/\D/g, "");
@@ -43,6 +45,7 @@ const offices = [
     hours: "Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUOl",
     coords: [59.874889, 30.458669],
+    image: berggoltsOffice,
   },
   {
     id: 2,
@@ -54,6 +57,7 @@ const offices = [
     hours: "Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUar",
     coords: [60.065486, 30.334189],
+    image: parnasOffice,
   },
 ];
 
@@ -219,11 +223,20 @@ const Contacts = () => {
               {offices.map((office) => (
                 <Card key={office.id} className="overflow-hidden hover:shadow-xl transition-all">
                   <CardContent className="p-0">
-                    <div className="aspect-video w-full">
+                    {/* Office Photo */}
+                    <div className="aspect-video w-full overflow-hidden">
+                      <img 
+                        src={office.image} 
+                        alt={office.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    {/* Map */}
+                    <div className="h-48 w-full">
                       <iframe
                         src={`https://yandex.ru/map-widget/v1/?pt=${office.coords[1]},${office.coords[0]}&z=15&l=map`}
                         className="w-full h-full border-0"
-                        title={office.name}
+                        title={`Карта ${office.name}`}
                       />
                     </div>
                     <div className="p-6">
