@@ -135,7 +135,7 @@ const Header = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/catalog?search=${encodeURIComponent(searchQuery)}`;
+      window.location.href = `/search?search=${encodeURIComponent(searchQuery)}`;
     }
   };
 
