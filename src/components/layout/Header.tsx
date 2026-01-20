@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import CallbackModal from "@/components/CallbackModal";
 import { useFavorites, FAVORITES_UPDATED_EVENT } from "@/hooks/useFavorites";
+import { CART_UPDATED_EVENT } from "@/hooks/useCart";
 import logo from "@/assets/logo-new.png";
 
 const Header = () => {
@@ -19,6 +20,8 @@ const Header = () => {
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
   const { favoritesCount } = useFavorites();
   const [displayCount, setDisplayCount] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
+  const mobileSearchInputRef = useRef<HTMLInputElement>(null);
 
   // Sync favorites count
   useEffect(() => {
@@ -43,6 +46,37 @@ const Header = () => {
     window.addEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
     return () => window.removeEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
   }, []);
+
+  // Load and listen for cart updates
+  useEffect(() => {
+    const loadCartCount = () => {
+      const stored = localStorage.getItem("skif_cart");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          const count = parsed.reduce((sum: number, item: { quantity: number }) => sum + item.quantity, 0);
+          setCartCount(count);
+        } catch (e) {
+          setCartCount(0);
+        }
+      } else {
+        setCartCount(0);
+      }
+    };
+    
+    loadCartCount();
+    window.addEventListener(CART_UPDATED_EVENT, loadCartCount);
+    return () => window.removeEventListener(CART_UPDATED_EVENT, loadCartCount);
+  }, []);
+
+  // Focus mobile search input when opened
+  useEffect(() => {
+    if (isSearchOpen && mobileSearchInputRef.current) {
+      setTimeout(() => {
+        mobileSearchInputRef.current?.focus();
+      }, 100);
+    }
+  }, [isSearchOpen]);
   
   const catalogRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -309,9 +343,11 @@ const Header = () => {
             <Link to="/cart">
               <Button variant="outline" size="icon" className="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl">
                 <ShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
-                <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs">
-                  0
-                </span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs">
+                    {cartCount}
+                  </span>
+                )}
               </Button>
             </Link>
             <Button 
@@ -335,27 +371,24 @@ const Header = () => {
 
         {/* Mobile search */}
         {isSearchOpen && (
-          <div className="md:hidden border-t border-border p-4 animate-fade-in">
+          <div 
+            className="md:hidden border-t border-border p-4 animate-fade-in"
+            onClick={(e) => e.stopPropagation()}
+          >
             <form onSubmit={handleSearch} className="relative">
               <Input
+                ref={mobileSearchInputRef}
                 type="text"
                 placeholder="Поиск товаров..."
                 value={searchQuery}
-                onChange={(e) => {
-                  e.stopPropagation();
-                  setSearchQuery(e.target.value);
-                }}
-                onFocus={(e) => e.stopPropagation()}
-                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="pr-10 bg-muted border-border"
-                autoFocus
               />
               <Button
                 type="submit"
                 size="icon"
                 variant="ghost"
                 className="absolute right-0 top-0 h-full"
-                onClick={(e) => e.stopPropagation()}
               >
                 <Search className="h-5 w-5" />
               </Button>
