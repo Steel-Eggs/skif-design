@@ -292,7 +292,7 @@ const Product = () => {
                       onClick={() => goToImage(index)}
                       className={`shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                         index === currentImageIndex 
-                          ? 'border-primary ring-2 ring-primary/20 scale-105' 
+                          ? 'border-primary shadow-md shadow-primary/30' 
                           : 'border-transparent hover:border-primary/50 opacity-70 hover:opacity-100'
                       }`}
                     >
