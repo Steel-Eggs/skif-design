@@ -10,6 +10,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import CallbackModal from "@/components/CallbackModal";
 
+// Import service images
+import tradeinImg from "@/assets/services/tradein.jpg";
+import creditImg from "@/assets/services/credit.jpg";
+import serviceImg from "@/assets/services/service.jpg";
+import deliveryImg from "@/assets/services/delivery.jpg";
+import registrationImg from "@/assets/services/registration.jpg";
+import towbarImg from "@/assets/services/towbar.jpg";
+
 // Services data
 export const servicesData = [
   {
@@ -37,7 +45,7 @@ export const servicesData = [
         <li>Мы берём на себя все заботы по документам</li>
       </ul>
     `,
-    image: "https://www.skif-avto.ru/upload/iblock/d59/d593895f014f8218ec8ec1367ca801ca.png",
+    image: tradeinImg,
     icon: RefreshCw,
     features: [
       "Быстрая оценка",
@@ -77,7 +85,7 @@ export const servicesData = [
         <li>Второй документ (водительское удостоверение, СНИЛС и т.д.)</li>
       </ul>
     `,
-    image: "https://www.skif-avto.ru/upload/iblock/67f/67f2e2c46737563bb77f03ce410b790f.png",
+    image: creditImg,
     icon: CreditCard,
     features: [
       "Сбербанк",
@@ -114,7 +122,7 @@ export const servicesData = [
         <li>Смазку движущихся частей</li>
       </ul>
     `,
-    image: "https://www.skif-avto.ru/upload/iblock/9e5/9e554c1a950e1bc424529aeac39b3a8f.png",
+    image: serviceImg,
     icon: Wrench,
     features: [
       "Все виды ремонта",
@@ -146,7 +154,7 @@ export const servicesData = [
       <h3>Самовывоз</h3>
       <p>Вы также можете забрать прицеп самостоятельно из нашего салона по адресу: г. Санкт-Петербург, ул. Ольги Берггольц, д. 38-А.</p>
     `,
-    image: "https://www.skif-avto.ru/upload/iblock/65a/65ab1616213a2ee81bda3f843da929f5.png",
+    image: deliveryImg,
     icon: Truck,
     features: [
       "Бесплатно по СПб",
@@ -188,7 +196,7 @@ export const servicesData = [
         <li>Договор купли-продажи (предоставляем мы)</li>
       </ul>
     `,
-    image: "https://www.skif-avto.ru/upload/iblock/4eb/4eb0dad982b6cc0446370284f76b0c77.png",
+    image: registrationImg,
     icon: FileText,
     features: [
       "Без очередей",
@@ -225,7 +233,7 @@ export const servicesData = [
       <h3>Гарантия</h3>
       <p>На все фаркопы и работы по установке предоставляется гарантия. Установка занимает от 1 до 3 часов в зависимости от модели автомобиля.</p>
     `,
-    image: "https://www.skif-avto.ru/upload/iblock/55f/55fff1c6131812edc723e950ff6f307e.png",
+    image: towbarImg,
     icon: Settings,
     features: [
       "Все марки авто",
