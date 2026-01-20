@@ -341,14 +341,21 @@ const Header = () => {
                 type="text"
                 placeholder="Поиск товаров..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  setSearchQuery(e.target.value);
+                }}
+                onFocus={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
                 className="pr-10 bg-muted border-border"
+                autoFocus
               />
               <Button
                 type="submit"
                 size="icon"
                 variant="ghost"
                 className="absolute right-0 top-0 h-full"
+                onClick={(e) => e.stopPropagation()}
               >
                 <Search className="h-5 w-5" />
               </Button>

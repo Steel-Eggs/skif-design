@@ -79,6 +79,27 @@ const Checkout = () => {
     return price.toLocaleString('ru-RU') + ' руб.';
   };
 
+  const formatPhone = (value: string) => {
+    // Remove all non-digit characters
+    const digits = value.replace(/\D/g, '');
+    
+    // Limit to 11 digits
+    const limited = digits.slice(0, 11);
+    
+    // Format the phone number
+    if (limited.length === 0) return '';
+    if (limited.length <= 1) return `+${limited}`;
+    if (limited.length <= 4) return `+${limited[0]} (${limited.slice(1)}`;
+    if (limited.length <= 7) return `+${limited[0]} (${limited.slice(1, 4)}) ${limited.slice(4)}`;
+    if (limited.length <= 9) return `+${limited[0]} (${limited.slice(1, 4)}) ${limited.slice(4, 7)}-${limited.slice(7)}`;
+    return `+${limited[0]} (${limited.slice(1, 4)}) ${limited.slice(4, 7)}-${limited.slice(7, 9)}-${limited.slice(9, 11)}`;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhone(e.target.value);
+    setFormData(prev => ({ ...prev, phone: formatted }));
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -154,22 +175,32 @@ const Checkout = () => {
 
   const selectedPaymentMethod = paymentMethods.find(m => m.id === selectedPayment);
 
+  const getStepContainerClasses = (step: number) => {
+    const status = stepStatuses[step];
+    const isActive = currentStep === step;
+    
+    if (status === 'valid' && !isActive) {
+      return 'bg-white rounded-lg border-2 border-green-500 mb-4';
+    } else if (status === 'invalid' && !isActive) {
+      return 'bg-white rounded-lg border-2 border-red-500 mb-4';
+    }
+    
+    return 'bg-white rounded-lg border mb-4';
+  };
+
   const getStepHeaderClasses = (step: number) => {
     const status = stepStatuses[step];
     const isActive = currentStep === step;
     
     let bgColor = 'bg-muted/50';
-    let borderColor = '';
     
     if (status === 'valid' && !isActive) {
       bgColor = 'bg-green-50';
-      borderColor = 'border-green-500';
     } else if (status === 'invalid' && !isActive) {
       bgColor = 'bg-red-50';
-      borderColor = 'border-red-500';
     }
     
-    return `${bgColor} px-4 py-3 rounded-t-lg border-b ${borderColor} cursor-pointer transition-colors hover:bg-muted/70`;
+    return `${bgColor} px-4 py-3 ${isActive ? 'rounded-t-lg border-b' : 'rounded-lg'} cursor-pointer transition-colors hover:bg-muted/70`;
   };
 
   const getStepNumberClasses = (step: number) => {
@@ -217,7 +248,7 @@ const Checkout = () => {
             <div className="flex-1">
               <form onSubmit={handleSubmit}>
                 {/* Section 1: Payment */}
-                <div className={`bg-white rounded-lg border mb-4 ${stepStatuses[1] === 'valid' && currentStep !== 1 ? 'border-green-500' : stepStatuses[1] === 'invalid' && currentStep !== 1 ? 'border-red-500' : ''}`}>
+                <div className={getStepContainerClasses(1)}>
                   <div 
                     className={getStepHeaderClasses(1)}
                     onClick={() => goToStep(1)}
@@ -294,7 +325,7 @@ const Checkout = () => {
                 </div>
 
                 {/* Section 2: Customer info */}
-                <div className={`bg-white rounded-lg border mb-4 ${stepStatuses[2] === 'valid' && currentStep !== 2 ? 'border-green-500' : stepStatuses[2] === 'invalid' && currentStep !== 2 ? 'border-red-500' : ''}`}>
+                <div className={getStepContainerClasses(2)}>
                   <div 
                     className={getStepHeaderClasses(2)}
                     onClick={() => currentStep > 1 || stepStatuses[1] === 'valid' ? goToStep(2) : null}
@@ -357,7 +388,7 @@ const Checkout = () => {
                           name="phone"
                           type="tel"
                           value={formData.phone}
-                          onChange={handleInputChange}
+                          onChange={handlePhoneChange}
                           placeholder="+7 (___) ___-__-__"
                           required
                           className="mt-1"
@@ -413,7 +444,7 @@ const Checkout = () => {
                 </div>
 
                 {/* Section 3: Order items */}
-                <div className={`bg-white rounded-lg border mb-6 ${stepStatuses[3] === 'valid' && currentStep !== 3 ? 'border-green-500' : ''}`}>
+                <div className={getStepContainerClasses(3).replace('mb-4', 'mb-6')}>
                   <div 
                     className={getStepHeaderClasses(3)}
                     onClick={() => (currentStep > 2 || stepStatuses[2] === 'valid') ? goToStep(3) : null}
