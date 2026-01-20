@@ -81,14 +81,25 @@ const Checkout = () => {
 
   const formatPhone = (value: string) => {
     // Remove all non-digit characters
-    const digits = value.replace(/\D/g, '');
+    let digits = value.replace(/\D/g, '');
+    
+    // If empty or starts fresh, prepend 7
+    if (digits.length === 0) {
+      return '+7 ';
+    }
+    
+    // Ensure it starts with 7
+    if (digits[0] === '8') {
+      digits = '7' + digits.slice(1);
+    } else if (digits[0] !== '7') {
+      digits = '7' + digits;
+    }
     
     // Limit to 11 digits
     const limited = digits.slice(0, 11);
     
     // Format the phone number
-    if (limited.length === 0) return '';
-    if (limited.length <= 1) return `+${limited}`;
+    if (limited.length <= 1) return `+${limited} `;
     if (limited.length <= 4) return `+${limited[0]} (${limited.slice(1)}`;
     if (limited.length <= 7) return `+${limited[0]} (${limited.slice(1, 4)}) ${limited.slice(4)}`;
     if (limited.length <= 9) return `+${limited[0]} (${limited.slice(1, 4)}) ${limited.slice(4, 7)}-${limited.slice(7)}`;
@@ -98,6 +109,12 @@ const Checkout = () => {
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatPhone(e.target.value);
     setFormData(prev => ({ ...prev, phone: formatted }));
+  };
+
+  const handlePhoneFocus = () => {
+    if (!formData.phone) {
+      setFormData(prev => ({ ...prev, phone: '+7 ' }));
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -179,28 +196,28 @@ const Checkout = () => {
     const status = stepStatuses[step];
     const isActive = currentStep === step;
     
-    if (status === 'valid' && !isActive) {
-      return 'bg-white rounded-lg border-2 border-green-500 mb-4';
-    } else if (status === 'invalid' && !isActive) {
-      return 'bg-white rounded-lg border-2 border-red-500 mb-4';
+    if (!isActive) {
+      // Collapsed state - no inner padding needed
+      if (status === 'valid') {
+        return 'bg-green-50 rounded-lg border-2 border-green-500 mb-4 overflow-hidden';
+      } else if (status === 'invalid') {
+        return 'bg-red-50 rounded-lg border-2 border-red-500 mb-4 overflow-hidden';
+      }
+      return 'bg-white rounded-lg border mb-4 overflow-hidden';
     }
     
-    return 'bg-white rounded-lg border mb-4';
+    return 'bg-white rounded-lg border mb-4 overflow-hidden';
   };
 
   const getStepHeaderClasses = (step: number) => {
-    const status = stepStatuses[step];
     const isActive = currentStep === step;
     
-    let bgColor = 'bg-muted/50';
-    
-    if (status === 'valid' && !isActive) {
-      bgColor = 'bg-green-50';
-    } else if (status === 'invalid' && !isActive) {
-      bgColor = 'bg-red-50';
+    if (isActive) {
+      return 'bg-muted/50 px-4 py-3 border-b cursor-pointer transition-colors hover:bg-muted/70';
     }
     
-    return `${bgColor} px-4 py-3 ${isActive ? 'rounded-t-lg border-b' : 'rounded-lg'} cursor-pointer transition-colors hover:bg-muted/70`;
+    // Collapsed - no extra styling needed, container handles it
+    return 'px-4 py-3 cursor-pointer transition-colors hover:opacity-80';
   };
 
   const getStepNumberClasses = (step: number) => {
@@ -389,6 +406,7 @@ const Checkout = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={handlePhoneChange}
+                          onFocus={handlePhoneFocus}
                           placeholder="+7 (___) ___-__-__"
                           required
                           className="mt-1"
