@@ -234,24 +234,24 @@ const Product = () => {
                     />
                   </div>
                   
-                  {/* Zoom button */}
+                  {/* Zoom button - always visible on mobile */}
                   <button
                     onClick={() => setIsZoomOpen(true)}
-                    className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10"
+                    className="absolute top-2 md:top-4 right-2 md:right-4 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10"
                   >
                     <ZoomIn className="w-5 h-5" />
                   </button>
                   
-                  {/* Navigation arrows */}
+                  {/* Navigation arrows - always visible on mobile */}
                   <button
                     onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
                   >
                     <ChevronRight className="w-6 h-6" />
                   </button>
@@ -285,12 +285,12 @@ const Product = () => {
                 </div>
                 
                 {/* Thumbnails */}
-                <div className="flex gap-2 overflow-x-auto pb-2">
+                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                   {product.images.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => goToImage(index)}
-                      className={`shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                      className={`shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                         index === currentImageIndex 
                           ? 'border-primary ring-2 ring-primary/20 scale-105' 
                           : 'border-transparent hover:border-primary/50 opacity-70 hover:opacity-100'
@@ -334,13 +334,13 @@ const Product = () => {
                 </div>
                 
                 {/* Price */}
-                <div className="p-6 rounded-2xl bg-muted/50 border border-border">
-                  <div className="flex items-baseline gap-3 mb-4">
-                    <span className="text-4xl font-heading font-black text-foreground">
+                <div className="p-4 md:p-6 rounded-2xl bg-muted/50 border border-border">
+                  <div className="flex flex-wrap items-baseline gap-2 md:gap-3 mb-4">
+                    <span className="text-3xl md:text-4xl font-heading font-black text-foreground">
                       {product.price.toLocaleString('ru-RU')} ₽
                     </span>
                     {product.oldPrice && (
-                      <span className="text-xl text-muted-foreground line-through">
+                      <span className="text-lg md:text-xl text-muted-foreground line-through">
                         {product.oldPrice.toLocaleString('ru-RU')} ₽
                       </span>
                     )}
@@ -362,15 +362,15 @@ const Product = () => {
                   </div>
                   
                   {/* Action buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Button size="lg" className="flex-1 h-14 gradient-accent text-lg font-bold gap-2">
+                  <div className="flex flex-col gap-3">
+                    <Button size="lg" className="w-full h-12 md:h-14 gradient-accent text-base md:text-lg font-bold gap-2">
                       <ShoppingCart className="w-5 h-5" />
                       В корзину
                     </Button>
                     <Button 
                       size="lg" 
                       variant="outline" 
-                      className="flex-1 h-14 text-lg font-bold gap-2"
+                      className="w-full h-12 md:h-14 text-base md:text-lg font-bold gap-2"
                       onClick={() => setIsCallbackOpen(true)}
                     >
                       <Phone className="w-5 h-5" />
@@ -382,15 +382,15 @@ const Product = () => {
                   <Button
                     size="lg"
                     variant={isInFavorites ? "default" : "outline"}
-                    className={`w-full h-12 mt-3 gap-2 font-semibold transition-all ${
+                    className={`w-full h-10 md:h-12 gap-2 font-semibold transition-all text-sm md:text-base ${
                       isInFavorites 
                         ? 'bg-destructive hover:bg-destructive/90 text-destructive-foreground' 
                         : ''
                     }`}
                     onClick={handleToggleFavorite}
                   >
-                    <Heart className={`w-5 h-5 ${isInFavorites ? 'fill-current' : ''}`} />
-                    {isInFavorites ? 'В избранном' : 'Добавить в избранное'}
+                    <Heart className={`w-4 h-4 md:w-5 md:h-5 ${isInFavorites ? 'fill-current' : ''}`} />
+                    {isInFavorites ? 'В избранном' : 'В избранное'}
                   </Button>
                 </div>
                 
@@ -564,22 +564,22 @@ const Product = () => {
         <section className="py-8 md:py-12">
           <div className="container">
             <Tabs defaultValue="description" className="space-y-8">
-              <TabsList className="w-full justify-start bg-card border border-border rounded-xl p-1.5 h-auto flex-wrap">
+              <TabsList className="w-full justify-start bg-card border border-border rounded-xl p-1 md:p-1.5 h-auto flex-wrap gap-1">
                 <TabsTrigger 
                   value="description" 
-                  className="px-6 py-3 text-base font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg"
+                  className="px-3 md:px-6 py-2 md:py-3 text-sm md:text-base font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg"
                 >
                   Описание
                 </TabsTrigger>
                 <TabsTrigger 
                   value="specifications" 
-                  className="px-6 py-3 text-base font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg"
+                  className="px-3 md:px-6 py-2 md:py-3 text-sm md:text-base font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg"
                 >
                   Характеристики
                 </TabsTrigger>
                 <TabsTrigger 
                   value="video" 
-                  className="px-6 py-3 text-base font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg"
+                  className="px-3 md:px-6 py-2 md:py-3 text-sm md:text-base font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg"
                 >
                   Видео
                 </TabsTrigger>
