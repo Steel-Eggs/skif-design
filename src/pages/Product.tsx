@@ -497,9 +497,9 @@ const Product = () => {
                     
                     {/* Selected items */}
                     <div className="space-y-3 mb-6">
-                      <div className="flex justify-between items-center pb-3 border-b border-border">
+                      <div className="flex justify-between items-center pb-3 border-b border-border gap-2">
                         <span className="text-muted-foreground">{product.name}</span>
-                        <span className="font-semibold">{product.price.toLocaleString('ru-RU')} ₽</span>
+                        <span className="font-semibold whitespace-nowrap">{product.price.toLocaleString('ru-RU')}&nbsp;₽</span>
                       </div>
                       
                       {selectedAccessories.map(id => {
@@ -508,7 +508,7 @@ const Product = () => {
                         return (
                           <div key={id} className="flex justify-between items-start gap-2">
                             <span className="text-muted-foreground text-sm line-clamp-2">{acc.name}</span>
-                            <span className="font-medium text-sm shrink-0">{acc.price.toLocaleString('ru-RU')} ₽</span>
+                            <span className="font-medium text-sm shrink-0 whitespace-nowrap">{acc.price.toLocaleString('ru-RU')}&nbsp;₽</span>
                           </div>
                         );
                       })}
@@ -516,20 +516,20 @@ const Product = () => {
                     
                     {/* Totals */}
                     <div className="space-y-2 mb-6">
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-center gap-2">
                         <span className="text-muted-foreground">Стоимость товаров по отдельности:</span>
-                        <span className="font-medium">{separateTotal.toLocaleString('ru-RU')} ₽</span>
+                        <span className="font-medium whitespace-nowrap">{separateTotal.toLocaleString('ru-RU')}&nbsp;₽</span>
                       </div>
                       
                       {bundleDiscount > 0 && (
                         <>
-                          <div className="flex justify-between items-center">
+                          <div className="flex justify-between items-center gap-2">
                             <span className="text-muted-foreground">Стоимость набора:</span>
-                            <span className="font-bold text-lg">{bundleTotal.toLocaleString('ru-RU')} ₽</span>
+                            <span className="font-bold text-lg whitespace-nowrap">{bundleTotal.toLocaleString('ru-RU')}&nbsp;₽</span>
                           </div>
-                          <div className="flex justify-between items-center text-green-600">
+                          <div className="flex justify-between items-center text-green-600 gap-2">
                             <span>Экономия:</span>
-                            <span className="font-bold">{bundleDiscount.toLocaleString('ru-RU')} ₽</span>
+                            <span className="font-bold whitespace-nowrap">{bundleDiscount.toLocaleString('ru-RU')}&nbsp;₽</span>
                           </div>
                         </>
                       )}
@@ -542,10 +542,10 @@ const Product = () => {
                     </div>
                     
                     {/* Total */}
-                    <div className="flex justify-between items-center py-4 border-t border-border mb-4">
+                    <div className="flex justify-between items-center py-4 border-t border-border mb-4 gap-2">
                       <span className="text-lg font-bold">Итого:</span>
-                      <span className="text-2xl font-black text-primary">
-                        {(bundleDiscount > 0 ? bundleTotal : separateTotal).toLocaleString('ru-RU')} ₽
+                      <span className="text-2xl font-black text-primary whitespace-nowrap">
+                        {(bundleDiscount > 0 ? bundleTotal : separateTotal).toLocaleString('ru-RU')}&nbsp;₽
                       </span>
                     </div>
                     
