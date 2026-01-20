@@ -187,13 +187,13 @@ const Product = () => {
   const bundleTotal = separateTotal - bundleDiscount;
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
       <Header />
       
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         {/* Breadcrumb */}
         <div className="bg-muted/50 border-b border-border">
-          <div className="container py-4">
+          <div className="container px-3 md:px-4 py-3 md:py-4">
             <nav className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
               <Link to="/" className="hover:text-primary transition-colors">Главная</Link>
               <span>/</span>
@@ -203,20 +203,20 @@ const Product = () => {
                 {product.category}
               </Link>
               <span>/</span>
-              <span className="text-foreground font-medium truncate max-w-[200px] md:max-w-none">{product.name}</span>
+              <span className="text-foreground font-medium truncate max-w-[150px] md:max-w-none">{product.name}</span>
             </nav>
           </div>
         </div>
 
         {/* Product main section */}
-        <section className="py-4 md:py-8 lg:py-12">
-          <div className="container">
-            <div className="grid lg:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
+        <section className="py-3 md:py-8 lg:py-12">
+          <div className="container px-3 md:px-4">
+            <div className="grid lg:grid-cols-2 gap-3 md:gap-8 lg:gap-12">
               
               {/* Gallery */}
               <div className="space-y-2 md:space-y-4">
                 {/* Main image */}
-                <div className="relative aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden bg-muted group">
+                <div className="relative aspect-[4/3] rounded-lg md:rounded-2xl overflow-hidden bg-muted group">
                   {/* Image with animation */}
                   <div 
                     className={`absolute inset-0 transition-all duration-300 ease-out ${
@@ -307,73 +307,73 @@ const Product = () => {
               </div>
 
               {/* Product info */}
-              <div className="space-y-3 md:space-y-6">
+              <div className="space-y-2 md:space-y-6 min-w-0">
                 {/* Brand */}
-                <div className="flex items-center gap-3 flex-wrap">
-                  <Badge variant="secondary" className="text-xs md:text-sm">
+                <div className="flex items-center gap-2">
+                  <Badge variant="secondary" className="text-xs">
                     {product.brand}
                   </Badge>
                 </div>
                 
                 {/* Title */}
-                <h1 className="text-xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground leading-tight">
+                <h1 className="text-lg md:text-3xl lg:text-4xl font-heading font-bold text-foreground leading-tight">
                   {product.name}
                 </h1>
                 
                 {/* Features badges - horizontal scroll on mobile */}
-                <div className="flex gap-1.5 md:gap-2 overflow-x-auto pb-1 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap scrollbar-hide">
+                <div className="flex gap-1 md:gap-2 overflow-x-auto pb-1 md:pb-0 md:flex-wrap scrollbar-hide -mx-3 px-3 md:mx-0 md:px-0">
                   {product.features.map((feature, index) => (
                     <div 
                       key={index}
-                      className="inline-flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium whitespace-nowrap shrink-0"
+                      className="inline-flex items-center gap-1 px-2 py-0.5 md:py-1.5 rounded-full bg-primary/10 text-primary text-[11px] md:text-sm font-medium whitespace-nowrap shrink-0"
                     >
-                      <Check className="w-3 h-3 md:w-4 md:h-4" />
+                      <Check className="w-3 h-3" />
                       {feature}
                     </div>
                   ))}
                 </div>
                 
                 {/* Price */}
-                <div className="p-4 md:p-6 rounded-2xl bg-muted/50 border border-border">
-                  <div className="flex flex-wrap items-baseline gap-2 md:gap-3 mb-4">
-                    <span className="text-3xl md:text-4xl font-heading font-black text-foreground">
+                <div className="p-3 md:p-6 rounded-xl md:rounded-2xl bg-muted/50 border border-border">
+                  <div className="flex flex-wrap items-baseline gap-2 mb-2 md:mb-4">
+                    <span className="text-2xl md:text-4xl font-heading font-black text-foreground">
                       {product.price.toLocaleString('ru-RU')} ₽
                     </span>
                     {product.oldPrice && (
-                      <span className="text-lg md:text-xl text-muted-foreground line-through">
+                      <span className="text-sm md:text-xl text-muted-foreground line-through">
                         {product.oldPrice.toLocaleString('ru-RU')} ₽
                       </span>
                     )}
                   </div>
                   
                   {/* Availability */}
-                  <div className="flex items-center gap-2 mb-6">
+                  <div className="flex items-center gap-2 mb-3 md:mb-6">
                     {product.inStock ? (
                       <>
-                        <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                        <span className="text-green-600 font-medium">В наличии</span>
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-green-600 font-medium text-sm md:text-base">В наличии</span>
                       </>
                     ) : (
                       <>
-                        <div className="w-3 h-3 rounded-full bg-orange-500" />
-                        <span className="text-orange-600 font-medium">Под заказ</span>
+                        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-orange-500" />
+                        <span className="text-orange-600 font-medium text-sm md:text-base">Под заказ</span>
                       </>
                     )}
                   </div>
                   
                   {/* Action buttons */}
-                  <div className="flex flex-col gap-3">
-                    <Button size="lg" className="w-full h-12 md:h-14 gradient-accent text-base md:text-lg font-bold gap-2">
-                      <ShoppingCart className="w-5 h-5" />
+                  <div className="flex flex-col gap-2 md:gap-3">
+                    <Button size="lg" className="w-full h-10 md:h-14 gradient-accent text-sm md:text-lg font-bold gap-2">
+                      <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" />
                       В корзину
                     </Button>
                     <Button 
                       size="lg" 
                       variant="outline" 
-                      className="w-full h-12 md:h-14 text-base md:text-lg font-bold gap-2"
+                      className="w-full h-10 md:h-14 text-sm md:text-lg font-bold gap-2"
                       onClick={() => setIsCallbackOpen(true)}
                     >
-                      <Phone className="w-5 h-5" />
+                      <Phone className="w-4 h-4 md:w-5 md:h-5" />
                       Купить в 1 клик
                     </Button>
                   </div>
@@ -382,7 +382,7 @@ const Product = () => {
                   <Button
                     size="lg"
                     variant={isInFavorites ? "default" : "outline"}
-                    className={`w-full h-10 md:h-12 gap-2 font-semibold transition-all text-sm md:text-base ${
+                    className={`w-full h-9 md:h-12 gap-2 font-semibold transition-all text-xs md:text-base mt-2 ${
                       isInFavorites 
                         ? 'bg-destructive hover:bg-destructive/90 text-destructive-foreground' 
                         : ''
@@ -395,32 +395,32 @@ const Product = () => {
                 </div>
                 
                 {/* Benefits - horizontal scroll on mobile */}
-                <div className="flex gap-2 md:gap-4 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 scrollbar-hide">
-                  <div className="flex items-center gap-2 md:gap-3 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[140px] md:min-w-0">
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Truck className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                <div className="flex gap-1.5 overflow-x-auto pb-1 md:pb-0 -mx-3 px-3 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-4 scrollbar-hide">
+                  <div className="flex items-center gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[110px] md:min-w-0">
+                    <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Truck className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-xs md:text-sm">Доставка</p>
-                      <p className="text-[10px] md:text-xs text-muted-foreground">По всей России</p>
+                      <p className="font-semibold text-foreground text-[11px] md:text-sm">Доставка</p>
+                      <p className="text-[9px] md:text-xs text-muted-foreground">По всей России</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 md:gap-3 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[140px] md:min-w-0">
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Shield className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                  <div className="flex items-center gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[110px] md:min-w-0">
+                    <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Shield className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-xs md:text-sm">Гарантия</p>
-                      <p className="text-[10px] md:text-xs text-muted-foreground">24 месяца</p>
+                      <p className="font-semibold text-foreground text-[11px] md:text-sm">Гарантия</p>
+                      <p className="text-[9px] md:text-xs text-muted-foreground">24 месяца</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 md:gap-3 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[140px] md:min-w-0">
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Clock className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                  <div className="flex items-center gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border shrink-0 min-w-[110px] md:min-w-0">
+                    <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Clock className="w-3.5 h-3.5 md:w-5 md:h-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground text-xs md:text-sm">Кредит</p>
-                      <p className="text-[10px] md:text-xs text-muted-foreground">От 3 990 ₽/мес</p>
+                      <p className="font-semibold text-foreground text-[11px] md:text-sm">Кредит</p>
+                      <p className="text-[9px] md:text-xs text-muted-foreground">От 3 990 ₽/мес</p>
                     </div>
                   </div>
                 </div>
