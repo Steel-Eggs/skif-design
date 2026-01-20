@@ -10,6 +10,11 @@ import Product from "./pages/Product";
 import Favorites from "./pages/Favorites";
 import Services from "./pages/Services";
 import Service from "./pages/Service";
+import Payment from "./pages/Payment";
+import About from "./pages/About";
+import News from "./pages/News";
+import NewsArticle from "./pages/NewsArticle";
+import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/CookieConsent";
 
@@ -29,6 +34,11 @@ const App = () => (
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:serviceSlug" element={<Service />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/news/:slug" element={<NewsArticle />} />
+          <Route path="/contacts" element={<Contacts />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
