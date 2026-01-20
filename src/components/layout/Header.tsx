@@ -194,15 +194,17 @@ const Header = () => {
               )}
             </div>
 
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted"
-              >
-                {link.name}
-              </Link>
-            ))}
+            <div className="flex items-center gap-1 ml-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
 
             {/* О компании dropdown */}
             <div 
