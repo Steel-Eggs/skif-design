@@ -366,7 +366,7 @@ const Services = () => {
                 Заказать звонок
               </Button>
               <a href="tel:+78002001636">
-                <Button size="lg" variant="outline" className="font-bold border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                <Button size="lg" variant="outline" className="font-bold border-white text-white bg-white/10 hover:bg-white hover:text-primary">
                   +7 (800) 200-16-36
                 </Button>
               </a>
