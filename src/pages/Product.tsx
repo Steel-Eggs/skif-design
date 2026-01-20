@@ -191,28 +191,32 @@ const Product = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Breadcrumb - simplified on mobile */}
+        {/* Breadcrumb */}
         <div className="bg-muted/50 border-b border-border">
-          <div className="container py-2 md:py-4">
-            <nav className="flex items-center gap-1 md:gap-2 text-xs md:text-sm text-muted-foreground">
-              <Link to="/" className="hover:text-primary transition-colors hidden md:inline">Главная</Link>
-              <span className="hidden md:inline">/</span>
+          <div className="container py-4">
+            <nav className="flex items-center gap-2 text-sm text-muted-foreground flex-wrap">
+              <Link to="/" className="hover:text-primary transition-colors">Главная</Link>
+              <span>/</span>
               <Link to="/catalog" className="hover:text-primary transition-colors">Каталог</Link>
               <span>/</span>
-              <span className="text-foreground font-medium truncate max-w-[180px] md:max-w-none">{product.name}</span>
+              <Link to={`/catalog/${product.categorySlug}`} className="hover:text-primary transition-colors">
+                {product.category}
+              </Link>
+              <span>/</span>
+              <span className="text-foreground font-medium truncate max-w-[200px] md:max-w-none">{product.name}</span>
             </nav>
           </div>
         </div>
 
         {/* Product main section */}
-        <section className="py-3 md:py-8 lg:py-12">
-          <div className="container px-3 md:px-4">
-            <div className="grid lg:grid-cols-2 gap-3 md:gap-8 lg:gap-12">
+        <section className="py-4 md:py-8 lg:py-12">
+          <div className="container">
+            <div className="grid lg:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
               
               {/* Gallery */}
-              <div className="space-y-2">
-                {/* Main image - smaller on mobile */}
-                <div className="relative aspect-square md:aspect-[4/3] rounded-lg md:rounded-2xl overflow-hidden bg-muted group">
+              <div className="space-y-2 md:space-y-4">
+                {/* Main image */}
+                <div className="relative aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden bg-muted group">
                   {/* Image with animation */}
                   <div 
                     className={`absolute inset-0 transition-all duration-300 ease-out ${
@@ -230,48 +234,63 @@ const Product = () => {
                     />
                   </div>
                   
-                  {/* Zoom button */}
+                  {/* Zoom button - always visible on mobile */}
                   <button
                     onClick={() => setIsZoomOpen(true)}
-                    className="absolute top-2 right-2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10"
+                    className="absolute top-2 md:top-4 right-2 md:right-4 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10"
                   >
-                    <ZoomIn className="w-4 h-4 md:w-5 md:h-5" />
+                    <ZoomIn className="w-5 h-5" />
                   </button>
                   
-                  {/* Navigation arrows */}
+                  {/* Navigation arrows - always visible on mobile */}
                   <button
                     onClick={prevImage}
-                    className="absolute left-1 md:left-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
                   >
-                    <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+                    <ChevronLeft className="w-6 h-6" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-1 md:right-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-black/70 z-10 active:scale-90"
                   >
-                    <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+                    <ChevronRight className="w-6 h-6" />
                   </button>
                   
-                  {/* Image counter - mobile only */}
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2 py-1 rounded-full bg-black/50 text-white text-xs z-10">
+                  {/* Image counter */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-black/50 text-white text-sm z-10">
                     {currentImageIndex + 1} / {product.images.length}
+                  </div>
+                  
+                  {/* Progress dots */}
+                  <div className="absolute bottom-14 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                    {product.images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => goToImage(index)}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          index === currentImageIndex 
+                            ? 'w-6 bg-white' 
+                            : 'w-1.5 bg-white/50 hover:bg-white/70'
+                        }`}
+                      />
+                    ))}
                   </div>
                   
                   {/* Sale badge */}
                   {product.oldPrice && (
-                    <div className="absolute top-2 left-2 px-2 py-1 rounded-full bg-accent text-accent-foreground text-xs font-bold z-10">
+                    <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-accent text-accent-foreground text-sm font-bold z-10">
                       -{Math.round((1 - product.price / product.oldPrice) * 100)}%
                     </div>
                   )}
                 </div>
                 
-                {/* Thumbnails - hidden on mobile */}
-                <div className="hidden md:flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                {/* Thumbnails */}
+                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                   {product.images.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => goToImage(index)}
-                      className={`shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                      className={`shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                         index === currentImageIndex 
                           ? 'border-primary ring-2 ring-primary/20 scale-105' 
                           : 'border-transparent hover:border-primary/50 opacity-70 hover:opacity-100'
@@ -288,89 +307,89 @@ const Product = () => {
               </div>
 
               {/* Product info */}
-              <div className="space-y-2 md:space-y-6">
-                {/* Title - brand inline on mobile */}
-                <div className="flex items-start gap-2 flex-wrap">
-                  <Badge variant="secondary" className="text-[10px] md:text-sm shrink-0">
+              <div className="space-y-3 md:space-y-6">
+                {/* Brand */}
+                <div className="flex items-center gap-3 flex-wrap">
+                  <Badge variant="secondary" className="text-xs md:text-sm">
                     {product.brand}
                   </Badge>
-                  <h1 className="text-lg md:text-3xl lg:text-4xl font-heading font-bold text-foreground leading-tight flex-1">
-                    {product.name}
-                  </h1>
                 </div>
                 
+                {/* Title */}
+                <h1 className="text-xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground leading-tight">
+                  {product.name}
+                </h1>
+                
                 {/* Features badges - horizontal scroll on mobile */}
-                <div className="flex gap-1 md:gap-2 overflow-x-auto -mx-3 px-3 md:mx-0 md:px-0 md:flex-wrap scrollbar-hide">
+                <div className="flex gap-1.5 md:gap-2 overflow-x-auto pb-1 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap scrollbar-hide">
                   {product.features.map((feature, index) => (
                     <div 
                       key={index}
-                      className="inline-flex items-center gap-0.5 md:gap-1.5 px-1.5 md:px-3 py-0.5 md:py-1.5 rounded-full bg-primary/10 text-primary text-[10px] md:text-sm font-medium whitespace-nowrap shrink-0"
+                      className="inline-flex items-center gap-1 md:gap-1.5 px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium whitespace-nowrap shrink-0"
                     >
-                      <Check className="w-2.5 h-2.5 md:w-4 md:h-4" />
+                      <Check className="w-3 h-3 md:w-4 md:h-4" />
                       {feature}
                     </div>
                   ))}
                 </div>
                 
-                {/* Price - compact on mobile */}
-                <div className="p-3 md:p-6 rounded-xl md:rounded-2xl bg-muted/50 border border-border">
-                  <div className="flex flex-wrap items-baseline gap-2 mb-2 md:mb-4">
-                    <span className="text-2xl md:text-4xl font-heading font-black text-foreground">
+                {/* Price */}
+                <div className="p-4 md:p-6 rounded-2xl bg-muted/50 border border-border">
+                  <div className="flex flex-wrap items-baseline gap-2 md:gap-3 mb-4">
+                    <span className="text-3xl md:text-4xl font-heading font-black text-foreground">
                       {product.price.toLocaleString('ru-RU')} ₽
                     </span>
                     {product.oldPrice && (
-                      <span className="text-sm md:text-xl text-muted-foreground line-through">
+                      <span className="text-lg md:text-xl text-muted-foreground line-through">
                         {product.oldPrice.toLocaleString('ru-RU')} ₽
                       </span>
                     )}
                   </div>
                   
                   {/* Availability */}
-                  <div className="flex items-center gap-2 mb-3 md:mb-6">
+                  <div className="flex items-center gap-2 mb-6">
                     {product.inStock ? (
                       <>
-                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500 animate-pulse" />
-                        <span className="text-green-600 font-medium text-sm md:text-base">В наличии</span>
+                        <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-green-600 font-medium">В наличии</span>
                       </>
                     ) : (
                       <>
-                        <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-orange-500" />
-                        <span className="text-orange-600 font-medium text-sm md:text-base">Под заказ</span>
+                        <div className="w-3 h-3 rounded-full bg-orange-500" />
+                        <span className="text-orange-600 font-medium">Под заказ</span>
                       </>
                     )}
                   </div>
                   
-                  {/* Action buttons - 2 columns on mobile */}
-                  <div className="grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-3">
-                    <Button size="lg" className="h-10 md:h-14 gradient-accent text-sm md:text-lg font-bold gap-1 md:gap-2">
-                      <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" />
-                      <span className="hidden md:inline">В корзину</span>
-                      <span className="md:hidden">Купить</span>
+                  {/* Action buttons */}
+                  <div className="flex flex-col gap-3">
+                    <Button size="lg" className="w-full h-12 md:h-14 gradient-accent text-base md:text-lg font-bold gap-2">
+                      <ShoppingCart className="w-5 h-5" />
+                      В корзину
                     </Button>
                     <Button 
                       size="lg" 
                       variant="outline" 
-                      className="h-10 md:h-14 text-sm md:text-lg font-bold gap-1 md:gap-2"
+                      className="w-full h-12 md:h-14 text-base md:text-lg font-bold gap-2"
                       onClick={() => setIsCallbackOpen(true)}
                     >
-                      <Phone className="w-4 h-4 md:w-5 md:h-5" />
-                      <span className="hidden md:inline">Купить в 1 клик</span>
-                      <span className="md:hidden">Звонок</span>
+                      <Phone className="w-5 h-5" />
+                      Купить в 1 клик
                     </Button>
                   </div>
                   
                   {/* Favorite button */}
                   <Button
-                    size="sm"
+                    size="lg"
                     variant={isInFavorites ? "default" : "outline"}
-                    className={`w-full h-8 md:h-12 mt-2 md:mt-3 gap-1 md:gap-2 font-semibold transition-all text-xs md:text-base ${
+                    className={`w-full h-10 md:h-12 gap-2 font-semibold transition-all text-sm md:text-base ${
                       isInFavorites 
                         ? 'bg-destructive hover:bg-destructive/90 text-destructive-foreground' 
                         : ''
                     }`}
                     onClick={handleToggleFavorite}
                   >
-                    <Heart className={`w-3 h-3 md:w-5 md:h-5 ${isInFavorites ? 'fill-current' : ''}`} />
+                    <Heart className={`w-4 h-4 md:w-5 md:h-5 ${isInFavorites ? 'fill-current' : ''}`} />
                     {isInFavorites ? 'В избранном' : 'В избранное'}
                   </Button>
                 </div>
