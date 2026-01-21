@@ -241,9 +241,9 @@ const Contacts = () => {
               </h2>
             </div>
 
-            <div className="space-y-12">
+            <div className="grid lg:grid-cols-2 gap-8">
               {offices.map((office) => (
-                <div key={office.id} className="space-y-6">
+                <div key={office.id} className="space-y-4">
                   <Card className="overflow-hidden hover:shadow-xl transition-all">
                     <CardContent className="p-0">
                       {/* Map */}
