@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { 
   Phone, 
@@ -18,13 +19,19 @@ import {
   Send,
   MessageCircle,
   Building2,
-  Navigation
+  Navigation,
+  X,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import FeedbackButton from "@/components/FeedbackButton";
 import berggolts1 from "@/assets/offices/berggolts-1.jpg";
 import berggolts2 from "@/assets/offices/berggolts-2.jpg";
 import berggolts3 from "@/assets/offices/berggolts-3.jpg";
 import parnas1 from "@/assets/offices/parnas-1.jpg";
+
+// Общие фотографии для всех офисов
+const officePhotos = [berggolts1, berggolts2, berggolts3, parnas1];
 
 const formatPhone = (value: string): string => {
   const digits = value.replace(/\D/g, "");
@@ -47,7 +54,6 @@ const offices = [
     hours: "Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUOl",
     coords: [59.874889, 30.458669],
-    images: [berggolts1, berggolts2, berggolts3],
   },
   {
     id: 2,
@@ -59,7 +65,6 @@ const offices = [
     hours: "Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUar",
     coords: [60.065486, 30.334189],
-    images: [parnas1],
   },
 ];
 
@@ -88,6 +93,21 @@ const Contacts = () => {
     privacy: false,
   });
   const [errors, setErrors] = useState<FormErrors>({});
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const openLightbox = (index: number) => {
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % officePhotos.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + officePhotos.length) % officePhotos.length);
+  };
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -221,75 +241,82 @@ const Contacts = () => {
               </h2>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="space-y-12">
               {offices.map((office) => (
-                <Card key={office.id} className="overflow-hidden hover:shadow-xl transition-all">
-                  <CardContent className="p-0">
-                    {/* Map */}
-                    <div className="h-64 w-full">
-                      <iframe
-                        src={`https://yandex.ru/map-widget/v1/?pt=${office.coords[1]},${office.coords[0]}&z=15&l=map`}
-                        className="w-full h-full border-0"
-                        title={`Карта ${office.name}`}
-                        allowFullScreen
-                      />
-                    </div>
-                    {/* Office Photos */}
-                    <div className={`grid ${office.images.length > 1 ? 'grid-cols-3' : 'grid-cols-1'} gap-1 p-1`}>
-                      {office.images.map((img, idx) => (
-                        <div key={idx} className="aspect-video overflow-hidden rounded-md">
-                          <img 
-                            src={img} 
-                            alt={`${office.name} - фото ${idx + 1}`}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                    <div className="p-6">
-                      <div className="flex items-start justify-between gap-4 mb-4">
-                        <div>
-                          <h3 className="text-xl font-bold text-foreground mb-1">{office.name}</h3>
-                          <p className="text-muted-foreground text-sm">{office.description}</p>
-                        </div>
-                        <a 
-                          href={office.mapUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="shrink-0"
-                        >
-                          <Button variant="outline" size="sm">
-                            <Navigation className="h-4 w-4 mr-2" />
-                            Маршрут
-                          </Button>
-                        </a>
+                <div key={office.id} className="space-y-6">
+                  <Card className="overflow-hidden hover:shadow-xl transition-all">
+                    <CardContent className="p-0">
+                      {/* Map */}
+                      <div className="h-64 w-full">
+                        <iframe
+                          src={`https://yandex.ru/map-widget/v1/?pt=${office.coords[1]},${office.coords[0]}&z=15&l=map`}
+                          className="w-full h-full border-0"
+                          title={`Карта ${office.name}`}
+                          allowFullScreen
+                        />
                       </div>
+                      <div className="p-6">
+                        <div className="flex items-start justify-between gap-4 mb-4">
+                          <div>
+                            <h3 className="text-xl font-bold text-foreground mb-1">{office.name}</h3>
+                            <p className="text-muted-foreground text-sm">{office.description}</p>
+                          </div>
+                          <a 
+                            href={office.mapUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="shrink-0"
+                          >
+                            <Button variant="outline" size="sm">
+                              <Navigation className="h-4 w-4 mr-2" />
+                              Маршрут
+                            </Button>
+                          </a>
+                        </div>
 
-                      <div className="space-y-3">
-                        <div className="flex items-start gap-3">
-                          <MapPin className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                          <span className="text-foreground">{office.address}</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <Phone className="h-5 w-5 text-primary shrink-0" />
-                          <a href={`tel:${office.phone.replace(/\D/g, '')}`} className="text-foreground hover:text-primary transition-colors font-medium">
-                            {office.phone}
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <Mail className="h-5 w-5 text-primary shrink-0" />
-                          <a href={`mailto:${office.email}`} className="text-foreground hover:text-primary transition-colors">
-                            {office.email}
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <Clock className="h-5 w-5 text-primary shrink-0" />
-                          <span className="text-muted-foreground">{office.hours}</span>
+                        <div className="space-y-3">
+                          <div className="flex items-start gap-3">
+                            <MapPin className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                            <span className="text-foreground">{office.address}</span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <Phone className="h-5 w-5 text-primary shrink-0" />
+                            <a href={`tel:${office.phone.replace(/\D/g, '')}`} className="text-foreground hover:text-primary transition-colors font-medium">
+                              {office.phone}
+                            </a>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <Mail className="h-5 w-5 text-primary shrink-0" />
+                            <a href={`mailto:${office.email}`} className="text-foreground hover:text-primary transition-colors">
+                              {office.email}
+                            </a>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <Clock className="h-5 w-5 text-primary shrink-0" />
+                            <span className="text-muted-foreground">{office.hours}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+
+                  {/* Photo Gallery */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {officePhotos.map((photo, idx) => (
+                      <div 
+                        key={idx} 
+                        className="aspect-video overflow-hidden rounded-xl cursor-pointer group"
+                        onClick={() => openLightbox(idx)}
+                      >
+                        <img 
+                          src={photo} 
+                          alt={`${office.name} - фото ${idx + 1}`}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -441,6 +468,49 @@ const Contacts = () => {
 
       <Footer />
       <FeedbackButton />
+
+      {/* Photo Lightbox Modal */}
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent className="max-w-5xl w-full p-0 bg-black/95 border-none">
+          <div className="relative w-full h-[80vh] flex items-center justify-center">
+            {/* Close button */}
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            >
+              <X className="h-6 w-6 text-white" />
+            </button>
+
+            {/* Previous button */}
+            <button
+              onClick={prevImage}
+              className="absolute left-4 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            >
+              <ChevronLeft className="h-8 w-8 text-white" />
+            </button>
+
+            {/* Image */}
+            <img
+              src={officePhotos[currentImageIndex]}
+              alt={`Фото офиса ${currentImageIndex + 1}`}
+              className="max-h-full max-w-full object-contain"
+            />
+
+            {/* Next button */}
+            <button
+              onClick={nextImage}
+              className="absolute right-4 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            >
+              <ChevronRight className="h-8 w-8 text-white" />
+            </button>
+
+            {/* Image counter */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white/10 rounded-full text-white text-sm">
+              {currentImageIndex + 1} / {officePhotos.length}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
