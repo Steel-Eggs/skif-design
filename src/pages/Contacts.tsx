@@ -21,8 +21,10 @@ import {
   Navigation
 } from "lucide-react";
 import FeedbackButton from "@/components/FeedbackButton";
-import berggoltsOffice from "@/assets/offices/berggolts.jpg";
-import parnasOffice from "@/assets/offices/parnas.jpg";
+import berggolts1 from "@/assets/offices/berggolts-1.jpg";
+import berggolts2 from "@/assets/offices/berggolts-2.jpg";
+import berggolts3 from "@/assets/offices/berggolts-3.jpg";
+import parnas1 from "@/assets/offices/parnas-1.jpg";
 
 const formatPhone = (value: string): string => {
   const digits = value.replace(/\D/g, "");
@@ -45,7 +47,7 @@ const offices = [
     hours: "Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUOl",
     coords: [59.874889, 30.458669],
-    image: berggoltsOffice,
+    images: [berggolts1, berggolts2, berggolts3],
   },
   {
     id: 2,
@@ -57,7 +59,7 @@ const offices = [
     hours: "Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUar",
     coords: [60.065486, 30.334189],
-    image: parnasOffice,
+    images: [parnas1],
   },
 ];
 
@@ -223,21 +225,26 @@ const Contacts = () => {
               {offices.map((office) => (
                 <Card key={office.id} className="overflow-hidden hover:shadow-xl transition-all">
                   <CardContent className="p-0">
-                    {/* Office Photo */}
-                    <div className="aspect-video w-full overflow-hidden">
-                      <img 
-                        src={office.image} 
-                        alt={office.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
                     {/* Map */}
-                    <div className="h-48 w-full">
+                    <div className="h-64 w-full">
                       <iframe
                         src={`https://yandex.ru/map-widget/v1/?pt=${office.coords[1]},${office.coords[0]}&z=15&l=map`}
                         className="w-full h-full border-0"
                         title={`Карта ${office.name}`}
+                        allowFullScreen
                       />
+                    </div>
+                    {/* Office Photos */}
+                    <div className={`grid ${office.images.length > 1 ? 'grid-cols-3' : 'grid-cols-1'} gap-1 p-1`}>
+                      {office.images.map((img, idx) => (
+                        <div key={idx} className="aspect-video overflow-hidden rounded-md">
+                          <img 
+                            src={img} 
+                            alt={`${office.name} - фото ${idx + 1}`}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      ))}
                     </div>
                     <div className="p-6">
                       <div className="flex items-start justify-between gap-4 mb-4">
