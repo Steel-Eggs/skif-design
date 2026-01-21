@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import CallbackModal from "@/components/CallbackModal";
 import { useFavorites, FAVORITES_UPDATED_EVENT } from "@/hooks/useFavorites";
-import { CART_UPDATED_EVENT } from "@/hooks/useCart";
+import { useCart, CART_UPDATED_EVENT } from "@/hooks/useCart";
 import logo from "@/assets/logo-new.png";
 
 const Header = () => {
@@ -19,54 +19,58 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isCallbackModalOpen, setIsCallbackModalOpen] = useState(false);
   const { favoritesCount } = useFavorites();
-  const [displayCount, setDisplayCount] = useState(0);
-  const [cartCount, setCartCount] = useState(0);
+  const { cartCount } = useCart();
+  const [displayFavCount, setDisplayFavCount] = useState(0);
+  const [displayCartCount, setDisplayCartCount] = useState(0);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
 
-  // Sync favorites count
+  // Sync favorites count from hook
   useEffect(() => {
-    setDisplayCount(favoritesCount);
+    setDisplayFavCount(favoritesCount);
   }, [favoritesCount]);
 
-  // Listen for favorites updates
+  // Sync cart count from hook
+  useEffect(() => {
+    setDisplayCartCount(cartCount);
+  }, [cartCount]);
+
+  // Listen for favorites updates from other components
   useEffect(() => {
     const handleUpdate = () => {
       const stored = localStorage.getItem("skif_favorites");
       if (stored) {
         try {
           const parsed = JSON.parse(stored);
-          setDisplayCount(parsed.length);
+          setDisplayFavCount(parsed.length);
         } catch (e) {
-          setDisplayCount(0);
+          setDisplayFavCount(0);
         }
       } else {
-        setDisplayCount(0);
+        setDisplayFavCount(0);
       }
     };
     window.addEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
     return () => window.removeEventListener(FAVORITES_UPDATED_EVENT, handleUpdate);
   }, []);
 
-  // Load and listen for cart updates
+  // Listen for cart updates from other components
   useEffect(() => {
-    const loadCartCount = () => {
+    const handleCartUpdate = () => {
       const stored = localStorage.getItem("skif_cart");
       if (stored) {
         try {
           const parsed = JSON.parse(stored);
           const count = parsed.reduce((sum: number, item: { quantity: number }) => sum + item.quantity, 0);
-          setCartCount(count);
+          setDisplayCartCount(count);
         } catch (e) {
-          setCartCount(0);
+          setDisplayCartCount(0);
         }
       } else {
-        setCartCount(0);
+        setDisplayCartCount(0);
       }
     };
-    
-    loadCartCount();
-    window.addEventListener(CART_UPDATED_EVENT, loadCartCount);
-    return () => window.removeEventListener(CART_UPDATED_EVENT, loadCartCount);
+    window.addEventListener(CART_UPDATED_EVENT, handleCartUpdate);
+    return () => window.removeEventListener(CART_UPDATED_EVENT, handleCartUpdate);
   }, []);
 
   // Focus mobile search input when opened
@@ -333,9 +337,9 @@ const Header = () => {
             <Link to="/favorites">
               <Button variant="outline" size="icon" className="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl">
                 <Heart className="h-4 w-4 md:h-5 md:w-5" />
-                {displayCount > 0 && (
+                {displayFavCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs">
-                    {displayCount}
+                    {displayFavCount}
                   </span>
                 )}
               </Button>
@@ -343,9 +347,9 @@ const Header = () => {
             <Link to="/cart">
               <Button variant="outline" size="icon" className="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl">
                 <ShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
-                {cartCount > 0 && (
+                {displayCartCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs">
-                    {cartCount}
+                    {displayCartCount}
                   </span>
                 )}
               </Button>
