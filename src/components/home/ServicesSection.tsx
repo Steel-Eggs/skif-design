@@ -81,7 +81,7 @@ const ServicesSection = () => {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-muted-foreground mb-5 leading-relaxed">
+                <p className="text-muted-foreground text-base md:text-lg mb-5 leading-relaxed">
                   {service.description}
                 </p>
                 
