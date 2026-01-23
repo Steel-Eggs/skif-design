@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ShoppingCart, Star } from "lucide-react";
+import { ArrowRight, ShoppingCart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -154,13 +154,6 @@ const PartsSection = () => {
                 </div>
 
                 <CardContent className="p-3">
-                  {/* Rating */}
-                  <div className="flex items-center gap-1 mb-2">
-                    <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                    <span className="text-xs font-medium">{product.rating}</span>
-                    <span className="text-xs text-muted-foreground">({product.reviews})</span>
-                  </div>
-
                   {/* Title */}
                   <h3 className="text-sm font-medium text-foreground line-clamp-2 mb-2 group-hover:text-primary transition-colors min-h-[2.5rem]">
                     {product.name}
