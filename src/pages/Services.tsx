@@ -293,53 +293,56 @@ const Services = () => {
               {servicesData.map((service) => {
                 const IconComponent = service.icon;
                 return (
-                  <Card 
+                  <Link 
                     key={service.id}
-                    className="group border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl overflow-hidden"
+                    to={`/services/${service.slug}`}
+                    className="block"
                   >
-                    {/* Image */}
-                    <div className="relative h-48 overflow-hidden bg-muted">
-                      <img 
-                        src={service.image} 
-                        alt={service.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <div className="w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center mb-2">
-                          <IconComponent className="w-6 h-6" />
+                    <Card 
+                      className="group border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl overflow-hidden cursor-pointer h-full"
+                    >
+                      {/* Image */}
+                      <div className="relative h-48 overflow-hidden bg-muted">
+                        <img 
+                          src={service.image} 
+                          alt={service.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center mb-2">
+                            <IconComponent className="w-6 h-6" />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                        {service.name}
-                      </h3>
-                      <p className="text-muted-foreground mb-4 line-clamp-2">
-                        {service.shortDescription}
-                      </p>
                       
-                      {/* Features */}
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {service.features.slice(0, 3).map((feature, idx) => (
-                          <span 
-                            key={idx}
-                            className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary font-medium"
-                          >
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <Link to={`/services/${service.slug}`}>
-                        <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <CardContent className="p-6">
+                        <h3 className="text-xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                          {service.name}
+                        </h3>
+                        <p className="text-muted-foreground mb-4 line-clamp-2">
+                          {service.shortDescription}
+                        </p>
+                        
+                        {/* Features */}
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {service.features.slice(0, 3).map((feature, idx) => (
+                            <span 
+                              key={idx}
+                              className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary font-medium"
+                            >
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+                        
+                        <div className="w-full flex items-center justify-center gap-2 py-2 border border-input rounded-md group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors">
                           Подробнее
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
-                      </Link>
-                    </CardContent>
-                  </Card>
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 );
               })}
             </div>
