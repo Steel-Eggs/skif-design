@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useFavorites, FAVORITES_UPDATED_EVENT, dispatchFavoritesUpdate } from "@/hooks/useFavorites";
-
+import { useCart, dispatchCartUpdate } from "@/hooks/useCart";
 // Import product images
 import trailer1 from "@/assets/products/trailer-1.jpg";
 import trailer2 from "@/assets/products/trailer-2.jpg";
@@ -46,6 +46,7 @@ export const getProductImage = (productId: number): string => {
 const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps) => {
   const [addedToCart, setAddedToCart] = useState(false);
   const { isFavorite, toggleFavorite } = useFavorites();
+  const { addToCart } = useCart();
   const [isInFavorites, setIsInFavorites] = useState(false);
   
   useEffect(() => {
@@ -76,6 +77,14 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: productImage,
+    });
+    dispatchCartUpdate();
     
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 1500);
