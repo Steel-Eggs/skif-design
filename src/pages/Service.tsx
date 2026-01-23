@@ -118,14 +118,7 @@ const Service = () => {
                 <Card>
                   <CardContent className="p-6 md:p-8">
                     <div 
-                      className="prose prose-lg max-w-none
-                        prose-headings:font-heading prose-headings:text-foreground
-                        prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mt-0 prose-h2:mb-6
-                        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
-                        prose-p:text-muted-foreground prose-p:leading-relaxed
-                        prose-ul:text-muted-foreground prose-ol:text-muted-foreground
-                        prose-li:marker:text-primary
-                      "
+                      className="service-description"
                       dangerouslySetInnerHTML={{ __html: service.description }}
                     />
                   </CardContent>

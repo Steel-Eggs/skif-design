@@ -246,3 +246,65 @@
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
   }
 }
+
+/* Service description styling */
+.service-description {
+  @apply text-foreground leading-relaxed;
+}
+
+.service-description p {
+  @apply mb-4 text-base md:text-lg;
+}
+
+.service-description p.lead {
+  @apply text-lg md:text-xl text-foreground font-medium mb-6 pb-6 border-b border-border;
+}
+
+.service-description p.conclusion {
+  @apply text-lg md:text-xl text-primary mt-8 pt-6 border-t border-border text-center;
+}
+
+.service-description h2 {
+  @apply text-2xl md:text-3xl font-bold text-foreground mt-10 mb-6;
+}
+
+.service-description h3 {
+  @apply text-xl md:text-2xl font-bold text-foreground mb-4;
+}
+
+.service-description ul {
+  @apply mb-6 space-y-2 pl-0;
+}
+
+.service-description ul li {
+  @apply flex items-start gap-3 text-base md:text-lg;
+}
+
+.service-description ul li::before {
+  content: "✓";
+  @apply text-secondary font-bold shrink-0;
+}
+
+.service-description a {
+  @apply text-primary font-semibold hover:underline;
+}
+
+.service-description .service-block {
+  @apply bg-card rounded-2xl p-6 md:p-8 mb-6 border border-border shadow-sm;
+}
+
+.service-description .service-block h3 {
+  @apply mt-0 mb-4 text-primary;
+}
+
+.service-description .info-block {
+  @apply bg-accent/10 rounded-2xl p-6 md:p-8 mb-6 border border-accent/30;
+}
+
+.service-description .info-block h3 {
+  @apply mt-0 mb-4 text-accent;
+}
+
+.service-description strong {
+  @apply font-bold text-foreground;
+}
