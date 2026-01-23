@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Heart, Star, Flame, Check } from "lucide-react";
+import { ShoppingCart, Heart, Flame, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -68,8 +68,6 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
   const savings = product.oldPrice ? product.oldPrice - product.price : 0;
   const productImage = product.image && product.image !== "/placeholder.svg" ? product.image : getProductImage(product.id);
   const inStock = product.inStock !== false;
-  const rating = product.rating ?? 4.5 + (product.id % 5) * 0.1;
-  const reviews = product.reviews ?? 20 + (product.id * 7) % 200;
   const isHit = product.isHit ?? product.id % 3 === 0;
   const isNew = product.isNew ?? product.id % 4 === 1;
   const category = product.category ?? product.brand ?? "Прицепы";
@@ -146,10 +144,6 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
               </Link>
             </h3>
             
-            <div className="flex items-center gap-1 mb-2">
-              <Star className="h-4 w-4 fill-accent text-accent" />
-              <span className="font-semibold text-sm">{rating.toFixed(1)}</span>
-            </div>
             
             <div className="flex items-baseline gap-2 mb-2 flex-wrap">
               <span className="text-xl font-heading font-bold text-foreground">
@@ -270,11 +264,6 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
             </Link>
           </h3>
           
-          {/* Rating */}
-          <div className="flex items-center gap-1 mb-3">
-            <Star className="h-4 w-4 fill-accent text-accent" />
-            <span className="font-semibold text-sm">{rating.toFixed(1)}</span>
-          </div>
           
           {/* Price section */}
           <div className="mb-3">
