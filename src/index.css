@@ -273,16 +273,31 @@
 }
 
 .service-description ul {
-  @apply mb-6 space-y-2 pl-0;
+  @apply mb-6 space-y-3 pl-0 list-none;
 }
 
 .service-description ul li {
-  @apply flex items-start gap-3 text-base md:text-lg;
+  @apply text-base md:text-lg pl-7 relative;
 }
 
 .service-description ul li::before {
   content: "✓";
-  @apply text-secondary font-bold shrink-0;
+  @apply text-secondary font-bold absolute left-0 top-0;
+}
+
+.service-description ol {
+  @apply mb-6 space-y-3 pl-0 list-none;
+  counter-reset: item;
+}
+
+.service-description ol li {
+  @apply text-base md:text-lg pl-8 relative;
+  counter-increment: item;
+}
+
+.service-description ol li::before {
+  content: counter(item) ".";
+  @apply text-primary font-bold absolute left-0 top-0;
 }
 
 .service-description a {
@@ -297,6 +312,10 @@
   @apply mt-0 mb-4 text-primary;
 }
 
+.service-description .service-block.highlight {
+  @apply bg-primary/5 border-primary/20;
+}
+
 .service-description .info-block {
   @apply bg-accent/10 rounded-2xl p-6 md:p-8 mb-6 border border-accent/30;
 }
@@ -307,4 +326,16 @@
 
 .service-description strong {
   @apply font-bold text-foreground;
+}
+
+.service-description .accent-text {
+  @apply text-xl md:text-2xl font-bold text-center text-primary my-8;
+}
+
+.service-description .phone-number {
+  @apply text-xl md:text-2xl font-bold;
+}
+
+.service-description .phone-number a {
+  @apply text-primary hover:text-primary/80;
 }
