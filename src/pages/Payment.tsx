@@ -9,11 +9,13 @@ import {
   CreditCard, 
   QrCode, 
   Building2,
-  Clock,
-  Shield,
+  Landmark,
   Phone,
-  ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Truck,
+  FileText,
+  Users,
+  AlertCircle
 } from "lucide-react";
 import FeedbackButton from "@/components/FeedbackButton";
 
@@ -21,17 +23,17 @@ const paymentMethods = [
   {
     icon: Banknote,
     title: "Наличный расчёт",
-    description: "Оплата наличными в точках продаж или при доставке курьером",
+    description: "Оплата наличными в любой точке продаж «СКИФ» или представителю службы доставки при получении товара.",
     features: [
-      "В любом офисе компании",
-      "При доставке на адрес",
+      "В любом офисе компании «СКИФ»",
+      "При получении товара курьером",
       "Чек об оплате сразу на руки"
     ]
   },
   {
     icon: QrCode,
     title: "Оплата по QR-коду",
-    description: "Быстрая оплата через мобильное приложение вашего банка",
+    description: "Быстрая и удобная оплата через мобильное приложение вашего банка.",
     features: [
       "Сканируйте QR-код",
       "Мгновенное подтверждение",
@@ -41,21 +43,31 @@ const paymentMethods = [
   {
     icon: CreditCard,
     title: "Банковские карты",
-    description: "Оплата картами Visa, MasterCard, МИР через защищённый шлюз Сбербанка",
+    description: "Принимаем к оплате банковские карты VISA (кроме Electron) и MasterCard. Платёж проводится через защищённый шлюз Сбербанка после подтверждения менеджером.",
     features: [
-      "Visa, MasterCard, МИР",
-      "Защищённое соединение",
-      "Электронный чек на email"
+      "VISA и MasterCard",
+      "Защищённое соединение Сбербанка",
+      "Проверка заказа менеджером"
+    ]
+  },
+  {
+    icon: Landmark,
+    title: "Оплата через Сбербанк",
+    description: "Распечатайте квитанцию с сайта и оплатите в любом отделении Сбербанка. Обратите внимание: банк берёт комиссию за проведение платежа.",
+    features: [
+      "Квитанция формируется на сайте",
+      "Оплата в любом отделении",
+      "Комиссия банка"
     ]
   },
   {
     icon: Building2,
-    title: "Кредит и рассрочка",
-    description: "Программа «Покупай со Сбер» — рассрочка от 3 до 36 месяцев на сумму до 300 000 ₽",
+    title: "Кредит «Покупай со Сбер»",
+    description: "Программа кредитования для клиентов Сбербанка. Возраст от 21 до 65 лет, срок от 3 до 36 месяцев, сумма от 3 000 до 300 000 рублей.",
     features: [
       "Без первоначального взноса",
-      "Срок до 36 месяцев",
-      "Одобрение за 5 минут"
+      "Срок от 3 до 36 месяцев",
+      "Сумма от 3 000 до 300 000 ₽"
     ]
   }
 ];
@@ -81,8 +93,8 @@ const Payment = () => {
               Способы оплаты
             </h1>
             <p className="text-xl text-primary-foreground/80 max-w-2xl">
-              Выберите удобный способ оплаты вашего заказа. Мы принимаем наличные, 
-              банковские карты, оплату по QR-коду и предлагаем выгодные условия кредитования.
+              Компания «СКИФ» работает как с физическими, так и с юридическими лицами. 
+              Выберите удобный способ оплаты вашего заказа.
             </p>
           </div>
         </section>
@@ -90,7 +102,7 @@ const Payment = () => {
         {/* Payment Methods */}
         <section className="py-16 md:py-24">
           <div className="container">
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {paymentMethods.map((method, index) => {
                 const Icon = method.icon;
                 return (
@@ -100,7 +112,7 @@ const Payment = () => {
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <CardContent className="p-8">
-                      <div className="flex items-start gap-6">
+                      <div className="flex flex-col gap-4">
                         <div className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                           <Icon className="h-8 w-8 text-primary-foreground" />
                         </div>
@@ -108,13 +120,13 @@ const Payment = () => {
                           <h3 className="text-xl font-heading font-bold text-foreground mb-2">
                             {method.title}
                           </h3>
-                          <p className="text-muted-foreground mb-4">
+                          <p className="text-muted-foreground mb-4 text-sm">
                             {method.description}
                           </p>
                           <ul className="space-y-2">
                             {method.features.map((feature, i) => (
                               <li key={i} className="flex items-center gap-2 text-sm text-foreground">
-                                <CheckCircle2 className="h-4 w-4 text-accent" />
+                                <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
                                 {feature}
                               </li>
                             ))}
@@ -129,51 +141,96 @@ const Payment = () => {
           </div>
         </section>
 
-        {/* Info Section */}
+        {/* Detailed Info */}
         <section className="py-16 bg-muted/50">
           <div className="container">
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="text-center p-8">
-                <CardContent className="p-0">
-                  <div className="w-14 h-14 rounded-full gradient-accent flex items-center justify-center mx-auto mb-4">
-                    <Clock className="h-7 w-7 text-accent-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    Быстрая доставка
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    Доставка осуществляется в течение 1-2 дней после поступления оплаты на расчётный счёт
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="max-w-4xl mx-auto service-description">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-8 text-center">
+                Подробная информация
+              </h2>
 
-              <Card className="text-center p-8">
-                <CardContent className="p-0">
-                  <div className="w-14 h-14 rounded-full gradient-primary flex items-center justify-center mx-auto mb-4">
-                    <Shield className="h-7 w-7 text-primary-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    Гарантия качества
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    Гарантийное обслуживание производится при наличии заполненного гарантийного талона
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="service-block">
+                <h3 className="flex items-center gap-3">
+                  <Users className="h-6 w-6 text-primary" />
+                  Для физических лиц
+                </h3>
+                <p>
+                  Оплата наличными производится в любой точке продаж «СКИФ» или представителю службы доставки при получении товара.
+                </p>
+                <p>
+                  Также вы можете оплатить заказ банковской картой через защищённый платёжный шлюз Сбербанка или воспользоваться оплатой по QR-коду.
+                </p>
+              </div>
 
-              <Card className="text-center p-8">
-                <CardContent className="p-0">
-                  <div className="w-14 h-14 rounded-full gradient-secondary flex items-center justify-center mx-auto mb-4">
-                    <Building2 className="h-7 w-7 text-secondary-foreground" />
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    Работа с юрлицами
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    Принимаем оплату от юридических лиц по безналичному расчёту с НДС
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="service-block">
+                <h3 className="flex items-center gap-3">
+                  <Building2 className="h-6 w-6 text-primary" />
+                  Для юридических лиц
+                </h3>
+                <p>
+                  Компания «СКИФ» работает с юридическими лицами по безналичному расчёту. 
+                  Для оформления заказа свяжитесь с менеджером для получения счёта на оплату.
+                </p>
+                <p>
+                  При получении товара представитель организации должен иметь доверенность и печать.
+                </p>
+              </div>
+
+              <div className="service-block highlight">
+                <h3 className="flex items-center gap-3">
+                  <CreditCard className="h-6 w-6 text-primary" />
+                  Программа кредитования «Покупай со Сбер»
+                </h3>
+                <p>
+                  Мы предлагаем удобную программу кредитования для клиентов Сбербанка:
+                </p>
+                <ul>
+                  <li>Возраст заёмщика от 21 до 65 лет</li>
+                  <li>Срок кредита от 3 до 36 месяцев</li>
+                  <li>Сумма кредита от 3 000 до 300 000 рублей</li>
+                  <li>Быстрое одобрение заявки</li>
+                  <li>Без первоначального взноса</li>
+                </ul>
+                <p>
+                  Для оформления кредита обратитесь к менеджеру в любом офисе компании «СКИФ».
+                </p>
+              </div>
+
+              <div className="service-block">
+                <h3 className="flex items-center gap-3">
+                  <Truck className="h-6 w-6 text-primary" />
+                  Доставка и получение товара
+                </h3>
+                <p>
+                  Доставка товара осуществляется в течение 1-2 дней после поступления денежных средств на расчётный счёт компании.
+                </p>
+                <p>
+                  При получении товара физическому лицу необходимо предъявить паспорт. 
+                  Представителю юридического лица — доверенность и печать организации.
+                </p>
+              </div>
+
+              <div className="info-block">
+                <h3 className="flex items-center gap-3 !text-accent">
+                  <FileText className="h-6 w-6 text-accent" />
+                  Гарантийные обязательства
+                </h3>
+                <p>
+                  Гарантийное обслуживание производится при наличии заполненного гарантийного талона. 
+                  Обязательно сохраняйте чек об оплате — он потребуется для гарантийного обслуживания.
+                </p>
+              </div>
+
+              <div className="service-block">
+                <h3 className="flex items-center gap-3">
+                  <AlertCircle className="h-6 w-6 text-primary" />
+                  Отмена заказа
+                </h3>
+                <p>
+                  Если вы хотите отказаться от заказа, вы можете обменять его на другой товар или получить полный возврат денежных средств. 
+                  Для этого свяжитесь с менеджером компании.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -202,7 +259,7 @@ const Payment = () => {
                   className="font-bold border-white text-white bg-white/10 hover:bg-white hover:text-accent"
                 >
                   <Phone className="mr-2 h-5 w-5" />
-                  +7 (800) 200-16-36
+                  8 (800) 200-16-36
                 </Button>
               </a>
             </div>
