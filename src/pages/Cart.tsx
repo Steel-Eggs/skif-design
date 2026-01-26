@@ -169,27 +169,11 @@ const Cart = () => {
                     </label>
                   </div>
                   
-                  {needsDelivery && remainingForFreeShipping <= 0 && (
-                    <div className="mt-3 p-3 bg-secondary/10 rounded-lg border border-secondary/30">
-                      <span className="text-sm font-bold text-secondary flex items-center gap-2">
-                        <Check className="w-4 h-4" />
-                        🎉 Поздравляем! Доставка по городу бесплатно!
+                  {needsDelivery && (
+                    <div className="mt-3 p-3 bg-muted/50 rounded-lg">
+                      <span className="text-sm text-muted-foreground">
+                        Стоимость доставки рассчитывается индивидуально
                       </span>
-                    </div>
-                  )}
-                  
-                  {needsDelivery && remainingForFreeShipping > 0 && (
-                    <div className="mt-3">
-                      <div className="text-sm mb-2">
-                        До <span className="font-bold text-secondary">бесплатной доставки</span> осталось{' '}
-                        <span className="font-bold whitespace-nowrap">{formatPrice(remainingForFreeShipping)}</span>
-                      </div>
-                      <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-                        <div 
-                          className="bg-secondary h-full rounded-full transition-all duration-500"
-                          style={{ width: `${freeShippingProgress}%` }}
-                        />
-                      </div>
                     </div>
                   )}
                 </div>
@@ -263,7 +247,7 @@ const Cart = () => {
                           type="number"
                           value={item.quantity}
                           onChange={(e) => handleSetQuantity(item.id, parseInt(e.target.value) || 1)}
-                          className="w-14 text-center"
+                          className="w-14 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           min={1}
                         />
                         <button
@@ -377,9 +361,7 @@ const Cart = () => {
                     {needsDelivery && (
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Доставка</span>
-                        <span className={remainingForFreeShipping === 0 ? 'text-secondary font-medium' : 'text-muted-foreground'}>
-                          {remainingForFreeShipping === 0 ? 'Бесплатно' : 'Рассчитывается индивидуально'}
-                        </span>
+                        <span className="text-muted-foreground">Рассчитывается индивидуально</span>
                       </div>
                     )}
                   </div>
