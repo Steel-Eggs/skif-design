@@ -50,7 +50,7 @@ const offices = [
     description: "Основная площадка: склад, сборка, офис",
     address: "г. Санкт-Петербург, ул. Ольги Берггольц, 38-А",
     phone: "+7 (921) 910-38-50",
-    email: "info@skif-avto.ru",
+    email: "zakaz@skif-avto.ru",
     hours: "Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUOl",
     coords: [59.874889, 30.458669],
@@ -192,8 +192,8 @@ const Contacts = () => {
                     <Mail className="h-6 w-6 text-accent-foreground" />
                   </div>
                   <h3 className="font-bold text-foreground mb-2">Email</h3>
-                  <a href="mailto:info@skif-avto.ru" className="text-primary font-semibold hover:underline block">
-                    info@skif-avto.ru
+                  <a href="mailto:zakaz@skif-avto.ru" className="text-primary font-semibold hover:underline block">
+                    zakaz@skif-avto.ru
                   </a>
                   <span className="text-muted-foreground text-sm">Ответим в течение часа</span>
                 </CardContent>

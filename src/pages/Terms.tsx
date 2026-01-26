@@ -250,7 +250,7 @@ const Terms = () => {
                 </li>
                 <li>
                   11.4. По всем вопросам, связанным с использованием Сайта, обращайтесь: 
-                  <a href="mailto:info@skif-avto.ru" className="text-primary hover:underline ml-1">info@skif-avto.ru</a>
+                  <a href="mailto:zakaz@skif-avto.ru" className="text-primary hover:underline ml-1">zakaz@skif-avto.ru</a>
                 </li>
               </ul>
 
