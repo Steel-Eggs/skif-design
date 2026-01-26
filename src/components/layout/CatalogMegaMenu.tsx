@@ -111,20 +111,20 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
 
   return (
     <div className="absolute top-full left-0 pt-2 z-[100]">
-      <div className="bg-card border border-border rounded-2xl shadow-2xl overflow-hidden animate-fade-in" style={{ width: '900px' }}>
+      <div className="bg-card border border-border rounded-2xl shadow-2xl overflow-hidden animate-fade-in" style={{ width: '1000px' }}>
         <div className="flex">
           {/* Left column - Categories */}
-          <div className="w-52 border-r border-border bg-muted/30 flex flex-col">
+          <div className="w-64 border-r border-border bg-muted/30 flex flex-col">
             {/* Main categories - scrollable */}
-            <div className="py-2 px-1.5 flex-1 overflow-y-auto max-h-[340px]">
-              <div className="space-y-0.5">
+            <div className="py-3 px-2 flex-1 overflow-y-auto max-h-[420px]">
+              <div className="space-y-1">
                 {mainCategories.map((category) => {
                   const Icon = category.icon;
                   const isActive = activeCategory === category.id;
                   return (
                     <button
                       key={category.id}
-                      className={`w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-left transition-all group ${
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all group ${
                         isActive 
                           ? 'bg-primary text-primary-foreground' 
                           : 'hover:bg-muted text-foreground'
@@ -135,12 +135,12 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
                         window.location.href = category.href;
                       }}
                     >
-                      <Icon className={`h-4 w-4 shrink-0 ${isActive ? 'text-primary-foreground' : 'text-primary'}`} />
-                      <span className="font-medium text-xs flex-1 truncate">{category.name}</span>
+                      <Icon className={`h-5 w-5 shrink-0 ${isActive ? 'text-primary-foreground' : 'text-primary'}`} />
+                      <span className="font-medium text-sm flex-1">{category.name}</span>
                       {category.badge && (
                         <Badge 
                           variant={category.badgeColor || "default"} 
-                          className="text-[9px] px-1 py-0"
+                          className="text-[10px] px-1.5 py-0.5"
                         >
                           {category.badge}
                         </Badge>
@@ -150,7 +150,7 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
                 })}
 
                 {/* Divider */}
-                <div className="h-px bg-border my-2 mx-1" />
+                <div className="h-px bg-border my-3 mx-2" />
 
                 {/* Additional categories inline */}
                 {additionalCategories.map((category) => {
@@ -160,7 +160,7 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
                     <Link
                       key={category.id}
                       to={category.href}
-                      className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg transition-all ${
+                      className={`flex items-center gap-3 px-3 py-2 rounded-xl transition-all ${
                         isActive 
                           ? 'bg-primary/10 text-primary' 
                           : 'hover:bg-muted text-muted-foreground hover:text-foreground'
@@ -168,8 +168,8 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
                       onClick={onClose}
                       onMouseEnter={() => setActiveCategory(category.id)}
                     >
-                      <Icon className="h-3.5 w-3.5 shrink-0" />
-                      <span className="text-xs truncate">{category.name}</span>
+                      <Icon className="h-4 w-4 shrink-0" />
+                      <span className="text-sm">{category.name}</span>
                     </Link>
                   );
                 })}
@@ -178,53 +178,53 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
           </div>
 
           {/* Right column - Products preview */}
-          <div className="flex-1 p-4">
+          <div className="flex-1 p-6">
             {/* Category header */}
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-base font-bold text-foreground flex items-center gap-2">
-                {activeCategoryData && <activeCategoryData.icon className="h-4 w-4 text-primary" />}
+            <div className="flex items-center justify-between mb-5">
+              <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
+                {activeCategoryData && <activeCategoryData.icon className="h-5 w-5 text-primary" />}
                 {activeCategoryData?.name || "Товары"}
               </h3>
               <Link 
                 to={activeCategoryData?.href || "/catalog"} 
                 onClick={onClose}
-                className="text-xs font-medium text-primary hover:underline flex items-center gap-1"
+                className="text-sm font-medium text-primary hover:underline flex items-center gap-1.5"
               >
-                Смотреть все
-                <ArrowRight className="h-3 w-3" />
+                Смотреть все товары
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
 
             {/* Products grid - horizontal layout */}
-            <div className="grid grid-cols-4 gap-2.5 mb-3">
+            <div className="grid grid-cols-4 gap-4 mb-5">
               {products.map((product) => (
                 <Link
                   key={product.id}
                   to={`/product/${product.id}`}
                   onClick={onClose}
-                  className="group block bg-muted/50 rounded-lg p-2 hover:bg-muted transition-colors hover:shadow-md"
+                  className="group block bg-muted/50 rounded-xl p-3 hover:bg-muted transition-colors hover:shadow-lg"
                 >
                   {/* Product image */}
-                  <div className="relative aspect-square rounded-md bg-background mb-1.5 overflow-hidden">
+                  <div className="relative aspect-[4/3] rounded-lg bg-background mb-2.5 overflow-hidden">
                     <img 
                       src={product.image} 
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     {/* Badges */}
-                    <div className="absolute top-1 left-1 flex flex-col gap-0.5">
+                    <div className="absolute top-1.5 left-1.5 flex flex-col gap-1">
                       {product.isNew && (
-                        <Badge className="bg-accent text-accent-foreground text-[8px] px-1 py-0">
+                        <Badge className="bg-accent text-accent-foreground text-[10px] px-1.5 py-0.5">
                           New
                         </Badge>
                       )}
                       {product.isHit && (
-                        <Badge className="bg-secondary text-secondary-foreground text-[8px] px-1 py-0">
+                        <Badge className="bg-secondary text-secondary-foreground text-[10px] px-1.5 py-0.5">
                           Хит
                         </Badge>
                       )}
                       {product.oldPrice && (
-                        <Badge variant="destructive" className="text-[8px] px-1 py-0">
+                        <Badge variant="destructive" className="text-[10px] px-1.5 py-0.5">
                           -{Math.round((1 - product.price / product.oldPrice) * 100)}%
                         </Badge>
                       )}
@@ -232,15 +232,15 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
                   </div>
                   
                   {/* Product info */}
-                  <h4 className="text-[11px] font-medium text-foreground line-clamp-2 mb-1 min-h-[2rem] leading-tight group-hover:text-primary transition-colors">
+                  <h4 className="text-sm font-medium text-foreground line-clamp-2 mb-2 min-h-[2.5rem] leading-snug group-hover:text-primary transition-colors">
                     {product.name}
                   </h4>
-                  <div className="flex items-baseline gap-1.5">
-                    <span className={`text-xs font-bold ${product.oldPrice ? 'text-destructive' : 'text-foreground'}`}>
+                  <div className="flex items-baseline gap-2">
+                    <span className={`text-base font-bold ${product.oldPrice ? 'text-destructive' : 'text-foreground'}`}>
                       {formatPrice(product.price)}
                     </span>
                     {product.oldPrice && (
-                      <span className="text-[9px] text-muted-foreground line-through">
+                      <span className="text-xs text-muted-foreground line-through">
                         {formatPrice(product.oldPrice)}
                       </span>
                     )}
@@ -250,25 +250,25 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
             </div>
 
             {/* Quick info blocks - horizontal */}
-            <div className="flex gap-2 pt-2 border-t border-border">
-              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/5">
-                <div className="text-base font-bold text-primary">500+</div>
-                <div className="text-[10px] text-muted-foreground leading-tight">моделей<br/>в наличии</div>
+            <div className="flex gap-3 pt-4 border-t border-border">
+              <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/5">
+                <div className="text-xl font-bold text-primary">500+</div>
+                <div className="text-xs text-muted-foreground leading-snug">моделей<br/>в наличии</div>
               </div>
-              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-lg bg-accent/10">
-                <div className="text-base font-bold text-accent-foreground">0%</div>
-                <div className="text-[10px] text-muted-foreground leading-tight">рассрочка<br/>до 24 мес</div>
+              <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl bg-accent/10">
+                <div className="text-xl font-bold text-accent-foreground">0%</div>
+                <div className="text-xs text-muted-foreground leading-snug">рассрочка<br/>до 24 мес</div>
               </div>
-              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary/10">
-                <div className="text-base">🚚</div>
-                <div className="text-[10px] text-muted-foreground leading-tight">доставка<br/>по России</div>
+              <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl bg-secondary/10">
+                <div className="text-xl">🚚</div>
+                <div className="text-xs text-muted-foreground leading-snug">доставка<br/>по России</div>
               </div>
               <Link 
                 to="/contacts" 
                 onClick={onClose}
-                className="flex items-center gap-2 px-4 py-2 gradient-primary text-primary-foreground font-semibold text-xs rounded-lg hover:opacity-90 transition-opacity"
+                className="flex items-center gap-2 px-5 py-3 gradient-primary text-primary-foreground font-semibold text-sm rounded-xl hover:opacity-90 transition-opacity"
               >
-                <Sparkles className="h-4 w-4" />
+                <Sparkles className="h-5 w-5" />
                 Консультация
               </Link>
             </div>
