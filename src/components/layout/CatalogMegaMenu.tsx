@@ -140,7 +140,7 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
           {/* Left column - Categories */}
           <div className="w-64 border-r border-border bg-muted/30 overflow-y-auto">
             {/* Main categories - scrollable */}
-            <div className="py-3 px-2">
+            <div className="py-3 px-2 pb-6">
               <div className="space-y-1">
                 {mainCategories.map((category) => {
                   const Icon = category.icon;
