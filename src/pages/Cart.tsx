@@ -204,72 +204,136 @@ const Cart = () => {
                 {/* Cart items */}
                 <div className="bg-white rounded-lg border divide-y">
                   {filteredItems.map((item) => (
-                    <div key={item.id} className="p-4 flex items-center gap-4">
-                      {/* Image */}
-                      <Link to={`/product/${item.id}`} className="shrink-0">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-20 h-16 md:w-28 md:h-20 object-cover rounded"
-                        />
-                      </Link>
-
-                      {/* Name */}
-                      <div className="flex-1 min-w-0">
-                        <Link 
-                          to={`/product/${item.id}`}
-                          className="font-medium hover:text-primary transition-colors line-clamp-2"
-                        >
-                          {item.name}
+                    <div key={item.id} className="p-3 md:p-4">
+                      {/* Mobile layout */}
+                      <div className="flex gap-3 md:hidden">
+                        {/* Image */}
+                        <Link to={`/product/${item.id}`} className="shrink-0">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-16 h-16 object-cover rounded"
+                          />
                         </Link>
-                      </div>
-
-                      {/* Price */}
-                      <div className="text-right shrink-0">
-                        <div className="font-semibold text-primary">
-                          {formatPrice(item.price)}
+                        
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex justify-between items-start gap-2 mb-2">
+                            <Link 
+                              to={`/product/${item.id}`}
+                              className="font-medium text-sm hover:text-primary transition-colors line-clamp-2"
+                            >
+                              {item.name}
+                            </Link>
+                            <button
+                              onClick={() => removeFromCart(item.id)}
+                              className="text-muted-foreground hover:text-destructive transition-colors shrink-0 -mt-1"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          </div>
+                          
+                          <div className="flex items-center justify-between gap-2">
+                            {/* Quantity controls */}
+                            <div className="flex items-center gap-1">
+                              <button
+                                onClick={() => handleUpdateQuantity(item.id, -1)}
+                                className="w-7 h-7 flex items-center justify-center border rounded hover:bg-muted transition-colors"
+                                disabled={item.quantity <= 1}
+                              >
+                                <Minus className="w-3 h-3" />
+                              </button>
+                              <Input
+                                type="number"
+                                value={item.quantity}
+                                onChange={(e) => handleSetQuantity(item.id, parseInt(e.target.value) || 1)}
+                                className="w-10 h-7 text-center text-sm px-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                min={1}
+                              />
+                              <button
+                                onClick={() => handleUpdateQuantity(item.id, 1)}
+                                className="w-7 h-7 flex items-center justify-center border rounded hover:bg-muted transition-colors"
+                              >
+                                <Plus className="w-3 h-3" />
+                              </button>
+                            </div>
+                            
+                            {/* Price */}
+                            <div className="font-semibold text-primary text-sm whitespace-nowrap">
+                              {formatPrice(item.price)}
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-xs text-muted-foreground">
-                          цена за 1 шт
+                      </div>
+                      
+                      {/* Desktop layout */}
+                      <div className="hidden md:flex items-center gap-4">
+                        {/* Image */}
+                        <Link to={`/product/${item.id}`} className="shrink-0">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-28 h-20 object-cover rounded"
+                          />
+                        </Link>
+
+                        {/* Name */}
+                        <div className="flex-1 min-w-0">
+                          <Link 
+                            to={`/product/${item.id}`}
+                            className="font-medium hover:text-primary transition-colors line-clamp-2"
+                          >
+                            {item.name}
+                          </Link>
                         </div>
-                      </div>
 
-                      {/* Quantity controls */}
-                      <div className="flex items-center gap-2 shrink-0">
+                        {/* Price */}
+                        <div className="text-right shrink-0">
+                          <div className="font-semibold text-primary whitespace-nowrap">
+                            {formatPrice(item.price)}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            цена за 1 шт
+                          </div>
+                        </div>
+
+                        {/* Quantity controls */}
+                        <div className="flex items-center gap-2 shrink-0">
+                          <button
+                            onClick={() => handleUpdateQuantity(item.id, -1)}
+                            className="w-8 h-8 flex items-center justify-center border rounded hover:bg-muted transition-colors"
+                            disabled={item.quantity <= 1}
+                          >
+                            <Minus className="w-4 h-4" />
+                          </button>
+                          <Input
+                            type="number"
+                            value={item.quantity}
+                            onChange={(e) => handleSetQuantity(item.id, parseInt(e.target.value) || 1)}
+                            className="w-14 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            min={1}
+                          />
+                          <button
+                            onClick={() => handleUpdateQuantity(item.id, 1)}
+                            className="w-8 h-8 flex items-center justify-center border rounded hover:bg-muted transition-colors"
+                          >
+                            <Plus className="w-4 h-4" />
+                          </button>
+                        </div>
+
+                        {/* Unit label */}
+                        <div className="text-sm text-muted-foreground shrink-0">
+                          шт
+                        </div>
+
+                        {/* Remove button */}
                         <button
-                          onClick={() => handleUpdateQuantity(item.id, -1)}
-                          className="w-8 h-8 flex items-center justify-center border rounded hover:bg-muted transition-colors"
-                          disabled={item.quantity <= 1}
+                          onClick={() => removeFromCart(item.id)}
+                          className="text-muted-foreground hover:text-destructive transition-colors shrink-0"
                         >
-                          <Minus className="w-4 h-4" />
-                        </button>
-                        <Input
-                          type="number"
-                          value={item.quantity}
-                          onChange={(e) => handleSetQuantity(item.id, parseInt(e.target.value) || 1)}
-                          className="w-14 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                          min={1}
-                        />
-                        <button
-                          onClick={() => handleUpdateQuantity(item.id, 1)}
-                          className="w-8 h-8 flex items-center justify-center border rounded hover:bg-muted transition-colors"
-                        >
-                          <Plus className="w-4 h-4" />
+                          <X className="w-5 h-5" />
                         </button>
                       </div>
-
-                      {/* Unit label */}
-                      <div className="text-sm text-muted-foreground shrink-0 hidden sm:block">
-                        шт
-                      </div>
-
-                      {/* Remove button */}
-                      <button
-                        onClick={() => removeFromCart(item.id)}
-                        className="text-muted-foreground hover:text-destructive transition-colors shrink-0"
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
                     </div>
                   ))}
                 </div>
