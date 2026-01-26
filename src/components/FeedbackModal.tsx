@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { X, Send, Phone, User, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ interface FeedbackModalProps {
   onClose: () => void;
 }
 
-const FeedbackModal = ({ isOpen, onClose }: FeedbackModalProps) => {
+const FeedbackModal = forwardRef<HTMLDivElement, FeedbackModalProps>(({ isOpen, onClose }, ref) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -34,7 +34,7 @@ const FeedbackModal = ({ isOpen, onClose }: FeedbackModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div ref={ref} className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
@@ -128,6 +128,7 @@ const FeedbackModal = ({ isOpen, onClose }: FeedbackModalProps) => {
       </div>
     </div>
   );
-};
+});
+FeedbackModal.displayName = "FeedbackModal";
 
 export default FeedbackModal;
