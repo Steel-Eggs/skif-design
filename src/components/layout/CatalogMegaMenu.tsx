@@ -138,9 +138,9 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
       <div className="bg-card border border-border rounded-2xl shadow-2xl overflow-hidden animate-fade-in" style={{ width: '1000px' }}>
         <div className="flex">
           {/* Left column - Categories */}
-          <div className="w-64 border-r border-border bg-muted/30 flex flex-col">
+          <div className="w-64 border-r border-border bg-muted/30">
             {/* Main categories - scrollable */}
-            <div className="py-3 px-2 flex-1 overflow-y-auto max-h-[420px]">
+            <div className="py-3 px-2 overflow-y-auto max-h-[520px]">
               <div className="space-y-1">
                 {mainCategories.map((category) => {
                   const Icon = category.icon;
