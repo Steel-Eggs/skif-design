@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
@@ -192,6 +192,7 @@ const Checkout = () => {
     
     setCurrentStep(step);
   };
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -216,7 +217,8 @@ const Checkout = () => {
       return;
     }
 
-    toast.success('Заказ успешно оформлен! Мы свяжемся с вами в ближайшее время.');
+    // Navigate to confirmation page
+    navigate('/order-confirmation');
   };
 
   const selectedPaymentMethod = paymentMethods.find(m => m.id === selectedPayment);
