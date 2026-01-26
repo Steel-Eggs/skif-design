@@ -55,15 +55,6 @@ const categories = [
     color: "from-primary to-primary/80",
   },
   {
-    id: "gruzovye",
-    name: "Прицепы для грузов",
-    description: "Надёжные грузовые решения",
-    icon: Package,
-    href: "/catalog/gruzovye",
-    count: 78,
-    color: "from-primary to-primary/80",
-  },
-  {
     id: "furgony",
     name: "Прицепы фургоны",
     description: "Закрытые кузова для защиты груза",
