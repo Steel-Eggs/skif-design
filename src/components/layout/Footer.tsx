@@ -8,7 +8,7 @@ const Footer = () => {
     { name: "Двухосные прицепы", href: "/catalog/dvuhosnye" },
     { name: "Прицепы с крышкой", href: "/catalog/s-kryshkoy" },
     { name: "Прицепы платформа", href: "/catalog/platforma" },
-    { name: "Прицепы для грузов", href: "/catalog/gruzovye" },
+    
     { name: "Прицепы фургоны", href: "/catalog/furgony" },
     { name: "Прицепы для лодок", href: "/catalog/lodki" },
     { name: "Прицепы эвакуаторы", href: "/catalog/evakuatory" },
@@ -33,7 +33,7 @@ const Footer = () => {
               <img src={logo} alt="СКИФ" className="h-20 w-auto" />
             </Link>
             <p className="text-background/70 leading-relaxed">
-              Производство и продажа автомобильных прицепов, фаркопов и комплектующих. Работаем с 2005 года.
+              Продажа автомобильных прицепов, фаркопов и комплектующих. Работаем с 2005 года.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
               {/* VK */}
@@ -133,7 +133,7 @@ const Footer = () => {
                 <Clock className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <div className="text-background/70">
                   <p>Пн-Пт: 9:00-18:00</p>
-                  <p>Сб: 10:00-16:00</p>
+                  <p>Сб-Вс: 10:00-16:00</p>
                 </div>
               </li>
             </ul>

@@ -38,14 +38,6 @@ const categories = [
     count: 32,
   },
   {
-    id: 5,
-    name: "Прицепы для грузов",
-    description: "Надёжные грузовые решения",
-    icon: Truck,
-    href: "/catalog/gruzovye",
-    count: 78,
-  },
-  {
     id: 6,
     name: "Прицепы фургоны",
     description: "Закрытые кузова для грузов",

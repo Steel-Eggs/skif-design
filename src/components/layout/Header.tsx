@@ -93,7 +93,7 @@ const Header = () => {
     { name: "Двухосные прицепы", href: "/catalog/dvuhosnye", icon: "🚙" },
     { name: "Прицепы с крышкой", href: "/catalog/s-kryshkoy", icon: "📦" },
     { name: "Прицепы платформа", href: "/catalog/platforma", icon: "🔲" },
-    { name: "Прицепы для грузов", href: "/catalog/gruzovye", icon: "📦" },
+    
     { name: "Прицепы фургоны", href: "/catalog/furgony", icon: "🚐" },
     { name: "Коммерческие прицепы", href: "/catalog/kommercheskie", icon: "🏪" },
     { name: "Прицепы для мототехники", href: "/catalog/moto", icon: "🏍️" },
@@ -177,9 +177,9 @@ const Header = () => {
               >
                 <Send className="h-5 w-5" />
               </a>
-              <a href="tel:+79129103850" className="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
+              <a href="tel:+79219103850" className="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
                 <Phone className="h-4 w-4" />
-                <span>+7 (912) 910-38-50</span>
+                <span>+7 (921) 910-38-50</span>
               </a>
             </div>
           </div>

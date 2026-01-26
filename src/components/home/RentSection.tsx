@@ -6,7 +6,7 @@ import rentTrailerImage from "@/assets/rent-trailer.jpg";
 const features = [
   { icon: Truck, text: "Прицепы разных типов" },
   { icon: Clock, text: "Гибкие сроки аренды" },
-  { icon: MapPin, text: "Доставка по городу" },
+  { icon: MapPin, text: "Самовывоз" },
   { icon: FileText, text: "Минимум документов" },
 ];
 
@@ -28,7 +28,7 @@ const RentSection = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-sm text-muted-foreground">Стоимость от</div>
-                    <div className="text-2xl font-heading font-bold text-primary">500 ₽/сутки</div>
+                    <div className="text-2xl font-heading font-bold text-primary">800 ₽/сутки</div>
                   </div>
                   <div className="w-12 h-12 rounded-full gradient-accent flex items-center justify-center">
                     <Check className="h-6 w-6 text-accent-foreground" />

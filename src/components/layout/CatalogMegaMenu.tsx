@@ -94,7 +94,7 @@ const mainCategories: Category[] = [
   { id: "dvuhosnye", name: "Двухосные", href: "/catalog/dvuhosnye", icon: Truck },
   { id: "s-kryshkoy", name: "С крышкой", href: "/catalog/s-kryshkoy", icon: Package },
   { id: "platforma", name: "Платформы", href: "/catalog/platforma", icon: Building2 },
-  { id: "gruzovye", name: "Грузовые", href: "/catalog/gruzovye", icon: Truck },
+  
   { id: "furgony", name: "Фургоны", href: "/catalog/furgony", icon: Caravan },
   { id: "kommercheskie", name: "Коммерческие", href: "/catalog/kommercheskie", icon: Building2 },
   { id: "moto", name: "Для мототехники", href: "/catalog/moto", icon: Bike, badge: "Хит", badgeColor: "secondary" },

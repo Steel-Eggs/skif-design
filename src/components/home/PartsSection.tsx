@@ -100,7 +100,7 @@ const PartsSection = () => {
               Запчасти и аксессуары
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Оригинальные комплектующие для прицепов и мототехники
+              Оригинальные комплектующие для прицепов
             </p>
           </div>
           <Link 
