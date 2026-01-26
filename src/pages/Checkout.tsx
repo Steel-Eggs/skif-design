@@ -317,15 +317,6 @@ const Checkout = () => {
                           );
                         })}
 
-                        {/* Selected method info */}
-                        {selectedPaymentMethod && (
-                          <div className="border rounded-lg p-4 ml-auto hidden md:flex items-center gap-3 bg-white">
-                            <selectedPaymentMethod.icon className="w-10 h-10 text-primary" />
-                            <div>
-                              <div className="font-medium">{selectedPaymentMethod.name}</div>
-                            </div>
-                          </div>
-                        )}
                       </div>
 
                       <div className="flex justify-end mt-4">
