@@ -102,11 +102,11 @@ const OrderConfirmation = () => {
                   +7 (812) 642-09-05
                 </a>
                 <a 
-                  href="mailto:info@skif-avto.ru" 
+                  href="mailto:zakaz@skif-avto.ru" 
                   className="inline-flex items-center justify-center gap-2 text-primary font-semibold hover:text-primary/80 transition-colors"
                 >
                   <Mail className="w-4 h-4" />
-                  info@skif-avto.ru
+                  zakaz@skif-avto.ru
                 </a>
               </div>
             </div>

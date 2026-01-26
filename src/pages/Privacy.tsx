@@ -267,7 +267,7 @@ const Privacy = () => {
                 </li>
                 <li>
                   9.3. Все предложения или вопросы по настоящей Политике конфиденциальности следует 
-                  сообщать по адресу: <a href="mailto:info@skif-avto.ru" className="text-primary hover:underline">info@skif-avto.ru</a>
+                  сообщать по адресу: <a href="mailto:zakaz@skif-avto.ru" className="text-primary hover:underline">zakaz@skif-avto.ru</a>
                 </li>
                 <li>
                   9.4. Действующая Политика конфиденциальности размещена на странице по адресу: 
