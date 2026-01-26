@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
 import { 
   X, 
@@ -72,6 +73,7 @@ const Cart = () => {
   const { cartItems, updateQuantity, removeFromCart, cartTotal, cartCount, addToCart } = useCart();
   const [filterText, setFilterText] = useState('');
   const [addedParts, setAddedParts] = useState<number[]>([]);
+  const [needsDelivery, setNeedsDelivery] = useState(false);
 
   const filteredItems = cartItems.filter(item =>
     item.name.toLowerCase().includes(filterText.toLowerCase())
@@ -150,27 +152,46 @@ const Cart = () => {
             <div className="grid lg:grid-cols-3 gap-6">
               {/* Main cart content */}
               <div className="lg:col-span-2 space-y-4">
-                {/* Free shipping progress */}
+                {/* Delivery option */}
                 <div className="bg-gradient-to-r from-secondary/10 to-secondary/5 rounded-lg border border-secondary/30 p-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Truck className="w-5 h-5 text-secondary shrink-0" />
-                    {remainingForFreeShipping > 0 ? (
-                      <span className="text-sm">
-                        До <span className="font-bold text-secondary">бесплатной доставки</span> осталось{' '}
-                        <span className="font-bold">{formatPrice(remainingForFreeShipping)}</span>
-                      </span>
-                    ) : (
-                      <span className="text-sm font-bold text-secondary">
+                  <div className="flex items-center gap-3">
+                    <Checkbox 
+                      id="needs-delivery"
+                      checked={needsDelivery}
+                      onCheckedChange={(checked) => setNeedsDelivery(checked === true)}
+                    />
+                    <label 
+                      htmlFor="needs-delivery" 
+                      className="flex items-center gap-2 cursor-pointer select-none"
+                    >
+                      <Truck className="w-5 h-5 text-secondary shrink-0" />
+                      <span className="text-sm font-medium">Нужна доставка</span>
+                    </label>
+                  </div>
+                  
+                  {needsDelivery && remainingForFreeShipping <= 0 && (
+                    <div className="mt-3 p-3 bg-secondary/10 rounded-lg border border-secondary/30">
+                      <span className="text-sm font-bold text-secondary flex items-center gap-2">
+                        <Check className="w-4 h-4" />
                         🎉 Поздравляем! Доставка по городу бесплатно!
                       </span>
-                    )}
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-                    <div 
-                      className="bg-secondary h-full rounded-full transition-all duration-500"
-                      style={{ width: `${freeShippingProgress}%` }}
-                    />
-                  </div>
+                    </div>
+                  )}
+                  
+                  {needsDelivery && remainingForFreeShipping > 0 && (
+                    <div className="mt-3">
+                      <div className="text-sm mb-2">
+                        До <span className="font-bold text-secondary">бесплатной доставки</span> осталось{' '}
+                        <span className="font-bold whitespace-nowrap">{formatPrice(remainingForFreeShipping)}</span>
+                      </div>
+                      <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+                        <div 
+                          className="bg-secondary h-full rounded-full transition-all duration-500"
+                          style={{ width: `${freeShippingProgress}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Filter and count */}
@@ -353,12 +374,14 @@ const Cart = () => {
                       <span className="text-muted-foreground">Товары ({cartCount})</span>
                       <span>{formatPrice(cartTotal)}</span>
                     </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Доставка</span>
-                      <span className={remainingForFreeShipping === 0 ? 'text-secondary font-medium' : ''}>
-                        {remainingForFreeShipping === 0 ? 'Бесплатно' : 'Рассчитывается'}
-                      </span>
-                    </div>
+                    {needsDelivery && (
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Доставка</span>
+                        <span className={remainingForFreeShipping === 0 ? 'text-secondary font-medium' : 'text-muted-foreground'}>
+                          {remainingForFreeShipping === 0 ? 'Бесплатно' : 'Рассчитывается индивидуально'}
+                        </span>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="border-t pt-4 mb-4">
