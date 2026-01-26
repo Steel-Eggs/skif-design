@@ -17,6 +17,7 @@ import NewsArticle from "./pages/NewsArticle";
 import Contacts from "./pages/Contacts";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import SearchResults from "./pages/SearchResults";
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/search" element={<SearchResults />} />
