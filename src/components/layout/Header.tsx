@@ -6,6 +6,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import CallbackModal from "@/components/CallbackModal";
+import CatalogMegaMenu from "./CatalogMegaMenu";
 import { useFavorites, FAVORITES_UPDATED_EVENT } from "@/hooks/useFavorites";
 import { useCart, CART_UPDATED_EVENT } from "@/hooks/useCart";
 import logo from "@/assets/logo-new.png";
@@ -210,26 +211,11 @@ const Header = () => {
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform ${isCatalogOpen ? 'rotate-180' : ''}`} />
               </button>
               
-              {/* Dropdown Menu */}
-              {isCatalogOpen && (
-                <div className="absolute top-full left-0 pt-2 z-[100]">
-                  <div className="w-72 bg-card border border-border rounded-xl shadow-2xl overflow-hidden animate-fade-in">
-                    <div className="py-2 max-h-[70vh] overflow-y-auto">
-                      {catalogCategories.map((category) => (
-                        <Link
-                          key={category.name}
-                          to={category.href}
-                          className="flex items-center gap-3 px-4 py-2.5 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                          onClick={() => setIsCatalogOpen(false)}
-                        >
-                          <span className="text-lg w-6 text-center">{category.icon}</span>
-                          <span className="font-medium text-sm">{category.name}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
+              {/* Mega Menu */}
+              <CatalogMegaMenu 
+                isOpen={isCatalogOpen} 
+                onClose={() => setIsCatalogOpen(false)} 
+              />
             </div>
 
             <div className="flex items-center gap-1 ml-2">
