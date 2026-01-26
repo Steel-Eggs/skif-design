@@ -138,10 +138,8 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
       <div className="bg-card border border-border rounded-2xl shadow-2xl overflow-hidden animate-fade-in" style={{ width: '1000px' }}>
         <div className="flex">
           {/* Left column - Categories */}
-          <div className="w-64 border-r border-border bg-muted/30 flex flex-col">
-            {/* Main categories - scrollable */}
-            <div className="py-3 px-2 flex-1 overflow-y-auto max-h-[420px]">
-              <div className="space-y-1">
+          <div className="w-56 border-r border-border bg-muted/30 py-3 px-2 overflow-y-auto">
+            <div className="space-y-0.5">
                 {mainCategories.map((category) => {
                   const Icon = category.icon;
                   const isActive = activeCategory === category.id;
@@ -199,7 +197,6 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
                 })}
               </div>
             </div>
-          </div>
 
           {/* Right column - Products preview */}
           <div className="flex-1 p-6">
