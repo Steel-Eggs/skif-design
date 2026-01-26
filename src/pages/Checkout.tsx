@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { Wallet, CreditCard, Banknote, Check, ChevronDown } from 'lucide-react';
+import { Wallet, CreditCard, Banknote, Check, ChevronDown, QrCode, AlertTriangle } from 'lucide-react';
 import { toast } from 'sonner';
 import {
   Breadcrumb,
@@ -37,6 +37,12 @@ const paymentMethods = [
     name: 'Наличными',
     icon: Banknote,
     description: 'Оплата наличными при получении в офисе или курьеру'
+  },
+  {
+    id: 'qr',
+    name: 'По QR-коду',
+    icon: QrCode,
+    description: 'Быстрая оплата по QR-коду через мобильный банк'
   },
   {
     id: 'sberbank',
@@ -217,8 +223,8 @@ const Checkout = () => {
       return;
     }
 
-    // Navigate to confirmation page
-    navigate('/order-confirmation');
+    // Navigate to confirmation page with payment method
+    navigate('/order-confirmation', { state: { paymentMethod: selectedPayment } });
   };
 
   const selectedPaymentMethod = paymentMethods.find(m => m.id === selectedPayment);
@@ -321,6 +327,14 @@ const Checkout = () => {
                   
                   {currentStep === 1 && (
                     <div className="p-4">
+                      {/* Important warning */}
+                      <div className="flex items-center gap-3 bg-amber-50 border-2 border-amber-400 rounded-lg p-4 mb-4">
+                        <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0" />
+                        <p className="text-amber-800 font-semibold text-sm md:text-base">
+                          Перед оплатой товара уточните наличие у менеджера!
+                        </p>
+                      </div>
+                      
                       {/* Payment methods */}
                       <div className="flex flex-wrap gap-4 mb-4">
                         {paymentMethods.map((method) => {

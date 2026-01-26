@@ -1,11 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { CheckCircle, Phone, Mail, FileText, Home, ShoppingBag } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { CheckCircle, Phone, Mail, FileText, Home, ShoppingBag, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import qrPaymentImage from '@/assets/qr-payment.jpg';
+
+interface LocationState {
+  paymentMethod?: string;
+}
 
 const OrderConfirmation = () => {
+  const location = useLocation();
+  const state = location.state as LocationState | null;
+  const paymentMethod = state?.paymentMethod || 'cash';
+  
   // Generate a demo order number
   const orderNumber = `СК-${Date.now().toString().slice(-6)}`;
 
@@ -39,6 +48,28 @@ const OrderConfirmation = () => {
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
               Спасибо за ваш заказ! Наш менеджер свяжется с вами в ближайшее время для подтверждения деталей заказа.
             </p>
+
+            {/* QR Code Payment Block - only show if QR payment selected */}
+            {paymentMethod === 'qr' && (
+              <div className="bg-amber-50 border-2 border-amber-400 rounded-xl p-6 mb-8">
+                <div className="flex flex-col items-center text-center">
+                  <img 
+                    src={qrPaymentImage} 
+                    alt="QR-код для оплаты" 
+                    className="w-48 h-48 object-contain mb-4"
+                  />
+                  <h3 className="font-semibold text-foreground mb-2">
+                    Вы можете сделать оплату по QR-коду
+                  </h3>
+                  <div className="flex items-center gap-2 text-amber-800">
+                    <AlertTriangle className="w-5 h-5 flex-shrink-0" />
+                    <p className="text-sm font-medium">
+                      Перед оплатой товара уточните наличие у менеджера!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* What's next */}
             <div className="bg-muted/50 rounded-xl p-6 mb-8 text-left">
