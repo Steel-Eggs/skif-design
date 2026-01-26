@@ -28,7 +28,9 @@ import mzsaLogo from "@/assets/partners/mzsa.png";
 import sstLogo from "@/assets/partners/sst.png";
 import kurganLogo from "@/assets/partners/kurganskie.png";
 import sputnikLogo from "@/assets/partners/sputnik.png";
-
+import vektorLogo from "@/assets/partners/vektor-new.png";
+import ekspediciaLogo from "@/assets/partners/ekspedicia.png";
+import bagemLogo from "@/assets/partners/bagem.png";
 const milestones = [
   { year: "2004", title: "Основание компании", description: "Начало деятельности в Санкт-Петербурге" },
   { year: "2008", title: "Открытие сервиса", description: "Запуск собственного сервисного центра" },
@@ -143,8 +145,49 @@ const About = () => {
           </div>
         </section>
 
-        {/* Mission Section */}
+        {/* SEO Text Section */}
         <section className="py-16 md:py-24">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <Badge className="mb-6">О нас</Badge>
+              <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
+                <p className="text-lg leading-relaxed">
+                  Компания «СКИФ» основана в январе 2004 года. Основным видом деятельности является продажа и прокат 
+                  высококачественных легковых прицепов различного назначения, как новых, так и бывших в употреблении, 
+                  реализация и установка фаркопов для всех моделей автомобилей и полное техническое обслуживание прицепной техники.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  ООО «СКИФ» является официальным торговым представителем большинства ведущих производителей России. 
+                  Сотрудничество с обширным рядом заводов-производителей позволяет нам обеспечивать самый широкий ценовой 
+                  диапазон на рынках Санкт-Петербурга и Ленинградской области.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Внушительный модельный ряд прицепов и более тысячи наименований аксессуаров и запчастей позволяет нам 
+                  удовлетворить любые потребности наших клиентов. Среди нашей продукции представлены прицепы для общих грузов, 
+                  строительных материалов, мототехники, лодок и катеров, а также автовозы и торговые прицепы собственной марки.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Наши опытные менеджеры придерживаются высоких стандартов обслуживания клиентов. Вы гарантированно получите 
+                  полную и технически грамотную консультацию по каждому интересующему продукту, получите ответы на любые вопросы, 
+                  связанные с легковыми автоприцепами, вне зависимости от того, являетесь ли Вы нашим клиентом или нет.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Удобство расчетов обеспечивается различными способами оплаты: наличный и безналичный расчет (по карте или по счету 
+                  от организации), банковское кредитование на сумму до 300 т.р., программа Трейд-Ин и регулярные акции на прицепы 
+                  старше одного года.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  С 2015 года в компании запущена программа «СКИФ-клуб», которая позволяет каждому нашему клиенту получать бесплатное 
+                  техническое обслуживание прицепа на протяжении всего срока его эксплуатации, участвовать в акциях и приобретать 
+                  запчасти и аксессуары с гарантированной скидкой.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mission Section */}
+        <section className="py-16 md:py-24 bg-muted/30">
           <div className="container">
             <div className="max-w-4xl mx-auto text-center mb-16">
               <Badge className="mb-6">Наша миссия</Badge>
@@ -236,19 +279,22 @@ const About = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
               {[
                 { logo: mzsaLogo, name: "МЗСА" },
                 { logo: sstLogo, name: "ССТ" },
                 { logo: kurganLogo, name: "Курганские прицепы" },
-                { logo: sputnikLogo, name: "Спутник" }
+                { logo: sputnikLogo, name: "Спутник" },
+                { logo: vektorLogo, name: "Вектор" },
+                { logo: ekspediciaLogo, name: "Экспедиция" },
+                { logo: bagemLogo, name: "Багем" }
               ].map((partner) => (
                 <Card key={partner.name} className="hover:shadow-lg transition-all">
-                  <CardContent className="p-8 flex items-center justify-center">
+                  <CardContent className="p-6 flex items-center justify-center h-24">
                     <img 
                       src={partner.logo} 
                       alt={partner.name}
-                      className="h-16 md:h-20 object-contain grayscale hover:grayscale-0 transition-all"
+                      className="h-14 md:h-16 object-contain grayscale hover:grayscale-0 transition-all"
                     />
                   </CardContent>
                 </Card>
