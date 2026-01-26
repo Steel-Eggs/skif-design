@@ -300,7 +300,7 @@ const Checkout = () => {
                               key={method.id}
                               type="button"
                               onClick={() => setSelectedPayment(method.id)}
-                              className={`relative p-4 border-2 rounded-lg flex flex-col items-center justify-center gap-2 w-28 h-24 transition-colors ${
+                              className={`relative p-4 border-2 rounded-lg flex flex-col items-center justify-center gap-2 min-w-[120px] w-auto h-auto min-h-[96px] transition-colors ${
                                 isSelected
                                   ? 'border-primary bg-primary/5'
                                   : 'border-border bg-white hover:border-primary/50'
@@ -311,8 +311,8 @@ const Checkout = () => {
                                   <Check className="w-3 h-3 text-white" />
                                 </div>
                               )}
-                              <Icon className="w-8 h-8 text-primary" />
-                              <span className="text-xs text-center leading-tight line-clamp-2">{method.name}</span>
+                              <Icon className="w-8 h-8 text-primary flex-shrink-0" />
+                              <span className="text-xs text-center leading-tight whitespace-normal px-1">{method.name}</span>
                             </button>
                           );
                         })}
