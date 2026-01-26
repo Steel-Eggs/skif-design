@@ -66,6 +66,7 @@ const Checkout = () => {
   });
   const [agreePrivacy, setAgreePrivacy] = useState(false);
   const [agreeCall, setAgreeCall] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   
   const [stepStatuses, setStepStatuses] = useState<Record<number, StepStatus>>({
     1: 'pending',
@@ -122,14 +123,42 @@ const Checkout = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email.trim());
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    // Check if phone has 11 digits (Russian format)
+    const digits = phone.replace(/\D/g, '');
+    return digits.length === 11;
+  };
+
   const validateStep1 = () => {
     return selectedPayment !== '';
   };
 
   const validateStep2 = () => {
-    return formData.name.trim() !== '' && 
-           formData.email.trim() !== '' && 
-           formData.phone.trim() !== '';
+    const errors: Record<string, string> = {};
+    
+    if (!formData.name.trim()) {
+      errors.name = 'Введите имя';
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'Введите e-mail';
+    } else if (!validateEmail(formData.email)) {
+      errors.email = 'Некорректный e-mail';
+    }
+    
+    if (!formData.phone.trim()) {
+      errors.phone = 'Введите телефон';
+    } else if (!validatePhone(formData.phone)) {
+      errors.phone = 'Введите полный номер телефона';
+    }
+    
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const goToStep = (step: number) => {
@@ -383,8 +412,11 @@ const Checkout = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="mt-1"
+                          className={`mt-1 ${fieldErrors.email ? 'border-destructive' : ''}`}
                         />
+                        {fieldErrors.email && (
+                          <p className="text-sm text-destructive mt-1">{fieldErrors.email}</p>
+                        )}
                       </div>
 
                       <div>
@@ -400,8 +432,11 @@ const Checkout = () => {
                           onFocus={handlePhoneFocus}
                           placeholder="+7 (___) ___-__-__"
                           required
-                          className="mt-1"
+                          className={`mt-1 ${fieldErrors.phone ? 'border-destructive' : ''}`}
                         />
+                        {fieldErrors.phone && (
+                          <p className="text-sm text-destructive mt-1">{fieldErrors.phone}</p>
+                        )}
                       </div>
 
                       <div>
