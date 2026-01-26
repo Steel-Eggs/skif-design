@@ -532,11 +532,11 @@ const Cart = () => {
                 <div className="text-center p-3 bg-muted/30 rounded-lg">
                   <p className="text-xs text-muted-foreground mb-2">Нужна помощь с заказом?</p>
                   <a 
-                    href="tel:+78129991234" 
+                    href="tel:88002001636" 
                     className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
                   >
                     <Phone className="w-4 h-4" />
-                    +7 (812) 999-12-34
+                    8 800 200-16-36
                   </a>
                 </div>
               </div>
