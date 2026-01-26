@@ -202,7 +202,7 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
           </div>
 
           {/* Right column - Products preview */}
-          <div className="flex-1 p-6">
+          <div className="flex-1 p-6 pb-8">
             {/* Category header */}
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
