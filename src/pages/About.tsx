@@ -31,6 +31,7 @@ import sputnikLogo from "@/assets/partners/sputnik.png";
 import vektorLogo from "@/assets/partners/vektor-new.png";
 import ekspediciaLogo from "@/assets/partners/ekspedicia.png";
 import bagemLogo from "@/assets/partners/bagem.png";
+import clubCardImage from "@/assets/club-card.png";
 const milestones = [
   { year: "2004", title: "Основание компании", description: "Начало деятельности в Санкт-Петербурге" },
   { year: "2008", title: "Открытие сервиса", description: "Запуск собственного сервисного центра" },
@@ -145,46 +146,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* SEO Text Section */}
-        <section className="py-16 md:py-24">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              <Badge className="mb-6">О нас</Badge>
-              <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-                <p className="text-lg leading-relaxed">
-                  Компания «СКИФ» основана в январе 2004 года. Основным видом деятельности является продажа и прокат 
-                  высококачественных легковых прицепов различного назначения, как новых, так и бывших в употреблении, 
-                  реализация и установка фаркопов для всех моделей автомобилей и полное техническое обслуживание прицепной техники.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  ООО «СКИФ» является официальным торговым представителем большинства ведущих производителей России. 
-                  Сотрудничество с обширным рядом заводов-производителей позволяет нам обеспечивать самый широкий ценовой 
-                  диапазон на рынках Санкт-Петербурга и Ленинградской области.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  Внушительный модельный ряд прицепов и более тысячи наименований аксессуаров и запчастей позволяет нам 
-                  удовлетворить любые потребности наших клиентов. Среди нашей продукции представлены прицепы для общих грузов, 
-                  строительных материалов, мототехники, лодок и катеров, а также автовозы и торговые прицепы собственной марки.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  Наши опытные менеджеры придерживаются высоких стандартов обслуживания клиентов. Вы гарантированно получите 
-                  полную и технически грамотную консультацию по каждому интересующему продукту, получите ответы на любые вопросы, 
-                  связанные с легковыми автоприцепами, вне зависимости от того, являетесь ли Вы нашим клиентом или нет.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  Удобство расчетов обеспечивается различными способами оплаты: наличный и безналичный расчет (по карте или по счету 
-                  от организации), банковское кредитование на сумму до 300 т.р., программа Трейд-Ин и регулярные акции на прицепы 
-                  старше одного года.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  С 2015 года в компании запущена программа «СКИФ-клуб», которая позволяет каждому нашему клиенту получать бесплатное 
-                  техническое обслуживание прицепа на протяжении всего срока его эксплуатации, участвовать в акциях и приобретать 
-                  запчасти и аксессуары с гарантированной скидкой.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Mission Section */}
         <section className="py-16 md:py-24 bg-muted/30">
@@ -376,38 +337,60 @@ const About = () => {
                 </Link>
               </div>
               
-              <Card className="bg-white/10 backdrop-blur border-white/20">
-                <CardContent className="p-8">
-                  <div className="text-center">
-                    <div className="w-24 h-24 rounded-full gradient-accent flex items-center justify-center mx-auto mb-6">
-                      <Heart className="h-12 w-12 text-accent-foreground" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                      Станьте частью клуба
-                    </h3>
-                    <p className="text-white/80 mb-6">
-                      Присоединяйтесь к тысячам довольных клиентов, которые уже оценили преимущества 
-                      программы СКИФ-Клуб
-                    </p>
-                    <div className="flex items-center justify-center gap-8">
-                      <div className="text-center">
-                        <div className="text-3xl font-black text-white">10 000+</div>
-                        <div className="text-white/60 text-sm">участников</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-black text-white">∞</div>
-                        <div className="text-white/60 text-sm">обслуживание</div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="flex items-center justify-center">
+                <img 
+                  src={clubCardImage} 
+                  alt="Клубная карта СКИФ-Клуб - 5% скидка навсегда"
+                  className="max-w-md w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SEO Text Section - moved to bottom */}
+        <section className="py-16 md:py-24">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <Badge className="mb-6">О компании</Badge>
+              <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
+                <p className="text-lg leading-relaxed">
+                  Компания «СКИФ» основана в январе 2004 года. Основным видом деятельности является продажа и прокат 
+                  высококачественных легковых прицепов различного назначения, как новых, так и бывших в употреблении, 
+                  реализация и установка фаркопов для всех моделей автомобилей и полное техническое обслуживание прицепной техники.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  ООО «СКИФ» является официальным торговым представителем большинства ведущих производителей России. 
+                  Сотрудничество с обширным рядом заводов-производителей позволяет нам обеспечивать самый широкий ценовой 
+                  диапазон на рынках Санкт-Петербурга и Ленинградской области.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Внушительный модельный ряд прицепов и более тысячи наименований аксессуаров и запчастей позволяет нам 
+                  удовлетворить любые потребности наших клиентов. Среди нашей продукции представлены прицепы для общих грузов, 
+                  строительных материалов, мототехники, лодок и катеров, а также автовозы и торговые прицепы собственной марки.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Наши опытные менеджеры придерживаются высоких стандартов обслуживания клиентов. Вы гарантированно получите 
+                  полную и технически грамотную консультацию по каждому интересующему продукту, получите ответы на любые вопросы, 
+                  связанные с легковыми автоприцепами, вне зависимости от того, являетесь ли Вы нашим клиентом или нет.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Удобство расчетов обеспечивается различными способами оплаты: наличный и безналичный расчет (по карте или по счету 
+                  от организации), банковское кредитование на сумму до 300 т.р., программа Трейд-Ин и регулярные акции на прицепы 
+                  старше одного года.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  С 2015 года в компании запущена программа «СКИФ-клуб», которая позволяет каждому нашему клиенту получать бесплатное 
+                  техническое обслуживание прицепа на протяжении всего срока его эксплуатации, участвовать в акциях и приобретать 
+                  запчасти и аксессуары с гарантированной скидкой.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:py-24 bg-muted/30">
           <div className="container">
             <Card className="gradient-primary border-0 overflow-hidden">
               <CardContent className="p-8 md:p-12 text-center">
