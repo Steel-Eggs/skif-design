@@ -66,13 +66,13 @@ const mockProduct = {
     { name: "Погрузочная высота", value: "600 мм" },
     { name: "Назначение", value: "Для квадроцикла" },
     { name: "Производитель", value: "ССТ" },
-    { name: "Гарантия", value: "24 месяца" },
+    { name: "Гарантия", value: "12 месяцев" },
   ],
   videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   videoTitle: "Самый красивый и практичный прицеп для квадроцикла и мотоблока!",
   features: [
     "Горячее цинкование",
-    "Гарантия 2 года",
+    "Гарантия 12 мес",
     "Документы для ГИБДД",
     "Рессорная подвеска",
   ],
@@ -402,7 +402,7 @@ const Product = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground text-[10px] md:text-sm leading-tight">Доставка</p>
-                      <p className="text-[8px] md:text-xs text-muted-foreground hidden md:block">По всей России</p>
+                      <p className="text-[8px] md:text-xs text-muted-foreground hidden md:block">Рассчитывается индивидуально</p>
                     </div>
                   </div>
                   <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border text-center md:text-left">
@@ -411,7 +411,7 @@ const Product = () => {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground text-[10px] md:text-sm leading-tight">Гарантия</p>
-                      <p className="text-[8px] md:text-xs text-muted-foreground hidden md:block">24 месяца</p>
+                      <p className="text-[8px] md:text-xs text-muted-foreground hidden md:block">12 месяцев</p>
                     </div>
                   </div>
                   <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 p-2 md:p-4 rounded-lg md:rounded-xl bg-card border border-border text-center md:text-left">
