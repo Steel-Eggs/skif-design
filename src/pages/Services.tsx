@@ -20,6 +20,14 @@ import towbarImg from "@/assets/services/towbar.jpg";
 import rentalImg from "@/assets/services/rental.jpg";
 import tuningImg from "@/assets/services/tuning.jpg";
 
+// Rental gallery images
+import rentalGallery1 from "@/assets/services/rental-gallery-1.jpg";
+import rentalGallery2 from "@/assets/services/rental-gallery-2.jpg";
+import rentalGallery3 from "@/assets/services/rental-gallery-3.jpg";
+import rentalGallery4 from "@/assets/services/rental-gallery-4.jpg";
+import rentalGallery5 from "@/assets/services/rental-gallery-5.jpg";
+import rentalGallery6 from "@/assets/services/rental-gallery-6.jpg";
+
 // Services data
 export const servicesData = [
   {
@@ -359,6 +367,7 @@ export const servicesData = [
     `,
     image: rentalImg,
     icon: Calendar,
+    gallery: [rentalGallery1, rentalGallery2, rentalGallery3, rentalGallery4, rentalGallery5, rentalGallery6],
     features: [
       "От 400 ₽/сутки",
       "Залог 5 000 ₽",
