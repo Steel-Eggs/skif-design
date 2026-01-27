@@ -24,6 +24,7 @@ const Header = () => {
   const [displayFavCount, setDisplayFavCount] = useState(0);
   const [displayCartCount, setDisplayCartCount] = useState(0);
   const mobileSearchInputRef = useRef<HTMLInputElement>(null);
+  const mobileSearchContainerRef = useRef<HTMLDivElement>(null);
 
   // Sync favorites count from hook
   useEffect(() => {
@@ -129,7 +130,10 @@ const Header = () => {
       if (catalogRef.current && !catalogRef.current.contains(event.target as Node)) {
         setIsCatalogOpen(false);
       }
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      // Check both desktop and mobile search containers
+      const isInsideDesktopSearch = searchRef.current && searchRef.current.contains(event.target as Node);
+      const isInsideMobileSearch = mobileSearchContainerRef.current && mobileSearchContainerRef.current.contains(event.target as Node);
+      if (!isInsideDesktopSearch && !isInsideMobileSearch) {
         setIsSearchOpen(false);
       }
     };
@@ -362,8 +366,8 @@ const Header = () => {
         {/* Mobile search */}
         {isSearchOpen && (
           <div 
+            ref={mobileSearchContainerRef}
             className="md:hidden border-t border-border p-4 animate-fade-in"
-            onClick={(e) => e.stopPropagation()}
           >
             <form onSubmit={handleSearch} className="relative">
               <Input
