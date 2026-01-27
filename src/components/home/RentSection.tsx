@@ -55,18 +55,18 @@ const RentSection = () => {
             </p>
 
             {/* Features grid */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4 mb-8">
               {features.map((feature, index) => {
                 const IconComponent = feature.icon;
                 return (
                   <div
                     key={index}
-                    className="flex items-center gap-3 bg-card p-4 rounded-xl border border-border hover:border-primary/30 transition-colors"
+                    className="flex items-center gap-2 sm:gap-3 bg-card p-3 sm:p-4 rounded-xl border border-border hover:border-primary/30 transition-colors min-w-0"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <IconComponent className="h-5 w-5 text-primary" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                     </div>
-                    <span className="font-medium text-sm">{feature.text}</span>
+                    <span className="font-medium text-xs sm:text-sm break-words">{feature.text}</span>
                   </div>
                 );
               })}
