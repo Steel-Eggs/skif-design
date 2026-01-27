@@ -133,8 +133,8 @@ const ContactsSection = () => {
                   </div>
                   <h3 className="font-heading font-bold text-foreground mb-2">Режим работы</h3>
                   <div className="text-foreground text-sm sm:text-base">
-                    <p>Пн-Пт: 9:00 - 18:00</p>
-                    <p>Сб: 10:00 - 16:00</p>
+                    <p>9:00 - 18:00</p>
+                    <p className="text-primary font-semibold">БЕЗ ВЫХОДНЫХ</p>
                   </div>
                 </CardContent>
               </Card>

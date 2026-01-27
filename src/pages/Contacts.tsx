@@ -51,7 +51,7 @@ const offices = [
     address: "г. Санкт-Петербург, ул. Ольги Берггольц, 38-А",
     phone: "+7 (921) 910-38-50",
     email: "zakaz@skif-avto.ru",
-    hours: "Пн-Пт: 9:00 - 18:00, Сб-Вс: 10:00 - 16:00",
+    hours: "9:00 - 18:00, без выходных",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUOl",
     coords: [59.874889, 30.458669],
   },
@@ -62,7 +62,7 @@ const offices = [
     address: "г. Санкт-Петербург, 1-й Верхний переулок, напротив дома 2А",
     phone: "+7 (921) 961-35-93",
     email: "parnas@skif-avto.ru",
-    hours: "Пн-Пт: 9:00 - 18:00, Сб-Вс: 10:00 - 16:00",
+    hours: "9:00 - 18:00, без выходных",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUar",
     coords: [60.065486, 30.334189],
   },
@@ -223,8 +223,8 @@ const Contacts = () => {
                     <Clock className="h-6 w-6 text-muted-foreground" />
                   </div>
                   <h3 className="font-bold text-foreground mb-2">Режим работы</h3>
-                  <span className="text-foreground block">Пн-Пт: 9:00 - 18:00</span>
-                  <span className="text-muted-foreground text-sm">Сб-Вс: 10:00 - 16:00</span>
+                  <span className="text-foreground block">9:00 - 18:00</span>
+                  <span className="text-primary font-semibold text-sm">БЕЗ ВЫХОДНЫХ</span>
                 </CardContent>
               </Card>
             </div>
