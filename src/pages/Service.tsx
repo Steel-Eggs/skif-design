@@ -109,6 +109,31 @@ const Service = () => {
           </div>
         </section>
 
+        {/* Gallery (if available) */}
+        {service.gallery && service.gallery.length > 0 && (
+          <section className="py-8 md:py-12 bg-muted/30">
+            <div className="container">
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
+                Наши прицепы в аренду
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {service.gallery.map((image, idx) => (
+                  <div 
+                    key={idx}
+                    className="aspect-[4/3] rounded-xl overflow-hidden bg-muted"
+                  >
+                    <img 
+                      src={image} 
+                      alt={`${service.name} - фото ${idx + 1}`}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Content */}
         <section className="py-12 md:py-16">
           <div className="container">
