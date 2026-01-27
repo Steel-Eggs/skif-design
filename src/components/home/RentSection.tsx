@@ -72,7 +72,7 @@ const RentSection = () => {
               })}
             </div>
 
-            <Link to="/rent">
+            <Link to="/services/rental">
               <Button
                 size="lg"
                 className="gradient-primary text-primary-foreground font-bold px-8 rounded-xl hover:opacity-90 transition-opacity"

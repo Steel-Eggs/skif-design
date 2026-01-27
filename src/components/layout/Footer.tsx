@@ -145,7 +145,7 @@ const Footer = () => {
       <div className="border-t border-background/10">
         <div className="container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-background/60 text-sm text-center md:text-left">
-            © 2026 СКИФ. Все права защищены.
+            © 2004 СКИФ. Все права защищены.
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm text-background/60">
             <Link to="/privacy" className="hover:text-primary transition-colors">
