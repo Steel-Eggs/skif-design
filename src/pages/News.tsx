@@ -188,103 +188,100 @@ const News = () => {
           <div className="container">
             {/* Featured article */}
             {featuredNews && (
-              <Card className="mb-8 group overflow-hidden hover:shadow-xl transition-all duration-300">
-                <CardContent className="p-0">
-                  <div className="grid md:grid-cols-2">
-                    <div className="aspect-video md:aspect-auto overflow-hidden">
-                      <img 
-                        src={featuredNews.image} 
-                        alt={featuredNews.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
-                      <Badge className="w-fit mb-4 gradient-accent text-accent-foreground">
-                        {featuredNews.category}
-                      </Badge>
-                      <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
-                        <Link to={`/news/${featuredNews.slug}`}>
+              <Link to={`/news/${featuredNews.slug}`} className="block">
+                <Card className="mb-8 group overflow-hidden hover:shadow-xl transition-all duration-300">
+                  <CardContent className="p-0">
+                    <div className="grid md:grid-cols-2">
+                      <div className="aspect-video md:aspect-auto overflow-hidden">
+                        <img 
+                          src={featuredNews.image} 
+                          alt={featuredNews.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                      <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+                        <Badge className="w-fit mb-4 gradient-accent text-accent-foreground">
+                          {featuredNews.category}
+                        </Badge>
+                        <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                           {featuredNews.title}
-                        </Link>
-                      </h2>
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
-                        {featuredNews.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between mt-auto">
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4" />
-                            {featuredNews.date}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Eye className="h-4 w-4" />
-                            {featuredNews.views}
+                        </h2>
+                        <p className="text-muted-foreground mb-6 leading-relaxed">
+                          {featuredNews.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between mt-auto">
+                          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                            <span className="flex items-center gap-1">
+                              <Calendar className="h-4 w-4" />
+                              {featuredNews.date}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Eye className="h-4 w-4" />
+                              {featuredNews.views}
+                            </span>
+                          </div>
+                          <span className="text-primary font-semibold inline-flex items-center gap-1">
+                            Читать далее
+                            <ArrowRight className="h-4 w-4" />
                           </span>
                         </div>
-                        <Link 
-                          to={`/news/${featuredNews.slug}`}
-                          className="text-primary font-semibold hover:underline inline-flex items-center gap-1"
-                        >
-                          Читать далее
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </Link>
             )}
 
             {/* News grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {regularNews.map((item, index) => (
-                <Card 
+                <Link 
                   key={item.id}
-                  className="group overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in"
-                  style={{ animationDelay: `${index * 0.05}s` }}
+                  to={`/news/${item.slug}`}
+                  className="block"
                 >
-                  <CardContent className="p-0">
-                    <div className="aspect-video overflow-hidden">
-                      <img 
-                        src={item.image} 
-                        alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <Badge variant="outline" className="mb-3 text-xs">
-                        <Tag className="h-3 w-3 mr-1" />
-                        {item.category}
-                      </Badge>
-                      <h3 className="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                        <Link to={`/news/${item.slug}`}>
+                  <Card 
+                    className="group overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in h-full"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <CardContent className="p-0">
+                      <div className="aspect-video overflow-hidden">
+                        <img 
+                          src={item.image} 
+                          alt={item.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <Badge variant="outline" className="mb-3 text-xs">
+                          <Tag className="h-3 w-3 mr-1" />
+                          {item.category}
+                        </Badge>
+                        <h3 className="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                           {item.title}
-                        </Link>
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                        {item.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground">
-                        <div className="flex items-center gap-3">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
-                            {item.date}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Eye className="h-3 w-3" />
-                            {item.views}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                          {item.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between text-xs text-muted-foreground">
+                          <div className="flex items-center gap-3">
+                            <span className="flex items-center gap-1">
+                              <Calendar className="h-3 w-3" />
+                              {item.date}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Eye className="h-3 w-3" />
+                              {item.views}
+                            </span>
+                          </div>
+                          <span className="text-primary font-medium">
+                            Читать
                           </span>
                         </div>
-                        <Link 
-                          to={`/news/${item.slug}`}
-                          className="text-primary font-medium hover:underline"
-                        >
-                          Читать
-                        </Link>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
 
