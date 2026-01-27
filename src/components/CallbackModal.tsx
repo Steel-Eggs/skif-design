@@ -9,19 +9,25 @@ interface CallbackModalProps {
   onClose: () => void;
 }
 
+interface FormErrors {
+  name?: string;
+  phone?: string;
+}
+
 const formatPhone = (value: string): string => {
   const digits = value.replace(/\D/g, '').slice(0, 11);
   if (digits.length === 0) return '';
-  if (digits.length <= 1) return `+${digits}`;
-  if (digits.length <= 4) return `+${digits[0]} (${digits.slice(1)}`;
-  if (digits.length <= 7) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4)}`;
-  if (digits.length <= 9) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
-  return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
+  if (digits.length <= 1) return `+7`;
+  if (digits.length <= 4) return `+7 (${digits.slice(1)}`;
+  if (digits.length <= 7) return `+7 (${digits.slice(1, 4)}) ${digits.slice(4)}`;
+  if (digits.length <= 9) return `+7 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+  return `+7 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
 };
 
 const CallbackModal = ({ isOpen, onClose }: CallbackModalProps) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,11 +35,26 @@ const CallbackModal = ({ isOpen, onClose }: CallbackModalProps) => {
     setPhone(formatted);
   };
 
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!name.trim()) {
+      newErrors.name = "Введите ваше имя";
+    }
+
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (phoneDigits.length < 11) {
+      newErrors.phone = "Введите корректный номер телефона";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!name.trim() || !phone.trim()) {
-      toast.error("Пожалуйста, заполните все поля");
+    if (!validateForm()) {
       return;
     }
     
@@ -45,6 +66,7 @@ const CallbackModal = ({ isOpen, onClose }: CallbackModalProps) => {
     toast.success("Заявка отправлена! Мы перезвоним вам в ближайшее время.");
     setName("");
     setPhone("");
+    setErrors({});
     setIsSubmitting(false);
     onClose();
   };
@@ -86,24 +108,30 @@ const CallbackModal = ({ isOpen, onClose }: CallbackModalProps) => {
           
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
+            <div className="space-y-1">
               <Input
                 type="text"
-                placeholder="Ваше имя"
+                placeholder="Ваше имя *"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="h-12 rounded-xl bg-muted border-border"
+                className={`h-12 rounded-xl bg-muted border-border ${errors.name ? "border-destructive" : ""}`}
               />
+              {errors.name && (
+                <span className="text-destructive text-sm">{errors.name}</span>
+              )}
             </div>
             
-            <div>
+            <div className="space-y-1">
               <Input
                 type="tel"
-                placeholder="+7 (___) ___-__-__"
+                placeholder="+7 (___) ___-__-__ *"
                 value={phone}
                 onChange={handlePhoneChange}
-                className="h-12 rounded-xl bg-muted border-border"
+                className={`h-12 rounded-xl bg-muted border-border ${errors.phone ? "border-destructive" : ""}`}
               />
+              {errors.phone && (
+                <span className="text-destructive text-sm">{errors.phone}</span>
+              )}
             </div>
             
             <Button
