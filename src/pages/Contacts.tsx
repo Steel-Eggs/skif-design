@@ -50,6 +50,7 @@ const offices = [
     description: "Основная площадка: склад, сборка, офис",
     address: "г. Санкт-Петербург, ул. Ольги Берггольц, 38-А",
     phone: "+7 (921) 910-38-50",
+    phone2: "+7 (967) 433-82-89",
     email: "zakaz@skif-avto.ru",
     hours: "9:00 - 18:00, без выходных",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUOl",
@@ -61,6 +62,7 @@ const offices = [
     description: "Дополнительная площадка продаж",
     address: "г. Санкт-Петербург, 1-й Верхний переулок, напротив дома 2А",
     phone: "+7 (921) 961-35-93",
+    phone2: "+7 (967) 433-82-89",
     email: "parnas@skif-avto.ru",
     hours: "9:00 - 18:00, без выходных",
     mapUrl: "https://yandex.ru/maps/-/CHQeZUar",
@@ -279,11 +281,18 @@ const Contacts = () => {
                             <MapPin className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                             <span className="text-foreground">{office.address}</span>
                           </div>
-                          <div className="flex items-center gap-3">
-                            <Phone className="h-5 w-5 text-primary shrink-0" />
-                            <a href={`tel:${office.phone.replace(/\D/g, '')}`} className="text-foreground hover:text-primary transition-colors font-medium">
-                              {office.phone}
-                            </a>
+                          <div className="flex items-start gap-3">
+                            <Phone className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                            <div className="flex flex-col">
+                              <a href={`tel:${office.phone.replace(/\D/g, '')}`} className="text-foreground hover:text-primary transition-colors font-medium">
+                                {office.phone}
+                              </a>
+                              {office.phone2 && (
+                                <a href={`tel:${office.phone2.replace(/\D/g, '')}`} className="text-foreground hover:text-primary transition-colors font-medium">
+                                  {office.phone2}
+                                </a>
+                              )}
+                            </div>
                           </div>
                           <div className="flex items-center gap-3">
                             <Mail className="h-5 w-5 text-primary shrink-0" />
