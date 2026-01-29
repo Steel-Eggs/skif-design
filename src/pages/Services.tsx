@@ -312,7 +312,7 @@ export const servicesData = [
     id: "rental",
     slug: "rental",
     name: "Аренда прицепов",
-    shortDescription: "Выгодный прокат легковых прицепов и прицепов для лодок в Санкт-Петербурге — от 400 ₽/сутки.",
+    shortDescription: "Выгодный прокат легковых прицепов и прицепов для лодок в Санкт-Петербурге — от 800 ₽/сутки.",
     description: `
       <p class="lead">Компания <strong>СКИФ</strong> предлагает услугу <strong>аренды легковых прицепов</strong> для жителей Санкт-Петербурга и Ленинградской области.</p>
       
@@ -325,18 +325,18 @@ export const servicesData = [
         <p>Чем дольше срок аренды — тем выгоднее цена за сутки:</p>
         <ul>
           <li><strong>1–3 дня:</strong> от 800 до 1 200 ₽/сутки</li>
-          <li><strong>3–7 дней:</strong> от 600 до 1 000 ₽/сутки</li>
-          <li><strong>8–14 дней:</strong> от 500 до 900 ₽/сутки</li>
-          <li><strong>15+ дней:</strong> от 400 до 800 ₽/сутки</li>
+          <li><strong>3–7 дней:</strong> от 700 до 1 000 ₽/сутки</li>
+          <li><strong>8–14 дней:</strong> от 600 до 900 ₽/сутки</li>
+          <li><strong>15+ дней:</strong> от 500 до 800 ₽/сутки</li>
         </ul>
       </div>
       
       <div class="service-block">
         <h3>🚛 Доступные модели</h3>
         <ul>
-          <li><strong>Экспедиция</strong> (2470×1225×400) — грузоподъёмность 500 кг</li>
-          <li><strong>МЗСА 817702</strong> (2050×1230×290) — грузоподъёмность 570 кг</li>
-          <li><strong>МЗСА 817711</strong> (2450×1230×290) с тентом — грузоподъёмность 530 кг</li>
+          <li><strong>Экспедиция</strong> (2000×1200×300) — грузоподъёмность 500 кг</li>
+          <li><strong>МЗСА 817703</strong> (2700×1200×300) — грузоподъёмность 570 кг</li>
+          <li><strong>МЗСА 817701</strong> (2700×1500×300) — грузоподъёмность 530 кг</li>
           <li><strong>ЛАВ-81012А</strong> (3500×1500×240) с тентом — грузоподъёмность 600 кг</li>
           <li><strong>Спутник АКВА 40</strong> — для перевозки лодок до 4,5 м</li>
         </ul>
@@ -369,7 +369,7 @@ export const servicesData = [
     icon: Calendar,
     gallery: [rentalGallery1, rentalGallery2, rentalGallery3, rentalGallery4, rentalGallery5, rentalGallery6],
     features: [
-      "От 400 ₽/сутки",
+      "От 800 ₽/сутки",
       "Залог 5 000 ₽",
       "Лодочные прицепы",
       "Тенты в наличии",

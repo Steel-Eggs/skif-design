@@ -66,6 +66,31 @@ const compatibleParts = [
     price: 3200,
     image: stupica,
   },
+  {
+    id: 205,
+    name: "Подшипник ступицы",
+    price: 1100,
+    image: stupica,
+  },
+  {
+    id: 206,
+    name: "Трос лебёдки 6м",
+    price: 1450,
+    oldPrice: 1700,
+    image: roliki,
+  },
+  {
+    id: 207,
+    name: "Фонарь задний LED",
+    price: 1890,
+    image: rozetka,
+  },
+  {
+    id: 208,
+    name: "Опорное колесо",
+    price: 2650,
+    image: amortizator,
+  },
 ];
 
 const Cart = () => {
