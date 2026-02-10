@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Способы оплаты — СКИФ</title>
+  <link rel="stylesheet" href="/bitrix/css/base.css">
+  <link rel="stylesheet" href="/bitrix/css/header.css">
+  <link rel="stylesheet" href="/bitrix/css/footer.css">
+</head>
+<body>
+
+<!-- HEADER: см. index.html -->
+
+<main>
+  <!-- Hero -->
+  <section class="relative py-16 md:py-24 gradient-primary overflow-hidden">
+    <div class="container relative z-10">
+      <nav class="flex items-center gap-2 text-primary-foreground/70 text-sm mb-8">
+        <a href="/" class="hover:text-primary-foreground">Главная</a>
+        <span>/</span>
+        <span class="text-primary-foreground">Оплата</span>
+      </nav>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-primary-foreground mb-6">Способы оплаты</h1>
+      <p class="text-xl text-primary-foreground/80 max-w-2xl">
+        Компания «СКИФ» работает как с физическими, так и с юридическими лицами.
+      </p>
+    </div>
+  </section>
+
+  <!-- Payment Methods -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- PAYMENT CARD -->
+        <div class="group bg-card rounded-2xl border p-8 hover:shadow-xl transition-all overflow-hidden">
+          <div class="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform mb-4">
+            <svg class="h-8 w-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <h3 class="text-xl font-heading font-bold text-foreground mb-2">Наличный расчёт</h3>
+          <p class="text-muted-foreground mb-4 text-sm">Оплата наличными в любой точке продаж «СКИФ».</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-foreground">
+              <svg class="h-4 w-4 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              В любом офисе компании
+            </li>
+            <li class="flex items-center gap-2 text-sm text-foreground">
+              <svg class="h-4 w-4 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              При получении товара курьером
+            </li>
+          </ul>
+        </div>
+        <!-- /PAYMENT CARD -->
+        <!-- Повторить для QR, банковские карты, Сбербанк, кредит -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Info -->
+  <section class="py-16 bg-muted/50">
+    <div class="container">
+      <div class="max-w-4xl mx-auto service-description">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-foreground mb-8 text-center">Подробная информация</h2>
+        <div class="service-block">
+          <h3>Для физических лиц</h3>
+          <p>Оплата наличными в любой точке продаж «СКИФ» или представителю службы доставки.</p>
+        </div>
+        <div class="service-block">
+          <h3>Для юридических лиц</h3>
+          <p>Компания «СКИФ» работает с юридическими лицами по безналичному расчёту.</p>
+        </div>
+        <div class="service-block highlight">
+          <h3>Программа кредитования «Покупай со Сбер»</h3>
+          <ul>
+            <li>Без первоначального взноса</li>
+            <li>Срок от 3 до 36 месяцев</li>
+            <li>Сумма от 3 000 до 300 000 рублей</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 gradient-accent">
+    <div class="container text-center">
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-accent-foreground mb-6">Нужна консультация по оплате?</h2>
+      <p class="text-accent-foreground/80 text-lg mb-8 max-w-2xl mx-auto">Наши специалисты помогут выбрать оптимальный способ оплаты</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button class="bg-white text-accent font-bold py-3 px-6 rounded-lg">Заказать звонок</button>
+        <a href="tel:+78002001636">
+          <button class="border border-white text-white bg-white/10 font-bold py-3 px-6 rounded-lg">8 (800) 200-16-36</button>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER: см. index.html -->
+
+</body>
+</html>
