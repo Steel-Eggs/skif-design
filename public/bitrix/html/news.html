@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новости — СКИФ</title>
+  <link rel="stylesheet" href="/bitrix/css/base.css">
+  <link rel="stylesheet" href="/bitrix/css/header.css">
+  <link rel="stylesheet" href="/bitrix/css/news.css">
+  <link rel="stylesheet" href="/bitrix/css/footer.css">
+</head>
+<body>
+
+<!-- HEADER: см. index.html -->
+
+<main>
+  <!-- Hero -->
+  <section class="relative py-16 md:py-24 gradient-primary overflow-hidden">
+    <div class="container relative z-10">
+      <nav class="flex items-center gap-2 text-primary-foreground/70 text-sm mb-8">
+        <a href="/" class="hover:text-primary-foreground">Главная</a>
+        <span>/</span>
+        <span class="text-primary-foreground">Новости</span>
+      </nav>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-primary-foreground mb-6">Новости компании</h1>
+      <p class="text-xl text-primary-foreground/80 max-w-2xl">Актуальные новости, обзоры новинок, акции и полезные советы</p>
+    </div>
+  </section>
+
+  <!-- Filter -->
+  <!-- Bitrix: news.list с фильтрацией -->
+  <section class="py-8 border-b border-border bg-card sticky top-[65px] md:top-[105px] z-40">
+    <div class="container">
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="flex flex-wrap gap-2">
+          <button class="gradient-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium">Все (24)</button>
+          <button class="border border-border px-4 py-1.5 rounded-full text-sm font-medium">Новинки (8)</button>
+          <button class="border border-border px-4 py-1.5 rounded-full text-sm font-medium">Акции (6)</button>
+          <button class="border border-border px-4 py-1.5 rounded-full text-sm font-medium">Компания (5)</button>
+          <button class="border border-border px-4 py-1.5 rounded-full text-sm font-medium">Советы (5)</button>
+        </div>
+        <div class="relative w-full md:w-64">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Поиск новостей..." class="w-full pl-10 pr-3 py-2 border border-border rounded-lg">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News List -->
+  <!-- Bitrix: news.list -->
+  <section class="py-12 md:py-16">
+    <div class="container">
+      <!-- Featured article -->
+      <a href="/news/1/" class="block mb-8">
+        <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all">
+          <div class="grid md:grid-cols-2">
+            <div class="aspect-video md:aspect-auto overflow-hidden">
+              <img src="/assets/news/news-1.jpg" alt="Новая линейка" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+              <span class="gradient-accent text-accent-foreground text-xs px-3 py-1 rounded-full w-fit mb-4 font-bold">Новинки</span>
+              <h2 class="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4 group-hover:text-primary">Новая линейка прицепов СКИФ-2025</h2>
+              <p class="text-muted-foreground mb-6 leading-relaxed">Представляем обновлённую линейку легковых прицепов.</p>
+              <div class="flex items-center justify-between mt-auto">
+                <span class="text-sm text-muted-foreground">15 января 2025</span>
+                <span class="text-primary font-semibold">Читать далее →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <!-- News grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- NEWS CARD -->
+        <a href="/news/2/" class="block">
+          <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all h-full">
+            <div class="aspect-video overflow-hidden">
+              <img src="/assets/news/news-2.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <span class="text-xs border border-border px-2 py-0.5 rounded-full mb-3 inline-block">Акции</span>
+              <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary">Весенняя распродажа — скидки до 20%</h3>
+              <p class="text-muted-foreground text-sm mb-4 line-clamp-2">С 1 марта стартует ежегодная весенняя акция.</p>
+              <div class="flex items-center justify-between text-xs text-muted-foreground">
+                <span>10 января 2025</span>
+                <span class="text-primary font-medium">Читать</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!-- /NEWS CARD -->
+        <!-- Повторить -->
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER: см. index.html -->
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Одноосные прицепы — СКИФ</title>
+  <link rel="stylesheet" href="/bitrix/css/base.css">
+  <link rel="stylesheet" href="/bitrix/css/header.css">
+  <link rel="stylesheet" href="/bitrix/css/category-page.css">
+  <link rel="stylesheet" href="/bitrix/css/products.css">
+  <link rel="stylesheet" href="/bitrix/css/footer.css">
+</head>
+<body>
+
+<!-- HEADER: см. index.html -->
+
+<main class="flex-1">
+  <!-- Hero -->
+  <section class="relative py-12 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary/80"></div>
+    </div>
+    <div class="container relative z-10">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-primary-foreground/70 text-sm mb-6 flex-wrap">
+        <a href="/" class="hover:text-primary-foreground">Главная</a>
+        <span>/</span>
+        <a href="/catalog/" class="hover:text-primary-foreground">Каталог</a>
+        <span>/</span>
+        <span class="text-primary-foreground">Одноосные прицепы</span>
+      </nav>
+      <div class="max-w-3xl">
+        <div class="w-20 h-20 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-6">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">Одноосные прицепы</h1>
+        <p class="text-lg text-primary-foreground/80">Компактные решения для перевозки грузов</p>
+        <span class="inline-flex mt-4 text-sm text-primary-foreground/70 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">156 товаров</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toolbar -->
+  <section class="py-6 border-b border-border bg-card sticky top-[65px] md:top-[105px] z-40">
+    <div class="container">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <div class="flex items-center gap-2">
+          <!-- View toggle -->
+          <button class="h-10 w-10 border rounded-lg flex items-center justify-center bg-primary text-white" title="Сетка">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="h-10 w-10 border rounded-lg flex items-center justify-center" title="Список">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+        <!-- Sort -->
+        <select class="border border-border rounded-lg px-3 py-2 text-sm bg-card">
+          <option value="popular">По популярности</option>
+          <option value="price-asc">Цена: по возрастанию</option>
+          <option value="price-desc">Цена: по убыванию</option>
+          <option value="name">По названию</option>
+          <option value="new">Сначала новые</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <!-- Bitrix: catalog.section -->
+  <section class="py-8 md:py-12">
+    <div class="container">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <!-- PRODUCT CARD: см. карточку из index.html -->
+        <!-- Повторяется для каждого товара -->
+      </div>
+      <!-- Пагинация / Показать ещё -->
+      <div class="text-center mt-10">
+        <button class="border-2 border-border px-8 py-3 rounded-xl font-bold hover:bg-primary hover:text-white hover:border-primary transition-colors">
+          Показать ещё
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO text -->
+  <section class="py-12 bg-muted/30">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-heading font-bold text-foreground mb-4">Одноосные прицепы — компактность и манёвренность</h2>
+        <div class="text-muted-foreground leading-relaxed space-y-4">
+          <p>Одноосные прицепы — это оптимальное решение для перевозки небольших грузов. Они отличаются компактностью, лёгкостью управления и экономичностью.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER: см. index.html -->
+
+</body>
+</html>
