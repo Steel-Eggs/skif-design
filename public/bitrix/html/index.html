@@ -50,77 +50,105 @@
         <!-- Каталог dropdown -->
         <div class="relative" id="catalog-dropdown">
           <button class="header-catalog-btn">
-            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
             Каталог
-            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <!-- МЕГА-МЕНЮ -->
           <div class="mega-menu" id="mega-menu">
             <div class="mega-menu-inner">
               <!-- Левая колонка — категории -->
               <div class="mega-menu-left">
-                <div style="padding:0.75rem 0.5rem">
-                  <button class="mega-menu-cat-item active" data-cat="odnoosnye">
-                    <span class="cat-icon">🚗</span>
-                    <span class="cat-name">Одноосные</span>
-                  </button>
-                  <button class="mega-menu-cat-item" data-cat="dvuhosnye">
-                    <span class="cat-icon">🚙</span>
-                    <span class="cat-name">Двухосные</span>
-                  </button>
-                  <button class="mega-menu-cat-item" data-cat="s-kryshkoy">
-                    <span class="cat-icon">📦</span>
-                    <span class="cat-name">С крышкой</span>
-                  </button>
-                  <button class="mega-menu-cat-item" data-cat="platforma">
-                    <span class="cat-icon">🔲</span>
-                    <span class="cat-name">Платформы</span>
-                  </button>
-                  <button class="mega-menu-cat-item" data-cat="furgony">
-                    <span class="cat-icon">🚐</span>
-                    <span class="cat-name">Фургоны</span>
-                  </button>
-                  <button class="mega-menu-cat-item" data-cat="moto">
-                    <span class="cat-icon">🏍️</span>
-                    <span class="cat-name">Для мототехники</span>
-                    <span class="badge badge-new cat-badge">Хит</span>
-                  </button>
-                  <button class="mega-menu-cat-item" data-cat="lodki">
-                    <span class="cat-icon">🚤</span>
-                    <span class="cat-name">Для лодок</span>
-                    <span class="badge badge-new cat-badge">Хит</span>
-                  </button>
-                  <button class="mega-menu-cat-item" data-cat="evakuatory">
-                    <span class="cat-icon">🚨</span>
-                    <span class="cat-name">Эвакуаторы</span>
-                  </button>
-                  <div class="mega-menu-divider"></div>
-                  <a href="catalog.html?cat=sale" class="mega-menu-cat-item" data-cat="sale">
-                    <span class="cat-icon">🏷️</span>
-                    <span class="cat-name">Распродажа</span>
-                    <span class="badge badge-discount cat-badge">-30%</span>
-                  </a>
-                  <a href="catalog.html?cat=zapchasti" class="mega-menu-cat-item">
-                    <span class="cat-icon">🔩</span>
-                    <span class="cat-name">Запчасти</span>
-                  </a>
-                  <a href="catalog.html?cat=bu" class="mega-menu-cat-item">
-                    <span class="cat-icon">♻️</span>
-                    <span class="cat-name">Прицепы Б/У</span>
-                  </a>
-                  <a href="catalog.html?cat=prokat" class="mega-menu-cat-item">
-                    <span class="cat-icon">🔄</span>
-                    <span class="cat-name">Прицепы в прокат</span>
-                  </a>
-                  <a href="catalog.html?cat=snegohody" class="mega-menu-cat-item">
-                    <span class="cat-icon">❄️</span>
-                    <span class="cat-name">Снегоходы</span>
-                  </a>
-                  <a href="catalog.html?cat=rybalka" class="mega-menu-cat-item">
-                    <span class="cat-icon">🎣</span>
-                    <span class="cat-name">Товары для рыбалки</span>
-                  </a>
-                </div>
+                <!-- Основные категории -->
+                <button class="mega-menu-cat-item" data-cat="sale">
+                  <span class="cat-icon">🏷️</span>
+                  <span class="cat-name">Распродажа</span>
+                  <span class="badge badge-discount cat-badge">-30%</span>
+                </button>
+                <button class="mega-menu-cat-item active" data-cat="odnoosnye">
+                  <span class="cat-icon">🚗</span>
+                  <span class="cat-name">Одноосные</span>
+                </button>
+                <button class="mega-menu-cat-item" data-cat="dvuhosnye">
+                  <span class="cat-icon">🚙</span>
+                  <span class="cat-name">Двухосные</span>
+                </button>
+                <button class="mega-menu-cat-item" data-cat="s-kryshkoy">
+                  <span class="cat-icon">📦</span>
+                  <span class="cat-name">С крышкой</span>
+                </button>
+                <button class="mega-menu-cat-item" data-cat="platforma">
+                  <span class="cat-icon">🔲</span>
+                  <span class="cat-name">Платформы</span>
+                </button>
+                <button class="mega-menu-cat-item" data-cat="furgony">
+                  <span class="cat-icon">🚐</span>
+                  <span class="cat-name">Фургоны</span>
+                </button>
+                <button class="mega-menu-cat-item" data-cat="kommercheskie">
+                  <span class="cat-icon">🏪</span>
+                  <span class="cat-name">Коммерческие</span>
+                </button>
+                <button class="mega-menu-cat-item" data-cat="moto">
+                  <span class="cat-icon">🏍️</span>
+                  <span class="cat-name">Для мототехники</span>
+                  <span class="badge badge-new cat-badge">Хит</span>
+                </button>
+                <button class="mega-menu-cat-item" data-cat="lodki">
+                  <span class="cat-icon">🚤</span>
+                  <span class="cat-name">Для лодок</span>
+                  <span class="badge badge-new cat-badge">Хит</span>
+                </button>
+                <button class="mega-menu-cat-item" data-cat="elektrostancii">
+                  <span class="cat-icon">⚡</span>
+                  <span class="cat-name">Электростанции</span>
+                </button>
+                <button class="mega-menu-cat-item" data-cat="evakuatory">
+                  <span class="cat-icon">🚨</span>
+                  <span class="cat-name">Эвакуаторы</span>
+                </button>
+                <div class="mega-menu-divider"></div>
+                <!-- Дополнительные категории -->
+                <a href="catalog.html?cat=spectehnika" class="mega-menu-cat-item">
+                  <span class="cat-icon">🔧</span>
+                  <span class="cat-name">Для спецтехники</span>
+                </a>
+                <a href="catalog.html?cat=bytovki" class="mega-menu-cat-item">
+                  <span class="cat-icon">🏠</span>
+                  <span class="cat-name">Бытовки на колёсах</span>
+                </a>
+                <a href="catalog.html?cat=bu" class="mega-menu-cat-item">
+                  <span class="cat-icon">♻️</span>
+                  <span class="cat-name">Прицепы Б/У</span>
+                </a>
+                <a href="catalog.html?cat=prokat" class="mega-menu-cat-item">
+                  <span class="cat-icon">🔄</span>
+                  <span class="cat-name">Прицепы в прокат</span>
+                </a>
+                <a href="catalog.html?cat=proizvoditeli" class="mega-menu-cat-item">
+                  <span class="cat-icon">🏭</span>
+                  <span class="cat-name">По производителям</span>
+                </a>
+                <a href="catalog.html?cat=zapchasti" class="mega-menu-cat-item">
+                  <span class="cat-icon">🔩</span>
+                  <span class="cat-name">Запчасти</span>
+                </a>
+                <a href="catalog.html?cat=boksy" class="mega-menu-cat-item">
+                  <span class="cat-icon">🧳</span>
+                  <span class="cat-name">Боксы и багажники</span>
+                </a>
+                <a href="catalog.html?cat=snegohody" class="mega-menu-cat-item">
+                  <span class="cat-icon">❄️</span>
+                  <span class="cat-name">Снегоходы</span>
+                </a>
+                <a href="catalog.html?cat=motobuksirovschiki" class="mega-menu-cat-item">
+                  <span class="cat-icon">🛷</span>
+                  <span class="cat-name">Мотобуксировщики</span>
+                </a>
+                <a href="catalog.html?cat=rybalka" class="mega-menu-cat-item">
+                  <span class="cat-icon">🎣</span>
+                  <span class="cat-name">Товары для рыбалки</span>
+                </a>
               </div>
               <!-- Правая колонка — товары -->
               <div class="mega-menu-right">
@@ -151,6 +179,26 @@
                     <h4>ССТ 7132 Стандарт</h4>
                     <div><span class="price">82 900 ₽</span></div>
                   </a>
+                  <a href="product.html" class="mega-menu-product">
+                    <div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="МЗСА 817701"></div>
+                    <h4>МЗСА 817701 Эконом</h4>
+                    <div><span class="price">69 900 ₽</span></div>
+                  </a>
+                  <a href="product.html" class="mega-menu-product">
+                    <div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="Курганский базовый"></div>
+                    <h4>Курганский 8213 Базовый</h4>
+                    <div><span class="price">74 900 ₽</span></div>
+                  </a>
+                  <a href="product.html" class="mega-menu-product">
+                    <div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="ВЕКТОР"></div>
+                    <h4>ВЕКТОР 82111</h4>
+                    <div><span class="price">79 900 ₽</span></div>
+                  </a>
+                  <a href="product.html" class="mega-menu-product">
+                    <div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="СПУТНИК Комфорт"></div>
+                    <h4>СПУТНИК 821301 Комфорт</h4>
+                    <div><span class="price">94 900 ₽</span></div>
+                  </a>
                 </div>
                 <div class="mega-menu-products mega-menu-product-set" data-cat="dvuhosnye" style="display:none">
                   <a href="product.html" class="mega-menu-product">
@@ -173,30 +221,53 @@
                     <h4>МЗСА 832134 Платформа</h4>
                     <div><span class="price">169 900 ₽</span></div>
                   </a>
+                  <a href="product.html" class="mega-menu-product">
+                    <div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="Курганский Макси"></div>
+                    <h4>Курганский 8523 Макси</h4>
+                    <div><span class="price">179 900 ₽</span></div>
+                  </a>
+                  <a href="product.html" class="mega-menu-product">
+                    <div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="ВЕКТОР Усиленный"></div>
+                    <h4>ВЕКТОР 83241 Усиленный</h4>
+                    <div><span class="price">199 900 ₽</span></div>
+                  </a>
+                  <a href="product.html" class="mega-menu-product">
+                    <div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="СПУТНИК 832201"></div>
+                    <h4>СПУТНИК 832201</h4>
+                    <div><span class="price">154 900 ₽</span></div>
+                  </a>
+                  <a href="product.html" class="mega-menu-product">
+                    <div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="ССТ Грузовой"></div>
+                    <h4>ССТ 8325 Грузовой</h4>
+                    <div><span class="price">184 900 ₽</span></div>
+                  </a>
                 </div>
                 <div class="mega-menu-products mega-menu-product-set" data-cat="s-kryshkoy" style="display:none">
-                  <a href="product.html" class="mega-menu-product">
-                    <div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="С крышкой"></div>
-                    <h4>МЗСА 817717 с крышкой</h4>
-                    <div><span class="price">134 900 ₽</span></div>
-                  </a>
-                  <a href="product.html" class="mega-menu-product">
-                    <div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="ABS крышка"></div>
-                    <h4>Курганский с ABS крышкой</h4>
-                    <div><span class="price">115 900 ₽</span></div>
-                  </a>
-                  <a href="product.html" class="mega-menu-product">
-                    <div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="Откидная крышка"></div>
-                    <h4>СПУТНИК с откидной крышкой</h4>
-                    <div><span class="price">99 900 ₽</span></div>
-                  </a>
-                  <a href="product.html" class="mega-menu-product">
-                    <div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="Пластиковая крышка"></div>
-                    <h4>ССТ с пластиковой крышкой</h4>
-                    <div><span class="price">109 900 ₽</span></div>
-                  </a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="С крышкой"></div><h4>МЗСА 817717 с крышкой</h4><div><span class="price">134 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="ABS крышка"></div><h4>Курганский с ABS крышкой</h4><div><span class="price">115 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="Откидная крышка"></div><h4>СПУТНИК с откидной крышкой</h4><div><span class="price">99 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="Пластиковая крышка"></div><h4>ССТ с пластиковой крышкой</h4><div><span class="price">109 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="Премиум"></div><h4>МЗСА 817718 Премиум</h4><div><span class="price">149 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="Жёсткая крышка"></div><h4>Курганский с жёсткой крышкой</h4><div><span class="price">129 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="Трансформер"></div><h4>ВЕКТОР с крышкой-трансформер</h4><div><span class="price">139 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="Алюминиевая крышка"></div><h4>ССТ с алюминиевой крышкой</h4><div><span class="price">124 900 ₽</span></div></a>
                 </div>
-                <!-- Остальные категории по аналогии (Bitrix заменит PHP-циклом) -->
+                <div class="mega-menu-products mega-menu-product-set" data-cat="sale" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="Распродажа"></div><h4>МЗСА 817711 со скидкой</h4><div><span class="price">89 900 ₽</span> <span class="price-old">109 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="Курганский"></div><h4>Курганский 8213B5</h4><div><span class="price">64 900 ₽</span> <span class="price-old">79 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="Лодочный"></div><h4>Прицеп для лодки ПВХ</h4><div><span class="price">45 900 ₽</span> <span class="price-old">59 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="СПУТНИК"></div><h4>СПУТНИК 821301</h4><div><span class="price">54 900 ₽</span> <span class="price-old">69 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="ССТ"></div><h4>ССТ 7132 Стандарт</h4><div><span class="price">72 900 ₽</span> <span class="price-old">89 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="Платформа"></div><h4>Прицеп-платформа МЗСА</h4><div><span class="price">94 900 ₽</span> <span class="price-old">119 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="Двухосный"></div><h4>Двухосный Курганский</h4><div><span class="price">129 900 ₽</span> <span class="price-old">159 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="Мото"></div><h4>Прицеп для мотоцикла</h4><div><span class="price">59 900 ₽</span> <span class="price-old">74 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="kommercheskie" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="Коммерческий"></div><h4>Коммерческий МЗСА</h4><div><span class="price">219 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="elektrostancii" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="Электростанция"></div><h4>Прицеп для электростанции</h4><div><span class="price">189 900 ₽</span></div></a>
+                </div>
                 <div class="mega-menu-products mega-menu-product-set" data-cat="platforma" style="display:none">
                   <a href="product.html" class="mega-menu-product">
                     <div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="Платформа"></div>
