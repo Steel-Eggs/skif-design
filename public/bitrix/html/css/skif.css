@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
    ============================================ */
 .container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -642,7 +642,7 @@ svg { stroke-width: 2; }
 
 /* Мобильное меню */
 .mobile-menu-btn {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 2.25rem;
@@ -650,8 +650,22 @@ svg { stroke-width: 2; }
   background: transparent;
 }
 
+/* Only show on mobile via specific IDs */
+#mobile-menu-btn {
+  display: flex;
+}
+
 @media (min-width: 1024px) {
-  .mobile-menu-btn { display: none; }
+  #mobile-menu-btn { display: none; }
+}
+
+/* Mobile search toggle - only show below md */
+#search-toggle-mobile {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  #search-toggle-mobile { display: none !important; }
 }
 
 .mobile-nav {
@@ -741,9 +755,16 @@ svg { stroke-width: 2; }
   padding-top: 0.5rem;
   z-index: 100;
   display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.mega-menu.active { display: block; }
+.mega-menu.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .mega-menu-inner {
   background: var(--color-bg-card);

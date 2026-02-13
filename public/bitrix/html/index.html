@@ -354,33 +354,33 @@
       <div class="header-actions">
         <!-- Поиск десктоп -->
         <div class="header-search-desktop">
-          <button class="btn-icon" id="search-toggle-desktop">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <button class="icon-btn" id="search-toggle-desktop">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </button>
           <div class="search-dropdown" id="search-dropdown">
             <form class="search-form search-dropdown-inner">
               <input type="text" placeholder="Поиск товаров..." autocomplete="off">
               <button type="submit">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               </button>
             </form>
           </div>
         </div>
-        <!-- Поиск мобильный (кнопка) -->
-        <button class="mobile-menu-btn" id="search-toggle-mobile" style="display:flex">
-          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <!-- Поиск мобильный (кнопка) — скрывается на md+ через CSS -->
+        <button class="mobile-menu-btn" id="search-toggle-mobile">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
         <!-- Избранное -->
         <a href="favorites.html">
           <button class="icon-btn">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             <span class="icon-badge icon-badge-red favorites-counter" style="display:none">0</span>
           </button>
         </a>
         <!-- Корзина -->
         <a href="cart.html">
           <button class="icon-btn">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
             <span class="icon-badge icon-badge-green cart-counter" style="display:none">0</span>
           </button>
         </a>
@@ -463,7 +463,8 @@
         <!-- Контент -->
         <div class="hero-content" style="display:flex;flex-direction:column;gap:2rem">
           <div class="hero-badge">
-            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <!-- Award icon (like React's Award from lucide) -->
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
             <span>Более 15 лет на рынке</span>
           </div>
           <!-- Слайд-тексты (переключаются JS) -->
@@ -554,12 +555,13 @@
       <div class="section-header">
         <div>
           <div class="section-tag">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <!-- Flame icon (like React's Flame from lucide) -->
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg>
             <span>Популярные товары</span>
           </div>
           <h2 class="section-title">Хиты продаж</h2>
         </div>
-        <a href="catalog.html" class="section-link">Все товары →</a>
+        <a href="catalog.html" class="section-link">Все товары <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
       </div>
       <div class="products-grid-3">
         <!-- PRODUCT CARD 1 -->
@@ -567,15 +569,13 @@
           <div class="product-card-image">
             <img src="images/trailer-1.jpg" alt="Прицеп СКИФ-3015">
             <div class="product-card-badges">
-              <span class="badge badge-hit">Хит</span>
+              <span class="badge badge-hit"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg> Хит</span>
               <span class="badge badge-discount">-10%</span>
             </div>
             <button class="product-card-favorite" data-toggle-favorite data-product-id="1">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
-            <a href="product.html" class="product-card-overlay">
-              <span class="btn btn-primary">Подробнее →</span>
-            </a>
+            <a href="product.html" class="product-card-overlay"><span class="btn btn-primary">Подробнее</span></a>
           </div>
           <div class="product-card-body">
             <div class="product-card-category">Легковые прицепы</div>
@@ -589,7 +589,7 @@
             </div>
             <div class="product-card-actions">
               <button class="product-card-cart-btn" data-add-to-cart data-product-id="1" data-product-name="Прицеп СКИФ-3015" data-product-price="89900" data-product-image="images/trailer-1.jpg">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
                 В корзину
               </button>
             </div>
@@ -599,26 +599,22 @@
         <!-- PRODUCT CARD 2 -->
         <div class="product-card">
           <div class="product-card-image">
-            <img src="images/trailer-2.jpg" alt="Прицеп МЗСА 817711">
+            <img src="images/trailer-3.jpg" alt="Прицеп СКИФ-4520 Грузовой">
             <div class="product-card-badges">
               <span class="badge badge-new">Новинка</span>
             </div>
             <button class="product-card-favorite" data-toggle-favorite data-product-id="2">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
-            <a href="product.html" class="product-card-overlay">
-              <span class="btn btn-primary">Подробнее →</span>
-            </a>
+            <a href="product.html" class="product-card-overlay"><span class="btn btn-primary">Подробнее</span></a>
           </div>
           <div class="product-card-body">
-            <div class="product-card-category">Одноосные прицепы</div>
-            <h3 class="product-card-name line-clamp-2"><a href="product.html">МЗСА 817711.001-05</a></h3>
-            <div>
-              <span class="product-card-price">119 900 ₽</span>
-            </div>
+            <div class="product-card-category">Грузовые прицепы</div>
+            <h3 class="product-card-name line-clamp-2"><a href="product.html">Прицеп СКИФ-4520 Грузовой</a></h3>
+            <div><span class="product-card-price">156 000 ₽</span></div>
             <div class="product-card-actions">
-              <button class="product-card-cart-btn" data-add-to-cart data-product-id="2" data-product-name="МЗСА 817711.001-05" data-product-price="119900" data-product-image="images/trailer-2.jpg">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+              <button class="product-card-cart-btn" data-add-to-cart data-product-id="2" data-product-name="Прицеп СКИФ-4520 Грузовой" data-product-price="156000" data-product-image="images/trailer-3.jpg">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
                 В корзину
               </button>
             </div>
@@ -628,26 +624,108 @@
         <!-- PRODUCT CARD 3 -->
         <div class="product-card">
           <div class="product-card-image">
-            <img src="images/trailer-3.jpg" alt="Курганский 8213B5">
+            <img src="images/trailer-2.jpg" alt="Прицеп лодочный СКИФ-Л380">
             <div class="product-card-badges">
-              <span class="badge badge-hit">Хит</span>
+              <span class="badge badge-hit"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg> Хит</span>
+              <span class="badge badge-discount">-10%</span>
             </div>
             <button class="product-card-favorite" data-toggle-favorite data-product-id="3">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
-            <a href="product.html" class="product-card-overlay">
-              <span class="btn btn-primary">Подробнее →</span>
-            </a>
+            <a href="product.html" class="product-card-overlay"><span class="btn btn-primary">Подробнее</span></a>
           </div>
           <div class="product-card-body">
-            <div class="product-card-category">Одноосные прицепы</div>
-            <h3 class="product-card-name line-clamp-2"><a href="product.html">Курганские прицепы 8213B5</a></h3>
+            <div class="product-card-category">Лодочные прицепы</div>
+            <h3 class="product-card-name line-clamp-2"><a href="product.html">Прицеп лодочный СКИФ-Л380</a></h3>
             <div>
-              <span class="product-card-price">89 900 ₽</span>
+              <div style="display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap">
+                <span class="product-card-price">112 500 ₽</span>
+                <span class="product-card-price-old">125 000 ₽</span>
+              </div>
+              <div class="product-card-savings">Выгода 12 500 ₽</div>
             </div>
             <div class="product-card-actions">
-              <button class="product-card-cart-btn" data-add-to-cart data-product-id="3" data-product-name="Курганские прицепы 8213B5" data-product-price="89900" data-product-image="images/trailer-3.jpg">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+              <button class="product-card-cart-btn" data-add-to-cart data-product-id="3" data-product-name="Прицеп лодочный СКИФ-Л380" data-product-price="112500" data-product-image="images/trailer-2.jpg">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                В корзину
+              </button>
+            </div>
+            <div class="product-card-stock in">✓ В наличии</div>
+          </div>
+        </div>
+        <!-- PRODUCT CARD 4 -->
+        <div class="product-card">
+          <div class="product-card-image">
+            <img src="images/trailer-1.jpg" alt="Фаркоп универсальный Toyota">
+            <button class="product-card-favorite" data-toggle-favorite data-product-id="4">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+            <a href="product.html" class="product-card-overlay"><span class="btn btn-primary">Подробнее</span></a>
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-category">Фаркопы</div>
+            <h3 class="product-card-name line-clamp-2"><a href="product.html">Фаркоп универсальный Toyota</a></h3>
+            <div><span class="product-card-price">15 900 ₽</span></div>
+            <div class="product-card-actions">
+              <button class="product-card-cart-btn" data-add-to-cart data-product-id="4" data-product-name="Фаркоп универсальный Toyota" data-product-price="15900" data-product-image="images/trailer-1.jpg">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                В корзину
+              </button>
+            </div>
+            <div class="product-card-stock in">✓ В наличии</div>
+          </div>
+        </div>
+        <!-- PRODUCT CARD 5 -->
+        <div class="product-card">
+          <div class="product-card-image">
+            <img src="images/trailer-3.jpg" alt="Прицеп для снегохода СКИФ-СМ250">
+            <div class="product-card-badges">
+              <span class="badge badge-new">Новинка</span>
+              <span class="badge badge-discount">-8%</span>
+            </div>
+            <button class="product-card-favorite" data-toggle-favorite data-product-id="5">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+            <a href="product.html" class="product-card-overlay"><span class="btn btn-primary">Подробнее</span></a>
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-category">Для снегоходов</div>
+            <h3 class="product-card-name line-clamp-2"><a href="product.html">Прицеп для снегохода СКИФ-СМ250</a></h3>
+            <div>
+              <div style="display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap">
+                <span class="product-card-price">78 500 ₽</span>
+                <span class="product-card-price-old">85 000 ₽</span>
+              </div>
+              <div class="product-card-savings">Выгода 6 500 ₽</div>
+            </div>
+            <div class="product-card-actions">
+              <button class="product-card-cart-btn" disabled style="opacity:0.5;cursor:not-allowed">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+                В корзину
+              </button>
+            </div>
+            <div class="product-card-stock out">Под заказ</div>
+          </div>
+        </div>
+        <!-- PRODUCT CARD 6 -->
+        <div class="product-card">
+          <div class="product-card-image">
+            <img src="images/trailer-2.jpg" alt="Прицеп СКИФ-2500 Компакт">
+            <div class="product-card-badges">
+              <span class="badge badge-hit"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></svg> Хит</span>
+            </div>
+            <button class="product-card-favorite" data-toggle-favorite data-product-id="6">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+            <a href="product.html" class="product-card-overlay"><span class="btn btn-primary">Подробнее</span></a>
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-category">Легковые прицепы</div>
+            <h3 class="product-card-name line-clamp-2"><a href="product.html">Прицеп СКИФ-2500 Компакт</a></h3>
+            <div><span class="product-card-price">67 900 ₽</span></div>
+            <div class="product-card-actions">
+              <button class="product-card-cart-btn" data-add-to-cart data-product-id="6" data-product-name="Прицеп СКИФ-2500 Компакт" data-product-price="67900" data-product-image="images/trailer-2.jpg">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
                 В корзину
               </button>
             </div>
@@ -657,7 +735,7 @@
         <!-- /PRODUCT CARDS (Bitrix: foreach $arResult['ITEMS']) -->
       </div>
       <div class="text-center mt-12">
-        <a href="catalog.html" class="btn btn-primary btn-lg">Смотреть все товары →</a>
+        <a href="catalog.html" class="btn btn-primary btn-lg">Смотреть все товары <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </section>
@@ -670,47 +748,24 @@
         <p class="section-subtitle" style="margin:0.75rem auto 0">Широкий выбор прицепов для любых задач</p>
       </div>
       <div class="categories-grid">
-        <!-- CATEGORY CARD -->
-        <a href="category.html?cat=odnoosnye" class="category-card">
-          <div class="category-card-top">
-            <div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-            <span class="category-card-count">156</span>
-          </div>
-          <h3>Одноосные прицепы</h3>
-          <p>Компактные решения для перевозки грузов</p>
-          <span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
-        </a>
-        <a href="category.html?cat=dvuhosnye" class="category-card">
-          <div class="category-card-top">
-            <div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-            <span class="category-card-count">89</span>
-          </div>
-          <h3>Двухосные прицепы</h3>
-          <p>Для перевозки крупногабаритных грузов</p>
-          <span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
-        </a>
-        <a href="category.html?cat=s-kryshkoy" class="category-card">
-          <div class="category-card-top">
-            <div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
-            <span class="category-card-count">45</span>
-          </div>
-          <h3>Прицепы с крышкой</h3>
-          <p>Защита груза от непогоды</p>
-          <span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
-        </a>
-        <a href="category.html?cat=lodki" class="category-card">
-          <div class="category-card-top">
-            <div class="category-card-icon" style="background:var(--gradient-secondary)"><svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0021 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 00-2-2H7a2 2 0 00-2 2v6"/></svg></div>
-            <span class="category-card-count">34</span>
-          </div>
-          <h3>Прицепы для лодок</h3>
-          <p>Для безопасной транспортировки водного транспорта</p>
-          <span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
-        </a>
-        <!-- /CATEGORY CARD — Bitrix: foreach $arSections -->
+        <a href="category.html?cat=odnoosnye" class="category-card"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><span class="category-card-count">156</span></div><h3>Одноосные прицепы</h3><p>Компактные решения для перевозки грузов</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <a href="category.html?cat=dvuhosnye" class="category-card"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><span class="category-card-count">89</span></div><h3>Двухосные прицепы</h3><p>Для больших и тяжёлых грузов</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <a href="category.html?cat=s-kryshkoy" class="category-card"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><span class="category-card-count">45</span></div><h3>Прицепы с крышкой</h3><p>Защита груза от погодных условий</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <a href="category.html?cat=platforma" class="category-card"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div><span class="category-card-count">32</span></div><h3>Прицепы платформа</h3><p>Универсальные платформы</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <a href="category.html?cat=furgony" class="category-card"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><span class="category-card-count">34</span></div><h3>Прицепы фургоны</h3><p>Закрытые кузова для грузов</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <a href="category.html?cat=kommercheskie" class="category-card"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div><span class="category-card-count">28</span></div><h3>Коммерческие прицепы</h3><p>Для бизнеса и торговли</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <a href="category.html?cat=moto" class="category-card"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3.5-3.5 2-2 4.5 2.5h4"/></svg></div><span class="category-card-count">42</span></div><h3>Прицепы для мототехники</h3><p>Для мотоциклов и квадроциклов</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <a href="category.html?cat=lodki" class="category-card"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0020 0h-3"/></svg></div><span class="category-card-count">56</span></div><h3>Прицепы для лодок и катеров</h3><p>Для водного транспорта</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <!-- Hidden categories -->
+        <a href="category.html?cat=elektrostancii" class="category-card category-hidden" style="display:none"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><span class="category-card-count">18</span></div><h3>Прицепы для электростанций</h3><p>Для генераторов и оборудования</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <a href="category.html?cat=evakuatory" class="category-card category-hidden" style="display:none"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><span class="category-card-count">24</span></div><h3>Прицепы эвакуаторы</h3><p>Для транспортировки авто</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
+        <a href="category.html?cat=bytovki" class="category-card category-hidden" style="display:none"><div class="category-card-top"><div class="category-card-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span class="category-card-count">15</span></div><h3>Бытовки на колёсах</h3><p>Мобильные помещения</p><span class="category-card-link">Смотреть <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></a>
       </div>
-      <div class="text-center mt-12">
-        <a href="catalog.html" class="btn btn-primary btn-lg">Смотреть весь каталог →</a>
+      <div class="text-center mt-8">
+        <button class="btn btn-outline btn-lg" id="show-more-categories" style="gap:0.5rem">Показать ещё (3) <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg></button>
+      </div>
+      <div class="text-center mt-8">
+        <a href="catalog.html" class="btn btn-primary btn-lg">Смотреть весь каталог <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </section>
@@ -723,61 +778,15 @@
           <h2 class="section-title">Запчасти и аксессуары</h2>
           <p class="section-subtitle">Оригинальные комплектующие для прицепов</p>
         </div>
-        <a href="catalog.html?cat=zapchasti" class="section-link">Все запчасти →</a>
+        <a href="catalog.html?cat=zapchasti" class="section-link">Все запчасти <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
       </div>
       <div class="products-grid-6">
-        <!-- PART CARD -->
-        <a href="product.html" class="parts-card">
-          <div class="parts-card-image">
-            <img src="images/amortizator.jpg" alt="Амортизатор наката AL-KO">
-            <div class="parts-card-badges">
-              <span class="badge badge-hit" style="font-size:0.625rem;padding:0.125rem 0.375rem">Хит</span>
-              <span class="badge badge-discount" style="font-size:0.625rem;padding:0.125rem 0.375rem">-15%</span>
-            </div>
-          </div>
-          <div class="parts-card-body">
-            <h3 class="line-clamp-2">Амортизатор наката AL-KO</h3>
-            <div class="mb-2"><span class="price">1 950 ₽</span><span class="price-old">2 300 ₽</span></div>
-            <button class="parts-card-btn" data-add-to-cart data-product-id="101" data-product-name="Амортизатор наката AL-KO" data-product-price="1950" data-product-image="images/amortizator.jpg">
-              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-              В корзину
-            </button>
-          </div>
-        </a>
-        <a href="product.html" class="parts-card">
-          <div class="parts-card-image"><img src="images/roliki.jpg" alt="Ролики боковые"></div>
-          <div class="parts-card-body">
-            <h3 class="line-clamp-2">Ролики боковые для прицепа</h3>
-            <div class="mb-2"><span class="price">2 450 ₽</span></div>
-            <button class="parts-card-btn" data-add-to-cart data-product-id="102" data-product-name="Ролики боковые" data-product-price="2450" data-product-image="images/roliki.jpg">
-              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-              В корзину
-            </button>
-          </div>
-        </a>
-        <a href="product.html" class="parts-card">
-          <div class="parts-card-image"><img src="images/rozetka.jpg" alt="Розетка прицепа"></div>
-          <div class="parts-card-body">
-            <h3 class="line-clamp-2">Розетка прицепа 7-контактная</h3>
-            <div class="mb-2"><span class="price">890 ₽</span></div>
-            <button class="parts-card-btn" data-add-to-cart data-product-id="103" data-product-name="Розетка прицепа" data-product-price="890" data-product-image="images/rozetka.jpg">
-              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-              В корзину
-            </button>
-          </div>
-        </a>
-        <a href="product.html" class="parts-card">
-          <div class="parts-card-image"><img src="images/stupica.jpg" alt="Ступица прицепа"></div>
-          <div class="parts-card-body">
-            <h3 class="line-clamp-2">Ступица прицепа в сборе</h3>
-            <div class="mb-2"><span class="price">3 200 ₽</span></div>
-            <button class="parts-card-btn" data-add-to-cart data-product-id="104" data-product-name="Ступица прицепа" data-product-price="3200" data-product-image="images/stupica.jpg">
-              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-              В корзину
-            </button>
-          </div>
-        </a>
-        <!-- /PART CARDS -->
+        <a href="product.html" class="parts-card"><div class="parts-card-image"><img src="images/amortizator.jpg" alt="Амортизатор наката AL-KO"><div class="parts-card-badges"><span class="badge badge-hit" style="font-size:0.625rem;padding:0.125rem 0.375rem">Хит</span><span class="badge badge-discount" style="font-size:0.625rem;padding:0.125rem 0.375rem">-15%</span></div></div><div class="parts-card-body"><h3 class="line-clamp-2">Амортизатор наката AL-KO</h3><div class="mb-2"><span class="price">1 950 ₽</span><span class="price-old">2 300 ₽</span></div><button class="parts-card-btn" data-add-to-cart data-product-id="101" data-product-name="Амортизатор наката AL-KO" data-product-price="1950" data-product-image="images/amortizator.jpg"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> В корзину</button></div></a>
+        <a href="product.html" class="parts-card"><div class="parts-card-image"><img src="images/rozetka.jpg" alt="Розетка прицепа"></div><div class="parts-card-body"><h3 class="line-clamp-2">Розетка прицепа 7-контактная</h3><div class="mb-2"><span class="price">890 ₽</span></div><button class="parts-card-btn" data-add-to-cart data-product-id="102" data-product-name="Розетка прицепа" data-product-price="890" data-product-image="images/rozetka.jpg"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> В корзину</button></div></a>
+        <a href="product.html" class="parts-card"><div class="parts-card-image"><img src="images/roliki.jpg" alt="Ролики килевые"><div class="parts-card-badges"><span class="badge badge-new" style="font-size:0.625rem;padding:0.125rem 0.375rem">Новинка</span><span class="badge badge-discount" style="font-size:0.625rem;padding:0.125rem 0.375rem">-13%</span></div></div><div class="parts-card-body"><h3 class="line-clamp-2">Ролики килевые для лодочного прицепа</h3><div class="mb-2"><span class="price">4 500 ₽</span><span class="price-old">5 200 ₽</span></div><button class="parts-card-btn" data-add-to-cart data-product-id="103" data-product-name="Ролики килевые" data-product-price="4500" data-product-image="images/roliki.jpg"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> В корзину</button></div></a>
+        <a href="product.html" class="parts-card"><div class="parts-card-image"><img src="images/stupica.jpg" alt="Ступица прицепа"></div><div class="parts-card-body"><h3 class="line-clamp-2">Ступица прицепа в сборе</h3><div class="mb-2"><span class="price">3 200 ₽</span></div><button class="parts-card-btn" data-add-to-cart data-product-id="104" data-product-name="Ступица прицепа" data-product-price="3200" data-product-image="images/stupica.jpg"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> В корзину</button></div></a>
+        <a href="product.html" class="parts-card"><div class="parts-card-image"><img src="images/amortizator.jpg" alt="Колесо в сборе"></div><div class="parts-card-body"><h3 class="line-clamp-2">Колесо в сборе R13 185/70</h3><div class="mb-2"><span class="price">4 500 ₽</span></div><button class="parts-card-btn" disabled style="opacity:0.5;cursor:not-allowed"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> В корзину</button></div></a>
+        <a href="product.html" class="parts-card"><div class="parts-card-image"><img src="images/rozetka.jpg" alt="Замковое устройство"><div class="parts-card-badges"><span class="badge badge-hit" style="font-size:0.625rem;padding:0.125rem 0.375rem">Хит</span><span class="badge badge-discount" style="font-size:0.625rem;padding:0.125rem 0.375rem">-16%</span></div></div><div class="parts-card-body"><h3 class="line-clamp-2">Замковое устройство AL-KO AK 161</h3><div class="mb-2"><span class="price">3 200 ₽</span><span class="price-old">3 800 ₽</span></div><button class="parts-card-btn" data-add-to-cart data-product-id="106" data-product-name="Замковое устройство AL-KO" data-product-price="3200" data-product-image="images/rozetka.jpg"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> В корзину</button></div></a>
       </div>
     </div>
   </section>
