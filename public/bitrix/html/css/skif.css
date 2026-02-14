@@ -459,7 +459,8 @@ svg { stroke-width: 2; }
   background: var(--color-bg-muted);
 }
 
-/* Кнопка каталога — px-4 py-2 gradient-primary rounded-lg */
+/* Кнопка каталога — px-4 py-2 gradient-primary font-semibold rounded-lg */
+/* В React НЕТ text-sm, значит размер шрифта = 1rem (16px) */
 .header-catalog-btn {
   display: flex;
   align-items: center;
@@ -468,7 +469,7 @@ svg { stroke-width: 2; }
   background: var(--gradient-primary);
   color: #fff;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 1rem;
   border-radius: 1.5rem;
   transition: opacity 0.2s;
   white-space: nowrap;
