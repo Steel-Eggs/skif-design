@@ -274,23 +274,23 @@ const CatalogMegaMenu = ({ isOpen, onClose }: CatalogMegaMenuProps) => {
             </div>
 
             {/* Quick info blocks - horizontal */}
-            <div className="flex gap-3 pt-4 border-t border-border">
-              <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/5">
-                <div className="text-xl font-bold text-primary">500+</div>
-                <div className="text-xs text-muted-foreground leading-snug">моделей<br/>в наличии</div>
+            <div className="flex gap-3 pt-4 border-t border-border items-stretch">
+              <div className="flex-1 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-primary/5 min-h-[3.25rem]">
+                <div className="text-lg font-bold text-primary whitespace-nowrap">500+</div>
+                <div className="text-xs text-muted-foreground leading-snug whitespace-nowrap">моделей<br/>в наличии</div>
               </div>
-              <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl bg-accent/10">
-                <div className="text-xl font-bold text-accent-foreground">0%</div>
-                <div className="text-xs text-muted-foreground leading-snug">рассрочка<br/>до 24 мес</div>
+              <div className="flex-1 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-accent/10 min-h-[3.25rem]">
+                <div className="text-lg font-bold text-accent-foreground whitespace-nowrap">0%</div>
+                <div className="text-xs text-muted-foreground leading-snug whitespace-nowrap">рассрочка<br/>до 24 мес</div>
               </div>
-              <div className="flex-1 flex items-center gap-3 px-4 py-3 rounded-xl bg-secondary/10">
+              <div className="flex-1 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-secondary/10 min-h-[3.25rem]">
                 <div className="text-xl">🚚</div>
-                <div className="text-xs text-muted-foreground leading-snug">доставка<br/>по России</div>
+                <div className="text-xs text-muted-foreground leading-snug whitespace-nowrap">доставка<br/>по России</div>
               </div>
               <Link 
                 to="/contacts" 
                 onClick={onClose}
-                className="flex items-center gap-2 px-5 py-3 gradient-primary text-primary-foreground font-semibold text-sm rounded-xl hover:opacity-90 transition-opacity"
+                className="flex items-center justify-center gap-2 px-5 py-2.5 gradient-primary text-primary-foreground font-semibold text-sm rounded-xl hover:opacity-90 transition-opacity min-h-[3.25rem] whitespace-nowrap"
               >
                 <Sparkles className="h-5 w-5" />
                 Консультация
