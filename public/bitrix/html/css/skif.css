@@ -1382,8 +1382,22 @@ svg { stroke-width: 2; }
 
 @media (min-width: 768px) { .section { padding: 6rem 0; } }
 
-.section-bg { background: var(--color-bg-muted); }
+/* Sections that are always py-24 (6rem) regardless of breakpoint */
+.section-py-24 { padding: 6rem 0; }
+
+/* Categories section: py-12 on mobile, py-24 on md+ */
+.section-categories { padding: 3rem 0; }
+@media (min-width: 768px) { .section-categories { padding: 6rem 0; } }
+
+.section-bg { background: rgba(238, 240, 244, 0.5); }
+.section-bg-light { background: rgba(238, 240, 244, 0.3); }
 .section-bg-white { background: var(--color-bg-card); }
+
+/* Section titles that are always 40px */
+.section-title-lg {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
 
 .section-header {
   display: flex;
@@ -1438,7 +1452,7 @@ svg { stroke-width: 2; }
 
 .section-center {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 /* ============================================
@@ -2461,7 +2475,11 @@ svg { stroke-width: 2; }
 }
 
 .footer-inner {
-  padding: 3rem 0 4rem;
+  padding: 3rem 0;
+}
+
+@media (min-width: 768px) {
+  .footer-inner { padding: 4rem 0; }
 }
 
 .footer-grid {
