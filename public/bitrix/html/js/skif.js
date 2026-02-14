@@ -308,21 +308,46 @@ document.addEventListener('DOMContentLoaded', function () {
     // Activate new
     heroSlides[newIndex].classList.add('active');
 
-    // Text content
-    heroTitles.forEach(function (t, i) { t.style.display = i === newIndex ? '' : 'none'; });
-    heroDescs.forEach(function (d, i) { d.style.display = i === newIndex ? '' : 'none'; });
-    heroBtns.forEach(function (b, i) { b.style.display = i === newIndex ? '' : 'none'; });
+    // Animate text out, then in
+    var textEls = [];
+    heroTitles.forEach(function (t, i) { if (i === currentSlide) textEls.push(t); });
+    heroDescs.forEach(function (d, i) { if (i === currentSlide) textEls.push(d); });
+    heroBtns.forEach(function (b, i) { if (i === currentSlide) textEls.push(b); });
+
+    // Exit animation on old text
+    textEls.forEach(function (el) {
+      el.classList.remove('hero-text-enter');
+      el.classList.add('hero-text-exit');
+    });
+
+    // After exit, swap and enter
+    setTimeout(function () {
+      heroTitles.forEach(function (t, i) {
+        t.style.display = i === newIndex ? '' : 'none';
+        t.classList.remove('hero-text-exit');
+        if (i === newIndex) t.classList.add('hero-text-enter');
+      });
+      heroDescs.forEach(function (d, i) {
+        d.style.display = i === newIndex ? '' : 'none';
+        d.classList.remove('hero-text-exit');
+        if (i === newIndex) d.classList.add('hero-text-enter');
+      });
+      heroBtns.forEach(function (b, i) {
+        b.style.display = i === newIndex ? '' : 'none';
+        b.classList.remove('hero-text-exit');
+        if (i === newIndex) b.classList.add('hero-text-enter');
+      });
+    }, 250);
 
     // Dots
     heroDots.forEach(function (dot, i) {
       dot.classList.remove('active', 'paused');
       if (i === newIndex) {
         dot.classList.add('active');
-        // Restart progress animation
         var progress = dot.querySelector('.hero-dot-progress');
         if (progress && isAutoPlaying) {
           progress.style.animation = 'none';
-          progress.offsetHeight; // trigger reflow
+          progress.offsetHeight;
           progress.style.animation = 'progress 5s linear forwards';
         }
         if (!isAutoPlaying) {
