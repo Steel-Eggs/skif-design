@@ -39,12 +39,12 @@
   --color-border: #e2e5eb;
   --color-destructive: #ef4444;
 
-  /* Радиусы */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-2xl: 2rem;
+  /* Радиусы — синхронизированы с Tailwind (--radius: 1.5rem) */
+  --radius-sm: calc(1.5rem - 4px);
+  --radius-md: calc(1.5rem - 2px);
+  --radius-lg: 1.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
   --radius-full: 9999px;
 
   /* Тени */
@@ -459,7 +459,7 @@ svg { stroke-width: 2; }
   background: var(--color-bg-muted);
 }
 
-/* Кнопка каталога */
+/* Кнопка каталога — px-4 py-2 gradient-primary rounded-lg */
 .header-catalog-btn {
   display: flex;
   align-items: center;
@@ -469,7 +469,7 @@ svg { stroke-width: 2; }
   color: #fff;
   font-weight: 600;
   font-size: 0.875rem;
-  border-radius: var(--radius-lg);
+  border-radius: 1.5rem;
   transition: opacity 0.2s;
   white-space: nowrap;
 }
@@ -487,13 +487,14 @@ svg { stroke-width: 2; }
   .header-actions { gap: 1rem; }
 }
 
+/* Заказать звонок — h-10 px-4 rounded-lg (1.5rem) */
 .header-callback-btn {
   display: none;
   background: var(--gradient-accent);
   color: #fff;
   height: 2.5rem;
   padding: 0 1rem;
-  border-radius: var(--radius-lg);
+  border-radius: 1.5rem;
   font-weight: 600;
   font-size: 0.875rem;
   transition: opacity 0.2s;
@@ -506,7 +507,7 @@ svg { stroke-width: 2; }
 
 .header-callback-btn:hover { opacity: 0.9; }
 
-/* Иконка с счётчиком */
+/* Иконка с счётчиком — h-9 w-9 rounded-lg md:h-12 md:w-12 md:rounded-xl */
 .icon-btn {
   position: relative;
   width: 2.25rem;
@@ -515,7 +516,7 @@ svg { stroke-width: 2; }
   align-items: center;
   justify-content: center;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: 1.5rem;
   background: var(--color-bg-card);
   transition: background 0.2s;
 }
@@ -524,7 +525,7 @@ svg { stroke-width: 2; }
   .icon-btn {
     width: 3rem;
     height: 3rem;
-    border-radius: var(--radius-xl);
+    border-radius: 0.75rem;
   }
 }
 
@@ -562,7 +563,7 @@ svg { stroke-width: 2; }
 .icon-badge-red { background: var(--color-destructive); color: #fff; }
 .icon-badge-green { background: var(--color-accent); color: #fff; }
 
-/* Поиск */
+/* Поиск — h-10 w-10 rounded-lg (1.5rem) */
 .header-search-desktop {
   display: none;
   position: relative;
@@ -571,7 +572,7 @@ svg { stroke-width: 2; }
 .header-search-desktop > .icon-btn {
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: var(--radius-lg);
+  border-radius: 1.5rem;
 }
 
 @media (min-width: 768px) {
@@ -1042,6 +1043,7 @@ svg { stroke-width: 2; }
   .hero-content { text-align: left; }
 }
 
+/* Hero badge — inline-flex items-center gap-2 px-4 py-2 bg-background/10 rounded-full text-sm */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -1052,6 +1054,11 @@ svg { stroke-width: 2; }
   font-size: 0.875rem;
   font-weight: 500;
   backdrop-filter: blur(4px);
+}
+
+.hero-badge svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 .hero-title {
@@ -1097,16 +1104,20 @@ svg { stroke-width: 2; }
   .hero-buttons { justify-content: flex-start; }
 }
 
+/* Hero кнопки — Button size="lg" = h-11 rounded-md px-8 */
+/* rounded-md = calc(1.5rem - 2px) ≈ 1.375rem */
 .hero-btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: var(--gradient-accent);
   color: #fff;
   font-weight: 700;
   font-size: 1.125rem;
-  padding: 0.875rem 2rem;
-  border-radius: var(--radius-lg);
+  height: 2.75rem;
+  padding: 0 2rem;
+  border-radius: calc(1.5rem - 2px);
   box-shadow: var(--shadow-md);
   transition: all 0.3s;
 }
@@ -1116,14 +1127,16 @@ svg { stroke-width: 2; }
 .hero-btn-secondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.3);
   color: #fff;
   font-weight: 700;
   font-size: 1.125rem;
-  padding: 0.875rem 2rem;
-  border-radius: var(--radius-lg);
+  height: 2.75rem;
+  padding: 0 2rem;
+  border-radius: calc(1.5rem - 2px);
   backdrop-filter: blur(4px);
   transition: all 0.3s;
 }
