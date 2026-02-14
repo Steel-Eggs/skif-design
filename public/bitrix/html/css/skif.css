@@ -97,7 +97,8 @@
 .mega-menu-product .price { font-size:1rem; font-weight:700; }
 .mega-menu-product .price-old { font-size:0.75rem; color:hsl(var(--muted-foreground)); text-decoration:line-through; }
 .mega-menu-info-bar { display:flex; gap:0.75rem; padding-top:1rem; border-top:1px solid hsl(var(--border)); align-items:stretch; }
-.mega-menu-info-item { flex:1; display:flex; align-items:center; gap:0.75rem; padding:0.75rem 1rem; border-radius:0.75rem; background:hsl(202 83% 26% / 0.05); min-height:3.5rem; }
+.mega-menu-info-item { flex:1; display:flex; align-items:center; gap:0.75rem; padding:0.75rem 1rem; border-radius:0.75rem; background:hsl(202 83% 26% / 0.05); }
+.mega-menu-info-bar > a { display:flex; align-items:center; justify-content:center; gap:0.5rem; padding:0.75rem 1.25rem; white-space:nowrap; }
 .mega-menu-info-item .info-value { font-size:1.25rem; font-weight:700; color:hsl(var(--primary)); }
 .mega-menu-info-item .info-label { font-size:0.75rem; color:hsl(var(--muted-foreground)); line-height:1.3; }
 
