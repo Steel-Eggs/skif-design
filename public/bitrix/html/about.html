@@ -4,54 +4,202 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>О компании — СКИФ</title>
-  <link rel="stylesheet" href="/bitrix/css/base.css">
-  <link rel="stylesheet" href="/bitrix/css/header.css">
-  <link rel="stylesheet" href="/bitrix/css/footer.css">
+  <meta name="description" content="Компания СКИФ — один из крупнейших продавцов автомобильных прицепов в Санкт-Петербурге. Более 20 лет на рынке.">
+  <link rel="stylesheet" href="css/skif.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        container: { center: true, padding: '1rem', screens: { sm:'640px', md:'768px', lg:'1024px', xl:'1280px', '2xl':'1400px' } },
+        extend: {
+          fontFamily: { sans: ['Open Sans','system-ui','sans-serif'], heading: ['Montserrat','system-ui','sans-serif'] },
+          colors: {
+            border:'hsl(210 15% 90%)',input:'hsl(210 15% 90%)',ring:'hsl(202 83% 26%)',background:'hsl(210 15% 97%)',foreground:'hsl(200 50% 10%)',
+            primary:{DEFAULT:'hsl(202 83% 26%)',foreground:'hsl(0 0% 100%)'},secondary:{DEFAULT:'hsl(152 68% 42%)',foreground:'hsl(0 0% 100%)'},
+            destructive:{DEFAULT:'hsl(0 84% 60%)',foreground:'hsl(0 0% 100%)'},muted:{DEFAULT:'hsl(210 15% 94%)',foreground:'hsl(200 20% 40%)'},
+            accent:{DEFAULT:'hsl(152 68% 34%)',foreground:'hsl(0 0% 100%)'},popover:{DEFAULT:'hsl(0 0% 100%)',foreground:'hsl(200 50% 10%)'},
+            card:{DEFAULT:'hsl(0 0% 100%)',foreground:'hsl(200 50% 10%)'},
+          },
+          borderRadius: { lg:'1.5rem', md:'calc(1.5rem - 2px)', sm:'calc(1.5rem - 4px)' },
+        }
+      }
+    }
+  </script>
 </head>
-<body>
+<body class="min-h-screen overflow-x-hidden bg-background text-foreground font-sans antialiased">
 
-<!-- HEADER: см. index.html -->
+<!-- ==================== HEADER ==================== -->
+<header class="sticky top-0 z-50 w-full">
+  <div class="bg-primary text-primary-foreground hidden md:block header-top">
+    <div class="container flex items-center justify-between py-2 text-sm">
+      <div class="flex items-center gap-6">
+        <a href="tel:+78002001636" class="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span>+7 (800) 200-16-36</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-4 ml-auto">
+        <div class="flex items-center gap-3">
+          <a href="https://max.ru" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity" title="MAX">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+          <a href="https://t.me/skif_trailers" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity" title="Telegram">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </a>
+          <a href="tel:+79219103850" class="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <span>+7 (921) 910-38-50</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-card border-b border-border shadow-sm">
+    <div class="container flex items-center justify-between py-2 md:py-3 gap-2 md:gap-3">
+      <a href="index.html" class="flex items-center shrink-0"><img src="images/logo-new.png" alt="СКИФ" class="h-10 md:h-14 w-auto"></a>
+      <nav class="hidden lg:flex items-center gap-0.5 desktop-nav">
+        <div class="relative" id="catalog-dropdown">
+          <button class="flex items-center gap-1.5 px-4 py-2 gradient-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-all">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            Каталог
+            <svg class="h-3.5 w-3.5 transition-transform" id="catalog-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mega-menu" id="mega-menu">
+            <div class="mega-menu-inner">
+              <div class="mega-menu-left">
+                <button class="mega-menu-cat-item active" data-cat="odnoosnye"><span class="cat-icon">🚗</span><span class="cat-name">Одноосные</span></button>
+                <button class="mega-menu-cat-item" data-cat="dvuhosnye"><span class="cat-icon">🚙</span><span class="cat-name">Двухосные</span></button>
+                <button class="mega-menu-cat-item" data-cat="lodki"><span class="cat-icon">🚤</span><span class="cat-name">Для лодок</span></button>
+                <a href="catalog.html" class="mega-menu-cat-item"><span class="cat-icon">📦</span><span class="cat-name">Все категории →</span></a>
+              </div>
+              <div class="mega-menu-right">
+                <div class="mega-menu-header"><h3 id="mega-menu-cat-title">Одноосные</h3><a href="category.html">Смотреть все →</a></div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="odnoosnye" style="display:grid">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="МЗСА 817711"></div><h4>МЗСА 817711.001-05</h4><div><span class="price">119 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="Курганские"></div><h4>Курганские прицепы 8213B5</h4><div><span class="price">89 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="СПУТНИК"></div><h4>СПУТНИК 821305</h4><div><span class="price">76 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="ССТ 7132"></div><h4>ССТ 7132 Стандарт</h4><div><span class="price">82 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-info-bar">
+                  <div class="mega-menu-info-item"><div><div class="info-value">200+</div><div class="info-label">моделей</div></div></div>
+                  <div class="mega-menu-info-item"><div><div class="info-value">от 49 900 ₽</div><div class="info-label">стоимость</div></div></div>
+                  <a href="#" class="mega-menu-consult-btn gradient-accent" data-open-callback>📞 Консультация</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="services.html" class="px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-md hover:bg-muted">Услуги</a>
+        <div class="relative" id="about-dropdown-wrap">
+          <button class="px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-md hover:bg-muted flex items-center gap-1" id="about-btn">
+            О компании
+            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="about-dropdown" id="about-dropdown">
+            <div class="about-dropdown-inner">
+              <a href="about.html">О компании</a>
+              <a href="payment.html">Оплата</a>
+              <a href="news.html">Новости</a>
+            </div>
+          </div>
+        </div>
+        <a href="contacts.html" class="px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-md hover:bg-muted">Контакты</a>
+      </nav>
+      <div class="flex items-center gap-1 md:gap-2">
+        <div class="relative desktop-search">
+          <button class="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center hover:bg-muted transition-colors icon-btn" id="search-toggle">
+            <svg class="h-5 w-5 text-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+          <div class="search-dropdown" id="search-dropdown">
+            <div class="search-dropdown-inner">
+              <input type="text" placeholder="Поиск по каталогу..." id="search-input">
+              <button id="search-submit"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <a href="favorites.html" class="relative w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center hover:bg-muted transition-colors icon-btn">
+          <svg class="h-5 w-5 text-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          <span class="absolute -top-1 -right-1 min-w-[1rem] h-4 rounded-full bg-destructive text-destructive-foreground text-[10px] font-bold flex items-center justify-center icon-badge" id="fav-count" style="display:none">0</span>
+        </a>
+        <a href="cart.html" class="relative w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center hover:bg-muted transition-colors icon-btn">
+          <svg class="h-5 w-5 text-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          <span class="absolute -top-1 -right-1 min-w-[1rem] h-4 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center icon-badge" id="cart-count" style="display:none">0</span>
+        </a>
+        <button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-muted transition-colors mobile-search-btn" id="mobile-search-toggle">
+          <svg class="h-5 w-5 text-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-muted transition-colors mobile-menu-btn" id="mobile-menu-toggle">
+          <svg class="h-5 w-5 text-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <button class="hidden lg:flex items-center gap-2 gradient-accent text-accent-foreground font-semibold text-sm h-10 px-4 rounded-lg header-callback-btn" data-open-callback>
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          Заказать звонок
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-search" id="mobile-search">
+    <div class="mobile-search-form"><input type="text" placeholder="Поиск по каталогу..." id="mobile-search-input"><button id="mobile-search-submit"><svg class="h-5 w-5 text-muted-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button></div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="py-2 px-4 space-y-1">
+      <button class="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-md hover:bg-muted transition-colors" id="mobile-catalog-toggle">
+        <span class="flex items-center gap-2"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Каталог</span>
+        <svg class="h-4 w-4 transition-transform" id="mobile-catalog-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="mobile-catalog-items" id="mobile-catalog-items">
+        <a href="category.html?cat=odnoosnye">Одноосные прицепы</a>
+        <a href="category.html?cat=dvuhosnye">Двухосные прицепы</a>
+        <a href="category.html?cat=lodki">Прицепы для лодок</a>
+        <a href="catalog.html">Все категории →</a>
+      </div>
+      <a href="services.html" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md hover:bg-muted transition-colors">Услуги</a>
+      <a href="about.html" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md hover:bg-muted transition-colors">О компании</a>
+      <a href="payment.html" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md hover:bg-muted transition-colors">Оплата</a>
+      <a href="news.html" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md hover:bg-muted transition-colors">Новости</a>
+      <a href="contacts.html" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md hover:bg-muted transition-colors">Контакты</a>
+      <div class="pt-2 border-t border-border mt-2">
+        <a href="tel:+78002001636" class="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-primary">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          +7 (800) 200-16-36
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
 
+<!-- ==================== MAIN CONTENT ==================== -->
 <main>
   <!-- Hero -->
   <section class="relative py-16 md:py-24 gradient-primary overflow-hidden">
     <div class="container relative z-10">
       <nav class="flex items-center gap-2 text-primary-foreground/70 text-sm mb-8">
-        <a href="/" class="hover:text-primary-foreground">Главная</a>
+        <a href="index.html" class="hover:text-primary-foreground transition-colors">Главная</a>
         <span>/</span>
         <span class="text-primary-foreground">О компании</span>
       </nav>
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
           <span class="gradient-accent text-accent-foreground text-sm px-4 py-2 rounded-full inline-flex items-center gap-2 mb-6 font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             С 2004 года на рынке
           </span>
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-primary-foreground mb-6">О компании СКИФ</h1>
           <p class="text-xl text-primary-foreground/80 mb-8 leading-relaxed">
-            Компания «СКИФ» — один из крупнейших продавцов автомобильных прицепов в Санкт-Петербурге.
+            Компания «СКИФ» — один из крупнейших продавцов автомобильных прицепов в Санкт-Петербурге 
+            и Ленинградской области. Более 20 лет мы помогаем нашим клиентам выбрать надёжные 
+            решения для перевозки грузов.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href="/catalog/"><button class="bg-white text-primary font-bold py-3 px-6 rounded-lg">Каталог прицепов →</button></a>
-            <a href="/contacts/"><button class="border border-white text-white bg-white/10 font-bold py-3 px-6 rounded-lg">Контакты</button></a>
+            <a href="catalog.html"><button class="bg-white text-primary hover:bg-white/90 font-bold py-3 px-6 rounded-lg inline-flex items-center gap-2">Каталог прицепов <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg></button></a>
+            <a href="contacts.html"><button class="border border-white text-white bg-white/10 hover:bg-white hover:text-primary font-bold py-3 px-6 rounded-lg transition-colors">Контакты</button></a>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-4">
-          <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center">
-            <div class="text-4xl md:text-5xl font-black text-white mb-2">20+</div>
-            <div class="text-primary-foreground/80 font-medium">лет на рынке</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center">
-            <div class="text-4xl md:text-5xl font-black text-white mb-2">50 000+</div>
-            <div class="text-primary-foreground/80 font-medium">довольных клиентов</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center">
-            <div class="text-4xl md:text-5xl font-black text-white mb-2">200+</div>
-            <div class="text-primary-foreground/80 font-medium">моделей в наличии</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center">
-            <div class="text-4xl md:text-5xl font-black text-white mb-2">10+</div>
-            <div class="text-primary-foreground/80 font-medium">производителей</div>
-          </div>
+          <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center"><div class="text-4xl md:text-5xl font-black text-white mb-2">20+</div><div class="text-primary-foreground/80 font-medium">лет на рынке</div></div>
+          <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center"><div class="text-4xl md:text-5xl font-black text-white mb-2">50 000+</div><div class="text-primary-foreground/80 font-medium">довольных клиентов</div></div>
+          <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center"><div class="text-4xl md:text-5xl font-black text-white mb-2">200+</div><div class="text-primary-foreground/80 font-medium">моделей в наличии</div></div>
+          <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6 text-center"><div class="text-4xl md:text-5xl font-black text-white mb-2">10+</div><div class="text-primary-foreground/80 font-medium">производителей</div></div>
         </div>
       </div>
     </div>
@@ -61,19 +209,45 @@
   <section class="py-16 md:py-24 bg-muted/30">
     <div class="container">
       <div class="max-w-4xl mx-auto text-center mb-16">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border border-border bg-card text-foreground mb-6">Наша миссия</span>
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">Мы делаем перевозку грузов удобной и доступной</h2>
-        <p class="text-lg text-muted-foreground leading-relaxed">Наша цель — предоставить каждому клиенту качественный прицеп, который будет служить годами.</p>
+        <p class="text-lg text-muted-foreground leading-relaxed">
+          Наша цель — предоставить каждому клиенту качественный прицеп, который будет 
+          служить годами. Мы тщательно отбираем производителей и модели, чтобы предложить 
+          вам только лучшие решения по оптимальным ценам.
+        </p>
       </div>
-      <!-- Advantages -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="group bg-card rounded-2xl border p-6 hover:shadow-xl transition-all">
-          <div class="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-            <svg class="h-7 w-7 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
+        <div class="group bg-card rounded-2xl border p-6 hover:shadow-xl transition-all animate-fade-in">
+          <div class="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><svg class="h-7 w-7 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <h3 class="text-lg font-bold text-foreground mb-2">Официальный дилер</h3>
           <p class="text-muted-foreground text-sm leading-relaxed">Являемся официальным представителем ведущих российских производителей прицепов</p>
         </div>
-        <!-- Повторить для остальных преимуществ -->
+        <div class="group bg-card rounded-2xl border p-6 hover:shadow-xl transition-all animate-fade-in" style="animation-delay:0.1s">
+          <div class="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><svg class="h-7 w-7 text-primary-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <h3 class="text-lg font-bold text-foreground mb-2">Широкий ассортимент</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">Самый большой выбор прицепов в Санкт-Петербурге — более 200 моделей в наличии</p>
+        </div>
+        <div class="group bg-card rounded-2xl border p-6 hover:shadow-xl transition-all animate-fade-in" style="animation-delay:0.2s">
+          <div class="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><svg class="h-7 w-7 text-primary-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3 class="text-lg font-bold text-foreground mb-2">Гарантия качества</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">Официальная гарантия производителя и собственный гарантийный сервис</p>
+        </div>
+        <div class="group bg-card rounded-2xl border p-6 hover:shadow-xl transition-all animate-fade-in" style="animation-delay:0.3s">
+          <div class="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><svg class="h-7 w-7 text-primary-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+          <h3 class="text-lg font-bold text-foreground mb-2">Сервисное обслуживание</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">Полный комплекс услуг по обслуживанию и ремонту прицепов любой сложности</p>
+        </div>
+        <div class="group bg-card rounded-2xl border p-6 hover:shadow-xl transition-all animate-fade-in" style="animation-delay:0.4s">
+          <div class="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><svg class="h-7 w-7 text-primary-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+          <h3 class="text-lg font-bold text-foreground mb-2">СКИФ-Клуб</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">Бесплатное пожизненное техническое обслуживание для наших клиентов</p>
+        </div>
+        <div class="group bg-card rounded-2xl border p-6 hover:shadow-xl transition-all animate-fade-in" style="animation-delay:0.5s">
+          <div class="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"><svg class="h-7 w-7 text-primary-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg></div>
+          <h3 class="text-lg font-bold text-foreground mb-2">Trade-In</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">Выгодный обмен старого прицепа на новый с доплатой или без</p>
+        </div>
       </div>
     </div>
   </section>
@@ -82,21 +256,42 @@
   <section class="py-16 md:py-24 bg-muted/50">
     <div class="container">
       <div class="text-center mb-12">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border border-border bg-card text-foreground mb-4">История компании</span>
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-foreground">Наш путь развития</h2>
       </div>
       <div class="relative max-w-4xl mx-auto">
         <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border transform -translate-x-1/2 hidden md:block"></div>
         <div class="space-y-8">
           <div class="flex items-center gap-8">
-            <div class="flex-1 bg-card rounded-2xl border p-6 text-right">
-              <div class="text-3xl font-black text-primary mb-2">2004</div>
-              <h3 class="text-lg font-bold text-foreground mb-1">Основание компании</h3>
-              <p class="text-muted-foreground text-sm">Начало деятельности в Санкт-Петербурге</p>
-            </div>
+            <div class="flex-1 bg-card rounded-2xl border p-6 text-right animate-fade-in"><div class="text-3xl font-black text-primary mb-2">2004</div><h3 class="text-lg font-bold text-foreground mb-1">Основание компании</h3><p class="text-muted-foreground text-sm">Начало деятельности в Санкт-Петербурге</p></div>
             <div class="hidden md:flex w-4 h-4 rounded-full gradient-primary shrink-0 relative z-10"></div>
             <div class="flex-1 hidden md:block"></div>
           </div>
-          <!-- Повторить для других вех -->
+          <div class="flex items-center gap-8 md:flex-row-reverse">
+            <div class="flex-1 bg-card rounded-2xl border p-6 animate-fade-in"><div class="text-3xl font-black text-primary mb-2">2008</div><h3 class="text-lg font-bold text-foreground mb-1">Открытие сервиса</h3><p class="text-muted-foreground text-sm">Запуск собственного сервисного центра</p></div>
+            <div class="hidden md:flex w-4 h-4 rounded-full gradient-primary shrink-0 relative z-10"></div>
+            <div class="flex-1 hidden md:block"></div>
+          </div>
+          <div class="flex items-center gap-8">
+            <div class="flex-1 bg-card rounded-2xl border p-6 text-right animate-fade-in"><div class="text-3xl font-black text-primary mb-2">2012</div><h3 class="text-lg font-bold text-foreground mb-1">Расширение сети</h3><p class="text-muted-foreground text-sm">Открытие второй точки продаж</p></div>
+            <div class="hidden md:flex w-4 h-4 rounded-full gradient-primary shrink-0 relative z-10"></div>
+            <div class="flex-1 hidden md:block"></div>
+          </div>
+          <div class="flex items-center gap-8 md:flex-row-reverse">
+            <div class="flex-1 bg-card rounded-2xl border p-6 animate-fade-in"><div class="text-3xl font-black text-primary mb-2">2016</div><h3 class="text-lg font-bold text-foreground mb-1">СКИФ-Клуб</h3><p class="text-muted-foreground text-sm">Запуск программы лояльности для клиентов</p></div>
+            <div class="hidden md:flex w-4 h-4 rounded-full gradient-primary shrink-0 relative z-10"></div>
+            <div class="flex-1 hidden md:block"></div>
+          </div>
+          <div class="flex items-center gap-8">
+            <div class="flex-1 bg-card rounded-2xl border p-6 text-right animate-fade-in"><div class="text-3xl font-black text-primary mb-2">2020</div><h3 class="text-lg font-bold text-foreground mb-1">Цифровизация</h3><p class="text-muted-foreground text-sm">Переход на онлайн-продажи и консультации</p></div>
+            <div class="hidden md:flex w-4 h-4 rounded-full gradient-primary shrink-0 relative z-10"></div>
+            <div class="flex-1 hidden md:block"></div>
+          </div>
+          <div class="flex items-center gap-8 md:flex-row-reverse">
+            <div class="flex-1 bg-card rounded-2xl border p-6 animate-fade-in"><div class="text-3xl font-black text-primary mb-2">2024</div><h3 class="text-lg font-bold text-foreground mb-1">20 лет на рынке</h3><p class="text-muted-foreground text-sm">Юбилей компании и более 50 000 клиентов</p></div>
+            <div class="hidden md:flex w-4 h-4 rounded-full gradient-primary shrink-0 relative z-10"></div>
+            <div class="flex-1 hidden md:block"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -106,13 +301,18 @@
   <section class="py-16 md:py-24">
     <div class="container">
       <div class="text-center mb-12">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border border-border bg-card text-foreground mb-4">Партнёры</span>
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">Официальный дилер производителей</h2>
+        <p class="text-muted-foreground max-w-2xl mx-auto">Мы работаем напрямую с ведущими заводами-производителями прицепов России</p>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
-        <div class="bg-card rounded-2xl border p-6 flex items-center justify-center h-24 hover:shadow-lg transition-all">
-          <img src="/assets/partners/mzsa.png" alt="МЗСА" class="h-14 md:h-16 object-contain grayscale hover:grayscale-0 transition-all">
-        </div>
-        <!-- Повторить для остальных партнёров -->
+        <div class="bg-card rounded-2xl border p-6 flex items-center justify-center h-24 hover:shadow-lg transition-all"><img src="images/mzsa.png" alt="МЗСА" class="h-14 md:h-16 object-contain grayscale hover:grayscale-0 transition-all"></div>
+        <div class="bg-card rounded-2xl border p-6 flex items-center justify-center h-24 hover:shadow-lg transition-all"><img src="images/sst.png" alt="ССТ" class="h-14 md:h-16 object-contain grayscale hover:grayscale-0 transition-all"></div>
+        <div class="bg-card rounded-2xl border p-6 flex items-center justify-center h-24 hover:shadow-lg transition-all"><img src="images/kurganskie.png" alt="Курганские прицепы" class="h-14 md:h-16 object-contain grayscale hover:grayscale-0 transition-all"></div>
+        <div class="bg-card rounded-2xl border p-6 flex items-center justify-center h-24 hover:shadow-lg transition-all"><img src="images/sputnik.png" alt="Спутник" class="h-14 md:h-16 object-contain grayscale hover:grayscale-0 transition-all"></div>
+        <div class="bg-card rounded-2xl border p-6 flex items-center justify-center h-24 hover:shadow-lg transition-all"><img src="images/vektor-new.png" alt="Вектор" class="h-14 md:h-16 object-contain grayscale hover:grayscale-0 transition-all"></div>
+        <div class="bg-card rounded-2xl border p-6 flex items-center justify-center h-24 hover:shadow-lg transition-all"><img src="images/ekspedicia.png" alt="Экспедиция" class="h-14 md:h-16 object-contain grayscale hover:grayscale-0 transition-all"></div>
+        <div class="bg-card rounded-2xl border p-6 flex items-center justify-center h-24 hover:shadow-lg transition-all"><img src="images/bagem.png" alt="Багем" class="h-14 md:h-16 object-contain grayscale hover:grayscale-0 transition-all"></div>
       </div>
     </div>
   </section>
@@ -121,11 +321,14 @@
   <section class="py-16 md:py-24 bg-muted/30">
     <div class="container">
       <div class="text-center mb-12">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border border-border bg-card text-foreground mb-4">⭐ Отзывы</span>
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">Что говорят наши клиенты</h2>
+        <p class="text-muted-foreground max-w-2xl mx-auto">Более 500 положительных отзывов на Яндекс.Картах — лучшее подтверждение качества нашей работы</p>
       </div>
       <div class="flex justify-center">
-        <div class="relative w-full max-w-2xl" style="height: 700px;">
-          <iframe class="w-full h-full border border-border rounded-2xl" src="https://yandex.ru/maps-reviews-widget/183604077331?comments" title="Отзывы"></iframe>
+        <div class="relative w-full max-w-2xl" style="height:700px">
+          <iframe class="w-full h-full border border-border rounded-2xl shadow-sm" src="https://yandex.ru/maps-reviews-widget/183604077331?comments" title="Отзывы о компании СКИФ на Яндекс.Картах"></iframe>
+          <a href="https://yandex.ru/maps/org/skif/183604077331/" target="_blank" rel="noopener noreferrer" class="absolute bottom-2 left-0 w-full text-center text-[10px] text-muted-foreground/60 font-sans px-4 truncate">Скиф на карте Санкт‑Петербурга — Яндекс Карты</a>
         </div>
       </div>
     </div>
@@ -136,32 +339,173 @@
     <div class="container">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <span class="bg-white text-secondary text-sm px-4 py-2 rounded-full inline-flex items-center gap-2 mb-6 font-bold">Эксклюзивное предложение</span>
+          <span class="bg-white text-secondary text-sm px-4 py-2 rounded-full inline-flex items-center gap-2 mb-6 font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            Эксклюзивное предложение
+          </span>
           <h2 class="text-3xl md:text-4xl font-heading font-bold text-secondary-foreground mb-6">Программа СКИФ-Клуб</h2>
           <p class="text-secondary-foreground/80 text-lg mb-8 leading-relaxed">
-            Покупая прицеп в компании «СКИФ», вы автоматически становитесь участником программы и получаете бесплатное пожизненное техническое обслуживание.
+            Покупая прицеп в компании «СКИФ», вы автоматически становитесь участником программы 
+            СКИФ-Клуб и получаете бесплатное пожизненное техническое обслуживание вашего прицепа.
           </p>
           <ul class="space-y-4 mb-8">
-            <li class="flex items-center gap-3 text-secondary-foreground">
-              <svg class="h-5 w-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              Бесплатная диагностика и регулировка
-            </li>
-            <li class="flex items-center gap-3 text-secondary-foreground">
-              <svg class="h-5 w-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              Скидки на запчасти и аксессуары
-            </li>
+            <li class="flex items-center gap-3 text-secondary-foreground"><svg class="h-5 w-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Бесплатная диагностика и регулировка</li>
+            <li class="flex items-center gap-3 text-secondary-foreground"><svg class="h-5 w-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Скидки на запчасти и аксессуары</li>
+            <li class="flex items-center gap-3 text-secondary-foreground"><svg class="h-5 w-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Приоритетное обслуживание</li>
+            <li class="flex items-center gap-3 text-secondary-foreground"><svg class="h-5 w-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Специальные предложения для участников</li>
           </ul>
-          <a href="/catalog/"><button class="bg-white text-secondary font-bold py-3 px-6 rounded-lg">Выбрать прицеп →</button></a>
+          <a href="catalog.html"><button class="bg-white text-secondary hover:bg-white/90 font-bold py-3 px-6 rounded-lg inline-flex items-center gap-2">Выбрать прицеп <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg></button></a>
         </div>
         <div class="flex items-center justify-center">
-          <img src="/assets/club-card.png" alt="Клубная карта СКИФ-Клуб" class="max-w-md w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform">
+          <img src="images/club-card.png" alt="Клубная карта СКИФ-Клуб — 5% скидка навсегда" class="max-w-md w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Text -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border border-border bg-card text-foreground mb-6">О компании</span>
+        <div class="prose prose-lg max-w-none text-muted-foreground space-y-6">
+          <p class="text-lg leading-relaxed">
+            Компания «СКИФ» основана в январе 2004 года. Основным видом деятельности является продажа и прокат 
+            высококачественных легковых прицепов различного назначения, как новых, так и бывших в употреблении, 
+            реализация и установка фаркопов для всех моделей автомобилей и полное техническое обслуживание прицепной техники.
+          </p>
+          <p class="text-lg leading-relaxed">
+            СКИФ является официальным дилером крупнейших российских заводов-производителей легковых прицепов: 
+            МЗСА, ССТ, Курганские прицепы, Спутник, Вектор, Экспедиция, Багем и многих других.
+          </p>
+          <p class="text-lg leading-relaxed">
+            С 2015 года в компании запущена программа «СКИФ-клуб», которая позволяет каждому нашему клиенту 
+            получать бесплатное техническое обслуживание прицепа на протяжении всего срока его эксплуатации, 
+            участвовать в акциях и приобретать запчасти и аксессуары с гарантированной скидкой.
+          </p>
         </div>
       </div>
     </div>
   </section>
 </main>
 
-<!-- FOOTER: см. index.html -->
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-foreground text-background">
+  <div class="container py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div class="space-y-6">
+        <a href="index.html" class="inline-block"><img src="images/logo-new.png" alt="СКИФ" class="h-20 w-auto"></a>
+        <p class="text-white/70 leading-relaxed">Продажа автомобильных прицепов, фаркопов и комплектующих. Работаем с 2004 года.</p>
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="https://vk.com/skifavtoru" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.523-2.049-1.712-1.033-1.01-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.561c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.572 4 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.27-1.422 2.18-3.61 2.18-3.61.119-.254.305-.491.745-.491h1.744c.525 0 .643.27.525.643-.22 1.016-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.049.17.475-.085.72-.576.72z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCI8Pg8mffiiHNH1rY_K1GOA" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+        <div class="w-full sm:w-auto"><iframe src="https://yandex.ru/sprav/widget/rating-badge/183604077331?type=rating" style="border:none" width="150" height="50" title="Рейтинг Яндекс" class="max-w-full"></iframe></div>
+      </div>
+      <div>
+        <h3 class="text-lg font-heading font-bold mb-6">Каталог</h3>
+        <ul class="space-y-3">
+          <li><a href="category.html?cat=odnoosnye" class="text-white/70 hover:text-primary transition-colors">Одноосные прицепы</a></li>
+          <li><a href="category.html?cat=dvuhosnye" class="text-white/70 hover:text-primary transition-colors">Двухосные прицепы</a></li>
+          <li><a href="category.html?cat=s-kryshkoy" class="text-white/70 hover:text-primary transition-colors">Прицепы с крышкой</a></li>
+          <li><a href="category.html?cat=platforma" class="text-white/70 hover:text-primary transition-colors">Прицепы платформа</a></li>
+          <li><a href="category.html?cat=furgony" class="text-white/70 hover:text-primary transition-colors">Прицепы фургоны</a></li>
+          <li><a href="category.html?cat=lodki" class="text-white/70 hover:text-primary transition-colors">Прицепы для лодок</a></li>
+          <li><a href="category.html?cat=evakuatory" class="text-white/70 hover:text-primary transition-colors">Прицепы эвакуаторы</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-heading font-bold mb-6">Компания</h3>
+        <ul class="space-y-3">
+          <li><a href="about.html" class="text-white/70 hover:text-primary transition-colors">О компании</a></li>
+          <li><a href="news.html" class="text-white/70 hover:text-primary transition-colors">Новости</a></li>
+          <li><a href="services.html" class="text-white/70 hover:text-primary transition-colors">Услуги</a></li>
+          <li><a href="payment.html" class="text-white/70 hover:text-primary transition-colors">Оплата</a></li>
+          <li><a href="contacts.html" class="text-white/70 hover:text-primary transition-colors">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-heading font-bold mb-6">Контакты</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><div><a href="tel:+78002001636" class="hover:text-primary transition-colors font-semibold">+7 (800) 200-16-36</a><p class="text-sm text-white/60">Звонок бесплатный</p></div></li>
+          <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:zakaz@skif-avto.ru" class="text-white/70 hover:text-primary transition-colors">zakaz@skif-avto.ru</a></li>
+          <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-white/70">Санкт-Петербург, ул. Ольги Берггольц, д. 38-А</span></li>
+          <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="text-white/70"><p>9:00-18:00</p><p class="text-primary font-semibold">БЕЗ ВЫХОДНЫХ</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-white/60 text-sm text-center md:text-left">© 2004 СКИФ. Все права защищены.</p>
+      <div class="flex flex-wrap justify-center gap-6 text-sm text-white/60">
+        <a href="privacy.html" class="hover:text-primary transition-colors">Политика конфиденциальности</a>
+        <a href="terms.html" class="hover:text-primary transition-colors">Пользовательское соглашение</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
+<!-- Callback modal -->
+<div class="modal-overlay" id="callback-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <button class="modal-close" data-close-modal><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="modal-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+    <h2 class="modal-title">Заказать звонок</h2>
+    <p class="modal-subtitle">Оставьте контакты — мы перезвоним за 5 минут</p>
+    <form id="callback-form">
+      <div class="form-group"><label>Ваше имя *</label><input type="text" name="name" placeholder="Как к вам обращаться?" class="form-input"><div class="form-error"></div></div>
+      <div class="form-group"><label>Телефон *</label><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="form-input" data-phone-mask><div class="form-error"></div></div>
+      <button type="submit" class="w-full gradient-primary text-primary-foreground font-bold h-11 rounded-md">Перезвоните мне</button>
+      <p class="text-center text-xs text-muted-foreground mt-3">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+    </form>
+  </div>
+</div>
+
+<!-- Feedback modal -->
+<div class="modal-overlay" id="feedback-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <div class="modal-header-gradient">
+      <button class="modal-close" data-close-modal><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2>Обратная связь</h2>
+      <p>Оставьте заявку и мы свяжемся с вами</p>
+    </div>
+    <div class="modal-body">
+      <form id="feedback-form">
+        <div class="form-group"><label>Ваше имя *</label><input type="text" name="name" placeholder="Как к вам обращаться?" class="form-input"><div class="form-error"></div></div>
+        <div class="form-group"><label>Телефон *</label><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="form-input" data-phone-mask><div class="form-error"></div></div>
+        <div class="form-group"><label>Сообщение</label><textarea name="message" placeholder="Опишите ваш вопрос..." class="form-input form-textarea" style="min-height:80px"></textarea></div>
+        <button type="submit" class="w-full gradient-primary text-primary-foreground font-bold h-11 rounded-md">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Floating button -->
+<button class="floating-feedback-btn" id="floating-feedback-btn">
+  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+</button>
+
+<!-- Cookie consent -->
+<div class="cookie-consent" id="cookie-consent">
+  <div class="cookie-consent-inner">
+    <button class="cookie-consent-close" id="cookie-close"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="cookie-consent-body">
+      <div class="cookie-consent-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <div style="flex:1;padding-right:1rem">
+        <h4>🍪 Мы используем cookies</h4>
+        <p>Для улучшения работы сайта и подбора лучших прицепов для вас мы собираем данные о посещениях.</p>
+        <div class="cookie-consent-btns">
+          <button class="gradient-primary text-primary-foreground font-medium h-8 px-3 rounded-md text-sm" id="cookie-accept">Принять</button>
+          <button class="border border-input bg-background text-foreground h-8 px-3 rounded-md text-sm" id="cookie-decline">Отклонить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/skif.js"></script>
 </body>
 </html>
