@@ -4,26 +4,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Контакты — СКИФ</title>
-  <link rel="stylesheet" href="/bitrix/css/base.css">
-  <link rel="stylesheet" href="/bitrix/css/header.css">
-  <link rel="stylesheet" href="/bitrix/css/contacts.css">
-  <link rel="stylesheet" href="/bitrix/css/footer.css">
+  <meta name="description" content="Контакты компании СКИФ: адреса офисов в Санкт-Петербурге, телефоны, email, режим работы и реквизиты.">
+  <link rel="stylesheet" href="css/skif.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        container: { center: true, padding: '1rem', screens: { sm:'640px', md:'768px', lg:'1024px', xl:'1280px', '2xl':'1400px' } },
+        extend: {
+          fontFamily: { sans: ['Open Sans','system-ui','sans-serif'], heading: ['Montserrat','system-ui','sans-serif'] },
+          colors: {
+            border: 'hsl(210 15% 90%)', input: 'hsl(210 15% 90%)', ring: 'hsl(202 83% 26%)',
+            background: 'hsl(210 15% 97%)', foreground: 'hsl(200 50% 10%)',
+            primary: { DEFAULT: 'hsl(202 83% 26%)', foreground: 'hsl(0 0% 100%)' },
+            secondary: { DEFAULT: 'hsl(152 68% 42%)', foreground: 'hsl(0 0% 100%)' },
+            destructive: { DEFAULT: 'hsl(0 84% 60%)', foreground: 'hsl(0 0% 100%)' },
+            muted: { DEFAULT: 'hsl(210 15% 94%)', foreground: 'hsl(200 20% 40%)' },
+            accent: { DEFAULT: 'hsl(152 68% 34%)', foreground: 'hsl(0 0% 100%)' },
+            popover: { DEFAULT: 'hsl(0 0% 100%)', foreground: 'hsl(200 50% 10%)' },
+            card: { DEFAULT: 'hsl(0 0% 100%)', foreground: 'hsl(200 50% 10%)' },
+          },
+          borderRadius: { lg: '1.5rem', md: 'calc(1.5rem - 2px)', sm: 'calc(1.5rem - 4px)' },
+          keyframes: { 'fade-in': { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } },
+          animation: { 'fade-in': 'fade-in 0.5s ease-out forwards' },
+        }
+      }
+    }
+  </script>
 </head>
-<body>
+<body class="min-h-screen overflow-x-hidden bg-background text-foreground font-sans antialiased">
 
-<!-- HEADER: см. index.html -->
+<!-- ==================== HEADER ==================== -->
+<header class="sticky top-0 z-50 w-full">
+  <div class="bg-primary text-primary-foreground hidden md:block header-top">
+    <div class="container flex items-center justify-between py-2 text-sm">
+      <div class="flex items-center gap-6"><a href="tel:+78002001636" class="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><span>+7 (800) 200-16-36</span></a></div>
+      <div class="flex items-center gap-4 ml-auto"><div class="flex items-center gap-3"><a href="https://max.ru" target="_blank" class="hover:opacity-80 transition-opacity"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a><a href="https://t.me/skif_trailers" target="_blank" class="hover:opacity-80 transition-opacity"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></a><a href="tel:+79219103850" class="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><span>+7 (921) 910-38-50</span></a></div></div>
+    </div>
+  </div>
+  <div class="bg-card border-b border-border shadow-sm">
+    <div class="container flex items-center justify-between py-2 md:py-3 gap-2 md:gap-3">
+      <a href="index.html" class="flex items-center shrink-0"><img src="images/logo-new.png" alt="СКИФ" class="h-10 md:h-14 w-auto"></a>
+      <nav class="hidden lg:flex items-center gap-0.5 desktop-nav">
+        <div class="relative" id="catalog-dropdown">
+          <button class="flex items-center gap-1.5 px-4 py-2 gradient-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-all"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Каталог<svg class="h-3.5 w-3.5 transition-transform" id="catalog-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="mega-menu" id="mega-menu"><div class="mega-menu-inner"><div class="mega-menu-left"><button class="mega-menu-cat-item active" data-cat="odnoosnye"><span class="cat-icon">🚗</span><span class="cat-name">Одноосные</span></button><button class="mega-menu-cat-item" data-cat="dvuhosnye"><span class="cat-icon">🚙</span><span class="cat-name">Двухосные</span></button><button class="mega-menu-cat-item" data-cat="lodki"><span class="cat-icon">🚤</span><span class="cat-name">Для лодок</span><span class="cat-badge bg-secondary text-secondary-foreground rounded-full px-1.5 py-0.5 text-[10px] font-bold">Хит</span></button><div class="mega-menu-divider"></div><a href="catalog.html?cat=zapchasti" class="mega-menu-cat-item"><span class="cat-icon">🔩</span><span class="cat-name">Запчасти</span></a></div><div class="mega-menu-right"><div class="mega-menu-header"><h3 id="mega-menu-cat-title">Одноосные</h3><a href="category.html">Смотреть все →</a></div><div class="mega-menu-products mega-menu-product-set" data-cat="odnoosnye" style="display:grid"><a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>МЗСА 817711</h4><div><span class="price">119 900 ₽</span></div></a></div><div class="mega-menu-info-bar"><div class="mega-menu-info-item"><span class="info-value">500+</span><span class="info-label">моделей</span></div><div class="mega-menu-info-item"><span class="info-value">0%</span><span class="info-label">рассрочка</span></div><a href="contacts.html" class="mega-menu-consult-btn gradient-primary">✨ Консультация</a></div></div></div></div>
+        </div>
+        <div class="flex items-center gap-1 ml-2">
+          <a href="services.html" class="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted">Услуги</a>
+          <a href="payment.html" class="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted">Оплата</a>
+        </div>
+        <div class="relative" id="about-dropdown-wrap"><button class="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted">О компании<svg class="h-3.5 w-3.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="about-dropdown" id="about-dropdown"><div class="about-dropdown-inner"><a href="about.html">О компании</a><a href="news.html">Новости</a></div></div></div>
+        <a href="contacts.html" class="flex items-center gap-1 px-3 py-2 text-primary font-medium transition-colors rounded-lg bg-muted">Контакты</a>
+      </nav>
+      <div class="hidden md:block relative desktop-search"><button class="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors icon-btn" id="search-toggle-desktop"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button><div class="search-dropdown" id="search-dropdown"><form class="search-dropdown-inner"><input type="text" placeholder="Поиск товаров..." autocomplete="off"><button type="submit"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button></form></div></div>
+      <div class="flex items-center gap-1 md:gap-4">
+        <button class="md:hidden h-9 w-9 inline-flex items-center justify-center mobile-search-btn" id="search-toggle-mobile"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+        <a href="favorites.html"><button class="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl inline-flex items-center justify-center border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors icon-btn"><svg class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span class="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs icon-badge favorites-counter" style="display:none">0</span></button></a>
+        <a href="cart.html"><button class="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl inline-flex items-center justify-center border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors icon-btn"><svg class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span class="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs icon-badge cart-counter" style="display:none">0</span></button></a>
+        <button class="hidden lg:flex gradient-accent text-accent-foreground font-semibold text-sm hover:opacity-90 transition-opacity h-10 px-4 rounded-lg items-center header-callback-btn" data-open-callback>Заказать звонок</button>
+        <button class="lg:hidden h-9 w-9 inline-flex items-center justify-center mobile-menu-btn" id="mobile-menu-btn"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg></button>
+      </div>
+    </div>
+    <div class="mobile-search" id="mobile-search"><form class="mobile-search-form relative"><input type="text" placeholder="Поиск товаров..." class="pr-10 bg-muted border-border" autocomplete="off"><button type="submit" class="absolute right-0 top-0 h-full px-3"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button></form></div>
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="p-4 flex flex-col gap-2">
+        <div class="border-b border-border pb-4"><button type="button" class="flex items-center justify-between w-full px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors" id="mobile-catalog-toggle"><span class="flex items-center gap-2"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>Каталог</span><svg class="h-4 w-4 transition-transform" id="mobile-catalog-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="mobile-catalog-items" id="mobile-catalog-items"><a href="category.html?cat=odnoosnye">🚗 Одноосные прицепы</a><a href="category.html?cat=dvuhosnye">🚙 Двухосные прицепы</a><a href="category.html?cat=lodki">🚤 Для лодок</a></div></div>
+        <a href="services.html" class="block px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors">Услуги</a>
+        <a href="payment.html" class="block px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors">Оплата</a>
+        <a href="about.html" class="block px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors">О компании</a>
+        <a href="contacts.html" class="block px-4 py-3 text-primary font-medium bg-muted rounded-lg">Контакты</a>
+        <div class="pt-4 border-t border-border mt-2"><button class="w-full gradient-accent text-accent-foreground font-semibold h-10 rounded-lg" data-open-callback>Заказать звонок</button></div>
+      </div>
+    </div>
+  </div>
+</header>
 
+<!-- ==================== MAIN ==================== -->
 <main>
   <!-- Hero -->
   <section class="relative py-16 md:py-24 gradient-primary overflow-hidden">
-    <div class="container relative z-10">
+    <div class="absolute inset-0 bg-[url('/placeholder.svg')] opacity-5 bg-repeat"></div>
+    <div class="container relative z-10 animate-fade-in">
       <nav class="flex items-center gap-2 text-primary-foreground/70 text-sm mb-8">
-        <a href="/" class="hover:text-primary-foreground">Главная</a>
+        <a href="index.html" class="hover:text-primary-foreground transition-colors">Главная</a>
         <span>/</span>
         <span class="text-primary-foreground">Контакты</span>
       </nav>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-primary-foreground mb-6">Контакты</h1>
-      <p class="text-xl text-primary-foreground/80 max-w-2xl">Свяжитесь с нами любым удобным способом или приезжайте в наши офисы</p>
+      <p class="text-xl text-primary-foreground/80 max-w-2xl">Свяжитесь с нами любым удобным способом или приезжайте в наши офисы в Санкт-Петербурге</p>
     </div>
   </section>
 
@@ -31,26 +100,20 @@
   <section class="py-12 bg-muted/50">
     <div class="container">
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="text-center bg-card rounded-2xl p-6 hover:shadow-lg transition-all">
-          <div class="w-12 h-12 rounded-full gradient-primary flex items-center justify-center mx-auto mb-4">
-            <svg class="h-6 w-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          </div>
+        <div class="text-center hover:shadow-lg transition-all rounded-2xl bg-card border p-6">
+          <div class="w-12 h-12 rounded-full gradient-primary flex items-center justify-center mx-auto mb-4"><svg class="h-6 w-6 text-primary-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
           <h3 class="font-bold text-foreground mb-2">Телефон</h3>
           <a href="tel:+78002001636" class="text-primary font-semibold hover:underline block">+7 (800) 200-16-36</a>
           <span class="text-muted-foreground text-sm">Бесплатно по России</span>
         </div>
-        <div class="text-center bg-card rounded-2xl p-6 hover:shadow-lg transition-all">
-          <div class="w-12 h-12 rounded-full gradient-accent flex items-center justify-center mx-auto mb-4">
-            <svg class="h-6 w-6 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
+        <div class="text-center hover:shadow-lg transition-all rounded-2xl bg-card border p-6">
+          <div class="w-12 h-12 rounded-full gradient-accent flex items-center justify-center mx-auto mb-4"><svg class="h-6 w-6 text-accent-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <h3 class="font-bold text-foreground mb-2">Email</h3>
           <a href="mailto:zakaz@skif-avto.ru" class="text-primary font-semibold hover:underline block">zakaz@skif-avto.ru</a>
           <span class="text-muted-foreground text-sm">Ответим в течение часа</span>
         </div>
-        <div class="text-center bg-card rounded-2xl p-6 hover:shadow-lg transition-all">
-          <div class="w-12 h-12 rounded-full gradient-secondary flex items-center justify-center mx-auto mb-4">
-            <svg class="h-6 w-6 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-          </div>
+        <div class="text-center hover:shadow-lg transition-all rounded-2xl bg-card border p-6">
+          <div class="w-12 h-12 rounded-full gradient-secondary flex items-center justify-center mx-auto mb-4"><svg class="h-6 w-6 text-secondary-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
           <h3 class="font-bold text-foreground mb-2">Мессенджеры</h3>
           <div class="flex items-center justify-center gap-3">
             <a href="https://t.me/skif_trailers" target="_blank" class="text-primary font-semibold hover:underline">Telegram</a>
@@ -58,10 +121,8 @@
             <a href="https://max.ru" target="_blank" class="text-primary font-semibold hover:underline">MAX</a>
           </div>
         </div>
-        <div class="text-center bg-card rounded-2xl p-6 hover:shadow-lg transition-all">
-          <div class="w-12 h-12 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
-            <svg class="h-6 w-6 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
+        <div class="text-center hover:shadow-lg transition-all rounded-2xl bg-card border p-6">
+          <div class="w-12 h-12 rounded-full bg-muted flex items-center justify-center mx-auto mb-4"><svg class="h-6 w-6 text-muted-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <h3 class="font-bold text-foreground mb-2">Режим работы</h3>
           <span class="text-foreground block">9:00 - 18:00</span>
           <span class="text-primary font-semibold text-sm">БЕЗ ВЫХОДНЫХ</span>
@@ -78,104 +139,100 @@
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-foreground">Точки продаж в Санкт-Петербурге</h2>
       </div>
       <div class="grid lg:grid-cols-2 gap-8">
-        <!-- OFFICE CARD -->
-        <div class="space-y-4">
+        <!-- Office 1 -->
+        <div class="space-y-4 animate-fade-in">
           <div class="overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all">
-            <div class="h-64 w-full">
-              <iframe src="https://yandex.ru/map-widget/v1/?pt=30.458669,59.874889&z=15&l=map" class="w-full h-full border-0" allowfullscreen></iframe>
-            </div>
+            <div class="h-64 w-full"><iframe src="https://yandex.ru/map-widget/v1/?pt=30.458669,59.874889&z=15&l=map" class="w-full h-full border-0" title="Карта Берггольц" allowfullscreen></iframe></div>
             <div class="p-6">
               <div class="flex items-start justify-between gap-4 mb-4">
-                <div>
-                  <h3 class="text-xl font-bold text-foreground mb-1">Центральный офис</h3>
-                  <p class="text-muted-foreground text-sm">Основная площадка: склад, сборка, офис</p>
-                </div>
-                <a href="https://yandex.ru/maps/-/CHQeZUOl" target="_blank">
-                  <button class="border border-border px-3 py-1.5 rounded-lg text-sm inline-flex items-center gap-2">
-                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                    Маршрут
-                  </button>
-                </a>
+                <div><h3 class="text-xl font-bold text-foreground mb-1">Центральный офис</h3><p class="text-muted-foreground text-sm">Основная площадка: склад, сборка, офис</p></div>
+                <a href="https://yandex.ru/maps/-/CHQeZUOl" target="_blank"><button class="border border-border px-3 py-1.5 rounded-lg text-sm inline-flex items-center gap-2 hover:bg-muted transition-colors"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Маршрут</button></a>
               </div>
               <div class="space-y-3">
-                <div class="flex items-start gap-3">
-                  <svg class="h-5 w-5 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <span class="text-foreground">г. Санкт-Петербург, ул. Ольги Берггольц, 38-А</span>
-                </div>
-                <div class="flex items-start gap-3">
-                  <svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                  <div class="flex flex-col">
-                    <a href="tel:+79219103850" class="text-foreground hover:text-primary font-medium">+7 (921) 910-38-50</a>
-                    <a href="tel:+79674338289" class="text-foreground hover:text-primary font-medium">+7 (967) 433-82-89</a>
-                  </div>
-                </div>
-                <div class="flex items-center gap-3">
-                  <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                  <a href="mailto:zakaz@skif-avto.ru" class="text-foreground hover:text-primary">zakaz@skif-avto.ru</a>
-                </div>
-                <div class="flex items-center gap-3">
-                  <svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  <span class="text-muted-foreground">9:00 - 18:00, без выходных</span>
-                </div>
+                <div class="flex items-start gap-3"><svg class="h-5 w-5 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-foreground">г. Санкт-Петербург, ул. Ольги Берггольц, 38-А</span></div>
+                <div class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><div class="flex flex-col"><a href="tel:+79219103850" class="text-foreground hover:text-primary font-medium">+7 (921) 910-38-50</a><a href="tel:+79674338289" class="text-foreground hover:text-primary font-medium">+7 (967) 433-82-89</a></div></div>
+                <div class="flex items-center gap-3"><svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:zakaz@skif-avto.ru" class="text-foreground hover:text-primary">zakaz@skif-avto.ru</a></div>
+                <div class="flex items-center gap-3"><svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="text-muted-foreground">9:00 - 18:00, без выходных</span></div>
               </div>
             </div>
           </div>
-          <!-- Photo Gallery -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div class="aspect-video overflow-hidden rounded-xl cursor-pointer group">
-              <img src="/assets/offices/berggolts-1.jpg" alt="Фото офиса" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
-            </div>
-            <!-- Повторить для других фото -->
+            <div class="aspect-video overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(0)"><img src="images/berggolts.jpg" alt="Фото офиса 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+            <div class="aspect-video overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(1)"><img src="images/berggolts-map.jpg" alt="Фото офиса 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+            <div class="aspect-video overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(2)"><img src="images/parnas.jpg" alt="Фото офиса 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+            <div class="aspect-video overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(3)"><img src="images/berggolts.jpg" alt="Фото офиса 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
           </div>
         </div>
-        <!-- /OFFICE CARD -->
-        <!-- Повторить для второго офиса -->
+        <!-- Office 2 -->
+        <div class="space-y-4 animate-fade-in" style="animation-delay:0.1s">
+          <div class="overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all">
+            <div class="h-64 w-full"><iframe src="https://yandex.ru/map-widget/v1/?pt=30.334189,60.065486&z=15&l=map" class="w-full h-full border-0" title="Карта Парнас" allowfullscreen></iframe></div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-4 mb-4">
+                <div><h3 class="text-xl font-bold text-foreground mb-1">СКИФ на Парнасе</h3><p class="text-muted-foreground text-sm">Дополнительная площадка продаж</p></div>
+                <a href="https://yandex.ru/maps/-/CHQeZUar" target="_blank"><button class="border border-border px-3 py-1.5 rounded-lg text-sm inline-flex items-center gap-2 hover:bg-muted transition-colors"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Маршрут</button></a>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3"><svg class="h-5 w-5 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-foreground">г. Санкт-Петербург, 1-й Верхний переулок, напротив дома 2А</span></div>
+                <div class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><div class="flex flex-col"><a href="tel:+79219613593" class="text-foreground hover:text-primary font-medium">+7 (921) 961-35-93</a><a href="tel:+79674338289" class="text-foreground hover:text-primary font-medium">+7 (967) 433-82-89</a></div></div>
+                <div class="flex items-center gap-3"><svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:parnas@skif-avto.ru" class="text-foreground hover:text-primary">parnas@skif-avto.ru</a></div>
+                <div class="flex items-center gap-3"><svg class="h-5 w-5 text-primary shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="text-muted-foreground">9:00 - 18:00, без выходных</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="aspect-video overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(0)"><img src="images/parnas.jpg" alt="Фото Парнас 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+            <div class="aspect-video overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(1)"><img src="images/berggolts.jpg" alt="Фото Парнас 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+            <div class="aspect-video overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(2)"><img src="images/berggolts-map.jpg" alt="Фото Парнас 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+            <div class="aspect-video overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(3)"><img src="images/parnas.jpg" alt="Фото Парнас 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Form -->
+  <!-- Contact Form & Requisites -->
   <section class="py-16 md:py-24 bg-muted/50">
     <div class="container">
       <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Form -->
         <div>
           <h2 class="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">Напишите нам</h2>
-          <form action="" method="post" class="space-y-6">
+          <p class="text-muted-foreground mb-8">Заполните форму, и мы свяжемся с вами в ближайшее время</p>
+          <form class="space-y-6" id="contacts-page-form">
             <div class="grid sm:grid-cols-2 gap-4">
-              <div class="space-y-2">
-                <label class="text-sm font-medium">Ваше имя *</label>
-                <input type="text" name="name" placeholder="Иван Петров" class="w-full px-3 py-2 border border-border rounded-lg" required>
-              </div>
-              <div class="space-y-2">
-                <label class="text-sm font-medium">Телефон *</label>
-                <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="w-full px-3 py-2 border border-border rounded-lg" required>
-              </div>
+              <div class="space-y-2"><label class="text-sm font-medium">Ваше имя *</label><input type="text" name="name" placeholder="Иван Петров" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required></div>
+              <div class="space-y-2"><label class="text-sm font-medium">Телефон *</label><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" data-phone-mask required></div>
             </div>
-            <div class="space-y-2">
-              <label class="text-sm font-medium">Email</label>
-              <input type="email" name="email" placeholder="example@mail.ru" class="w-full px-3 py-2 border border-border rounded-lg">
-            </div>
-            <div class="space-y-2">
-              <label class="text-sm font-medium">Сообщение</label>
-              <textarea name="message" rows="4" placeholder="Ваш вопрос..." class="w-full px-3 py-2 border border-border rounded-lg resize-none"></textarea>
-            </div>
+            <div class="space-y-2"><label class="text-sm font-medium">Email</label><input type="email" name="email" placeholder="example@mail.ru" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"></div>
+            <div class="space-y-2"><label class="text-sm font-medium">Сообщение</label><textarea name="message" rows="4" placeholder="Ваш вопрос или комментарий..." class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm resize-none min-h-[100px]"></textarea></div>
             <div class="flex items-start gap-3">
-              <input type="checkbox" id="privacy" name="privacy" class="mt-1" required>
-              <label for="privacy" class="text-sm text-muted-foreground">
-                Согласен с <a href="/privacy/" class="text-primary hover:underline">политикой конфиденциальности</a>
-              </label>
+              <input type="checkbox" id="contact-privacy" name="privacy" class="mt-1 accent-primary" required>
+              <label for="contact-privacy" class="text-sm text-muted-foreground leading-relaxed cursor-pointer">Я согласен на обработку персональных данных в соответствии с <a href="privacy.html" class="text-primary hover:underline">политикой конфиденциальности</a></label>
             </div>
-            <button type="submit" class="w-full gradient-primary font-bold py-3 rounded-lg text-primary-foreground">Отправить сообщение</button>
+            <button type="submit" class="gradient-primary font-bold py-3 px-6 rounded-lg text-primary-foreground inline-flex items-center gap-2">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Отправить сообщение
+            </button>
           </form>
         </div>
+
         <!-- Requisites -->
         <div>
-          <h2 class="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">Реквизиты</h2>
-          <div class="bg-card rounded-2xl border p-6 space-y-3">
-            <div class="flex justify-between py-2 border-b border-border"><span class="text-muted-foreground">Компания</span><span class="font-medium">ООО "СКИФ"</span></div>
-            <div class="flex justify-between py-2 border-b border-border"><span class="text-muted-foreground">ИНН</span><span class="font-medium">7811176819</span></div>
-            <div class="flex justify-between py-2 border-b border-border"><span class="text-muted-foreground">КПП</span><span class="font-medium">781101001</span></div>
-            <div class="flex justify-between py-2 border-b border-border"><span class="text-muted-foreground">ОГРН</span><span class="font-medium">1037825018150</span></div>
+          <h2 class="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">Реквизиты компании</h2>
+          <p class="text-muted-foreground mb-8">Официальные реквизиты для заключения договоров и оплаты</p>
+          <div class="rounded-2xl bg-card border p-6">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center"><svg class="h-7 w-7 text-primary-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+              <div><h3 class="text-xl font-bold text-foreground">ООО "СКИФ"</h3><p class="text-muted-foreground">Официальный представитель</p></div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center py-3 border-b border-border"><span class="text-muted-foreground">ИНН</span><span class="font-medium text-foreground">7811176819</span></div>
+              <div class="flex justify-between items-center py-3 border-b border-border"><span class="text-muted-foreground">КПП</span><span class="font-medium text-foreground">781101001</span></div>
+              <div class="flex justify-between items-center py-3 border-b border-border"><span class="text-muted-foreground">ОГРН</span><span class="font-medium text-foreground">1037825018150</span></div>
+              <div class="py-3 border-b border-border"><span class="text-muted-foreground block mb-1">Юридический адрес</span><span class="font-medium text-foreground">192019, г. Санкт-Петербург, ул. Ольги Берггольц, д. 38-А</span></div>
+              <div class="py-3"><span class="text-muted-foreground block mb-1">Генеральный директор</span><span class="font-medium text-foreground">Иванов Иван Иванович</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -183,7 +240,44 @@
   </section>
 </main>
 
-<!-- FOOTER: см. index.html -->
+<!-- Lightbox -->
+<div class="fixed inset-0 z-[100] bg-black/95 items-center justify-center" id="lightbox" style="display:none">
+  <button class="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors" onclick="closeLightbox()"><svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <button class="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors" onclick="prevImg()"><svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <img id="lightbox-img" src="" alt="Фото офиса" class="max-h-[80vh] max-w-full object-contain">
+  <button class="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors" onclick="nextImg()"><svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white/10 rounded-full text-white text-sm" id="lightbox-counter">1 / 4</div>
+</div>
 
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-foreground text-background">
+  <div class="container py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div class="space-y-6"><a href="index.html" class="inline-block"><img src="images/logo-new.png" alt="СКИФ" class="h-20 w-auto"></a><p class="text-white/70 leading-relaxed">Продажа автомобильных прицепов, фаркопов и комплектующих. Работаем с 2005 года.</p><div class="w-full sm:w-auto"><iframe src="https://yandex.ru/sprav/widget/rating-badge/183604077331?type=rating" style="border:none" width="150" height="50" title="Рейтинг Яндекс" class="max-w-full"></iframe></div></div>
+      <div><h3 class="text-lg font-heading font-bold mb-6">Каталог</h3><ul class="space-y-3"><li><a href="category.html?cat=odnoosnye" class="text-white/70 hover:text-primary transition-colors">Одноосные прицепы</a></li><li><a href="category.html?cat=dvuhosnye" class="text-white/70 hover:text-primary transition-colors">Двухосные прицепы</a></li><li><a href="category.html?cat=lodki" class="text-white/70 hover:text-primary transition-colors">Прицепы для лодок</a></li></ul></div>
+      <div><h3 class="text-lg font-heading font-bold mb-6">Компания</h3><ul class="space-y-3"><li><a href="about.html" class="text-white/70 hover:text-primary transition-colors">О компании</a></li><li><a href="news.html" class="text-white/70 hover:text-primary transition-colors">Новости</a></li><li><a href="services.html" class="text-white/70 hover:text-primary transition-colors">Услуги</a></li><li><a href="payment.html" class="text-white/70 hover:text-primary transition-colors">Оплата</a></li><li><a href="contacts.html" class="text-white/70 hover:text-primary transition-colors">Контакты</a></li></ul></div>
+      <div><h3 class="text-lg font-heading font-bold mb-6">Контакты</h3><ul class="space-y-4"><li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><div><a href="tel:+78002001636" class="hover:text-primary transition-colors font-semibold">+7 (800) 200-16-36</a><p class="text-sm text-white/60">Звонок бесплатный</p></div></li><li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:zakaz@skif-avto.ru" class="text-white/70 hover:text-primary transition-colors">zakaz@skif-avto.ru</a></li></ul></div>
+    </div>
+  </div>
+  <div class="border-t border-white/10"><div class="container py-6 flex flex-col md:flex-row items-center justify-between gap-4"><p class="text-white/60 text-sm">© 2004 СКИФ. Все права защищены.</p><div class="flex flex-wrap justify-center gap-6 text-sm text-white/60"><a href="privacy.html" class="hover:text-primary transition-colors">Политика конфиденциальности</a><a href="terms.html" class="hover:text-primary transition-colors">Пользовательское соглашение</a></div></div></div>
+</footer>
+
+<!-- Modals -->
+<div class="modal-overlay" id="callback-modal"><div class="modal-backdrop"></div><div class="modal-content"><button class="modal-close" data-close-modal><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="modal-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div><h2 class="modal-title">Заказать звонок</h2><p class="modal-subtitle">Оставьте контакты — мы перезвоним за 5 минут</p><form id="callback-form"><div class="form-group"><label>Ваше имя *</label><input type="text" name="name" placeholder="Как к вам обращаться?" class="form-input"><div class="form-error"></div></div><div class="form-group"><label>Телефон *</label><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="form-input" data-phone-mask><div class="form-error"></div></div><button type="submit" class="w-full gradient-primary text-primary-foreground font-bold h-11 rounded-md">Перезвоните мне</button></form></div></div>
+<div class="modal-overlay" id="feedback-modal"><div class="modal-backdrop"></div><div class="modal-content"><div class="modal-header-gradient"><button class="modal-close" data-close-modal><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><h2>Обратная связь</h2><p>Оставьте заявку и мы свяжемся с вами</p></div><div class="modal-body"><form id="feedback-form"><div class="form-group"><label>Ваше имя *</label><input type="text" name="name" placeholder="Как к вам обращаться?" class="form-input"><div class="form-error"></div></div><div class="form-group"><label>Телефон *</label><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="form-input" data-phone-mask><div class="form-error"></div></div><div class="form-group"><label>Сообщение</label><textarea name="message" placeholder="Опишите ваш вопрос..." class="form-input form-textarea" style="min-height:80px"></textarea></div><button type="submit" class="w-full gradient-primary text-primary-foreground font-bold h-11 rounded-md">Отправить заявку</button></form></div></div></div>
+<button class="floating-feedback-btn" id="floating-feedback-btn"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></button>
+<div class="cookie-consent" id="cookie-consent"><div class="cookie-consent-inner"><button class="cookie-consent-close" id="cookie-close"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="cookie-consent-body"><div class="cookie-consent-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div style="flex:1;padding-right:1rem"><h4>🍪 Мы используем cookies</h4><p>Для улучшения работы сайта и подбора лучших прицепов для вас мы собираем данные о посещениях.</p><div class="cookie-consent-btns"><button class="gradient-primary text-primary-foreground font-medium h-8 px-3 rounded-md text-sm" id="cookie-accept">Принять</button><button class="border border-input bg-background text-foreground h-8 px-3 rounded-md text-sm" id="cookie-decline">Отклонить</button></div></div></div></div></div>
+
+<script>
+// Lightbox for contacts page
+var lbPhotos = ['images/berggolts.jpg','images/berggolts-map.jpg','images/parnas.jpg','images/berggolts.jpg'];
+var lbIdx = 0;
+function openLightbox(i) { lbIdx = i; var lb = document.getElementById('lightbox'); lb.style.display='flex'; document.getElementById('lightbox-img').src = lbPhotos[lbIdx]; document.getElementById('lightbox-counter').textContent = (lbIdx+1)+' / '+lbPhotos.length; }
+function closeLightbox() { document.getElementById('lightbox').style.display='none'; }
+function nextImg() { lbIdx = (lbIdx+1) % lbPhotos.length; document.getElementById('lightbox-img').src = lbPhotos[lbIdx]; document.getElementById('lightbox-counter').textContent = (lbIdx+1)+' / '+lbPhotos.length; }
+function prevImg() { lbIdx = (lbIdx-1+lbPhotos.length) % lbPhotos.length; document.getElementById('lightbox-img').src = lbPhotos[lbIdx]; document.getElementById('lightbox-counter').textContent = (lbIdx+1)+' / '+lbPhotos.length; }
+document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
+</script>
+<script src="js/skif.js"></script>
 </body>
 </html>
