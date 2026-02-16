@@ -13,10 +13,14 @@ public/bitrix/html/
 ├── contacts.html       — Контакты
 ├── about.html          — О компании
 ├── news.html           — Список новостей
+├── news-detail.html    — Детальная страница новости
 ├── payment.html        — Способы оплаты
 ├── cart.html           — Корзина
 ├── checkout.html       — Оформление заказа
 ├── favorites.html      — Избранное
+├── search.html         — Результаты поиска
+├── privacy.html        — Политика конфиденциальности
+├── terms.html          — Пользовательское соглашение
 └── README.md           — Этот файл
 ```
 

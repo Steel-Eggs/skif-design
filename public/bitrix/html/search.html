@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Результаты поиска — СКИФ</title>
+  <link rel="stylesheet" href="css/skif.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        container: { center: true, padding: '1rem', screens: { '2xl':'1400px' } },
+        extend: {
+          fontFamily: { sans:['Open Sans','system-ui','sans-serif'], heading:['Montserrat','system-ui','sans-serif'] },
+          colors: {
+            border:'hsl(210 15% 90%)', background:'hsl(210 15% 97%)', foreground:'hsl(200 50% 10%)',
+            primary:{ DEFAULT:'hsl(202 83% 26%)', foreground:'hsl(0 0% 100%)' },
+            muted:{ DEFAULT:'hsl(210 15% 94%)', foreground:'hsl(200 20% 40%)' },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen flex flex-col bg-background font-sans">
+
+<!-- HEADER: см. index.html -->
+
+<main class="flex-1">
+  <div class="container mx-auto px-4 py-6">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+      <a href="/" class="hover:text-primary">Главная</a>
+      <span>/</span>
+      <span class="text-foreground">Результаты поиска</span>
+    </nav>
+
+    <!-- Search form -->
+    <!-- Bitrix: search.page -->
+    <div class="mb-8">
+      <form action="" method="get" class="flex gap-2 max-w-2xl">
+        <div class="relative flex-1">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" name="q" placeholder="Поиск товаров..." value="" class="w-full pl-10 pr-3 py-3 border border-border rounded-lg bg-white text-sm">
+        </div>
+        <button type="submit" class="gradient-primary text-white font-bold px-6 rounded-lg">Найти</button>
+      </form>
+    </div>
+
+    <!-- Results header -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">Результаты поиска: «прицеп»</h1>
+        <p class="text-muted-foreground mt-1">Найдено 8 товаров</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <select class="border border-border rounded-lg px-3 py-2 text-sm bg-white">
+          <option value="relevance">По релевантности</option>
+          <option value="price-asc">Сначала дешевле</option>
+          <option value="price-desc">Сначала дороже</option>
+          <option value="name">По названию</option>
+        </select>
+        <div class="flex border rounded-lg overflow-hidden">
+          <button class="p-2 bg-primary text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="p-2 bg-white hover:bg-muted">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results grid -->
+    <!-- Bitrix: search.page результаты -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      <!-- PRODUCT CARD: аналогичен карточкам из каталога -->
+      <!-- Повторяется для каждого результата -->
+    </div>
+
+    <!-- Not found suggestion -->
+    <div class="mt-12 p-6 bg-muted/50 rounded-lg">
+      <h3 class="font-semibold mb-4">Не нашли что искали?</h3>
+      <p class="text-muted-foreground mb-4">Свяжитесь с нами, и мы поможем подобрать подходящий прицеп</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="tel:+78002001636"><button class="border border-border px-4 py-2 rounded-lg font-medium">Позвонить</button></a>
+        <a href="contacts.html"><button class="gradient-primary text-white px-4 py-2 rounded-lg font-bold">Написать нам</button></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER: см. index.html -->
+
+</body>
+</html>
