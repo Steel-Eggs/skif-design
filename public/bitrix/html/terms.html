@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пользовательское соглашение — СКИФ</title>
+  <link rel="stylesheet" href="css/skif.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        container: { center: true, padding: '1rem', screens: { '2xl':'1400px' } },
+        extend: {
+          fontFamily: { sans:['Open Sans','system-ui','sans-serif'], heading:['Montserrat','system-ui','sans-serif'] },
+          colors: {
+            border:'hsl(210 15% 90%)', background:'hsl(210 15% 97%)', foreground:'hsl(200 50% 10%)',
+            primary:{ DEFAULT:'hsl(202 83% 26%)', foreground:'hsl(0 0% 100%)' },
+            muted:{ DEFAULT:'hsl(210 15% 94%)', foreground:'hsl(200 20% 40%)' },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen flex flex-col bg-background font-sans">
+
+<!-- HEADER: см. index.html -->
+
+<main class="flex-1">
+  <div class="container mx-auto px-4 py-6">
+    <nav class="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+      <a href="/" class="hover:text-primary">Главная</a>
+      <span>/</span>
+      <span class="text-foreground">Пользовательское соглашение</span>
+    </nav>
+
+    <div class="bg-white rounded-lg border p-6 md:p-8">
+      <h1 class="text-2xl md:text-3xl font-bold mb-6">Пользовательское соглашение</h1>
+      
+      <div class="prose prose-sm md:prose max-w-none">
+        <p class="text-muted-foreground mb-6">
+          Настоящее Пользовательское соглашение регулирует отношения между ООО «СКИФ» и пользователем сети Интернет, 
+          возникающие при использовании сайта skif-avto.ru.
+        </p>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">1. Общие положения</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>1.1. Использование материалов и сервисов Сайта регулируется нормами законодательства РФ.</li>
+          <li>1.2. Настоящее Соглашение является публичной офертой.</li>
+          <li>1.3. Компания вправе в любое время изменять условия Соглашения.</li>
+          <li>1.4. Продолжая использование Сайта, Пользователь подтверждает согласие с изменениями.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">2. Предмет соглашения</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>2.1. Предоставление доступа к информации о товарах и услугах.</li>
+          <li>2.2. Под действие подпадают все существующие разделы Сайта.</li>
+          <li>2.3. Доступ предоставляется на бесплатной основе.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">3. Права и обязанности сторон</h2>
+        <p class="mb-4"><strong>3.1. Компания вправе:</strong></p>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>Изменять правила пользования Сайтом.</li>
+          <li>Удалять учётные записи нарушителей.</li>
+          <li>Ограничивать доступ при нарушении условий.</li>
+        </ul>
+        <p class="mb-4"><strong>3.2. Пользователь вправе:</strong></p>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>Получить доступ к Сайту и всем его сервисам.</li>
+          <li>Задавать вопросы, относящиеся к товарам и услугам.</li>
+        </ul>
+        <p class="mb-4"><strong>3.3. Пользователь обязуется:</strong></p>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>Не нарушать нормальную работу Сайта.</li>
+          <li>Не распространять конфиденциальную информацию.</li>
+          <li>Не использовать Сайт для распространения рекламы.</li>
+          <li>Не совершать действий, противоречащих законодательству РФ.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">4. Использование Сайта</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>4.1. Содержание Сайта является объектом интеллектуальной собственности Компании.</li>
+          <li>4.2. Пользователь вправе использовать Сайт только в личных некоммерческих целях.</li>
+          <li>4.3. Запрещается копирование материалов без письменного разрешения.</li>
+          <li>4.4. При цитировании обязательна ссылка на Сайт.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">5. Ответственность</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>5.1. Убытки от нарушения Соглашения Компанией не возмещаются.</li>
+          <li>5.2. Компания не несет ответственности за задержки, сбои, действия платежных систем.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">6. Условия приобретения товаров</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>6.1. Товар может быть приобретен посредством оформления заказа на Сайте или по телефону.</li>
+          <li>6.2. Цены указаны в рублях и включают НДС.</li>
+          <li>6.3. Компания оставляет за собой право изменять цены.</li>
+          <li>6.4. Внешний вид товара может отличаться от изображений на Сайте.</li>
+          <li>6.5. Информация о товаре не является публичной офертой.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">7. Оплата и доставка</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>7.1. Оплата может быть произведена наличными или безналичным способом.</li>
+          <li>7.2. Доставка осуществляется по адресу, указанному при оформлении заказа.</li>
+          <li>7.3. Сроки и стоимость доставки определяются индивидуально.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">8. Гарантии и возврат</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>8.1. На все товары распространяется гарантия производителя.</li>
+          <li>8.2. Возврат надлежащего качества — в течение 14 дней.</li>
+          <li>8.3. Возврат ненадлежащего качества — в соответствии с Законом «О защите прав потребителей».</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">9. Персональные данные</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>9.1. Пользователь соглашается на обработку персональных данных.</li>
+          <li>9.2. Обработка осуществляется в соответствии с <a href="privacy.html" class="text-primary hover:underline">Политикой конфиденциальности</a>.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">10. Разрешение споров</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>10.1. Споры решаются путем переговоров.</li>
+          <li>10.2. При невозможности — в судебном порядке по месту нахождения Компании.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold mt-8 mb-4">11. Заключительные положения</h2>
+        <ul class="list-disc pl-6 mb-4 space-y-2">
+          <li>11.1. Соглашение вступает в силу с момента присоединения.</li>
+          <li>11.2. Составлено в соответствии с законодательством РФ.</li>
+          <li>11.3. Все нерегулированные вопросы решаются по законодательству РФ.</li>
+          <li>11.4. По вопросам обращайтесь: <a href="mailto:zakaz@skif-avto.ru" class="text-primary hover:underline">zakaz@skif-avto.ru</a></li>
+        </ul>
+
+        <div class="mt-8 p-4 bg-muted rounded-lg">
+          <p class="text-sm text-muted-foreground">
+            <strong>Реквизиты компании:</strong><br>
+            ООО «СКИФ»<br>
+            ИНН: 7811176819<br>
+            ОГРН: 1037825018150<br>
+            Адрес: 192019, г. Санкт-Петербург, ул. Ольги Берггольц, д. 38-А
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER: см. index.html -->
+
+</body>
+</html>

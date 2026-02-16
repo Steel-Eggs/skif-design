@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Избранное — СКИФ</title>
+  <link rel="stylesheet" href="css/skif.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        container: { center: true, padding: '1rem', screens: { '2xl':'1400px' } },
+        extend: {
+          fontFamily: { sans:['Open Sans','system-ui','sans-serif'], heading:['Montserrat','system-ui','sans-serif'] },
+          colors: {
+            border:'hsl(210 15% 90%)', background:'hsl(210 15% 97%)', foreground:'hsl(200 50% 10%)',
+            primary:{ DEFAULT:'hsl(202 83% 26%)', foreground:'hsl(0 0% 100%)' },
+            secondary:{ DEFAULT:'hsl(152 68% 42%)', foreground:'hsl(0 0% 100%)' },
+            muted:{ DEFAULT:'hsl(210 15% 94%)', foreground:'hsl(200 20% 40%)' },
+            accent:{ DEFAULT:'hsl(152 68% 34%)', foreground:'hsl(0 0% 100%)' },
+            destructive:{ DEFAULT:'hsl(0 84% 60%)', foreground:'hsl(0 0% 100%)' },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen flex flex-col bg-background font-sans">
+
+<!-- HEADER: см. index.html -->
+
+<main class="flex-1">
+  <!-- Hero -->
+  <section class="py-12 md:py-16 bg-gradient-to-br from-red-500/10 via-background to-accent/5">
+    <div class="container px-4">
+      <div class="flex items-center gap-2 text-muted-foreground mb-6 text-sm">
+        <a href="/" class="hover:text-foreground">Главная</a>
+        <span>/</span>
+        <span class="text-foreground">Избранное</span>
+      </div>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-red-500/10 flex items-center justify-center">
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div>
+            <h1 class="text-2xl md:text-4xl font-heading font-bold text-foreground">Избранное</h1>
+            <p class="text-muted-foreground" id="favorites-count">Загрузка...</p>
+          </div>
+        </div>
+        <button class="border border-border px-4 py-2 rounded-lg text-sm font-medium hover:bg-muted" id="clear-favorites">Очистить список</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="py-8 md:py-12">
+    <div class="container px-4">
+      <!-- Товары из избранного (Bitrix: catalog.section с фильтром по ID) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6" id="favorites-grid">
+        <!-- PRODUCT CARD: аналогичен карточкам из каталога -->
+        <!-- Заполняется JS из localStorage или Битрикс-компонентом -->
+      </div>
+
+      <!-- Empty state -->
+      <div class="text-center py-16" id="favorites-empty">
+        <svg class="w-20 h-20 text-muted-foreground/30 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <h2 class="text-2xl font-heading font-bold text-foreground mb-3">Список избранного пуст</h2>
+        <p class="text-muted-foreground mb-8 max-w-md mx-auto">Добавляйте товары в избранное, нажимая на сердечко на карточке товара</p>
+        <a href="catalog.html">
+          <button class="gradient-primary text-white font-bold py-3 px-6 rounded-lg inline-flex items-center gap-2">
+            ← Перейти в каталог
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER: см. index.html -->
+
+</body>
+</html>
