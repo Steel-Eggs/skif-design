@@ -360,13 +360,13 @@
           <p class="text-muted-foreground mb-8">Заполните форму, и мы свяжемся с вами в ближайшее время</p>
           <form class="space-y-6" id="contacts-page-form">
             <div class="grid sm:grid-cols-2 gap-4">
-              <div class="space-y-2"><label class="text-sm font-medium">Ваше имя *</label><input type="text" name="name" placeholder="Иван Петров" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required></div>
-              <div class="space-y-2"><label class="text-sm font-medium">Телефон *</label><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" data-phone-mask required></div>
+              <div class="space-y-2"><label class="text-sm font-medium">Ваше имя *</label><input type="text" name="name" placeholder="Иван Петров" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm transition-colors duration-200"></div>
+              <div class="space-y-2"><label class="text-sm font-medium">Телефон *</label><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm transition-colors duration-200" data-phone-mask></div>
             </div>
-            <div class="space-y-2"><label class="text-sm font-medium">Email</label><input type="email" name="email" placeholder="example@mail.ru" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"></div>
-            <div class="space-y-2"><label class="text-sm font-medium">Сообщение</label><textarea name="message" rows="4" placeholder="Ваш вопрос или комментарий..." class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm resize-none min-h-[100px]"></textarea></div>
+            <div class="space-y-2"><label class="text-sm font-medium">Email</label><input type="email" name="email" placeholder="example@mail.ru" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm transition-colors duration-200"></div>
+            
             <div class="flex items-start gap-3">
-              <input type="checkbox" id="contact-privacy" name="privacy" class="mt-1 accent-primary" required>
+              <input type="checkbox" id="contact-privacy" name="privacy" class="mt-1 accent-primary">
               <label for="contact-privacy" class="text-sm text-muted-foreground leading-relaxed cursor-pointer">Я согласен на обработку персональных данных в соответствии с <a href="privacy.html" class="text-primary hover:underline">политикой конфиденциальности</a></label>
             </div>
             <div class="form-error text-destructive text-sm" id="contact-privacy-error" style="display:none;margin-top:-0.5rem">Необходимо согласие с политикой</div>
@@ -401,12 +401,13 @@
 </main>
 
 <!-- Lightbox -->
-<div class="fixed inset-0 z-[100] bg-black/95 items-center justify-center" id="lightbox" style="display:none">
+<div class="fixed inset-0 z-[100] items-center justify-center opacity-0 pointer-events-none" id="lightbox" style="display:flex;transition:opacity 0.3s ease">
+  <div class="absolute inset-0 bg-black/95"></div>
   <button class="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors" onclick="closeLightbox()"><svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
   <button class="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors" onclick="prevImg()"><svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-  <img id="lightbox-img" src="" alt="Фото офиса" class="max-h-[80vh] max-w-full object-contain">
+  <img id="lightbox-img" src="" alt="Фото офиса" class="max-h-[80vh] max-w-[90vw] object-contain relative z-[1]" style="transition:opacity 0.25s ease;opacity:1">
   <button class="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors" onclick="nextImg()"><svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
-  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white/10 rounded-full text-white text-sm" id="lightbox-counter">1 / 4</div>
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-white/10 rounded-full text-white text-sm z-10" id="lightbox-counter">1 / 4</div>
 </div>
 
 <!-- ==================== FOOTER ==================== -->
@@ -530,11 +531,41 @@
 // Lightbox for contacts page
 var lbPhotos = ['images/berggolts.jpg','images/berggolts-map.jpg','images/parnas.jpg','images/berggolts.jpg'];
 var lbIdx = 0;
-function openLightbox(i) { lbIdx = i; var lb = document.getElementById('lightbox'); lb.style.display='flex'; document.getElementById('lightbox-img').src = lbPhotos[lbIdx]; document.getElementById('lightbox-counter').textContent = (lbIdx+1)+' / '+lbPhotos.length; }
-function closeLightbox() { document.getElementById('lightbox').style.display='none'; }
-function nextImg() { lbIdx = (lbIdx+1) % lbPhotos.length; document.getElementById('lightbox-img').src = lbPhotos[lbIdx]; document.getElementById('lightbox-counter').textContent = (lbIdx+1)+' / '+lbPhotos.length; }
-function prevImg() { lbIdx = (lbIdx-1+lbPhotos.length) % lbPhotos.length; document.getElementById('lightbox-img').src = lbPhotos[lbIdx]; document.getElementById('lightbox-counter').textContent = (lbIdx+1)+' / '+lbPhotos.length; }
-document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
+var lbEl = document.getElementById('lightbox');
+var lbImg = document.getElementById('lightbox-img');
+var lbCounter = document.getElementById('lightbox-counter');
+
+function openLightbox(i) {
+  lbIdx = i;
+  lbImg.src = lbPhotos[lbIdx];
+  lbCounter.textContent = (lbIdx+1)+' / '+lbPhotos.length;
+  lbEl.classList.remove('opacity-0','pointer-events-none');
+  lbEl.classList.add('opacity-100');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lbEl.classList.remove('opacity-100');
+  lbEl.classList.add('opacity-0','pointer-events-none');
+  document.body.style.overflow = '';
+}
+function switchImg(newIdx) {
+  lbImg.style.opacity = '0';
+  setTimeout(function() {
+    lbIdx = newIdx;
+    lbImg.src = lbPhotos[lbIdx];
+    lbCounter.textContent = (lbIdx+1)+' / '+lbPhotos.length;
+    lbImg.style.opacity = '1';
+  }, 200);
+}
+function nextImg() { switchImg((lbIdx+1) % lbPhotos.length); }
+function prevImg() { switchImg((lbIdx-1+lbPhotos.length) % lbPhotos.length); }
+lbEl.querySelector('.absolute.inset-0').addEventListener('click', closeLightbox);
+document.addEventListener('keydown', function(e) {
+  if (lbEl.classList.contains('opacity-0')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') nextImg();
+  if (e.key === 'ArrowLeft') prevImg();
+});
 </script>
 <script src="js/skif.js"></script>
 <script>
@@ -552,15 +583,20 @@ document.getElementById('lightbox').addEventListener('click', function(e) { if (
     var privacyErr = document.getElementById('contact-privacy-error');
 
     // Reset
-    [nameEl, phoneEl, emailEl].forEach(function(el) { el.style.borderColor = ''; });
+    [nameEl, phoneEl, emailEl].forEach(function(el) {
+      el.style.borderColor = '';
+      el.style.boxShadow = '';
+    });
+    privacyEl.style.outline = '';
     privacyErr.style.display = 'none';
     form.querySelectorAll('.field-error').forEach(function(el) { el.remove(); });
 
     function addError(input, msg) {
       input.style.borderColor = 'hsl(0 84% 60%)';
+      input.style.boxShadow = '0 0 0 3px hsla(0, 84%, 60%, 0.15)';
       var err = document.createElement('span');
-      err.className = 'field-error text-sm';
-      err.style.color = 'hsl(0 84% 60%)';
+      err.className = 'field-error';
+      err.style.cssText = 'display:block;color:hsl(0 84% 60%);font-size:0.8125rem;margin-top:0.375rem';
       err.textContent = msg;
       input.parentNode.appendChild(err);
       valid = false;
