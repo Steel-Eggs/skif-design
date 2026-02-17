@@ -370,57 +370,11 @@
               <label for="contact-privacy" class="text-sm text-muted-foreground leading-relaxed cursor-pointer">Я согласен на обработку персональных данных в соответствии с <a href="privacy.html" class="text-primary hover:underline">политикой конфиденциальности</a></label>
             </div>
             <div class="form-error text-destructive text-sm" id="contact-privacy-error" style="display:none;margin-top:-0.5rem">Необходимо согласие с политикой</div>
-            <button type="submit" class="gradient-accent font-bold py-3 px-6 rounded-lg text-accent-foreground inline-flex items-center gap-2 hover:opacity-90 transition-opacity">
+            <button type="submit" class="gradient-accent font-bold py-3 px-6 rounded-lg text-accent-foreground inline-flex items-center gap-2 hover:opacity-90 transition-opacity w-full sm:w-auto">
               <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
               Отправить сообщение
             </button>
           </form>
-        </div>
-
-<script>
-(function() {
-  var form = document.getElementById('contacts-page-form');
-  if (!form) return;
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var valid = true;
-    var nameEl = form.querySelector('[name="name"]');
-    var phoneEl = form.querySelector('[name="phone"]');
-    var emailEl = form.querySelector('[name="email"]');
-    var privacyEl = document.getElementById('contact-privacy');
-    var privacyErr = document.getElementById('contact-privacy-error');
-
-    // Reset errors
-    nameEl.style.borderColor = '';
-    phoneEl.style.borderColor = '';
-    emailEl.style.borderColor = '';
-    privacyErr.style.display = 'none';
-    form.querySelectorAll('.field-error').forEach(function(el) { el.remove(); });
-
-    function addError(input, msg) {
-      input.style.borderColor = 'hsl(0 84% 60%)';
-      var err = document.createElement('span');
-      err.className = 'field-error text-sm';
-      err.style.color = 'hsl(0 84% 60%)';
-      err.textContent = msg;
-      input.parentNode.appendChild(err);
-      valid = false;
-    }
-
-    if (!nameEl.value.trim()) addError(nameEl, 'Введите ваше имя');
-    var digits = phoneEl.value.replace(/\D/g, '');
-    if (digits.length < 11) addError(phoneEl, 'Введите корректный номер телефона');
-    if (emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) addError(emailEl, 'Введите корректный email');
-    if (!privacyEl.checked) { privacyErr.style.display = 'block'; valid = false; }
-
-    if (valid) {
-      alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
-      form.reset();
-    }
-  });
-})();
-</script>
         </div>
 
         <!-- Requisites -->
@@ -583,5 +537,47 @@ function prevImg() { lbIdx = (lbIdx-1+lbPhotos.length) % lbPhotos.length; docume
 document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(); });
 </script>
 <script src="js/skif.js"></script>
+<script>
+(function() {
+  var form = document.getElementById('contacts-page-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var valid = true;
+    var nameEl = form.querySelector('[name="name"]');
+    var phoneEl = form.querySelector('[name="phone"]');
+    var emailEl = form.querySelector('[name="email"]');
+    var privacyEl = document.getElementById('contact-privacy');
+    var privacyErr = document.getElementById('contact-privacy-error');
+
+    // Reset
+    [nameEl, phoneEl, emailEl].forEach(function(el) { el.style.borderColor = ''; });
+    privacyErr.style.display = 'none';
+    form.querySelectorAll('.field-error').forEach(function(el) { el.remove(); });
+
+    function addError(input, msg) {
+      input.style.borderColor = 'hsl(0 84% 60%)';
+      var err = document.createElement('span');
+      err.className = 'field-error text-sm';
+      err.style.color = 'hsl(0 84% 60%)';
+      err.textContent = msg;
+      input.parentNode.appendChild(err);
+      valid = false;
+    }
+
+    if (!nameEl.value.trim()) addError(nameEl, 'Введите ваше имя');
+    var digits = phoneEl.value.replace(/\D/g, '');
+    if (digits.length < 11) addError(phoneEl, 'Введите корректный номер телефона');
+    if (emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) addError(emailEl, 'Введите корректный email');
+    if (!privacyEl.checked) { privacyErr.style.display = 'block'; valid = false; }
+
+    if (valid) {
+      alert('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+      form.reset();
+    }
+  });
+})();
+</script>
 </body>
 </html>
