@@ -4,99 +4,611 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Новости — СКИФ</title>
-  <link rel="stylesheet" href="/bitrix/css/base.css">
-  <link rel="stylesheet" href="/bitrix/css/header.css">
-  <link rel="stylesheet" href="/bitrix/css/news.css">
-  <link rel="stylesheet" href="/bitrix/css/footer.css">
+  <meta name="description" content="Актуальные новости компании СКИФ: новинки прицепов, акции, обзоры и полезные советы.">
+  <link rel="stylesheet" href="css/skif.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        container: {
+          center: true,
+          padding: '1rem',
+          screens: { sm:'640px', md:'768px', lg:'1024px', xl:'1280px', '2xl':'1400px' }
+        },
+        extend: {
+          fontFamily: {
+            sans: ['Open Sans', 'system-ui', 'sans-serif'],
+            heading: ['Montserrat', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            border: 'hsl(210 15% 90%)',
+            input: 'hsl(210 15% 90%)',
+            ring: 'hsl(202 83% 26%)',
+            background: 'hsl(210 15% 97%)',
+            foreground: 'hsl(200 50% 10%)',
+            primary: { DEFAULT: 'hsl(202 83% 26%)', foreground: 'hsl(0 0% 100%)' },
+            secondary: { DEFAULT: 'hsl(152 68% 42%)', foreground: 'hsl(0 0% 100%)' },
+            destructive: { DEFAULT: 'hsl(0 84% 60%)', foreground: 'hsl(0 0% 100%)' },
+            muted: { DEFAULT: 'hsl(210 15% 94%)', foreground: 'hsl(200 20% 40%)' },
+            accent: { DEFAULT: 'hsl(152 68% 34%)', foreground: 'hsl(0 0% 100%)' },
+            popover: { DEFAULT: 'hsl(0 0% 100%)', foreground: 'hsl(200 50% 10%)' },
+            card: { DEFAULT: 'hsl(0 0% 100%)', foreground: 'hsl(200 50% 10%)' },
+          },
+          borderRadius: {
+            lg: '1.5rem',
+            md: 'calc(1.5rem - 2px)',
+            sm: 'calc(1.5rem - 4px)',
+          },
+        }
+      }
+    }
+  </script>
 </head>
-<body>
+<body class="min-h-screen overflow-x-hidden bg-background text-foreground font-sans antialiased">
 
-<!-- HEADER: см. index.html -->
+<!-- ==================== HEADER ==================== -->
+<header class="sticky top-0 z-50 w-full">
+  <!-- Top bar -->
+  <div class="bg-primary text-primary-foreground hidden md:block header-top">
+    <div class="container flex items-center justify-between py-2 text-sm">
+      <div class="flex items-center gap-6">
+        <a href="tel:+78002001636" class="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <span>+7 (800) 200-16-36</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-4 ml-auto">
+        <div class="flex items-center gap-3">
+          <a href="https://max.ru" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity" title="MAX">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+          <a href="https://t.me/skif_trailers" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity" title="Telegram">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </a>
+          <a href="tel:+79219103850" class="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <span>+7 (921) 910-38-50</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Main header -->
+  <div class="bg-card border-b border-border shadow-sm">
+    <div class="container flex items-center justify-between py-2 md:py-3 gap-2 md:gap-3">
+      <a href="index.html" class="flex items-center shrink-0">
+        <img src="images/logo-new.png" alt="СКИФ" class="h-10 md:h-14 w-auto">
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-0.5 desktop-nav">
+        <div class="relative" id="catalog-dropdown">
+          <button class="flex items-center gap-1.5 px-4 py-2 gradient-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-all">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            Каталог
+            <svg class="h-3.5 w-3.5 transition-transform" id="catalog-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mega-menu" id="mega-menu">
+            <div class="mega-menu-inner">
+              <div class="mega-menu-left">
+                <button class="mega-menu-cat-item" data-cat="sale"><span class="cat-icon">🏷️</span><span class="cat-name">Распродажа</span><span class="cat-badge bg-destructive text-destructive-foreground rounded-full px-1.5 py-0.5 text-[10px] font-bold">-30%</span></button>
+                <button class="mega-menu-cat-item active" data-cat="odnoosnye"><span class="cat-icon">🚗</span><span class="cat-name">Одноосные</span></button>
+                <button class="mega-menu-cat-item" data-cat="dvuhosnye"><span class="cat-icon">🚙</span><span class="cat-name">Двухосные</span></button>
+                <button class="mega-menu-cat-item" data-cat="s-kryshkoy"><span class="cat-icon">📦</span><span class="cat-name">С крышкой</span></button>
+                <button class="mega-menu-cat-item" data-cat="platforma"><span class="cat-icon">🏗️</span><span class="cat-name">Платформы</span></button>
+                <button class="mega-menu-cat-item" data-cat="furgony"><span class="cat-icon">🚐</span><span class="cat-name">Фургоны</span></button>
+                <button class="mega-menu-cat-item" data-cat="kommercheskie"><span class="cat-icon">🏢</span><span class="cat-name">Коммерческие</span></button>
+                <button class="mega-menu-cat-item" data-cat="moto"><span class="cat-icon">🏍️</span><span class="cat-name">Для мототехники</span><span class="cat-badge bg-secondary text-secondary-foreground rounded-full px-1.5 py-0.5 text-[10px] font-bold">Хит</span></button>
+                <button class="mega-menu-cat-item" data-cat="lodki"><span class="cat-icon">🚤</span><span class="cat-name">Для лодок</span><span class="cat-badge bg-secondary text-secondary-foreground rounded-full px-1.5 py-0.5 text-[10px] font-bold">Хит</span></button>
+                <button class="mega-menu-cat-item" data-cat="elektrostancii"><span class="cat-icon">⚡</span><span class="cat-name">Электростанции</span></button>
+                <button class="mega-menu-cat-item" data-cat="evakuatory"><span class="cat-icon">⚠️</span><span class="cat-name">Эвакуаторы</span></button>
+                <div class="mega-menu-divider"></div>
+                <a href="catalog.html?cat=spectehnika" class="mega-menu-cat-item"><span class="cat-icon">🔧</span><span class="cat-name">Для спецтехники</span></a>
+                <a href="catalog.html?cat=bytovki" class="mega-menu-cat-item"><span class="cat-icon">🏠</span><span class="cat-name">Бытовки на колёсах</span></a>
+                <a href="catalog.html?cat=bu" class="mega-menu-cat-item"><span class="cat-icon">♻️</span><span class="cat-name">Прицепы Б/У</span></a>
+                <a href="catalog.html?cat=prokat" class="mega-menu-cat-item"><span class="cat-icon">🔄</span><span class="cat-name">Прицепы в прокат</span></a>
+                <a href="catalog.html?cat=proizvoditeli" class="mega-menu-cat-item"><span class="cat-icon">🏭</span><span class="cat-name">По производителям</span></a>
+                <a href="catalog.html?cat=zapchasti" class="mega-menu-cat-item"><span class="cat-icon">🔩</span><span class="cat-name">Запчасти и аксессуары</span></a>
+                <a href="catalog.html?cat=boksy" class="mega-menu-cat-item"><span class="cat-icon">📦</span><span class="cat-name">Боксы и багажники</span></a>
+                <a href="catalog.html?cat=snegohody" class="mega-menu-cat-item"><span class="cat-icon">❄️</span><span class="cat-name">Снегоходы</span></a>
+                <a href="catalog.html?cat=rybalka" class="mega-menu-cat-item"><span class="cat-icon">🐟</span><span class="cat-name">Товары для рыбалки</span></a>
+              </div>
+              <div class="mega-menu-right">
+                <div class="mega-menu-header">
+                  <h3 id="mega-menu-cat-title">Одноосные</h3>
+                  <a href="category.html">Смотреть все товары →</a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="odnoosnye" style="display:grid">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="МЗСА 817711"></div><h4>МЗСА 817711.001-05</h4><div><span class="price">119 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="Курганские"></div><h4>Курганские прицепы 8213B5</h4><div><span class="price">89 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="СПУТНИК"></div><h4>СПУТНИК 821305</h4><div><span class="price">76 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="ССТ 7132"></div><h4>ССТ 7132 Стандарт</h4><div><span class="price">82 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="МЗСА 817701"></div><h4>МЗСА 817701 Эконом</h4><div><span class="price">69 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt="Курганский 8213"></div><h4>Курганский 8213 Базовый</h4><div><span class="price">74 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt="ВЕКТОР 82111"></div><h4>ВЕКТОР 82111</h4><div><span class="price">79 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt="СПУТНИК 821301"></div><h4>СПУТНИК 821301 Комфорт</h4><div><span class="price">94 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="sale" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>МЗСА 817711 со скидкой</h4><div><span class="price" style="color:hsl(0 84% 60%)">89 900 ₽</span> <span class="price-old">109 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>Курганский 8213B5</h4><div><span class="price" style="color:hsl(0 84% 60%)">64 900 ₽</span> <span class="price-old">79 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt=""></div><h4>Прицеп для лодки ПВХ</h4><div><span class="price" style="color:hsl(0 84% 60%)">45 900 ₽</span> <span class="price-old">59 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>СПУТНИК 821301</h4><div><span class="price" style="color:hsl(0 84% 60%)">54 900 ₽</span> <span class="price-old">69 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="dvuhosnye" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>МЗСА 832132.201</h4><div><span class="price">189 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt=""></div><h4>Курганские прицепы 8512</h4><div><span class="price">159 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>ССТ 7132 Двухосный</h4><div><span class="price">145 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>МЗСА 832134 Платформа</h4><div><span class="price">169 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="s-kryshkoy" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>МЗСА 817717 с крышкой</h4><div><span class="price">134 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>Курганский с ABS крышкой</h4><div><span class="price">115 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt=""></div><h4>СПУТНИК с крышкой</h4><div><span class="price">99 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>ССТ с пластиковой крышкой</h4><div><span class="price">109 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="lodki" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt=""></div><h4>МЗСА для ПВХ лодок</h4><div><span class="price">79 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>Прицеп для катера до 6м</h4><div><span class="price">189 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>Лодочный прицеп Р6</h4><div><span class="price">145 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt=""></div><h4>Для гидроцикла</h4><div><span class="price">89 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="moto" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>Для 2-х мотоциклов</h4><div><span class="price">89 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt=""></div><h4>Для квадроцикла</h4><div><span class="price">79 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>Универсальный мото-прицеп</h4><div><span class="price">69 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>Для снегохода</h4><div><span class="price">74 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="platforma" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>Платформа МЗСА 832171</h4><div><span class="price">159 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>Платформа Курганская</h4><div><span class="price">139 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="furgony" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>Фургон МЗСА</h4><div><span class="price">219 900 ₽</span></div></a>
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt=""></div><h4>Фургон Курганский</h4><div><span class="price">189 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="kommercheskie" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-1.jpg" alt=""></div><h4>Коммерческий МЗСА</h4><div><span class="price">249 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="elektrostancii" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-3.jpg" alt=""></div><h4>Для электростанции</h4><div><span class="price">179 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-products mega-menu-product-set" data-cat="evakuatory" style="display:none">
+                  <a href="product.html" class="mega-menu-product"><div class="mega-menu-product-img"><img src="images/trailer-2.jpg" alt=""></div><h4>Прицеп-эвакуатор</h4><div><span class="price">289 900 ₽</span></div></a>
+                </div>
+                <div class="mega-menu-info-bar">
+                  <div class="mega-menu-info-item"><span class="info-value">500+</span><span class="info-label">моделей<br>в наличии</span></div>
+                  <div class="mega-menu-info-item"><span class="info-value">0%</span><span class="info-label">рассрочка<br>до 24 мес</span></div>
+                  <div class="mega-menu-info-item" style="background:hsl(152 68% 42% / 0.1)"><span class="info-value">🚚</span><span class="info-label">доставка<br>по России</span></div>
+                  <a href="contacts.html" class="mega-menu-consult-btn gradient-primary">✨ Консультация</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1 ml-2">
+          <a href="services.html" class="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted">Услуги</a>
+          <a href="payment.html" class="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted">Оплата</a>
+        </div>
+
+        <div class="relative" id="about-dropdown-wrap">
+          <button class="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted">
+            О компании
+            <svg class="h-3.5 w-3.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="about-dropdown" id="about-dropdown">
+            <div class="about-dropdown-inner">
+              <a href="about.html">О компании</a>
+              <a href="news.html">Новости</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="contacts.html" class="flex items-center gap-1 px-3 py-2 text-foreground font-medium hover:text-primary transition-colors rounded-lg hover:bg-muted">Контакты</a>
+      </nav>
+
+      <div class="hidden md:block relative desktop-search">
+        <button class="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors icon-btn" id="search-toggle-desktop">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <div class="search-dropdown" id="search-dropdown">
+          <form class="search-dropdown-inner">
+            <input type="text" placeholder="Поиск товаров..." autocomplete="off">
+            <button type="submit"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1 md:gap-4">
+        <button class="md:hidden h-9 w-9 inline-flex items-center justify-center mobile-search-btn" id="search-toggle-mobile">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <a href="favorites.html">
+          <button class="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl inline-flex items-center justify-center border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors icon-btn">
+            <svg class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            <span class="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs icon-badge icon-badge-red favorites-counter" style="display:none">0</span>
+          </button>
+        </a>
+        <a href="cart.html">
+          <button class="relative h-9 w-9 md:h-12 md:w-12 rounded-lg md:rounded-xl inline-flex items-center justify-center border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors icon-btn">
+            <svg class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+            <span class="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-4 w-4 md:h-5 md:w-5 flex items-center justify-center text-[10px] md:text-xs icon-badge icon-badge-green cart-counter" style="display:none">0</span>
+          </button>
+        </a>
+        <button class="hidden lg:flex gradient-accent text-accent-foreground font-semibold text-sm hover:opacity-90 transition-opacity h-10 px-4 rounded-lg items-center header-callback-btn" data-open-callback>Заказать звонок</button>
+        <button class="lg:hidden h-9 w-9 inline-flex items-center justify-center mobile-menu-btn" id="mobile-menu-btn">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-search" id="mobile-search">
+      <form class="mobile-search-form relative">
+        <input type="text" placeholder="Поиск товаров..." class="pr-10 bg-muted border-border" autocomplete="off">
+        <button type="submit" class="absolute right-0 top-0 h-full px-3"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+      </form>
+    </div>
+
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="p-4 flex flex-col gap-2">
+        <div class="border-b border-border pb-4">
+          <button type="button" class="flex items-center justify-between w-full px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors" id="mobile-catalog-toggle">
+            <span class="flex items-center gap-2">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+              Каталог
+            </span>
+            <svg class="h-4 w-4 transition-transform" id="mobile-catalog-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="mobile-catalog-items" id="mobile-catalog-items">
+            <a href="category.html?cat=odnoosnye">🚗 Одноосные прицепы</a>
+            <a href="category.html?cat=dvuhosnye">🚙 Двухосные прицепы</a>
+            <a href="category.html?cat=s-kryshkoy">📦 Прицепы с крышкой</a>
+            <a href="category.html?cat=lodki">🚤 Для лодок и катеров</a>
+            <a href="category.html?cat=moto">🏍️ Для мототехники</a>
+            <a href="catalog.html?cat=zapchasti">🔩 Запчасти</a>
+          </div>
+        </div>
+        <a href="services.html" class="block px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors">Услуги</a>
+        <a href="payment.html" class="block px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors">Оплата</a>
+        <a href="about.html" class="block px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors">О компании</a>
+        <a href="news.html" class="block px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors">Новости</a>
+        <a href="contacts.html" class="block px-4 py-3 text-foreground font-medium hover:text-primary hover:bg-muted rounded-lg transition-colors">Контакты</a>
+        <div class="pt-4 border-t border-border mt-2">
+          <button class="w-full gradient-accent text-accent-foreground font-semibold h-10 rounded-lg" data-open-callback>Заказать звонок</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== MAIN ==================== -->
 <main>
+
   <!-- Hero -->
   <section class="relative py-16 md:py-24 gradient-primary overflow-hidden">
-    <div class="container relative z-10">
+    <div class="absolute inset-0 bg-[url('/placeholder.svg')] opacity-5 bg-repeat"></div>
+    <div class="container relative z-10 animate-fade-in">
       <nav class="flex items-center gap-2 text-primary-foreground/70 text-sm mb-8">
-        <a href="/" class="hover:text-primary-foreground">Главная</a>
+        <a href="index.html" class="hover:text-primary-foreground transition-colors">Главная</a>
         <span>/</span>
         <span class="text-primary-foreground">Новости</span>
       </nav>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-primary-foreground mb-6">Новости компании</h1>
-      <p class="text-xl text-primary-foreground/80 max-w-2xl">Актуальные новости, обзоры новинок, акции и полезные советы</p>
+      <p class="text-xl text-primary-foreground/80 max-w-2xl">
+        Актуальные новости, обзоры новинок, акции и полезные советы от экспертов компании СКИФ
+      </p>
     </div>
   </section>
 
   <!-- Filter -->
-  <!-- Bitrix: news.list с фильтрацией -->
   <section class="py-8 border-b border-border bg-card sticky top-[65px] md:top-[105px] z-40">
     <div class="container">
       <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
         <div class="flex flex-wrap gap-2">
-          <button class="gradient-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium">Все (24)</button>
-          <button class="border border-border px-4 py-1.5 rounded-full text-sm font-medium">Новинки (8)</button>
-          <button class="border border-border px-4 py-1.5 rounded-full text-sm font-medium">Акции (6)</button>
-          <button class="border border-border px-4 py-1.5 rounded-full text-sm font-medium">Компания (5)</button>
-          <button class="border border-border px-4 py-1.5 rounded-full text-sm font-medium">Советы (5)</button>
+          <button class="gradient-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium">Все <span class="ml-1 opacity-70">(24)</span></button>
+          <button class="border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-muted transition-colors">Новинки <span class="ml-1 opacity-70">(8)</span></button>
+          <button class="border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-muted transition-colors">Акции <span class="ml-1 opacity-70">(6)</span></button>
+          <button class="border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-muted transition-colors">Компания <span class="ml-1 opacity-70">(5)</span></button>
+          <button class="border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-muted transition-colors">Советы <span class="ml-1 opacity-70">(5)</span></button>
         </div>
         <div class="relative w-full md:w-64">
-          <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" placeholder="Поиск новостей..." class="w-full pl-10 pr-3 py-2 border border-border rounded-lg">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Поиск новостей..." class="w-full pl-10 pr-3 py-2 border border-border rounded-lg bg-background text-foreground text-sm">
         </div>
       </div>
     </div>
   </section>
 
   <!-- News List -->
-  <!-- Bitrix: news.list -->
   <section class="py-12 md:py-16">
     <div class="container">
+
       <!-- Featured article -->
-      <a href="/news/1/" class="block mb-8">
-        <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all">
+      <a href="news-detail.html" class="block mb-8 animate-fade-in">
+        <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300">
           <div class="grid md:grid-cols-2">
             <div class="aspect-video md:aspect-auto overflow-hidden">
-              <img src="/assets/news/news-1.jpg" alt="Новая линейка" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <img src="images/news-1.jpg" alt="Новая линейка прицепов СКИФ-2025" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
             <div class="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
-              <span class="gradient-accent text-accent-foreground text-xs px-3 py-1 rounded-full w-fit mb-4 font-bold">Новинки</span>
-              <h2 class="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4 group-hover:text-primary">Новая линейка прицепов СКИФ-2025</h2>
-              <p class="text-muted-foreground mb-6 leading-relaxed">Представляем обновлённую линейку легковых прицепов.</p>
+              <span class="gradient-accent text-accent-foreground text-xs px-3 py-1 rounded-full w-fit mb-4 font-bold inline-flex items-center gap-1">
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                Новинки
+              </span>
+              <h2 class="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4 group-hover:text-primary transition-colors">Новая линейка прицепов СКИФ-2025</h2>
+              <p class="text-muted-foreground mb-6 leading-relaxed">Представляем обновлённую линейку легковых прицепов с улучшенной конструкцией рамы, новой светотехникой и расширенной комплектацией. Модели доступны к заказу уже сейчас.</p>
               <div class="flex items-center justify-between mt-auto">
-                <span class="text-sm text-muted-foreground">15 января 2025</span>
-                <span class="text-primary font-semibold">Читать далее →</span>
+                <div class="flex items-center gap-4 text-sm text-muted-foreground">
+                  <span class="flex items-center gap-1">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    15 января 2025
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    1 250
+                  </span>
+                </div>
+                <span class="text-primary font-semibold inline-flex items-center gap-1">
+                  Читать далее
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
               </div>
             </div>
           </div>
         </div>
       </a>
+
       <!-- News grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- NEWS CARD -->
-        <a href="/news/2/" class="block">
-          <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all h-full">
+
+        <!-- Card 2 -->
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.05s">
+          <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
             <div class="aspect-video overflow-hidden">
-              <img src="/assets/news/news-2.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <img src="images/news-2.jpg" alt="Весенняя распродажа" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
             <div class="p-6">
-              <span class="text-xs border border-border px-2 py-0.5 rounded-full mb-3 inline-block">Акции</span>
-              <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary">Весенняя распродажа — скидки до 20%</h3>
-              <p class="text-muted-foreground text-sm mb-4 line-clamp-2">С 1 марта стартует ежегодная весенняя акция.</p>
+              <span class="text-xs border border-border px-2 py-0.5 rounded-full mb-3 inline-flex items-center gap-1">
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                Акции
+              </span>
+              <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">Весенняя распродажа — скидки до 20%</h3>
+              <p class="text-muted-foreground text-sm mb-4 line-clamp-2">С 1 марта стартует ежегодная весенняя акция. Скидки на популярные модели прицепов, аксессуары и услуги по ремонту.</p>
               <div class="flex items-center justify-between text-xs text-muted-foreground">
-                <span>10 января 2025</span>
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 10 января 2025</span>
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 2 340</span>
+                </div>
                 <span class="text-primary font-medium">Читать</span>
               </div>
             </div>
           </div>
         </a>
-        <!-- /NEWS CARD -->
-        <!-- Повторить -->
+
+        <!-- Card 3 -->
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.1s">
+          <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
+            <div class="aspect-video overflow-hidden">
+              <img src="images/news-3.jpg" alt="Новый сервисный центр" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <span class="text-xs border border-border px-2 py-0.5 rounded-full mb-3 inline-flex items-center gap-1">
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                Компания
+              </span>
+              <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">Открытие нового сервисного центра в Казани</h3>
+              <p class="text-muted-foreground text-sm mb-4 line-clamp-2">Рады сообщить об открытии нового пункта обслуживания в Казани. Теперь качественный ремонт и обслуживание прицепов доступны ещё большему числу клиентов.</p>
+              <div class="flex items-center justify-between text-xs text-muted-foreground">
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 5 января 2025</span>
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 890</span>
+                </div>
+                <span class="text-primary font-medium">Читать</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.15s">
+          <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
+            <div class="aspect-video overflow-hidden">
+              <img src="images/news-1.jpg" alt="Прицепы для лодок" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <span class="text-xs border border-border px-2 py-0.5 rounded-full mb-3 inline-flex items-center gap-1">
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                Новинки
+              </span>
+              <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">Новые прицепы для лодок Спутник AQUA</h3>
+              <p class="text-muted-foreground text-sm mb-4 line-clamp-2">В наличии появились новые модели прицепов для лодок серии AQUA от завода «Спутник» с телескопическими фонарями и раздвижным дышлом.</p>
+              <div class="flex items-center justify-between text-xs text-muted-foreground">
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 28 декабря 2024</span>
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 1 560</span>
+                </div>
+                <span class="text-primary font-medium">Читать</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 5 -->
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.2s">
+          <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
+            <div class="aspect-video overflow-hidden">
+              <img src="images/news-2.jpg" alt="Как выбрать прицеп" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <span class="text-xs border border-border px-2 py-0.5 rounded-full mb-3 inline-flex items-center gap-1">
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                Советы
+              </span>
+              <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">Как выбрать прицеп для лодки: советы экспертов</h3>
+              <p class="text-muted-foreground text-sm mb-4 line-clamp-2">Подробное руководство по выбору прицепа для транспортировки лодки. Разбираем основные характеристики и на что обращать внимание при покупке.</p>
+              <div class="flex items-center justify-between text-xs text-muted-foreground">
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 20 декабря 2024</span>
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 3 200</span>
+                </div>
+                <span class="text-primary font-medium">Читать</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 6 -->
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.25s">
+          <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
+            <div class="aspect-video overflow-hidden">
+              <img src="images/news-3.jpg" alt="Новогодняя акция" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <span class="text-xs border border-border px-2 py-0.5 rounded-full mb-3 inline-flex items-center gap-1">
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                Акции
+              </span>
+              <h3 class="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">Новогодняя акция: подарки для клиентов</h3>
+              <p class="text-muted-foreground text-sm mb-4 line-clamp-2">При покупке любого прицепа до 31 декабря вы получаете в подарок набор аксессуаров: противооткатные упоры, стяжные ремни и защитный чехол.</p>
+              <div class="flex items-center justify-between text-xs text-muted-foreground">
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 15 декабря 2024</span>
+                  <span class="flex items-center gap-1"><svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 1 890</span>
+                </div>
+                <span class="text-primary font-medium">Читать</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Load more -->
+      <div class="flex justify-center mt-12">
+        <button class="border border-border bg-background hover:bg-muted text-foreground font-semibold px-6 py-3 rounded-lg transition-colors">Загрузить ещё</button>
       </div>
     </div>
   </section>
+
 </main>
 
-<!-- FOOTER: см. index.html -->
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-foreground text-background">
+  <div class="container py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div class="space-y-6">
+        <a href="index.html" class="inline-block"><img src="images/logo-new.png" alt="СКИФ" class="h-20 w-auto"></a>
+        <p class="text-white/70 leading-relaxed">Продажа автомобильных прицепов, фаркопов и комплектующих. Работаем с 2005 года.</p>
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="https://vk.com/skifavtoru" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.523-2.049-1.712-1.033-1.01-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.561c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4 8.572 4 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.27-1.422 2.18-3.61 2.18-3.61.119-.254.305-.491.745-.491h1.744c.525 0 .643.27.525.643-.22 1.016-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.049.17.475-.085.72-.576.72z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCI8Pg8mffiiHNH1rY_K1GOA" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors shrink-0"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+        <div class="w-full sm:w-auto"><iframe src="https://yandex.ru/sprav/widget/rating-badge/183604077331?type=rating" style="border:none" width="150" height="50" title="Рейтинг Яндекс" class="max-w-full"></iframe></div>
+      </div>
+      <div>
+        <h3 class="text-lg font-heading font-bold mb-6">Каталог</h3>
+        <ul class="space-y-3">
+          <li><a href="category.html?cat=odnoosnye" class="text-white/70 hover:text-primary transition-colors">Одноосные прицепы</a></li>
+          <li><a href="category.html?cat=dvuhosnye" class="text-white/70 hover:text-primary transition-colors">Двухосные прицепы</a></li>
+          <li><a href="category.html?cat=s-kryshkoy" class="text-white/70 hover:text-primary transition-colors">Прицепы с крышкой</a></li>
+          <li><a href="category.html?cat=platforma" class="text-white/70 hover:text-primary transition-colors">Прицепы платформа</a></li>
+          <li><a href="category.html?cat=furgony" class="text-white/70 hover:text-primary transition-colors">Прицепы фургоны</a></li>
+          <li><a href="category.html?cat=lodki" class="text-white/70 hover:text-primary transition-colors">Прицепы для лодок</a></li>
+          <li><a href="category.html?cat=evakuatory" class="text-white/70 hover:text-primary transition-colors">Прицепы эвакуаторы</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-heading font-bold mb-6">Компания</h3>
+        <ul class="space-y-3">
+          <li><a href="about.html" class="text-white/70 hover:text-primary transition-colors">О компании</a></li>
+          <li><a href="news.html" class="text-white/70 hover:text-primary transition-colors">Новости</a></li>
+          <li><a href="services.html" class="text-white/70 hover:text-primary transition-colors">Услуги</a></li>
+          <li><a href="payment.html" class="text-white/70 hover:text-primary transition-colors">Оплата</a></li>
+          <li><a href="contacts.html" class="text-white/70 hover:text-primary transition-colors">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-heading font-bold mb-6">Контакты</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><div><a href="tel:+78002001636" class="hover:text-primary transition-colors font-semibold">+7 (800) 200-16-36</a><p class="text-sm text-white/60">Звонок бесплатный</p></div></li>
+          <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:zakaz@skif-avto.ru" class="text-white/70 hover:text-primary transition-colors">zakaz@skif-avto.ru</a></li>
+          <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-white/70">Санкт-Петербург, ул. Ольги Берггольц, д. 38-А</span></li>
+          <li class="flex items-start gap-3"><svg class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="text-white/70"><p>9:00-18:00</p><p class="text-primary font-semibold">БЕЗ ВЫХОДНЫХ</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-white/60 text-sm text-center md:text-left">© 2004 СКИФ. Все права защищены.</p>
+      <div class="flex flex-wrap justify-center gap-6 text-sm text-white/60">
+        <a href="privacy.html" class="hover:text-primary transition-colors">Политика конфиденциальности</a>
+        <a href="terms.html" class="hover:text-primary transition-colors">Пользовательское соглашение</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
+<!-- Callback modal -->
+<div class="modal-overlay" id="callback-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <button class="modal-close" data-close-modal><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="modal-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+    <h2 class="modal-title">Заказать звонок</h2>
+    <p class="modal-subtitle">Оставьте контакты — мы перезвоним за 5 минут</p>
+    <form id="callback-form">
+      <div class="form-group"><label>Ваше имя *</label><input type="text" name="name" placeholder="Как к вам обращаться?" class="form-input"><div class="form-error"></div></div>
+      <div class="form-group"><label>Телефон *</label><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="form-input" data-phone-mask><div class="form-error"></div></div>
+      <button type="submit" class="w-full gradient-primary text-primary-foreground font-bold h-11 rounded-md">Перезвоните мне</button>
+      <p class="text-center text-xs text-muted-foreground mt-3">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+    </form>
+  </div>
+</div>
+
+<!-- Feedback modal -->
+<div class="modal-overlay" id="feedback-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <div class="modal-header-gradient">
+      <button class="modal-close" data-close-modal><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <h2>Обратная связь</h2>
+      <p>Оставьте заявку и мы свяжемся с вами</p>
+    </div>
+    <div class="modal-body">
+      <form id="feedback-form">
+        <div class="form-group"><label>Ваше имя *</label><input type="text" name="name" placeholder="Как к вам обращаться?" class="form-input"><div class="form-error"></div></div>
+        <div class="form-group"><label>Телефон *</label><input type="tel" name="phone" placeholder="+7 (___) ___-__-__" class="form-input" data-phone-mask><div class="form-error"></div></div>
+        <div class="form-group"><label>Сообщение</label><textarea name="message" placeholder="Опишите ваш вопрос..." class="form-input form-textarea" style="min-height:80px"></textarea></div>
+        <button type="submit" class="w-full gradient-primary text-primary-foreground font-bold h-11 rounded-md">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Floating button -->
+<button class="floating-feedback-btn" id="floating-feedback-btn">
+  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+</button>
+
+<!-- Cookie consent -->
+<div class="cookie-consent" id="cookie-consent">
+  <div class="cookie-consent-inner">
+    <button class="cookie-consent-close" id="cookie-close"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="cookie-consent-body">
+      <div class="cookie-consent-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      <div style="flex:1;padding-right:1rem">
+        <h4>🍪 Мы используем cookies</h4>
+        <p>Для улучшения работы сайта и подбора лучших прицепов для вас мы собираем данные о посещениях.</p>
+        <div class="cookie-consent-btns">
+          <button class="gradient-primary text-primary-foreground font-medium h-8 px-3 rounded-md text-sm" id="cookie-accept">Принять</button>
+          <button class="border border-input bg-background text-foreground h-8 px-3 rounded-md text-sm" id="cookie-decline">Отклонить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/skif.js"></script>
 </body>
 </html>
