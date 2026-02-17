@@ -304,16 +304,16 @@
   <section class="py-8 border-b border-border bg-card sticky top-[65px] md:top-[105px] z-40">
     <div class="container">
       <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
-        <div class="flex flex-wrap gap-2">
-          <button class="gradient-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium">Все <span class="ml-1 opacity-70">(24)</span></button>
-          <button class="border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-muted transition-colors">Новинки <span class="ml-1 opacity-70">(8)</span></button>
-          <button class="border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-muted transition-colors">Акции <span class="ml-1 opacity-70">(6)</span></button>
-          <button class="border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-muted transition-colors">Компания <span class="ml-1 opacity-70">(5)</span></button>
-          <button class="border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-muted transition-colors">Советы <span class="ml-1 opacity-70">(5)</span></button>
+        <div class="flex flex-wrap gap-2" id="news-filters">
+          <button class="news-filter-btn active gradient-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium transition-all" data-filter="all">Все <span class="ml-1 opacity-70">(24)</span></button>
+          <button class="news-filter-btn border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all" data-filter="news">Новинки <span class="ml-1 opacity-70">(8)</span></button>
+          <button class="news-filter-btn border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all" data-filter="promo">Акции <span class="ml-1 opacity-70">(6)</span></button>
+          <button class="news-filter-btn border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all" data-filter="company">Компания <span class="ml-1 opacity-70">(5)</span></button>
+          <button class="news-filter-btn border border-border bg-background px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all" data-filter="tips">Советы <span class="ml-1 opacity-70">(5)</span></button>
         </div>
         <div class="relative w-full md:w-64">
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" placeholder="Поиск новостей..." class="w-full pl-10 pr-3 py-2 border border-border rounded-lg bg-background text-foreground text-sm">
+          <input type="text" placeholder="Поиск новостей..." id="news-search" class="w-full pl-10 pr-3 py-2 border border-border rounded-lg bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
         </div>
       </div>
     </div>
@@ -324,7 +324,7 @@
     <div class="container">
 
       <!-- Featured article -->
-      <a href="news-detail.html" class="block mb-8 animate-fade-in">
+      <a href="news-detail.html" class="block mb-8 animate-fade-in" data-news-item data-category="news">
         <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300">
           <div class="grid md:grid-cols-2">
             <div class="aspect-video md:aspect-auto overflow-hidden">
@@ -362,7 +362,7 @@
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <!-- Card 2 -->
-        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.05s">
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.05s" data-news-item data-category="promo">
           <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
             <div class="aspect-video overflow-hidden">
               <img src="images/news-2.jpg" alt="Весенняя распродажа" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -386,7 +386,7 @@
         </a>
 
         <!-- Card 3 -->
-        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.1s">
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.1s" data-news-item data-category="company">
           <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
             <div class="aspect-video overflow-hidden">
               <img src="images/news-3.jpg" alt="Новый сервисный центр" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -410,7 +410,7 @@
         </a>
 
         <!-- Card 4 -->
-        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.15s">
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.15s" data-news-item data-category="news">
           <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
             <div class="aspect-video overflow-hidden">
               <img src="images/news-1.jpg" alt="Прицепы для лодок" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -434,7 +434,7 @@
         </a>
 
         <!-- Card 5 -->
-        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.2s">
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.2s" data-news-item data-category="tips">
           <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
             <div class="aspect-video overflow-hidden">
               <img src="images/news-2.jpg" alt="Как выбрать прицеп" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -458,7 +458,7 @@
         </a>
 
         <!-- Card 6 -->
-        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.25s">
+        <a href="news-detail.html" class="block animate-fade-in" style="animation-delay:0.25s" data-news-item data-category="promo">
           <div class="group overflow-hidden rounded-2xl bg-card border hover:shadow-xl transition-all duration-300 h-full">
             <div class="aspect-video overflow-hidden">
               <img src="images/news-3.jpg" alt="Новогодняя акция" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -483,9 +483,14 @@
 
       </div>
 
+      <!-- Empty state (hidden by default) -->
+      <div id="news-empty" class="text-center py-16 hidden">
+        <p class="text-muted-foreground text-lg">По вашему запросу ничего не найдено</p>
+      </div>
+
       <!-- Load more -->
-      <div class="flex justify-center mt-12">
-        <button class="border border-border bg-background hover:bg-muted text-foreground font-semibold px-6 py-3 rounded-lg transition-colors">Загрузить ещё</button>
+      <div class="flex justify-center mt-12" id="load-more-wrap">
+        <button id="load-more-btn" class="border border-border bg-background hover:bg-muted text-foreground font-semibold px-6 py-3 rounded-lg transition-colors">Загрузить ещё</button>
       </div>
     </div>
   </section>
@@ -610,5 +615,71 @@
 </div>
 
 <script src="js/skif.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filters = document.querySelectorAll('.news-filter-btn');
+  const newsItems = document.querySelectorAll('[data-news-item]');
+  const searchInput = document.getElementById('news-search');
+  const emptyState = document.getElementById('news-empty');
+  const loadMoreWrap = document.getElementById('load-more-wrap');
+  const newsGrid = document.querySelector('.grid.md\\:grid-cols-2.lg\\:grid-cols-3');
+  let activeFilter = 'all';
+  let visibleCount = 5; // show all 5 grid items initially
+
+  function applyFilters() {
+    const query = (searchInput.value || '').toLowerCase().trim();
+    let shown = 0;
+
+    newsItems.forEach(function(item) {
+      const cat = item.getAttribute('data-category');
+      const text = item.textContent.toLowerCase();
+      const matchesCat = activeFilter === 'all' || cat === activeFilter;
+      const matchesSearch = !query || text.includes(query);
+      
+      if (matchesCat && matchesSearch) {
+        item.style.display = '';
+        shown++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    emptyState.classList.toggle('hidden', shown > 0);
+    loadMoreWrap.style.display = shown > 6 ? '' : 'none';
+  }
+
+  // Filter buttons
+  filters.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filters.forEach(function(b) {
+        b.classList.remove('active', 'gradient-primary', 'text-primary-foreground');
+        b.classList.add('border', 'border-border', 'bg-background');
+      });
+      btn.classList.add('active', 'gradient-primary', 'text-primary-foreground');
+      btn.classList.remove('border', 'border-border', 'bg-background');
+      activeFilter = btn.getAttribute('data-filter');
+      applyFilters();
+    });
+  });
+
+  // Search
+  searchInput.addEventListener('input', function() {
+    applyFilters();
+  });
+
+  // Load more (placeholder — shows alert)
+  document.getElementById('load-more-btn').addEventListener('click', function() {
+    this.textContent = 'Загрузка...';
+    setTimeout(function() {
+      document.getElementById('load-more-btn').textContent = 'Больше новостей нет';
+      document.getElementById('load-more-btn').disabled = true;
+      document.getElementById('load-more-btn').classList.add('opacity-50', 'cursor-not-allowed');
+    }, 800);
+  });
+
+  // Initial state
+  loadMoreWrap.style.display = 'none';
+});
+</script>
 </body>
 </html>
