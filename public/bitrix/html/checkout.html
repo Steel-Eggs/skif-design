@@ -178,25 +178,29 @@
                 <p class="text-amber-800 font-semibold text-sm md:text-base">Перед оплатой товара уточните наличие у менеджера!</p>
               </div>
               <div class="flex flex-wrap gap-4 mb-4" id="payment-methods">
+                <!-- Наличными -->
                 <button type="button" class="payment-btn relative p-4 border-2 border-primary bg-primary/5 rounded-lg flex flex-col items-center justify-center gap-2 min-w-[120px] min-h-[96px] transition-colors" data-payment="cash">
                   <div class="payment-check absolute top-2 left-2 w-5 h-5 bg-primary rounded flex items-center justify-center"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                  <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-                  <span class="text-xs text-center">Наличными</span>
+                  <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/></svg>
+                  <span class="text-xs text-center font-medium">Наличными</span>
                 </button>
+                <!-- По QR-коду -->
                 <button type="button" class="payment-btn relative p-4 border-2 border-border rounded-lg flex flex-col items-center justify-center gap-2 min-w-[120px] min-h-[96px] hover:border-primary/50 transition-colors" data-payment="qr">
                   <div class="payment-check absolute top-2 left-2 w-5 h-5 bg-primary rounded flex items-center justify-center" style="display:none"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                  <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h.01M7 12h.01M7 17h.01M12 7h.01M12 12h.01M12 17h.01M17 7h.01M17 12h.01M17 17h.01"/></svg>
-                  <span class="text-xs text-center">По QR-коду</span>
+                  <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path d="M14 14h3M17 14v3M14 17h7M21 14v7"/></svg>
+                  <span class="text-xs text-center font-medium">По QR-коду</span>
                 </button>
+                <!-- Кредит Сбербанк -->
                 <button type="button" class="payment-btn relative p-4 border-2 border-border rounded-lg flex flex-col items-center justify-center gap-2 min-w-[120px] min-h-[96px] hover:border-primary/50 transition-colors" data-payment="sberbank">
                   <div class="payment-check absolute top-2 left-2 w-5 h-5 bg-primary rounded flex items-center justify-center" style="display:none"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                  <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                  <span class="text-xs text-center">Кредит Сбер</span>
+                  <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#21A038"/><path d="M17 9.5c0-.28-.22-.5-.5-.5H14l-2 6-2-6H7.5c-.28 0-.5.22-.5.5s.22.5.5.5H9l2.5 7.5h1L15 10h2.5V9.5z" fill="white"/><path d="M12 5.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zm0 1a5.5 5.5 0 110 11 5.5 5.5 0 010-11z" fill="white" opacity="0.3"/></svg>
+                  <span class="text-xs text-center font-medium">Кредит Сбер</span>
                 </button>
+                <!-- Кредит Т-банк -->
                 <button type="button" class="payment-btn relative p-4 border-2 border-border rounded-lg flex flex-col items-center justify-center gap-2 min-w-[120px] min-h-[96px] hover:border-primary/50 transition-colors" data-payment="tinkoff">
                   <div class="payment-check absolute top-2 left-2 w-5 h-5 bg-primary rounded flex items-center justify-center" style="display:none"><svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-                  <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 010-4h14v4"/><path d="M3 5v14a2 2 0 002 2h16v-5"/><path d="M18 12a2 2 0 000 4h4v-4z"/></svg>
-                  <span class="text-xs text-center">Кредит Тинькофф</span>
+                  <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#FFDD2D"/><path d="M14 7H7v2h2.5v8h2V9H14V7z" fill="#333"/><rect x="14" y="7" width="3" height="2" rx="1" fill="#333"/><rect x="14" y="11" width="3" height="2" rx="1" fill="#333"/></svg>
+                  <span class="text-xs text-center font-medium">Кредит Т-банк</span>
                 </button>
               </div>
               <div class="flex justify-end mt-4">
@@ -339,8 +343,37 @@
 <script>
 (function() {
   var currentStep = 1;
+  var completedSteps = [];
   var selectedPayment = 'cash';
-  var paymentNames = { cash:'Наличными', qr:'По QR-коду', sberbank:'Кредит Сбер', tinkoff:'Кредит Тинькофф' };
+  var paymentNames = { cash:'Наличными', qr:'По QR-коду', sberbank:'Кредит Сбер', tinkoff:'Кредит Т-банк' };
+
+  // Phone mask for checkout phone field
+  var phoneInput = document.querySelector('#checkout-form [name="phone"]');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function(e) {
+      var val = this.value.replace(/\D/g, '');
+      if (val.startsWith('7') || val.startsWith('8')) val = val.slice(1);
+      var res = '+7';
+      if (val.length > 0) res += ' (' + val.slice(0,3);
+      if (val.length >= 3) res += ') ' + val.slice(3,6);
+      if (val.length >= 6) res += '-' + val.slice(6,8);
+      if (val.length >= 8) res += '-' + val.slice(8,10);
+      this.value = res;
+    });
+    phoneInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Backspace' && this.value === '+7') e.preventDefault();
+    });
+  }
+
+  function markCompleted(stepNum) {
+    if (completedSteps.indexOf(stepNum) === -1) completedSteps.push(stepNum);
+    var el = document.getElementById('step-' + stepNum);
+    var numEl = el.querySelector('.step-number');
+    // Зелёный фон на пройденном шаге
+    numEl.style.background = 'hsl(152 68% 42%)';
+    numEl.innerHTML = '<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+    el.querySelector('.step-summary').style.color = 'hsl(152 68% 42%)';
+  }
 
   function showStep(n) {
     currentStep = n;
@@ -373,14 +406,16 @@
     });
   });
 
-  // Step navigation
+  // Step 1 → 2
   document.getElementById('step1-next').addEventListener('click', function() {
     var summary = document.querySelector('#step-1 .step-summary');
     summary.textContent = '— ' + paymentNames[selectedPayment];
     summary.style.display = '';
+    markCompleted(1);
     showStep(2);
   });
 
+  // Step 2 → 3
   document.getElementById('step2-next').addEventListener('click', function() {
     var form = document.getElementById('checkout-form');
     var valid = true;
@@ -400,8 +435,7 @@
       emailInput.style.boxShadow = '0 0 0 3px hsla(0,84%,60%,0.15)';
       valid = false;
     }
-    var phoneInput = form.querySelector('[name="phone"]');
-    if (phoneInput.value.trim() && phoneInput.value.replace(/\D/g,'').length < 11) {
+    if (phoneInput && phoneInput.value.replace(/\D/g,'').length < 11) {
       phoneInput.style.borderColor = 'hsl(0 84% 60%)';
       phoneInput.style.boxShadow = '0 0 0 3px hsla(0,84%,60%,0.15)';
       valid = false;
@@ -411,6 +445,7 @@
     var summary = document.querySelector('#step-2 .step-summary');
     summary.textContent = '— ' + nameVal;
     summary.style.display = '';
+    markCompleted(2);
     showStep(3);
   });
 
@@ -421,18 +456,43 @@
   document.querySelectorAll('.step-header').forEach(function(hdr) {
     hdr.addEventListener('click', function() {
       var step = parseInt(this.dataset.step);
-      if (step <= currentStep) showStep(step);
+      if (step <= currentStep || completedSteps.indexOf(step) !== -1) showStep(step);
+    });
+  });
+
+  // Custom checkbox visuals for step 3
+  ['agree-privacy','agree-call'].forEach(function(id) {
+    var cb = document.getElementById(id);
+    if (!cb) return;
+    cb.addEventListener('change', function() {
+      if (this.checked) {
+        this.style.outline = '';
+        this.style.accentColor = '';
+      }
     });
   });
 
   // Submit
   document.getElementById('checkout-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    if (!document.getElementById('agree-privacy').checked) {
-      alert('Необходимо согласиться с политикой конфиденциальности');
+    var valid = true;
+    ['agree-privacy','agree-call'].forEach(function(id) {
+      var cb = document.getElementById(id);
+      if (!cb) return;
+      if (!cb.checked) {
+        cb.style.outline = '2px solid hsl(0 84% 60%)';
+        cb.style.outlineOffset = '2px';
+        valid = false;
+      } else {
+        cb.style.outline = '';
+      }
+    });
+    if (!valid) {
+      // Scroll to checkboxes
+      document.getElementById('agree-privacy').scrollIntoView({ behavior:'smooth', block:'center' });
       return;
     }
-    // Redirect to order confirmation
+    markCompleted(3);
     var params = '?payment=' + selectedPayment;
     window.location.href = 'order-confirmation.html' + params;
   });
