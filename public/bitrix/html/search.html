@@ -105,22 +105,22 @@
         <p class="text-muted-foreground mt-1">Найдено 8 товаров</p>
       </div>
       <div class="flex items-center gap-4">
-        <select class="border border-border rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30">
+        <select id="sort-select" class="border border-border rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/30">
           <option value="relevance">По релевантности</option>
           <option value="price-asc">Сначала дешевле</option>
           <option value="price-desc">Сначала дороже</option>
           <option value="name">По названию</option>
         </select>
         <div class="flex border rounded-lg overflow-hidden">
-          <button class="p-2 bg-primary text-white"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></button>
-          <button class="p-2 bg-white hover:bg-muted"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
+          <button id="view-grid" class="p-2 bg-primary text-white"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></button>
+          <button id="view-list" class="p-2 bg-white hover:bg-muted"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
         </div>
       </div>
     </div>
 
     <!-- Results grid -->
     <!-- Bitrix: search.page результаты -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+    <div id="results-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
       <!-- Product cards repeated -->
       <div class="product-card bg-card rounded-lg border overflow-hidden hover:shadow-lg transition-shadow group">
         <a href="product.html" class="block"><div class="relative overflow-hidden"><img src="images/trailer-1.jpg" alt="Прицеп" class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-300"><span class="absolute top-2 left-2 bg-destructive text-destructive-foreground text-xs font-bold px-2 py-1 rounded">-12%</span></div></a>
@@ -196,5 +196,81 @@
 <div class="cookie-consent" id="cookie-consent"><div class="cookie-consent-inner"><button class="cookie-consent-close" id="cookie-close"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="cookie-consent-body"><div class="cookie-consent-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div style="flex:1;padding-right:1rem"><h4>🍪 Мы используем cookies</h4><p>Для улучшения работы сайта и подбора лучших прицепов для вас мы собираем данные о посещениях.</p><div class="cookie-consent-btns"><button class="gradient-primary text-primary-foreground font-medium h-8 px-3 rounded-md text-sm" id="cookie-accept">Принять</button><button class="border border-input bg-background text-foreground h-8 px-3 rounded-md text-sm" id="cookie-decline">Отклонить</button></div></div></div></div></div>
 
 <script src="js/skif.js"></script>
+<script>
+(function() {
+  // Sorting
+  var products = [
+    { name: 'Прицеп для квадроцикла ССТ-7132-мини', price: 57500, oldPrice: 65000, img: 'images/trailer-1.jpg', badge: '-12%', badgeClass: 'bg-destructive text-destructive-foreground', inStock: true },
+    { name: 'Прицеп лодочный МЗСА 81771G.022', price: 89000, oldPrice: null, img: 'images/trailer-2.jpg', badge: null, badgeClass: '', inStock: true },
+    { name: 'Прицеп бортовой МЗСА 817701.012', price: 72000, oldPrice: 78000, img: 'images/trailer-3.jpg', badge: '-8%', badgeClass: 'bg-destructive text-destructive-foreground', inStock: true },
+    { name: 'Прицеп для снегохода Курганские прицепы 8213B5', price: 95000, oldPrice: null, img: 'images/trailer-1.jpg', badge: null, badgeClass: '', inStock: true },
+    { name: 'Прицеп-платформа МЗСА 817730.001', price: 115000, oldPrice: null, img: 'images/trailer-2.jpg', badge: 'Под заказ', badgeClass: 'bg-muted text-muted-foreground', inStock: false },
+    { name: 'Прицеп для перевозки техники ССТ-7135', price: 145000, oldPrice: 160000, img: 'images/trailer-3.jpg', badge: '-9%', badgeClass: 'bg-destructive text-destructive-foreground', inStock: true },
+    { name: 'Прицеп лодочный Спутник AQUA', price: 78000, oldPrice: null, img: 'images/trailer-1.jpg', badge: null, badgeClass: '', inStock: true },
+    { name: 'Прицеп бортовой одноосный Вектор', price: 48000, oldPrice: 55000, img: 'images/trailer-2.jpg', badge: '-13%', badgeClass: 'bg-destructive text-destructive-foreground', inStock: true }
+  ];
+  var originalOrder = products.slice();
+  var grid = document.getElementById('results-grid');
+  var viewMode = 'grid';
+
+  function renderCard(p) {
+    var badgeHtml = p.badge ? '<span class="absolute top-2 ' + (p.inStock ? 'left-2' : 'right-2') + ' ' + p.badgeClass + ' text-xs font-bold px-2 py-1 rounded">' + p.badge + '</span>' : '';
+    var oldPriceHtml = p.oldPrice ? '<span class="text-xs text-muted-foreground line-through">' + p.oldPrice.toLocaleString('ru-RU') + ' ₽</span>' : '';
+    var btn = p.inStock
+      ? '<button class="w-full gradient-accent text-accent-foreground text-xs font-bold py-2 rounded-lg hover:opacity-90 transition-opacity">В корзину</button>'
+      : '<button class="w-full border border-border text-foreground text-xs font-bold py-2 rounded-lg hover:bg-muted transition-colors">Под заказ</button>';
+
+    if (viewMode === 'list') {
+      return '<div class="product-card bg-card rounded-lg border overflow-hidden hover:shadow-lg transition-shadow flex gap-4 p-3">'
+        + '<a href="product.html" class="shrink-0 w-32"><div class="relative overflow-hidden h-24"><img src="' + p.img + '" alt="' + p.name + '" class="w-full h-full object-cover rounded">' + badgeHtml + '</div></a>'
+        + '<div class="flex-1 flex flex-col justify-between"><a href="product.html" class="text-sm font-medium hover:text-primary transition-colors line-clamp-2">' + p.name + '</a>'
+        + '<div class="flex items-center justify-between mt-2"><div class="flex items-baseline gap-2"><span class="font-bold text-primary">' + p.price.toLocaleString('ru-RU') + ' ₽</span>' + oldPriceHtml + '</div>' + btn + '</div></div>'
+        + '</div>';
+    }
+    return '<div class="product-card bg-card rounded-lg border overflow-hidden hover:shadow-lg transition-shadow group">'
+      + '<a href="product.html" class="block"><div class="relative overflow-hidden"><img src="' + p.img + '" alt="' + p.name + '" class="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-300">' + badgeHtml + '</div></a>'
+      + '<div class="p-3"><a href="product.html" class="text-sm font-medium line-clamp-2 hover:text-primary transition-colors mb-2 block">' + p.name + '</a>'
+      + '<div class="flex items-baseline gap-2 mb-2"><span class="font-bold text-primary">' + p.price.toLocaleString('ru-RU') + ' ₽</span>' + oldPriceHtml + '</div>' + btn + '</div>'
+      + '</div>';
+  }
+
+  function renderAll(list) {
+    if (!grid) return;
+    if (viewMode === 'grid') {
+      grid.className = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6';
+    } else {
+      grid.className = 'flex flex-col gap-4';
+    }
+    grid.innerHTML = list.map(renderCard).join('');
+  }
+
+  function sortAndRender() {
+    var val = document.getElementById('sort-select').value;
+    var sorted = originalOrder.slice();
+    if (val === 'price-asc') sorted.sort(function(a,b){ return a.price - b.price; });
+    else if (val === 'price-desc') sorted.sort(function(a,b){ return b.price - a.price; });
+    else if (val === 'name') sorted.sort(function(a,b){ return a.name.localeCompare(b.name, 'ru'); });
+    renderAll(sorted);
+  }
+
+  document.getElementById('sort-select').addEventListener('change', sortAndRender);
+
+  // View toggle
+  document.getElementById('view-grid').addEventListener('click', function() {
+    viewMode = 'grid';
+    this.classList.add('bg-primary','text-white'); this.classList.remove('bg-white','hover:bg-muted');
+    var vl = document.getElementById('view-list');
+    vl.classList.remove('bg-primary','text-white'); vl.classList.add('bg-white','hover:bg-muted');
+    sortAndRender();
+  });
+  document.getElementById('view-list').addEventListener('click', function() {
+    viewMode = 'list';
+    this.classList.add('bg-primary','text-white'); this.classList.remove('bg-white','hover:bg-muted');
+    var vg = document.getElementById('view-grid');
+    vg.classList.remove('bg-primary','text-white'); vg.classList.add('bg-white','hover:bg-muted');
+    sortAndRender();
+  });
+})();
+</script>
 </body>
 </html>
