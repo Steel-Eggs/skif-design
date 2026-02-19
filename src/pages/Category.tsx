@@ -8,13 +8,6 @@ import { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import ProductCard, { Product } from "@/components/ProductCard";
 
 // Category data mapping with SEO texts
@@ -263,94 +256,111 @@ const Category = () => {
     );
   }
 
+  // Related categories for quick links (exclude current)
+  const relatedCategories = [
+    { slug: 'dvuhosnye', label: '🚙 Двухосные' },
+    { slug: 's-kryshkoy', label: '📦 С крышкой' },
+    { slug: 'lodki', label: '🚤 Для лодок' },
+    { slug: 'evakuatory', label: '⚠️ Эвакуаторы' },
+    { slug: 'moto', label: '🏍️ Для мото' },
+  ].filter(c => c.slug !== categorySlug);
+
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-x-hidden">
       <Header />
       
       <main className="flex-1">
-        {/* Hero section with animated icon */}
-        <section className={`py-12 md:py-16 bg-gradient-to-br ${category.color} relative overflow-hidden`}>
-          {/* Animated background elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          </div>
-          
-          <div className="container relative px-4">
+        {/* Hero section — compact like original */}
+        <section className={`py-12 md:py-20 bg-gradient-to-br ${category.color} relative overflow-hidden`}>
+          <div className="container relative z-10 px-4">
             {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-white/80 mb-6 text-sm overflow-x-auto">
-              <Link to="/" className="hover:text-white transition-colors whitespace-nowrap">Главная</Link>
+            <nav className="flex items-center gap-2 text-white/70 text-sm mb-6 flex-wrap">
+              <Link to="/" className="hover:text-white transition-colors">Главная</Link>
               <span>/</span>
-              <Link to="/catalog" className="hover:text-white transition-colors whitespace-nowrap">Каталог</Link>
+              <Link to="/catalog" className="hover:text-white transition-colors">Каталог</Link>
               <span>/</span>
-              <span className="text-white whitespace-nowrap">{category.name}</span>
-            </div>
-            
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8">
-              {/* Large animated icon */}
-              <div className="relative shrink-0">
-                <div className="w-24 h-24 md:w-36 md:h-36 rounded-3xl bg-white/20 backdrop-blur-sm flex items-center justify-center transform transition-all duration-700 hover:rotate-12 hover:scale-110 animate-fade-in">
-                  <IconComponent className="w-12 h-12 md:w-20 md:h-20 text-white" />
+              <span className="text-white font-medium">{category.name}</span>
+            </nav>
+
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div>
+                {/* Small icon */}
+                <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-5">
+                  <IconComponent className="w-8 h-8 text-white" />
                 </div>
-                {/* Orbit animation */}
-                <div className="absolute inset-0 animate-spin hidden md:block" style={{ animationDuration: '10s' }}>
-                  <div className="absolute -top-2 left-1/2 w-3 h-3 bg-white/40 rounded-full" />
-                </div>
-              </div>
-              
-              <div className="flex-1 min-w-0">
-                <h1 className="text-2xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-2 md:mb-3 animate-fade-in">
+                <h1 className="text-3xl md:text-5xl font-heading font-bold text-white mb-3">
                   {category.name}
                 </h1>
-                <p className="text-base md:text-xl text-white/80 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                  {category.description}
-                </p>
+                <p className="text-white/80 text-lg mb-4">{category.description}</p>
+                <span className="inline-flex text-sm text-white/80 bg-white/15 backdrop-blur px-4 py-2 rounded-full">
+                  {allProducts.length} товаров в наличии
+                </span>
+              </div>
+
+              {/* Quick links to related categories */}
+              <div className="flex flex-wrap gap-2">
+                {relatedCategories.map(rc => (
+                  <Link
+                    key={rc.slug}
+                    to={`/category/${rc.slug}`}
+                    className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-colors"
+                  >
+                    {rc.label}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Products */}
-        <section className="py-8 md:py-12">
-          <div className="container px-4">
-            {/* Toolbar */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8 p-4 bg-card rounded-xl border border-border">
-              <span className="text-sm text-muted-foreground whitespace-nowrap">
-                Найдено: <strong className="text-foreground">{allProducts.length}</strong> товаров
-              </span>
-              
-              <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap">
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-full sm:w-48">
-                    <SelectValue placeholder="Сортировка" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="popular">По популярности</SelectItem>
-                    <SelectItem value="price-asc">Сначала дешевле</SelectItem>
-                    <SelectItem value="price-desc">Сначала дороже</SelectItem>
-                    <SelectItem value="new">Сначала новые</SelectItem>
-                  </SelectContent>
-                </Select>
-                
-                <div className="flex items-center rounded-lg border border-border overflow-hidden shrink-0">
+        {/* Sticky toolbar */}
+        <div className="sticky top-[65px] md:top-[73px] z-40 bg-card border-b border-border shadow-sm">
+          <div className="container px-4 py-3">
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div className="flex items-center gap-2">
+                {/* View toggle */}
+                <div className="flex items-center border border-border rounded-xl overflow-hidden">
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`p-2 transition-colors ${viewMode === 'grid' ? 'bg-primary text-primary-foreground' : 'bg-card hover:bg-muted'}`}
+                    title="Сетка"
+                    className={`h-9 w-9 flex items-center justify-center transition-colors ${viewMode === 'grid' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
                   >
-                    <Grid className="w-5 h-5" />
+                    <Grid className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => setViewMode('list')}
-                    className={`p-2 transition-colors ${viewMode === 'list' ? 'bg-primary text-primary-foreground' : 'bg-card hover:bg-muted'}`}
+                    title="Список"
+                    className={`h-9 w-9 flex items-center justify-center border-l border-border transition-colors ${viewMode === 'list' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'}`}
                   >
-                    <List className="w-5 h-5" />
+                    <List className="h-4 w-4" />
                   </button>
                 </div>
+                <span className="text-sm text-muted-foreground hidden sm:block">
+                  {allProducts.length} товаров
+                </span>
               </div>
-            </div>
 
+              {/* Sort — native select like original */}
+              <select
+                value={sortBy}
+                onChange={e => setSortBy(e.target.value)}
+                className="border border-border rounded-xl px-3 py-2 text-sm bg-card font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              >
+                <option value="popular">По популярности</option>
+                <option value="price-asc">Сначала дешевле</option>
+                <option value="price-desc">Сначала дороже</option>
+                <option value="name">По названию</option>
+                <option value="new">Сначала новые</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Products section — full width, no sidebar */}
+        <section className="py-8 md:py-10">
+          <div className="container px-4">
             {/* Products grid */}
-            <div className={`grid gap-4 sm:gap-6 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`}>
+            <div className={`grid gap-5 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5' : 'grid-cols-1'}`}>
               {visibleProducts.map((product, index) => (
                 <ProductCard
                   key={product.id}
@@ -364,9 +374,9 @@ const Category = () => {
             {/* Load more */}
             {hasMoreProducts && (
               <div className="text-center mt-8 sm:mt-12">
-                <Button 
-                  variant="outline" 
-                  size="lg" 
+                <Button
+                  variant="outline"
+                  size="lg"
                   className="gap-2"
                   onClick={handleShowMore}
                 >
