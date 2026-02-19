@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import logo from "@/assets/logo-new.png";
+import steeleggLogo from "@/assets/steeleggs-logo.png";
 
 const Footer = () => {
   const catalogLinks = [
@@ -147,13 +148,23 @@ const Footer = () => {
           <p className="text-background/60 text-sm text-center md:text-left">
             © 2004 СКИФ. Все права защищены.
           </p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-background/60">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-background/60">
             <Link to="/privacy" className="hover:text-primary transition-colors">
               Политика конфиденциальности
             </Link>
             <Link to="/terms" className="hover:text-primary transition-colors">
               Пользовательское соглашение
             </Link>
+            <a
+              href="https://steeleggs.ru/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity"
+              title="Разработка сайта — SteelEggs"
+            >
+              <span className="text-xs">Разработка:</span>
+              <img src={steeleggLogo} alt="SteelEggs" className="h-5 w-auto brightness-0 invert" />
+            </a>
           </div>
         </div>
       </div>
