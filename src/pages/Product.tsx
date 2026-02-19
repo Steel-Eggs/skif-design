@@ -429,137 +429,6 @@ const Product = () => {
           </div>
         </section>
 
-        {/* Additional options section */}
-        <section className="py-8 md:py-12 bg-muted/30">
-          <div className="container">
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-8">
-              Купить дополнительные опции
-            </h2>
-            
-            <div className="grid lg:grid-cols-3 gap-8">
-              {/* Accessories list */}
-              <div className="lg:col-span-2">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {mockAccessories.map((accessory) => {
-                    const isSelected = selectedAccessories.includes(accessory.id);
-                    return (
-                      <Card 
-                        key={accessory.id}
-                        className={`border-2 transition-all cursor-pointer hover:shadow-lg ${
-                          isSelected ? 'border-primary bg-primary/5' : 'border-border'
-                        }`}
-                        onClick={() => toggleAccessory(accessory.id)}
-                      >
-                        <CardContent className="p-4">
-                          <div className="flex gap-4">
-                            {/* Checkbox */}
-                            <div className="pt-1">
-                              <Checkbox 
-                                checked={isSelected}
-                                onCheckedChange={() => toggleAccessory(accessory.id)}
-                                className="w-5 h-5"
-                              />
-                            </div>
-                            
-                            {/* Image */}
-                            <div className="w-20 h-20 rounded-lg overflow-hidden bg-muted shrink-0">
-                              <img 
-                                src={accessory.image} 
-                                alt={accessory.name}
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                            
-                            {/* Info */}
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-semibold text-foreground text-sm line-clamp-2 mb-2">
-                                {accessory.name}
-                              </h4>
-                              <p className="text-lg font-bold text-primary">
-                                {accessory.price.toLocaleString('ru-RU')} ₽
-                              </p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
-              </div>
-              
-              {/* Order summary */}
-              <div className="lg:col-span-1">
-                <Card className="border-2 sticky top-24">
-                  <CardContent className="p-6">
-                    <h3 className="font-heading font-bold text-lg text-foreground mb-4">
-                      Ваш заказ
-                    </h3>
-                    
-                    {/* Selected items */}
-                    <div className="space-y-3 mb-6">
-                      <div className="flex justify-between items-center pb-3 border-b border-border gap-2">
-                        <span className="text-muted-foreground">{product.name}</span>
-                        <span className="font-semibold whitespace-nowrap">{product.price.toLocaleString('ru-RU')}&nbsp;₽</span>
-                      </div>
-                      
-                      {selectedAccessories.map(id => {
-                        const acc = mockAccessories.find(a => a.id === id);
-                        if (!acc) return null;
-                        return (
-                          <div key={id} className="flex justify-between items-start gap-2">
-                            <span className="text-muted-foreground text-sm line-clamp-2">{acc.name}</span>
-                            <span className="font-medium text-sm shrink-0 whitespace-nowrap">{acc.price.toLocaleString('ru-RU')}&nbsp;₽</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                    
-                    {/* Totals */}
-                    <div className="space-y-2 mb-6">
-                      <div className="flex justify-between items-center gap-2">
-                        <span className="text-muted-foreground">Стоимость товаров по отдельности:</span>
-                        <span className="font-medium whitespace-nowrap">{separateTotal.toLocaleString('ru-RU')}&nbsp;₽</span>
-                      </div>
-                      
-                      {bundleDiscount > 0 && (
-                        <>
-                          <div className="flex justify-between items-center gap-2">
-                            <span className="text-muted-foreground">Стоимость набора:</span>
-                            <span className="font-bold text-lg whitespace-nowrap">{bundleTotal.toLocaleString('ru-RU')}&nbsp;₽</span>
-                          </div>
-                          <div className="flex justify-between items-center text-green-600 gap-2">
-                            <span>Экономия:</span>
-                            <span className="font-bold whitespace-nowrap">{bundleDiscount.toLocaleString('ru-RU')}&nbsp;₽</span>
-                          </div>
-                        </>
-                      )}
-                      
-                      {bundleDiscount === 0 && selectedAccessories.length > 0 && (
-                        <p className="text-xs text-muted-foreground">
-                          Выберите 2 и более опции для получения скидки 5%
-                        </p>
-                      )}
-                    </div>
-                    
-                    {/* Total */}
-                    <div className="flex justify-between items-center py-4 border-t border-border mb-4 gap-2">
-                      <span className="text-lg font-bold">Итого:</span>
-                      <span className="text-2xl font-black text-primary whitespace-nowrap">
-                        {(bundleDiscount > 0 ? bundleTotal : separateTotal).toLocaleString('ru-RU')}&nbsp;₽
-                      </span>
-                    </div>
-                    
-                    <Button size="lg" className="w-full h-14 gradient-accent text-lg font-bold gap-2">
-                      <ShoppingCart className="w-5 h-5" />
-                      Купить
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Tabs section */}
         <section className="py-8 md:py-12">
           <div className="container">
@@ -585,20 +454,74 @@ const Product = () => {
                 </TabsTrigger>
               </TabsList>
               
-              {/* Description tab */}
+              {/* Description tab — with accessories sidebar like original */}
               <TabsContent value="description" className="mt-0">
-                <Card className="border-2">
-                  <CardContent className="p-6 md:p-8">
-                    <div 
-                      className="prose prose-lg max-w-none text-foreground
-                        prose-headings:font-heading prose-headings:text-foreground prose-headings:font-bold
-                        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
-                        prose-p:text-muted-foreground prose-p:leading-relaxed
-                        prose-ul:text-muted-foreground prose-li:marker:text-primary"
-                      dangerouslySetInnerHTML={{ __html: product.description }}
-                    />
-                  </CardContent>
-                </Card>
+                <div className="grid lg:grid-cols-3 gap-8">
+                  {/* Description text */}
+                  <div className="lg:col-span-2">
+                    <Card className="border-2">
+                      <CardContent className="p-6 md:p-8">
+                        <div 
+                          className="prose prose-lg max-w-none text-foreground
+                            prose-headings:font-heading prose-headings:text-foreground prose-headings:font-bold
+                            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
+                            prose-p:text-muted-foreground prose-p:leading-relaxed
+                            prose-ul:text-muted-foreground prose-li:marker:text-primary"
+                          dangerouslySetInnerHTML={{ __html: product.description }}
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  {/* Additional options sidebar */}
+                  <div className="lg:col-span-1">
+                    <Card className="border-2 bg-muted/40">
+                      <CardContent className="p-6">
+                        <h3 className="font-bold text-foreground mb-4">Дополнительные опции</h3>
+                        <div className="space-y-3">
+                          {mockAccessories.map((accessory) => {
+                            const isSelected = selectedAccessories.includes(accessory.id);
+                            return (
+                              <label
+                                key={accessory.id}
+                                className="flex items-start gap-3 cursor-pointer group"
+                                onClick={() => toggleAccessory(accessory.id)}
+                              >
+                                <Checkbox
+                                  checked={isSelected}
+                                  onCheckedChange={() => toggleAccessory(accessory.id)}
+                                  className="mt-1"
+                                />
+                                <div>
+                                  <div className={`font-medium text-sm transition-colors ${isSelected ? 'text-primary' : 'group-hover:text-primary'}`}>
+                                    {accessory.name}
+                                  </div>
+                                  <div className="text-xs text-muted-foreground">+ {accessory.price.toLocaleString('ru-RU')} ₽</div>
+                                </div>
+                              </label>
+                            );
+                          })}
+                        </div>
+
+                        {/* Total */}
+                        <div className="mt-4 pt-4 border-t border-border">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm text-muted-foreground">Итого с опциями:</span>
+                            <span className="font-bold text-lg text-foreground">
+                              {(bundleDiscount > 0 ? bundleTotal : separateTotal).toLocaleString('ru-RU')} ₽
+                            </span>
+                          </div>
+                          {bundleDiscount > 0 && (
+                            <p className="text-xs text-secondary mt-1">🎁 Скидка 5% при 2+ опциях</p>
+                          )}
+                          {selectedAccessories.length === 1 && (
+                            <p className="text-xs text-muted-foreground mt-1">Выберите ещё опцию для скидки 5%</p>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
               </TabsContent>
               
               {/* Specifications tab */}
