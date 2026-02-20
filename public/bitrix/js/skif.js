@@ -316,14 +316,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // Dots
     heroDots.forEach(function (dot, i) {
       dot.classList.remove('active', 'paused');
+      // Сброс анимации прогресса на неактивных точках
+      var progress = dot.querySelector('.hero-dot-progress');
+      if (progress) {
+        progress.style.animation = 'none';
+        progress.offsetHeight; // reflow
+        progress.style.animation = '';
+      }
       if (i === newIndex) {
         dot.classList.add('active');
-        // Restart progress animation
-        var progress = dot.querySelector('.hero-dot-progress');
+        // Перезапуск прогресса через принудительный reflow
         if (progress && isAutoPlaying) {
           progress.style.animation = 'none';
-          progress.offsetHeight; // trigger reflow
-          progress.style.animation = 'hero-progress 5s linear forwards';
+          progress.offsetHeight;
+          progress.style.animation = '';
         }
         if (!isAutoPlaying) {
           dot.classList.add('paused');
@@ -355,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (p) {
         p.style.animation = 'none';
         p.offsetHeight;
-        p.style.animation = 'hero-progress 5s linear forwards';
+        p.style.animation = '';
       }
     }
   }
