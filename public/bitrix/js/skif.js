@@ -388,6 +388,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // Start slider
   if (slideCount > 0) {
     heroSlides[0].classList.add('active');
+    // Инициализируем первую точку как активную
+    if (heroDots[0]) {
+      heroDots[0].classList.add('active');
+    }
     startAutoPlay();
   }
 
