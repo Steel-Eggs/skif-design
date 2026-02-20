@@ -141,15 +141,17 @@ const HeroSection = () => {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`relative h-3 rounded-full transition-all duration-500 overflow-hidden ${
-                    currentSlide === index 
-                      ? 'w-10 bg-accent/30' 
-                      : 'w-3 bg-background/30 hover:bg-background/50'
-                  }`}
+                  className="relative h-3 rounded-full overflow-hidden"
+                  style={{
+                    width: currentSlide === index ? '2.5rem' : '0.75rem',
+                    backgroundColor: currentSlide === index ? 'hsl(var(--accent) / 0.3)' : 'hsl(var(--background) / 0.3)',
+                    transition: 'width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s ease',
+                  }}
                   aria-label={`Слайд ${index + 1}`}
                 >
                   {currentSlide === index && isAutoPlaying && (
                     <span 
+                      key={`progress-${currentSlide}`}
                       className="absolute inset-0 bg-accent rounded-full origin-left animate-progress"
                       style={{ animationDuration: '5s' }}
                     />
