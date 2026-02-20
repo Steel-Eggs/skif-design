@@ -156,17 +156,14 @@
 
 .hero-dot {
   position: relative;
+  width: 0.75rem;
   height: 0.75rem;
   border-radius: 9999px;
   overflow: hidden;
-  transition: all 0.5s ease;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s ease;
   cursor: pointer;
   border: none;
   padding: 0;
-}
-
-.hero-dot:not(.active) {
-  width: 0.75rem;
   background: rgba(255, 255, 255, 0.3);
 }
 
@@ -185,7 +182,7 @@
   background: #2bb673;
   border-radius: 9999px;
   transform-origin: left;
-  animation: progress 5s linear forwards;
+  transform: scaleX(0);
 }
 
 /* Статистика */
