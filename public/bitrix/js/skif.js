@@ -313,29 +313,22 @@ document.addEventListener('DOMContentLoaded', function () {
     heroDescs.forEach(function (d, i) { d.style.display = i === newIndex ? '' : 'none'; });
     heroBtns.forEach(function (b, i) { b.style.display = i === newIndex ? '' : 'none'; });
 
-    // Dots
-    heroDots.forEach(function (dot, i) {
+    // Dots — убираем active со всех, сбрасываем прогресс
+    heroDots.forEach(function (dot) {
       dot.classList.remove('active', 'paused');
-      // Сброс анимации прогресса на неактивных точках
-      var progress = dot.querySelector('.hero-dot-progress');
-      if (progress) {
-        progress.style.animation = 'none';
-        progress.offsetHeight; // reflow
-        progress.style.animation = '';
-      }
-      if (i === newIndex) {
-        dot.classList.add('active');
-        // Перезапуск прогресса через принудительный reflow
-        if (progress && isAutoPlaying) {
-          progress.style.animation = 'none';
-          progress.offsetHeight;
-          progress.style.animation = '';
-        }
-        if (!isAutoPlaying) {
-          dot.classList.add('paused');
-        }
-      }
+      // Удаляем старый span прогресса и вставляем новый (как React key-remount)
+      var oldProgress = dot.querySelector('.hero-dot-progress');
+      if (oldProgress) oldProgress.remove();
+      var newProgress = document.createElement('span');
+      newProgress.className = 'hero-dot-progress';
+      dot.appendChild(newProgress);
     });
+
+    // Активируем нужную точку — CSS-анимация запустится автоматически
+    if (heroDots[newIndex]) {
+      heroDots[newIndex].classList.add('active');
+      if (!isAutoPlaying) heroDots[newIndex].classList.add('paused');
+    }
 
     // Counter
     if (heroCounter) {
@@ -353,16 +346,15 @@ document.addEventListener('DOMContentLoaded', function () {
     stopAutoPlay();
     isAutoPlaying = true;
     slideInterval = setInterval(nextSlide, 5000);
-    // Restart progress on current dot
+    // Перезапуск прогресса на текущей точке — пересоздаём span
     var activeDot = heroDots[currentSlide];
     if (activeDot) {
       activeDot.classList.remove('paused');
-      var p = activeDot.querySelector('.hero-dot-progress');
-      if (p) {
-        p.style.animation = 'none';
-        p.offsetHeight;
-        p.style.animation = '';
-      }
+      var old = activeDot.querySelector('.hero-dot-progress');
+      if (old) old.remove();
+      var fresh = document.createElement('span');
+      fresh.className = 'hero-dot-progress';
+      activeDot.appendChild(fresh);
     }
   }
 
@@ -396,7 +388,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // Start slider
   if (slideCount > 0) {
     heroSlides[0].classList.add('active');
-    heroDots[0] && heroDots[0].classList.add('active');
     startAutoPlay();
   }
 
