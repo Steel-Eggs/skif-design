@@ -59,10 +59,9 @@
 .hero-text-exit { animation: hero-text-out 0.3s ease-in forwards; }
 
 /* Hero dots */
-.hero-dot { position:relative; height:0.75rem; border-radius:9999px; border:none; transition:all 0.5s; overflow:hidden; padding:0; cursor:pointer; }
-.hero-dot.inactive { width:0.75rem; background:rgba(255,255,255,0.3); }
-.hero-dot.active-dot { width:2.5rem; background:hsl(152 68% 34% / 0.3); }
-.hero-dot-progress { position:absolute; inset:0; background:hsl(152 68% 34%); border-radius:9999px; transform-origin:left; }
+.hero-dot { position:relative; width:0.75rem; height:0.75rem; border-radius:9999px; border:none; transition:width 0.5s cubic-bezier(0.4,0,0.2,1), background-color 0.5s ease; overflow:hidden; padding:0; cursor:pointer; background:rgba(255,255,255,0.3); }
+.hero-dot.active { width:2.5rem; background:hsl(152 68% 34% / 0.3); }
+.hero-dot-progress { position:absolute; inset:0; background:hsl(152 68% 34%); border-radius:9999px; transform-origin:left; transform:scaleX(0); }
 
 /* Hero pattern */
 .hero-pattern {
