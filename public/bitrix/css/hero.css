@@ -154,6 +154,22 @@
   }
 }
 
+/* Контейнер точек — через Tailwind-классы flex/items-center/gap-3 */
+/* Добавляем отдельный CSS-класс для статической версии */
+.hero-dots-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-dots-container {
+    justify-content: flex-start;
+  }
+}
+
 .hero-dot {
   position: relative;
   height: 0.75rem;
