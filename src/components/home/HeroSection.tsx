@@ -138,19 +138,24 @@ const HeroSection = () => {
             {/* Slider dots with progress animation */}
             <div className="flex items-center gap-3 justify-center lg:justify-start pt-4">
               {slides.map((_, index) => (
-                <button
+                <div
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className="relative h-3 rounded-full overflow-hidden"
-                  style={{
-                    width: currentSlide === index ? '2.5rem' : '0.75rem',
-                    backgroundColor: currentSlide === index ? 'hsl(var(--accent) / 0.3)' : 'hsl(var(--background) / 0.3)',
-                    transition: 'width 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s ease',
-                  }}
+                  role="button"
                   aria-label={`Слайд ${index + 1}`}
+                  className="relative h-3 rounded-full overflow-hidden flex-shrink-0 cursor-pointer"
+                  style={{
+                    width: '2.5rem',
+                    backgroundColor: currentSlide === index
+                      ? 'hsl(var(--accent) / 0.3)'
+                      : 'rgba(255,255,255,0.3)',
+                    transform: `scaleX(${currentSlide === index ? 1 : 0.3})`,
+                    transformOrigin: 'center',
+                    transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s ease',
+                  }}
                 >
                   {currentSlide === index && isAutoPlaying && (
-                    <span 
+                    <span
                       key={`progress-${currentSlide}`}
                       className="absolute inset-0 bg-accent rounded-full origin-left animate-progress"
                       style={{ animationDuration: '5s' }}
@@ -159,7 +164,7 @@ const HeroSection = () => {
                   {currentSlide === index && !isAutoPlaying && (
                     <span className="absolute inset-0 bg-accent rounded-full" />
                   )}
-                </button>
+                </div>
               ))}
             </div>
 
