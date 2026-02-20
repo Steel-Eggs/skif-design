@@ -184,8 +184,14 @@
   inset: 0;
   background: #2bb673;
   border-radius: 9999px;
-  transform-origin: left;
-  animation: progress 5s linear forwards;
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: hero-progress 5s linear forwards;
+}
+
+@keyframes hero-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
 /* Статистика */
