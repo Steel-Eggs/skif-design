@@ -36,6 +36,14 @@ const slides = [
   },
 ];
 
+const DotProgress = ({ slideIndex }: { slideIndex: number }) => (
+  <span
+    key={slideIndex}
+    className="absolute inset-0 bg-accent rounded-full"
+    style={{ animation: 'progress 5s linear forwards', transformOrigin: 'left' }}
+  />
+);
+
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [previousSlide, setPreviousSlide] = useState(0);
@@ -148,14 +156,10 @@ const HeroSection = () => {
                   }`}
                   aria-label={`Слайд ${index + 1}`}
                 >
-                  {currentSlide === index && isAutoPlaying && (
-                    <span 
-                      className="absolute inset-0 bg-accent rounded-full origin-left animate-progress"
-                      style={{ animationDuration: '5s' }}
-                    />
-                  )}
-                  {currentSlide === index && !isAutoPlaying && (
-                    <span className="absolute inset-0 bg-accent rounded-full" />
+                  {currentSlide === index && (
+                    isAutoPlaying
+                      ? <DotProgress key={currentSlide} slideIndex={currentSlide} />
+                      : <span className="absolute inset-0 bg-accent rounded-full" />
                   )}
                 </button>
               ))}
