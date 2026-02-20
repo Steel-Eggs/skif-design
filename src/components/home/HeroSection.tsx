@@ -36,11 +36,10 @@ const slides = [
   },
 ];
 
-const DotProgress = ({ slideIndex }: { slideIndex: number }) => (
+const DotProgress = ({ id }: { id: number }) => (
   <span
-    key={slideIndex}
-    className="absolute inset-0 bg-accent rounded-full"
-    style={{ animation: 'progress 5s linear forwards', transformOrigin: 'left' }}
+    key={id}
+    className="absolute inset-0 bg-accent rounded-full origin-left animate-[dot-progress_5s_linear_forwards]"
   />
 );
 
@@ -158,7 +157,7 @@ const HeroSection = () => {
                 >
                   {currentSlide === index && (
                     isAutoPlaying
-                      ? <DotProgress key={currentSlide} slideIndex={currentSlide} />
+                      ? <DotProgress key={currentSlide} id={currentSlide} />
                       : <span className="absolute inset-0 bg-accent rounded-full" />
                   )}
                 </button>
