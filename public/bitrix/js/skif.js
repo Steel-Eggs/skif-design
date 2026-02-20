@@ -313,22 +313,23 @@ document.addEventListener('DOMContentLoaded', function () {
     heroDescs.forEach(function (d, i) { d.style.display = i === newIndex ? '' : 'none'; });
     heroBtns.forEach(function (b, i) { b.style.display = i === newIndex ? '' : 'none'; });
 
-    // Dots — убираем active со всех, сбрасываем прогресс
-    heroDots.forEach(function (dot) {
+    // Dots
+    heroDots.forEach(function (dot, i) {
       dot.classList.remove('active', 'paused');
-      // Удаляем старый span прогресса и вставляем новый (как React key-remount)
-      var oldProgress = dot.querySelector('.hero-dot-progress');
-      if (oldProgress) oldProgress.remove();
-      var newProgress = document.createElement('span');
-      newProgress.className = 'hero-dot-progress';
-      dot.appendChild(newProgress);
+      if (i === newIndex) {
+        dot.classList.add('active');
+        // Restart progress animation
+        var progress = dot.querySelector('.hero-dot-progress');
+        if (progress && isAutoPlaying) {
+          progress.style.animation = 'none';
+          progress.offsetHeight; // trigger reflow
+          progress.style.animation = 'progress 5s linear forwards';
+        }
+        if (!isAutoPlaying) {
+          dot.classList.add('paused');
+        }
+      }
     });
-
-    // Активируем нужную точку — CSS-анимация запустится автоматически
-    if (heroDots[newIndex]) {
-      heroDots[newIndex].classList.add('active');
-      if (!isAutoPlaying) heroDots[newIndex].classList.add('paused');
-    }
 
     // Counter
     if (heroCounter) {
@@ -346,15 +347,16 @@ document.addEventListener('DOMContentLoaded', function () {
     stopAutoPlay();
     isAutoPlaying = true;
     slideInterval = setInterval(nextSlide, 5000);
-    // Перезапуск прогресса на текущей точке — пересоздаём span
+    // Restart progress on current dot
     var activeDot = heroDots[currentSlide];
     if (activeDot) {
       activeDot.classList.remove('paused');
-      var old = activeDot.querySelector('.hero-dot-progress');
-      if (old) old.remove();
-      var fresh = document.createElement('span');
-      fresh.className = 'hero-dot-progress';
-      activeDot.appendChild(fresh);
+      var p = activeDot.querySelector('.hero-dot-progress');
+      if (p) {
+        p.style.animation = 'none';
+        p.offsetHeight;
+        p.style.animation = 'progress 5s linear forwards';
+      }
     }
   }
 
@@ -388,10 +390,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Start slider
   if (slideCount > 0) {
     heroSlides[0].classList.add('active');
-    // Инициализируем первую точку как активную
-    if (heroDots[0]) {
-      heroDots[0].classList.add('active');
-    }
+    heroDots[0] && heroDots[0].classList.add('active');
     startAutoPlay();
   }
 

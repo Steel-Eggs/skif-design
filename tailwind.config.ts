@@ -100,10 +100,6 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(210 100% 45% / 0.3)" },
           "50%": { boxShadow: "0 0 40px hsl(210 100% 45% / 0.5)" },
         },
-        "dot-progress": {
-          from: { transform: "scaleX(0)" },
-          to: { transform: "scaleX(1)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -113,7 +109,6 @@ export default {
         "slide-in-right": "slide-in-right 0.6s ease-out forwards",
         "scale-in": "scale-in 0.4s ease-out forwards",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "dot-progress": "dot-progress 5s linear forwards",
       },
     },
   },
