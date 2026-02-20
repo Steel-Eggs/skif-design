@@ -186,6 +186,10 @@
   border-radius: 9999px;
   transform-origin: left center;
   transform: scaleX(0);
+  animation: none;
+}
+
+.hero-dot.active .hero-dot-progress {
   animation: hero-progress 5s linear forwards;
 }
 
