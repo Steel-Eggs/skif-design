@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (progress && isAutoPlaying) {
           progress.style.animation = 'none';
           progress.offsetHeight; // trigger reflow
-          progress.style.animation = 'progress 5s linear forwards';
+          progress.style.animation = 'hero-progress 5s linear forwards';
         }
         if (!isAutoPlaying) {
           dot.classList.add('paused');
@@ -355,7 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (p) {
         p.style.animation = 'none';
         p.offsetHeight;
-        p.style.animation = 'progress 5s linear forwards';
+        p.style.animation = 'hero-progress 5s linear forwards';
       }
     }
   }
