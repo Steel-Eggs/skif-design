@@ -226,8 +226,8 @@
               <span class="text-sm font-bold text-destructive bg-destructive/10 px-2 py-0.5 rounded-full">Выгода 6 400 ₽</span>
             </div>
             <div class="text-sm text-muted-foreground">Цена с учётом НДС. Рассрочка от <span class="font-bold text-secondary">2 395 ₽/мес</span></div>
-            <!-- Quick specs -->
-            <div class="grid grid-cols-3 gap-3 pt-1">
+            <!-- Quick specs - hidden on mobile -->
+            <div class="hidden md:grid grid-cols-3 gap-3 pt-1">
               <div class="text-center bg-muted/60 rounded-xl p-3">
                 <div class="text-sm font-bold text-foreground">750 кг</div>
                 <div class="text-[11px] text-muted-foreground">Грузоподъёмность</div>
@@ -242,7 +242,7 @@
               </div>
             </div>
             <!-- Buttons -->
-            <div class="flex flex-col sm:flex-row gap-3 pt-1">
+            <div class="grid grid-cols-2 sm:flex sm:flex-row gap-2 sm:gap-3 pt-1">
               <button class="flex-1 gradient-primary text-primary-foreground font-bold h-12 rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2" data-add-to-cart data-product-id="p1" data-product-name="Прицеп ССТ-7132-мини" data-product-price="57500" data-product-image="images/trailer-1.jpg">
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
                 В корзину
@@ -272,9 +272,9 @@
       <!-- Tabs: Description / Specs / Video -->
       <div class="mt-10 md:mt-16">
         <div class="flex gap-1 border-b border-border mb-8" id="product-tabs">
-          <button class="tab-btn px-5 py-3 font-semibold border-b-2 border-primary text-primary text-sm" data-tab="description">Описание</button>
-          <button class="tab-btn px-5 py-3 font-semibold border-b-2 border-transparent text-muted-foreground hover:text-foreground text-sm transition-colors" data-tab="specs">Характеристики</button>
-          <button class="tab-btn px-5 py-3 font-semibold border-b-2 border-transparent text-muted-foreground hover:text-foreground text-sm transition-colors" data-tab="video">Видео</button>
+          <button class="tab-btn px-3 sm:px-5 py-3 font-semibold border-b-2 border-primary text-primary text-xs sm:text-sm whitespace-nowrap" data-tab="description">Описание</button>
+          <button class="tab-btn px-3 sm:px-5 py-3 font-semibold border-b-2 border-transparent text-muted-foreground hover:text-foreground text-xs sm:text-sm transition-colors whitespace-nowrap" data-tab="specs">Характеристики</button>
+          <button class="tab-btn px-3 sm:px-5 py-3 font-semibold border-b-2 border-transparent text-muted-foreground hover:text-foreground text-xs sm:text-sm transition-colors whitespace-nowrap" data-tab="video">Видео</button>
         </div>
 
         <!-- Description -->
@@ -295,20 +295,32 @@
               <h3 class="font-bold text-foreground mb-4">Дополнительные опции</h3>
               <div class="space-y-3" id="options-list">
                 <label class="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" class="mt-1 w-4 h-4 accent-primary option-check" data-price="4500">
-                  <div><div class="font-medium text-sm group-hover:text-primary transition-colors">Тент на прицеп</div><div class="text-xs text-muted-foreground">+ 4 500 ₽</div></div>
+                  <input type="checkbox" class="mt-1 w-4 h-4 accent-primary option-check" data-price="4100">
+                  <div class="flex items-start gap-3 flex-1 min-w-0">
+                    <img src="https://www.skif-avto.ru/upload/iblock/9f4/nc3ct56l0o4d3e40cyt33n5ty5el1dqv.jpg" alt="Тент с каркасом" class="w-14 h-14 rounded-lg object-cover shrink-0 border border-border">
+                    <div class="min-w-0"><div class="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2">Тент с каркасом НИЗКИЙ 7132-МИНИ</div><div class="text-xs text-muted-foreground font-semibold">+ 4 100 ₽</div></div>
+                  </div>
                 </label>
                 <label class="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" class="mt-1 w-4 h-4 accent-primary option-check" data-price="2900">
-                  <div><div class="font-medium text-sm group-hover:text-primary transition-colors">Противоугонный замок</div><div class="text-xs text-muted-foreground">+ 2 900 ₽</div></div>
+                  <input type="checkbox" class="mt-1 w-4 h-4 accent-primary option-check" data-price="7500">
+                  <div class="flex items-start gap-3 flex-1 min-w-0">
+                    <img src="https://www.skif-avto.ru/upload/iblock/062/6kuboanfmoeybs9o4a1c0xnqlvxd5uqn.jpg" alt="Борта надставные" class="w-14 h-14 rounded-lg object-cover shrink-0 border border-border">
+                    <div class="min-w-0"><div class="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2">БОРТА НАДСТАВНЫЕ (КОМПЛЕКТ) 7132-МИНИ</div><div class="text-xs text-muted-foreground font-semibold">+ 7 500 ₽</div></div>
+                  </div>
                 </label>
                 <label class="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" class="mt-1 w-4 h-4 accent-primary option-check" data-price="1800">
-                  <div><div class="font-medium text-sm group-hover:text-primary transition-colors">Запасное колесо</div><div class="text-xs text-muted-foreground">+ 1 800 ₽</div></div>
+                  <input type="checkbox" class="mt-1 w-4 h-4 accent-primary option-check" data-price="250">
+                  <div class="flex items-start gap-3 flex-1 min-w-0">
+                    <img src="https://www.skif-avto.ru/upload/resize_cache/iblock/208/250_350_1/9q33gx4fffgmge17yhu1h7mj61sgekex.jpg" alt="Держатель вилки" class="w-14 h-14 rounded-lg object-cover shrink-0 border border-border">
+                    <div class="min-w-0"><div class="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2">Держатель вилки 7/13pin TRAILERCOM TM5024</div><div class="text-xs text-muted-foreground font-semibold">+ 250 ₽</div></div>
+                  </div>
                 </label>
                 <label class="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" class="mt-1 w-4 h-4 accent-primary option-check" data-price="3200">
-                  <div><div class="font-medium text-sm group-hover:text-primary transition-colors">Удлинение рамы на 50 см</div><div class="text-xs text-muted-foreground">+ 3 200 ₽</div></div>
+                  <input type="checkbox" class="mt-1 w-4 h-4 accent-primary option-check" data-price="3300">
+                  <div class="flex items-start gap-3 flex-1 min-w-0">
+                    <img src="https://www.skif-avto.ru/upload/resize_cache/iblock/f0a/250_350_1/f0a83644f8e6276d7a72b209dcaf0017.jpg" alt="Опорное колесо" class="w-14 h-14 rounded-lg object-cover shrink-0 border border-border">
+                    <div class="min-w-0"><div class="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2">Опорное колесо с хомутом TR-06</div><div class="text-xs text-muted-foreground font-semibold">+ 3 300 ₽</div></div>
+                  </div>
                 </label>
               </div>
               <div class="mt-4 pt-4 border-t border-border">
@@ -348,17 +360,12 @@
 
         <!-- Video -->
         <div id="tab-video" class="tab-content" style="display:none">
-          <div class="bg-card border border-border rounded-2xl overflow-hidden aspect-video flex items-center justify-center">
-            <div class="text-center p-12">
-              <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              </div>
-              <h3 class="font-bold text-foreground mb-2">Видеообзор прицепа</h3>
-              <p class="text-muted-foreground text-sm mb-4">Видео появится в ближайшее время</p>
-              <a href="https://www.youtube.com/channel/UCI8Pg8mffiiHNH1rY_K1GOA" target="_blank" class="inline-flex items-center gap-2 text-primary hover:underline text-sm font-medium">
-                Наш YouTube канал →
-              </a>
+          <div class="max-w-full overflow-hidden">
+            <h3 class="font-bold text-foreground mb-4 text-lg">Самый красивый и практичный прицеп для квадроцикла и мотоблока!</h3>
+            <div class="bg-card border border-border rounded-2xl overflow-hidden" style="position:relative;padding-bottom:56.25%;height:0;">
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Видеообзор прицепа ССТ-7132-мини" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:1rem;"></iframe>
             </div>
+            <p class="text-muted-foreground text-sm mt-4">Подробный видеообзор прицепа ССТ-7132-мини. Обзор конструкции, характеристик и возможностей.</p>
           </div>
         </div>
       </div>
@@ -460,7 +467,13 @@
 
   function setImage(idx) {
     current = (idx + images.length) % images.length;
-    mainImg.src = images[current];
+    mainImg.style.opacity = '0';
+    mainImg.style.transform = 'scale(0.97)';
+    setTimeout(function() {
+      mainImg.src = images[current];
+      mainImg.style.opacity = '1';
+      mainImg.style.transform = 'scale(1)';
+    }, 200);
     counter.textContent = (current + 1) + ' / ' + images.length;
     thumbs.forEach(function(t, i) {
       t.classList.toggle('border-primary', i === current);
