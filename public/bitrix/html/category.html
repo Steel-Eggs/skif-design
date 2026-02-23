@@ -33,10 +33,11 @@
     .filter-chip { transition: all 0.2s; }
     .filter-chip.active { background: hsl(202 83% 26%); color: white; border-color: hsl(202 83% 26%); }
     .price-range input[type=range] { accent-color: hsl(202 83% 26%); }
-    .product-list-item { display: none; }
-    .view-list .product-grid-item { display: none; }
-    .view-list .product-list-item { display: flex; }
-    .view-grid .product-grid-item { display: block; }
+    .flex-row-view { display: flex !important; flex-direction: row !important; }
+    .flex-row-view .relative.aspect-\\[4\\/3\\] { aspect-ratio: auto; width: 14rem; flex-shrink: 0; }
+    @media (max-width: 639px) { .flex-row-view .relative.aspect-\\[4\\/3\\] { width: 8rem; } }
+    .flex-row-view .p-4, .flex-row-view .sm\\:p-5 { display: flex; flex-direction: column; justify-content: center; }
+    .flex-row-view .product-card-overlay { display: none; }
   </style>
 </head>
 <body class="min-h-screen overflow-x-hidden bg-background text-foreground font-sans antialiased">
@@ -187,7 +188,7 @@
         <div class="flex items-center gap-2">
           <!-- View toggle -->
           <div class="flex items-center border border-border rounded-xl overflow-hidden">
-            <button class="h-9 w-9 flex items-center justify-center hover:bg-muted transition-colors view-grid-btn active-view" id="view-grid-btn" title="Сетка">
+            <button class="h-9 w-9 flex items-center justify-center hover:bg-muted transition-colors view-grid-btn bg-primary text-primary-foreground" id="view-grid-btn" title="Сетка">
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             </button>
             <button class="h-9 w-9 flex items-center justify-center hover:bg-muted transition-colors border-l border-border view-list-btn" id="view-list-btn" title="Список">
@@ -377,18 +378,32 @@
 <script>
 (function() {
   var grid = document.getElementById('products-grid');
+  var gridBtn = document.getElementById('view-grid-btn');
+  var listBtn = document.getElementById('view-list-btn');
+  var gridClasses = 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5';
+  var listClasses = 'grid grid-cols-1 gap-4';
 
-  // View toggle
-  document.getElementById('view-grid-btn').addEventListener('click', function() {
-    grid.className = grid.className.replace('view-list','view-grid');
-    this.classList.add('bg-primary','text-white');
-    document.getElementById('view-list-btn').classList.remove('bg-primary','text-white');
-  });
-  document.getElementById('view-list-btn').addEventListener('click', function() {
-    grid.className = grid.className.replace('view-grid','view-list');
-    this.classList.add('bg-primary','text-white');
-    document.getElementById('view-grid-btn').classList.remove('bg-primary','text-white');
-  });
+  function setView(mode) {
+    var cards = grid.querySelectorAll('.product-grid-item');
+    if (mode === 'list') {
+      grid.className = listClasses;
+      gridBtn.classList.remove('bg-primary','text-primary-foreground');
+      listBtn.classList.add('bg-primary','text-primary-foreground');
+      cards.forEach(function(card) {
+        card.classList.add('flex-row-view');
+      });
+    } else {
+      grid.className = gridClasses;
+      listBtn.classList.remove('bg-primary','text-primary-foreground');
+      gridBtn.classList.add('bg-primary','text-primary-foreground');
+      cards.forEach(function(card) {
+        card.classList.remove('flex-row-view');
+      });
+    }
+  }
+
+  gridBtn.addEventListener('click', function() { setView('grid'); });
+  listBtn.addEventListener('click', function() { setView('list'); });
 
   // Sort
   document.getElementById('sort-select').addEventListener('change', function() {
