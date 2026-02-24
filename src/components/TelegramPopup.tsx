@@ -42,11 +42,11 @@ const TelegramPopup = () => {
           Добавляйтесь в наш телеграм-канал, чтобы быть в курсе всех событий.
         </p>
 
-        <a href="https://t.me/skif_avto_38" target="_blank" rel="noopener noreferrer" className="block">
+        <a href="https://t.me/skif_avto_38" target="_blank" rel="noopener noreferrer" className="flex justify-center">
           <img
             src={qrTelegram}
             alt="QR-код телеграм-канала @skif_avto_38"
-            className="w-full max-w-[200px] mx-auto rounded-xl"
+            className="w-[180px] h-[180px] object-contain rounded-xl"
           />
         </a>
 
