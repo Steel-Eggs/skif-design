@@ -461,7 +461,7 @@
     // Previous
     if (currentPage > 1) {
       var prev = document.createElement('li');
-      prev.innerHTML = '<a class="' + navClass + ' pl-2.5" aria-label="Назад"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg><span>Назад</span></a>';
+      prev.innerHTML = '<a class="' + navClass + ' pl-2.5" aria-label="Предыдущая"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg><span>Предыдущая</span></a>';
       prev.querySelector('a').addEventListener('click', function() { currentPage--; renderPage(); window.scrollTo({top:0,behavior:'smooth'}); });
       list.appendChild(prev);
     }
@@ -485,7 +485,7 @@
     // Next
     if (currentPage < totalPages) {
       var next = document.createElement('li');
-      next.innerHTML = '<a class="' + navClass + ' pr-2.5" aria-label="Вперёд"><span>Вперёд</span><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></a>';
+      next.innerHTML = '<a class="' + navClass + ' pr-2.5" aria-label="Следующая"><span>Следующая</span><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></a>';
       next.querySelector('a').addEventListener('click', function() { currentPage++; renderPage(); window.scrollTo({top:0,behavior:'smooth'}); });
       list.appendChild(next);
     }
