@@ -2,13 +2,22 @@ import { useParams, Link } from "react-router-dom";
 import { 
   Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, 
   Building2, Home, RefreshCw, Tag, Package, Warehouse, Snowflake,
-  Fish, Cog, Compass, Box, Grid, List, ChevronDown
+  Fish, Cog, Compass, Box, Grid, List
 } from "lucide-react";
 import { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import ProductCard, { Product } from "@/components/ProductCard";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 
 // Category data mapping with SEO texts
 const categoryData: Record<string, { 
@@ -227,13 +236,17 @@ const Category = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState('popular');
-  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(allProducts.length / ITEMS_PER_PAGE);
   
-  const visibleProducts = allProducts.slice(0, visibleCount);
-  const hasMoreProducts = visibleCount < allProducts.length;
+  const paginatedProducts = allProducts.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
   
-  const handleShowMore = () => {
-    setVisibleCount(prev => Math.min(prev + 4, allProducts.length));
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   
   const category = categorySlug ? categoryData[categorySlug] : null;
@@ -361,7 +374,7 @@ const Category = () => {
           <div className="container px-4">
             {/* Products grid */}
             <div className={`grid gap-5 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5' : 'grid-cols-1'}`}>
-              {visibleProducts.map((product, index) => (
+              {paginatedProducts.map((product, index) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -371,18 +384,57 @@ const Category = () => {
               ))}
             </div>
 
-            {/* Load more */}
-            {hasMoreProducts && (
-              <div className="text-center mt-8 sm:mt-12">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="gap-2"
-                  onClick={handleShowMore}
-                >
-                  Показать ещё ({allProducts.length - visibleCount})
-                  <ChevronDown className="w-4 h-4" />
-                </Button>
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="mt-8 sm:mt-12">
+                <Pagination>
+                  <PaginationContent>
+                    {currentPage > 1 && (
+                      <PaginationItem>
+                        <PaginationPrevious 
+                          href="#" 
+                          onClick={(e) => { e.preventDefault(); handlePageChange(currentPage - 1); }}
+                        />
+                      </PaginationItem>
+                    )}
+                    
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => {
+                      if (
+                        page === 1 || 
+                        page === totalPages || 
+                        Math.abs(page - currentPage) <= 1
+                      ) {
+                        return (
+                          <PaginationItem key={page}>
+                            <PaginationLink 
+                              href="#"
+                              isActive={page === currentPage}
+                              onClick={(e) => { e.preventDefault(); handlePageChange(page); }}
+                            >
+                              {page}
+                            </PaginationLink>
+                          </PaginationItem>
+                        );
+                      }
+                      if (
+                        (page === 2 && currentPage > 3) ||
+                        (page === totalPages - 1 && currentPage < totalPages - 2)
+                      ) {
+                        return <PaginationEllipsis key={page} />;
+                      }
+                      return null;
+                    })}
+                    
+                    {currentPage < totalPages && (
+                      <PaginationItem>
+                        <PaginationNext 
+                          href="#" 
+                          onClick={(e) => { e.preventDefault(); handlePageChange(currentPage + 1); }}
+                        />
+                      </PaginationItem>
+                    )}
+                  </PaginationContent>
+                </Pagination>
               </div>
             )}
 
