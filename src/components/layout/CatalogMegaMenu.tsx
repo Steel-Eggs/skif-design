@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
-  Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, Ship, 
+  Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, 
   Building2, Home, RefreshCw, Package, Snowflake, Fish, Box, Tag, Factory,
-  ArrowRight, Sparkles, Percent, Star
+  ArrowRight, Sparkles, Layers, Weight, Gauge, Cog
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
