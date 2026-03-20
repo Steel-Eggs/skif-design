@@ -67,7 +67,7 @@ const Footer = () => {
                 className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors shrink-0"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12C24 12 24 24 12 24C12 24 12 12 0 12C0 12 0 0 12 0C12 0 12 12 24 12Z"/>
+                  <path d="M12 0C12 0 12 5.37 9.19 8.19C6.37 11 1 11 0 12C0 12 5.37 12 8.19 14.81C11 17.63 11 23 12 24C12 24 12 18.63 14.81 15.81C17.63 13 23 13 24 12C24 12 18.63 12 15.81 9.19C13 6.37 13 1 12 0Z"/>
                 </svg>
               </a>
               {/* Одноклассники */}
