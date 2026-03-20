@@ -166,7 +166,7 @@ const categories = [
     id: "proizvoditeli",
     name: "По производителям",
     description: "Прицепы от ведущих производителей",
-    icon: Building2,
+    icon: Factory,
     href: "/catalog/proizvoditeli",
     count: 450,
     color: "from-primary to-primary/80",
