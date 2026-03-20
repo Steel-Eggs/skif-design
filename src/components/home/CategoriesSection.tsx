@@ -1,98 +1,36 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, Ship, Building2, Home, RefreshCw, ChevronDown } from "lucide-react";
+import { 
+  ArrowRight, Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, 
+  Building2, Home, RefreshCw, ChevronDown, Package, Tag, Layers, Weight,
+  Factory, Box, Snowflake, Gauge, Cog, Fish
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const categories = [
-  {
-    id: 1,
-    name: "Одноосные прицепы",
-    description: "Компактные решения для перевозки грузов",
-    icon: Car,
-    href: "/catalog/odnoosnye",
-    count: 156,
-  },
-  {
-    id: 2,
-    name: "Двухосные прицепы",
-    description: "Для больших и тяжёлых грузов",
-    icon: Truck,
-    href: "/catalog/dvuhosnye",
-    count: 89,
-  },
-  {
-    id: 3,
-    name: "Прицепы с крышкой",
-    description: "Защита груза от погодных условий",
-    icon: Caravan,
-    href: "/catalog/s-kryshkoy",
-    count: 45,
-  },
-  {
-    id: 4,
-    name: "Прицепы платформа",
-    description: "Универсальные платформы",
-    icon: Building2,
-    href: "/catalog/platforma",
-    count: 32,
-  },
-  {
-    id: 6,
-    name: "Прицепы фургоны",
-    description: "Закрытые кузова для грузов",
-    icon: Caravan,
-    href: "/catalog/furgony",
-    count: 34,
-  },
-  {
-    id: 7,
-    name: "Коммерческие прицепы",
-    description: "Для бизнеса и торговли",
-    icon: Building2,
-    href: "/catalog/kommercheskie",
-    count: 28,
-  },
-  {
-    id: 8,
-    name: "Прицепы для мототехники",
-    description: "Для мотоциклов и квадроциклов",
-    icon: Bike,
-    href: "/catalog/moto",
-    count: 42,
-  },
-  {
-    id: 9,
-    name: "Прицепы для лодок и катеров",
-    description: "Для водного транспорта",
-    icon: Anchor,
-    href: "/catalog/lodki",
-    count: 56,
-  },
-  {
-    id: 10,
-    name: "Прицепы для электростанций",
-    description: "Для генераторов и оборудования",
-    icon: Zap,
-    href: "/catalog/elektrostancii",
-    count: 18,
-  },
-  {
-    id: 11,
-    name: "Прицепы эвакуаторы",
-    description: "Для транспортировки авто",
-    icon: AlertTriangle,
-    href: "/catalog/evakuatory",
-    count: 24,
-  },
-  {
-    id: 12,
-    name: "Бытовки на колёсах",
-    description: "Мобильные помещения",
-    icon: Home,
-    href: "/catalog/bytovki",
-    count: 15,
-  },
+  { id: "sale", name: "Распродажа", description: "Лучшие цены на популярные модели", icon: Tag, href: "/catalog/sale", count: 23 },
+  { id: "odnoosnye", name: "Одноосные прицепы", description: "Компактные решения для перевозки грузов", icon: Car, href: "/catalog/odnoosnye", count: 156 },
+  { id: "dvuhosnye", name: "Двухосные прицепы", description: "Для больших и тяжёлых грузов", icon: Truck, href: "/catalog/dvuhosnye", count: 89 },
+  { id: "s-kryshkoy", name: "Прицепы с крышкой", description: "Защита груза от погодных условий", icon: Package, href: "/catalog/s-kryshkoy", count: 45 },
+  { id: "platforma", name: "Прицепы платформа", description: "Универсальные платформы", icon: Layers, href: "/catalog/platforma", count: 32 },
+  { id: "gruzy", name: "Прицепы для грузов", description: "Надёжные прицепы для перевозки грузов", icon: Weight, href: "/catalog/gruzy", count: 38 },
+  { id: "furgony", name: "Прицепы фургоны", description: "Закрытые кузова для грузов", icon: Caravan, href: "/catalog/furgony", count: 34 },
+  { id: "kommercheskie", name: "Коммерческие прицепы", description: "Для бизнеса и торговли", icon: Building2, href: "/catalog/kommercheskie", count: 28 },
+  { id: "moto", name: "Прицепы для мототехники", description: "Для мотоциклов и квадроциклов", icon: Bike, href: "/catalog/moto", count: 42 },
+  { id: "lodki", name: "Прицепы для лодок и катеров", description: "Для водного транспорта", icon: Anchor, href: "/catalog/lodki", count: 56 },
+  { id: "elektrostancii", name: "Прицепы для электростанций", description: "Для генераторов и оборудования", icon: Zap, href: "/catalog/elektrostancii", count: 18 },
+  { id: "evakuatory", name: "Прицепы эвакуаторы", description: "Для транспортировки авто", icon: AlertTriangle, href: "/catalog/evakuatory", count: 24 },
+  { id: "spectehnika", name: "Для спецтехники", description: "Для перевозки тяжёлой техники", icon: Wrench, href: "/catalog/spectehnika", count: 19 },
+  { id: "bytovki", name: "Бытовки на колёсах", description: "Мобильные помещения", icon: Home, href: "/catalog/bytovki", count: 15 },
+  { id: "bu", name: "Прицепы Б/У", description: "Проверенные б/у прицепы", icon: RefreshCw, href: "/catalog/bu", count: 8 },
+  { id: "prokat", name: "Прицепы в прокат", description: "Аренда на любой срок", icon: RefreshCw, href: "/catalog/prokat", count: 25 },
+  { id: "proizvoditeli", name: "По производителям", description: "От ведущих производителей", icon: Factory, href: "/catalog/proizvoditeli", count: 450 },
+  { id: "zapchasti", name: "Запчасти и аксессуары", description: "Комплектующие для прицепов", icon: Wrench, href: "/catalog/zapchasti", count: 320 },
+  { id: "boksy", name: "Боксы и багажники", description: "Автобоксы и багажные системы", icon: Box, href: "/catalog/boksy", count: 67 },
+  { id: "snegohody", name: "Снегоходы и вездеходы", description: "Техника для бездорожья", icon: Snowflake, href: "/catalog/snegohody", count: 35 },
+  { id: "motobuksirovschiki", name: "Мотобуксировщики", description: "Компактная техника для зимы", icon: Gauge, href: "/catalog/motobuksirovschiki", count: 28 },
+  { id: "rybalka", name: "Товары для рыбалки", description: "Всё для успешной рыбалки", icon: Fish, href: "/catalog/rybalka", count: 89 },
 ];
 
 const INITIAL_VISIBLE = 8;
@@ -110,7 +48,6 @@ const CategoriesSection = () => {
   return (
     <section className="py-12 md:py-24 bg-background overflow-hidden">
       <div className="container px-4 sm:px-6">
-        {/* Section header */}
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-foreground mb-3 md:mb-4">
             Каталог продукции
@@ -120,7 +57,6 @@ const CategoriesSection = () => {
           </p>
         </div>
 
-        {/* Categories grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {visibleCategories.map((category, index) => (
             <Link 
@@ -158,7 +94,6 @@ const CategoriesSection = () => {
           ))}
         </div>
 
-        {/* Show more button */}
         {hasMore && (
           <div className="text-center mt-8 md:mt-10">
             <Button 
@@ -173,7 +108,6 @@ const CategoriesSection = () => {
           </div>
         )}
 
-        {/* View all button */}
         <div className="text-center mt-8 md:mt-12">
           <Link to="/catalog">
             <button className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 gradient-primary text-primary-foreground font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg text-sm sm:text-base">

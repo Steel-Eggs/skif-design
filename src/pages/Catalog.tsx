@@ -139,7 +139,7 @@ const categories = [
     id: "proekty",
     name: "Наши проекты",
     description: "Индивидуальные решения на заказ",
-    icon: Compass,
+    icon: Compass, 
     href: "/catalog/proekty",
     count: 12,
     color: "from-purple-500 to-pink-500",

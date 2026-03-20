@@ -59,6 +59,28 @@ const Footer = () => {
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                 </svg>
               </a>
+              {/* Дзен */}
+              <a
+                href="https://dzen.ru/id/684413b8083e6952b7aac03d"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors shrink-0"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12C24 12 24 24 12 24C12 24 12 12 0 12C0 12 0 0 12 0C12 0 12 12 24 12Z"/>
+                </svg>
+              </a>
+              {/* Одноклассники */}
+              <a
+                href="https://ok.ru/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors shrink-0"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.505 17.44a11.18 11.18 0 0 0 3.394-1.15c.612-.35.87-1.122.527-1.73-.344-.607-1.116-.864-1.728-.514a8.96 8.96 0 0 1-2.834.937c-.47.068-.942.1-1.415.1-.472 0-.945-.032-1.413-.1a8.956 8.956 0 0 1-2.835-.937c-.612-.35-1.384-.093-1.728.514-.343.608-.085 1.38.527 1.73a11.18 11.18 0 0 0 3.395 1.15L7.4 20.44c-.476.478-.476 1.254 0 1.73.238.238.55.357.862.357.312 0 .624-.12.862-.357l2.876-2.895 2.876 2.895c.238.238.55.357.862.357.312 0 .624-.12.862-.357.476-.476.476-1.252 0-1.73l-2.995-3zM12 2C9.238 2 7 4.238 7 7s2.238 5 5 5 5-2.238 5-5-2.238-5-5-5zm0 7.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 4.5 12 4.5s2.5 1.12 2.5 2.5S13.38 9.5 12 9.5z"/>
+                </svg>
+              </a>
             </div>
             {/* Yandex Rating Widget - separate row on mobile */}
             <div className="w-full sm:w-auto">

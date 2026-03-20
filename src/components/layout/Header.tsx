@@ -93,8 +93,8 @@ const Header = () => {
     { name: "Одноосные прицепы", href: "/catalog/odnoosnye", icon: "🚗" },
     { name: "Двухосные прицепы", href: "/catalog/dvuhosnye", icon: "🚙" },
     { name: "Прицепы с крышкой", href: "/catalog/s-kryshkoy", icon: "📦" },
-    { name: "Прицепы платформа", href: "/catalog/platforma", icon: "🔲" },
-    
+    { name: "Прицепы платформа", href: "/catalog/platforma", icon: "📐" },
+    { name: "Прицепы для грузов", href: "/catalog/gruzy", icon: "⚖️" },
     { name: "Прицепы фургоны", href: "/catalog/furgony", icon: "🚐" },
     { name: "Коммерческие прицепы", href: "/catalog/kommercheskie", icon: "🏪" },
     { name: "Прицепы для мототехники", href: "/catalog/moto", icon: "🏍️" },
