@@ -121,7 +121,7 @@ const categories = [
     id: "spectehnika",
     name: "Прицепы для спецтехники",
     description: "Для перевозки тяжёлой техники",
-    icon: Cog,
+    icon: Wrench,
     href: "/catalog/spectehnika",
     count: 19,
     color: "from-primary to-primary/80",
