@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { 
   Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, 
-  Ship, Building2, Home, RefreshCw, Tag, Package, Warehouse, Snowflake,
-  Fish, Cog, Compass, Box
+  Building2, Home, RefreshCw, Tag, Package, Snowflake,
+  Fish, Cog, Compass, Box, Layers, Weight, Gauge, Factory
 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -40,7 +40,7 @@ const categories = [
     id: "s-kryshkoy",
     name: "Прицепы с крышкой",
     description: "Защита груза от погодных условий",
-    icon: Caravan,
+    icon: Package,
     href: "/catalog/s-kryshkoy",
     count: 45,
     color: "from-primary to-primary/80",
@@ -49,16 +49,25 @@ const categories = [
     id: "platforma",
     name: "Прицепы платформа",
     description: "Универсальные платформы для любых задач",
-    icon: Building2,
+    icon: Layers,
     href: "/catalog/platforma",
     count: 32,
+    color: "from-primary to-primary/80",
+  },
+  {
+    id: "gruzy",
+    name: "Прицепы для грузов",
+    description: "Надёжные прицепы для перевозки грузов",
+    icon: Weight,
+    href: "/catalog/gruzy",
+    count: 38,
     color: "from-primary to-primary/80",
   },
   {
     id: "furgony",
     name: "Прицепы фургоны",
     description: "Закрытые кузова для защиты груза",
-    icon: Warehouse,
+    icon: Caravan,
     href: "/catalog/furgony",
     count: 34,
     color: "from-primary to-primary/80",
@@ -112,7 +121,7 @@ const categories = [
     id: "spectehnika",
     name: "Прицепы для спецтехники",
     description: "Для перевозки тяжёлой техники",
-    icon: Cog,
+    icon: Wrench,
     href: "/catalog/spectehnika",
     count: 19,
     color: "from-primary to-primary/80",
@@ -130,7 +139,7 @@ const categories = [
     id: "proekty",
     name: "Наши проекты",
     description: "Индивидуальные решения на заказ",
-    icon: Compass,
+    icon: Compass, 
     href: "/catalog/proekty",
     count: 12,
     color: "from-purple-500 to-pink-500",
@@ -157,7 +166,7 @@ const categories = [
     id: "proizvoditeli",
     name: "По производителям",
     description: "Прицепы от ведущих производителей",
-    icon: Building2,
+    icon: Factory,
     href: "/catalog/proizvoditeli",
     count: 450,
     color: "from-primary to-primary/80",
@@ -193,7 +202,7 @@ const categories = [
     id: "motobuksirovschiki",
     name: "Мотобуксировщики",
     description: "Компактная техника для зимы",
-    icon: Compass,
+    icon: Gauge,
     href: "/catalog/motobuksirovschiki",
     count: 28,
     color: "from-primary to-primary/80",

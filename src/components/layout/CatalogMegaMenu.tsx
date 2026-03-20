@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
-  Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, Ship, 
+  Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, 
   Building2, Home, RefreshCw, Package, Snowflake, Fish, Box, Tag, Factory,
-  ArrowRight, Sparkles, Percent, Star
+  ArrowRight, Sparkles, Layers, Weight, Gauge, Cog
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -93,8 +93,8 @@ const mainCategories: Category[] = [
   { id: "odnoosnye", name: "Одноосные", href: "/catalog/odnoosnye", icon: Car },
   { id: "dvuhosnye", name: "Двухосные", href: "/catalog/dvuhosnye", icon: Truck },
   { id: "s-kryshkoy", name: "С крышкой", href: "/catalog/s-kryshkoy", icon: Package },
-  { id: "platforma", name: "Платформы", href: "/catalog/platforma", icon: Building2 },
-  
+  { id: "platforma", name: "Платформы", href: "/catalog/platforma", icon: Layers },
+  { id: "gruzy", name: "Для грузов", href: "/catalog/gruzy", icon: Weight },
   { id: "furgony", name: "Фургоны", href: "/catalog/furgony", icon: Caravan },
   { id: "kommercheskie", name: "Коммерческие", href: "/catalog/kommercheskie", icon: Building2 },
   { id: "moto", name: "Для мототехники", href: "/catalog/moto", icon: Bike, badge: "Хит", badgeColor: "secondary" },
@@ -112,7 +112,8 @@ const additionalCategories: Category[] = [
   { id: "zapchasti", name: "Запчасти и аксессуары", href: "/catalog/zapchasti", icon: Wrench },
   { id: "boksy", name: "Боксы и багажники", href: "/catalog/boksy", icon: Box },
   { id: "snegohody", name: "Снегоходы и Вездеходы", href: "/catalog/snegohody", icon: Snowflake },
-  { id: "motobuksirovschiki", name: "Мотобуксировщики", href: "/catalog/motobuksirovschiki", icon: Ship },
+  { id: "motobuksirovschiki", name: "Мотобуксировщики", href: "/catalog/motobuksirovschiki", icon: Gauge },
+  { id: "zapchasti-moto", name: "Запчасти мотобуксировщиков", href: "/catalog/zapchasti-moto", icon: Cog },
   { id: "rybalka", name: "Товары для рыбалки", href: "/catalog/rybalka", icon: Fish },
 ];
 
