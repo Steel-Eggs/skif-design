@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { 
   Car, Truck, Anchor, Bike, AlertTriangle, Wrench, Caravan, Zap, 
-  Ship, Building2, Home, RefreshCw, Tag, Package, Warehouse, Snowflake,
-  Fish, Cog, Compass, Box
+  Building2, Home, RefreshCw, Tag, Package, Snowflake,
+  Fish, Cog, Compass, Box, Layers, Weight, Gauge, Factory
 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
