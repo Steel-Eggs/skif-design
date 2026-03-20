@@ -202,7 +202,7 @@ const categories = [
     id: "motobuksirovschiki",
     name: "Мотобуксировщики",
     description: "Компактная техника для зимы",
-    icon: Compass,
+    icon: Gauge,
     href: "/catalog/motobuksirovschiki",
     count: 28,
     color: "from-primary to-primary/80",
