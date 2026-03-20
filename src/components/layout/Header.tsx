@@ -181,6 +181,28 @@ const Header = () => {
               >
                 <Send className="h-5 w-5" />
               </a>
+              <a 
+                href="https://dzen.ru/id/684413b8083e6952b7aac03d" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                title="Дзен"
+              >
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12C24 12 24 24 12 24C12 24 12 12 0 12C0 12 0 0 12 0C12 0 12 12 24 12Z"/>
+                </svg>
+              </a>
+              <a 
+                href="https://ok.ru/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                title="Одноклассники"
+              >
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.505 17.44a11.18 11.18 0 0 0 3.394-1.15c.612-.35.87-1.122.527-1.73-.344-.607-1.116-.864-1.728-.514a8.96 8.96 0 0 1-2.834.937c-.47.068-.942.1-1.415.1-.472 0-.945-.032-1.413-.1a8.956 8.956 0 0 1-2.835-.937c-.612-.35-1.384-.093-1.728.514-.343.608-.085 1.38.527 1.73a11.18 11.18 0 0 0 3.395 1.15L7.4 20.44c-.476.478-.476 1.254 0 1.73.238.238.55.357.862.357.312 0 .624-.12.862-.357l2.876-2.895 2.876 2.895c.238.238.55.357.862.357.312 0 .624-.12.862-.357.476-.476.476-1.252 0-1.73l-2.995-3zM12 2C9.238 2 7 4.238 7 7s2.238 5 5 5 5-2.238 5-5-2.238-5-5-5zm0 7.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 4.5 12 4.5s2.5 1.12 2.5 2.5S13.38 9.5 12 9.5z"/>
+                </svg>
+              </a>
               <a href="tel:+79219103850" className="flex items-center gap-2 font-semibold hover:opacity-80 transition-opacity">
                 <Phone className="h-4 w-4" />
                 <span>+7 (921) 910-38-50</span>
