@@ -10,9 +10,11 @@ import { useCart, dispatchCartUpdate } from "@/hooks/useCart";
 import trailer1 from "@/assets/products/trailer-1.jpg";
 import trailer2 from "@/assets/products/trailer-2.jpg";
 import trailer3 from "@/assets/products/trailer-3.jpg";
+import trailerUserHorizontal from "@/assets/products/trailer-user-horizontal.jpg";
+import trailerUserVertical from "@/assets/products/trailer-user-vertical-collage.jpg";
 
 // Image pool for products
-const productImages = [trailer1, trailer2, trailer3];
+const productImages = [trailer1, trailer2, trailer3, trailerUserHorizontal, trailerUserVertical];
 
 export interface Product {
   id: number;
@@ -108,7 +110,7 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
             <img 
               src={productImage} 
               alt={product.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
             />
             
             {/* Badges */}
@@ -205,7 +207,7 @@ const ProductCard = ({ product, index = 0, viewMode = 'grid' }: ProductCardProps
           <img 
             src={productImage} 
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
           />
           
           {/* Badges */}
