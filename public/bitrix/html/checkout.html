@@ -339,6 +339,23 @@
 <button class="floating-feedback-btn" id="floating-feedback-btn"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></button>
 <div class="cookie-consent" id="cookie-consent"><div class="cookie-consent-inner"><button class="cookie-consent-close" id="cookie-close"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="cookie-consent-body"><div class="cookie-consent-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div style="flex:1;padding-right:1rem"><h4>🍪 Мы используем cookies</h4><p>Для улучшения работы сайта и подбора лучших прицепов для вас мы собираем данные о посещениях.</p><div class="cookie-consent-btns"><button class="gradient-primary text-primary-foreground font-medium h-8 px-3 rounded-md text-sm" id="cookie-accept">Принять</button><button class="border border-input bg-background text-foreground h-8 px-3 rounded-md text-sm" id="cookie-decline">Отклонить</button></div></div></div></div></div>
 
+<div class="modal-overlay" id="checkout-warning-modal">
+  <div class="modal-backdrop" data-close-checkout-warning></div>
+  <div class="modal-content max-w-md">
+    <button class="modal-close" data-close-checkout-warning>
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-icon text-destructive">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 17h.01"/></svg>
+    </div>
+    <h2 class="modal-title">ВНИМАНИЕ!</h2>
+    <p class="modal-subtitle">Не оплачивайте заказ пока не подтвердите его наличие у консультанта!</p>
+    <button id="checkout-warning-confirm" class="w-full gradient-accent text-accent-foreground font-bold h-12 rounded-xl hover:opacity-90 transition-opacity">
+      Я понял
+    </button>
+  </div>
+</div>
+
 <script src="js/skif.js"></script>
 <script>
 (function() {
@@ -346,6 +363,25 @@
   var completedSteps = [];
   var selectedPayment = 'cash';
   var paymentNames = { cash:'Наличными', qr:'По QR-коду', sberbank:'Кредит Сбер', tinkoff:'Кредит Т-банк' };
+  var warningModal = document.getElementById('checkout-warning-modal');
+  var warningConfirmBtn = document.getElementById('checkout-warning-confirm');
+  var pendingOrderParams = '';
+
+  document.querySelectorAll('[data-close-checkout-warning]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      if (warningModal) warningModal.classList.remove('active');
+      pendingOrderParams = '';
+    });
+  });
+
+  if (warningConfirmBtn) {
+    warningConfirmBtn.addEventListener('click', function() {
+      if (!pendingOrderParams) return;
+      if (warningModal) warningModal.classList.remove('active');
+      markCompleted(3);
+      window.location.href = 'order-confirmation.html' + pendingOrderParams;
+    });
+  }
 
   // Phone mask for checkout phone field
   var phoneInput = document.querySelector('#checkout-form [name="phone"]');
@@ -490,9 +526,14 @@
     var callCb = document.getElementById('agree-call');
     if (callCb) callCb.style.outline = '';
     if (!valid) return;
-    markCompleted(3);
     var params = '?payment=' + selectedPayment;
-    window.location.href = 'order-confirmation.html' + params;
+    if (!warningModal || !warningConfirmBtn) {
+      markCompleted(3);
+      window.location.href = 'order-confirmation.html' + params;
+      return;
+    }
+    pendingOrderParams = params;
+    warningModal.classList.add('active');
   });
 
   // Clear validation on focus
