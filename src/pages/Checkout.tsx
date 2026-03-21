@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Wallet, CreditCard, Banknote, Check, ChevronDown, QrCode, AlertTriangle } from 'lucide-react';
 import { toast } from 'sonner';
 import {
@@ -72,6 +73,7 @@ const Checkout = () => {
   });
   const [agreePrivacy, setAgreePrivacy] = useState(false);
   const [agreeCall, setAgreeCall] = useState(false);
+  const [isOrderWarningOpen, setIsOrderWarningOpen] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   
   const [stepStatuses, setStepStatuses] = useState<Record<number, StepStatus>>({
@@ -200,6 +202,11 @@ const Checkout = () => {
   };
   const navigate = useNavigate();
 
+  const confirmOrderSubmission = () => {
+    setIsOrderWarningOpen(false);
+    navigate('/order-confirmation', { state: { paymentMethod: selectedPayment } });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -223,8 +230,7 @@ const Checkout = () => {
       return;
     }
 
-    // Navigate to confirmation page with payment method
-    navigate('/order-confirmation', { state: { paymentMethod: selectedPayment } });
+    setIsOrderWarningOpen(true);
   };
 
   const selectedPaymentMethod = paymentMethods.find(m => m.id === selectedPayment);
@@ -634,6 +640,22 @@ const Checkout = () => {
       </main>
 
       <Footer />
+
+      <Dialog open={isOrderWarningOpen} onOpenChange={setIsOrderWarningOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>ВНИМАНИЕ!</DialogTitle>
+            <DialogDescription>
+              Не оплачивайте заказ пока не подтвердите его наличие у консультанта!
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={confirmOrderSubmission} className="w-full sm:w-auto">
+              Я понял
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

@@ -13,6 +13,8 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import CallbackModal from "@/components/CallbackModal";
 import { useFavorites, dispatchFavoritesUpdate, FAVORITES_UPDATED_EVENT } from "@/hooks/useFavorites";
+import trailerUserHorizontal from "@/assets/products/trailer-user-horizontal.jpg";
+import trailerUserVertical from "@/assets/products/trailer-user-vertical-collage.jpg";
 
 // Mock product data
 const mockProduct = {
@@ -31,6 +33,8 @@ const mockProduct = {
     "https://www.skif-avto.ru/upload/resize_cache/iblock/219/720_720_1/a7qknx1z85rz5ryzd1np3jvupfvz4kdj.JPG",
     "https://www.skif-avto.ru/upload/resize_cache/iblock/b7a/720_720_1/wkko1mmpahi5q1hxwgoql111iiawzqys.JPG",
     "https://www.skif-avto.ru/upload/resize_cache/iblock/cce/720_720_1/sp4msspcmcdm943skgbulvfarq47gf4w.JPG",
+    trailerUserHorizontal,
+    trailerUserVertical,
   ],
   description: `
     <p>Прицеп для квадроцикла ССТ-7132-мини — компактный и надёжный помощник для транспортировки вашего квадроцикла. Идеально подходит для активного отдыха, охоты и рыбалки.</p>
@@ -230,7 +234,7 @@ const Product = () => {
                     <img
                       src={product.images[currentImageIndex]}
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-contain bg-muted p-2 transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                   
@@ -299,7 +303,7 @@ const Product = () => {
                       <img
                         src={image}
                         alt={`${product.name} - фото ${index + 1}`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain bg-muted p-1"
                       />
                     </button>
                   ))}
