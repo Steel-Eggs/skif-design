@@ -138,6 +138,13 @@
 .product-card-favorite.active { opacity:1; background:hsl(var(--destructive)); color:hsl(var(--destructive-foreground)); }
 .product-card-favorite svg { width:1.25rem; height:1.25rem; }
 
+/* Product images: support horizontal and vertical photos without cropping */
+.aspect-\[4\/3\].bg-muted.overflow-hidden > img {
+  object-fit: contain !important;
+  padding: 0.5rem;
+  background: hsl(var(--muted));
+}
+
 /* Modal */
 .modal-overlay { position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:opacity 0.3s ease, visibility 0.3s ease; }
 .modal-overlay.active { opacity:1; visibility:visible; }
