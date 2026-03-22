@@ -432,7 +432,8 @@
   }
 
   .product-mobile-btn {
-    height: 3.5rem !important;
+    height: 52px !important;
+    min-height: 52px !important;
     border-radius: 1rem !important;
     font-size: 1rem !important;
     font-weight: 800 !important;
