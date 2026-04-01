@@ -828,5 +828,33 @@
 <div class="cookie-consent" id="cookie-consent"><div class="cookie-consent-inner"><button class="cookie-consent-close" id="cookie-close"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div class="cookie-consent-body"><div class="cookie-consent-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div style="flex:1;padding-right:1rem"><h4>🍪 Мы используем cookies</h4><p>Для улучшения работы сайта и подбора лучших прицепов для вас мы собираем данные о посещениях.</p><div class="cookie-consent-btns"><button class="gradient-primary text-primary-foreground font-medium h-8 px-3 rounded-md text-sm" id="cookie-accept">Принять</button><button class="border border-input bg-background text-foreground h-8 px-3 rounded-md text-sm" id="cookie-decline">Отклонить</button></div></div></div></div></div>
 
 <script src="js/skif.js"></script>
+
+<!-- Price Notification Popup -->
+<div id="price-notification-overlay" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; padding:1rem;">
+  <div style="background:hsl(210 15% 97%); border-radius:1rem; box-shadow:0 25px 50px -12px rgba(0,0,0,0.25); max-width:28rem; width:100%; padding:1.5rem; position:relative; animation:pricePopIn 0.3s ease-out;">
+    <button onclick="closePriceNotice()" style="position:absolute; top:0.75rem; right:0.75rem; background:none; border:none; cursor:pointer; color:#666; font-size:1.25rem;">✕</button>
+    <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:1rem;">
+      <div style="width:3.5rem; height:3.5rem; border-radius:50%; background:#fef3c7; display:flex; align-items:center; justify-content:center; font-size:1.75rem;">⚠️</div>
+      <h3 style="font-size:1.125rem; font-weight:700; font-family:Montserrat,sans-serif; color:hsl(200 50% 10%); margin:0;">Смена цен</h3>
+      <p style="color:hsl(200 20% 40%); line-height:1.6; margin:0;">Уважаемые посетители! На сайте проводится обновление цен. Просим вас уточнять актуальные цены у наших менеджеров.</p>
+      <a href="tel:+78002001636" style="color:hsl(202 83% 26%); font-weight:600; text-decoration:none;">+7 (800) 200-16-36</a>
+      <button onclick="closePriceNotice()" style="margin-top:0.5rem; width:100%; height:2.75rem; border-radius:0.5rem; background:hsl(202 83% 26%); color:white; font-weight:500; border:none; cursor:pointer; font-size:1rem;">Понятно</button>
+    </div>
+  </div>
+</div>
+<style>@keyframes pricePopIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}</style>
+<script>
+(function(){
+  var overlay=document.getElementById('price-notification-overlay');
+  if(!sessionStorage.getItem('price-notice-dismissed')){
+    overlay.style.display='flex';
+  }
+})();
+function closePriceNotice(){
+  document.getElementById('price-notification-overlay').style.display='none';
+  sessionStorage.setItem('price-notice-dismissed','1');
+}
+</script>
+
 </body>
 </html>

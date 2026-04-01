@@ -13,6 +13,7 @@ import SeoSection from "@/components/home/SeoSection";
 import ContactsSection from "@/components/home/ContactsSection";
 import FeedbackButton from "@/components/FeedbackButton";
 import TelegramPopup from "@/components/TelegramPopup";
+import PriceNotification from "@/components/PriceNotification";
 
 const Index = () => {
   return (
@@ -34,6 +35,7 @@ const Index = () => {
       <Footer />
       <FeedbackButton />
       <TelegramPopup />
+      <PriceNotification />
     </div>
   );
 };
