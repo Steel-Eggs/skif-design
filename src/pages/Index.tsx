@@ -35,6 +35,7 @@ const Index = () => {
       <Footer />
       <FeedbackButton />
       <TelegramPopup />
+      <PriceNotification />
     </div>
   );
 };
